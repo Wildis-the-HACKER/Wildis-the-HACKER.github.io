@@ -664,7 +664,24 @@ function buildCalendar() {
 
     }
 
+function reportCalendarHeight(){
+    const calendar=document.querySelector('.calendar');
 
+    if(!calendar)return;
+
+    const height=Math.ceil(calendar.getBoundingClientRect().height);
+
+    window.parent.postMessage('calendar-height:'+height,'*');
+}
+   const calendarElement=document.querySelector('.calendar');
+
+if(calendarElement){
+    const calendarObserver=new ResizeObserver(function(){
+        requestAnimationFrame(reportCalendarHeight);
+    });
+
+    calendarObserver.observe(calendarElement);
+}
     /*
         Generate every day
     */
@@ -909,7 +926,7 @@ function getDateKey(year, month, day) {
 */
 
 buildCalendar();
-
+requestAnimationFrame(reportCalendarHeight);
 </script>
 
 </body>
