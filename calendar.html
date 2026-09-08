@@ -883,7 +883,6 @@ eventBox.appendChild(time);
 
 
 panel.classList.add("active");
-window.parent.postMessage("calendar-open","*");
 
 }
 
@@ -898,7 +897,6 @@ function changeMonth(amount) {
     currentDate.setMonth(currentDate.getMonth()+amount);
     buildCalendar();
     document.getElementById("eventPanel").classList.remove("active");
-    window.parent.postMessage("calendar-close","*");
 }
 
 
