@@ -664,14 +664,16 @@ function buildCalendar() {
 
     }
 
-function reportCalendarHeight(){
-    const calendar=document.querySelector('.calendar');
+function reportCalendarHeight() {
+    var height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+    );
 
-    if(!calendar)return;
-
-    const height=Math.ceil(calendar.getBoundingClientRect().height);
-
-    window.parent.postMessage('calendar-height:'+height,'*');
+    window.parent.postMessage(
+        "calendar-height:" + height,
+        "*"
+    );
 }
    const calendarElement=document.querySelector('.calendar');
 
