@@ -896,9 +896,13 @@ panel.classList.add("active");
 */
 
 function changeMonth(amount) {
-    currentDate.setMonth(currentDate.getMonth()+amount);
+    currentDate.setMonth(currentDate.getMonth() + amount);
     buildCalendar();
     document.getElementById("eventPanel").classList.remove("active");
+
+    requestAnimationFrame(function() {
+        reportCalendarHeight();
+    });
 }
 
 
