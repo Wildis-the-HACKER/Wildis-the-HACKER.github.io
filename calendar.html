@@ -346,7 +346,7 @@ const eventPatterns = {
     },
 
     tacticsEndgameSunday: {
-        title: "⚔️ Tactics and Endgame Sunday",
+        title: "Social Sunday",
         time: "All day",
         link: ""
     }
@@ -896,13 +896,19 @@ panel.classList.add("active");
 */
 
 function changeMonth(amount) {
-    currentDate.setMonth(currentDate.getMonth() + amount);
-    buildCalendar();
-    document.getElementById("eventPanel").classList.remove("active");
 
-    requestAnimationFrame(function() {
-        reportCalendarHeight();
-    });
+    currentDate.setMonth(
+        currentDate.getMonth() + amount
+    );
+
+    buildCalendar();
+
+    document
+        .getElementById("eventPanel")
+        .classList.remove("active");
+
+    window.parent.postMessage("calendar-close","*");
+
 }
 
 
