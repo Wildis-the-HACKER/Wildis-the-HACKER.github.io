@@ -340,7 +340,7 @@ const eventPatterns = {
     },
 
     saturdayKnightSwiss: {
-        title: "♟ Saturday Knight Swiss",
+        title: "Saturday Knight Swiss",
         time: "7:00 PM CST",
         link: ""
     },
@@ -600,9 +600,6 @@ Object.keys(specialEvents).forEach(function(date) {
     Generate the regular schedule.
 */
 
-/*
-    Generate the regular schedule first.
-*/
 
 generateRepublicSchedule();
 
@@ -664,26 +661,6 @@ function buildCalendar() {
 
     }
 
-function reportCalendarHeight() {
-    var height = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight
-    );
-
-    window.parent.postMessage(
-        "calendar-height:" + height,
-        "*"
-    );
-}
-   const calendarElement=document.querySelector('.calendar');
-
-if(calendarElement){
-    const calendarObserver=new ResizeObserver(function(){
-        requestAnimationFrame(reportCalendarHeight);
-    });
-
-    calendarObserver.observe(calendarElement);
-}
     /*
         Generate every day
     */
@@ -934,8 +911,63 @@ function getDateKey(year, month, day) {
     START
     ========================================
 */
+function reportCalendarHeight() {
+
+    var calendarElement =
+        document.querySelector(".calendar");
+
+    if (!calendarElement) {
+        return;
+    }
+
+    var calendarHeight =
+        calendarElement.getBoundingClientRect().height;
+
+    var bodyStyle =
+        getComputedStyle(document.body);
+
+    var paddingTop =
+        parseFloat(bodyStyle.paddingTop) || 0;
+
+    var paddingBottom =
+        parseFloat(bodyStyle.paddingBottom) || 0;
+
+    var height =
+        Math.ceil(
+            calendarHeight +
+            paddingTop +
+            paddingBottom
+        );
+
+    window.parent.postMessage(
+        "calendar-height:" + height,
+        "*"
+    );
+
+}
+
 
 buildCalendar();
+
+
+const calendarElement =
+    document.querySelector(".calendar");
+
+if (calendarElement) {
+
+    const calendarObserver =
+        new ResizeObserver(function() {
+
+            requestAnimationFrame(
+                reportCalendarHeight
+            );
+
+        });
+
+    calendarObserver.observe(calendarElement);
+
+}
+
 requestAnimationFrame(reportCalendarHeight);
 </script>
 
