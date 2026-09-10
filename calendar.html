@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -152,142 +153,143 @@
     .no-events {
         color: #c8e3e8;
     }
+
     /* ========================================
-   RESPONSIVE CALENDAR
-   ======================================== */
+       RESPONSIVE CALENDAR
+       ======================================== */
 
-@media (max-width: 500px) {
+    @media (max-width: 500px) {
 
-    body {
-        padding: 6px;
+        body {
+            padding: 6px;
+        }
+
+        .calendar-title {
+            font-size: 18px;
+        }
+
+        .calendar-controls {
+            gap: 4px;
+        }
+
+        button {
+            padding: 5px 7px;
+            font-size: 13px;
+        }
+
+        .month-name {
+            font-size: 16px;
+        }
+
+        .day {
+            min-height: 52px;
+            padding: 4px;
+        }
+
+        .weekday {
+            font-size: 11px;
+            padding: 5px 1px;
+        }
+
+        .day-number {
+            font-size: 13px;
+        }
+
+        .event-dot {
+            font-size: 10px;
+        }
+
     }
 
-    .calendar-title {
-        font-size: 18px;
+    @media (max-width: 380px) {
+
+        .calendar-title {
+            font-size: 16px;
+        }
+
+        .calendar-controls {
+            gap: 2px;
+        }
+
+        button {
+            padding: 4px 5px;
+            font-size: 12px;
+        }
+
+        .month-name {
+            font-size: 14px;
+        }
+
+        .day {
+            min-height: 45px;
+            padding: 3px;
+        }
+
+        .weekday {
+            font-size: 10px;
+        }
+
+        .day-number {
+            font-size: 12px;
+        }
+
+        .event-dot {
+            font-size: 0;
+        }
+
+        .event-dot::before {
+            content: "•";
+            font-size: 15px;
+        }
+
     }
-
-    .calendar-controls {
-        gap: 4px;
-    }
-
-    button {
-        padding: 5px 7px;
-        font-size: 13px;
-    }
-
-    .month-name {
-        font-size: 16px;
-    }
-
-    .day {
-        min-height: 52px;
-        padding: 4px;
-    }
-
-    .weekday {
-        font-size: 11px;
-        padding: 5px 1px;
-    }
-
-    .day-number {
-        font-size: 13px;
-    }
-
-    .event-dot {
-        font-size: 10px;
-    }
-
-}
-
-
-@media (max-width: 380px) {
-
-    .calendar-title {
-        font-size: 16px;
-    }
-
-    .calendar-controls {
-        gap: 2px;
-    }
-
-    button {
-        padding: 4px 5px;
-        font-size: 12px;
-    }
-
-    .month-name {
-        font-size: 14px;
-    }
-
-    .day {
-        min-height: 45px;
-        padding: 3px;
-    }
-
-    .weekday {
-        font-size: 10px;
-    }
-
-    .day-number {
-        font-size: 12px;
-    }
-
-    /*
-       On very narrow screens, only show
-       the first part of an event indicator.
-       The full event is still available
-       when the date is clicked.
-    */
-
-    .event-dot {
-        font-size: 0;
-    }
-
-    .event-dot::before {
-        content: "•";
-        font-size: 15px;
-    }
-
-}
 </style>
+
 </head>
 
 <body>
 
 <div class="calendar">
 
-    <div class="calendar-header">
+```
+<div class="calendar-header">
 
-        <div class="calendar-title">
-            📅 Republic Calendar
-        </div>
-
-        <div class="calendar-controls">
-            <button onclick="changeMonth(-1)">‹ Previous</button>
-
-            <div id="monthName" class="month-name"></div>
-
-            <button onclick="changeMonth(1)">Next ›</button>
-        </div>
-
+    <div class="calendar-title">
+        📅 Republic Calendar
     </div>
 
-    <div class="weekdays">
-        <div class="weekday">Sun</div>
-        <div class="weekday">Mon</div>
-        <div class="weekday">Tue</div>
-        <div class="weekday">Wed</div>
-        <div class="weekday">Thu</div>
-        <div class="weekday">Fri</div>
-        <div class="weekday">Sat</div>
+    <div class="calendar-controls">
+
+        <button onclick="changeMonth(-1)">
+            ‹ Previous
+        </button>
+
+        <div id="monthName" class="month-name"></div>
+
+        <button onclick="changeMonth(1)">
+            Next ›
+        </button>
+
     </div>
-
-    <div id="days" class="days"></div>
-
-    <div id="eventPanel" class="event-panel"></div>
 
 </div>
 
+<div class="weekdays">
+    <div class="weekday">Sun</div>
+    <div class="weekday">Mon</div>
+    <div class="weekday">Tue</div>
+    <div class="weekday">Wed</div>
+    <div class="weekday">Thu</div>
+    <div class="weekday">Fri</div>
+    <div class="weekday">Sat</div>
+</div>
+
+<div id="days" class="days"></div>
+
+<div id="eventPanel" class="event-panel"></div>
+```
+
+</div>
 
 <script>
 
@@ -298,23 +300,7 @@ let currentDate = new Date();
     ========================================
     REPUBLIC EVENT DATABASE
     ========================================
-
-    All events are stored by exact date.
-
-    Format:
-
-    "YYYY-MM-DD": [
-        {
-            title: "Event name",
-            time: "Event time",
-            link: "Event URL"
-        }
-    ]
-
-    Multiple events can exist on the
-    same date.
 */
-
 
 const eventDatabase = {};
 
@@ -327,27 +313,31 @@ const eventDatabase = {};
 
 const eventPatterns = {
 
-   openingMatch: {
+    openingMatch: {
         title: "Vote Chess",
         time: "Based on Saturday's Opening Academy opening",
         link: ""
     },
-   whiteMatch: {
+
+    whiteMatch: {
         title: "Vote Chess",
         time: "Republic plays as White",
         link: ""
     },
-   blackMatch: {
+
+    blackMatch: {
         title: "Vote Chess",
         time: "Republic plays as Black",
         link: ""
     },
-   nineSixtyMatch: {
+
+    nineSixtyMatch: {
         title: "Vote Chess",
-        time: "Random chess960 starting position",
+        time: "Random Chess960 starting position",
         link: ""
-    }, 
-   dailyMatch: {
+    },
+
+    dailyMatch: {
         title: "Friday Daily Match",
         time: "All day",
         link: ""
@@ -364,6 +354,7 @@ const eventPatterns = {
         time: "7:00 PM CST",
         link: ""
     },
+
     bughouseBattle: {
         title: "Bughouse Battle",
         time: "8:15 PM CST",
@@ -375,6 +366,7 @@ const eventPatterns = {
         time: "All day",
         link: ""
     },
+
     gameReview: {
         title: "Community Game Review",
         time: "3:00 PM CST",
@@ -382,31 +374,18 @@ const eventPatterns = {
     }
 
 };
+
+
 /*
     ========================================
     DATABASE DIRECTORY
     ========================================
 
-    Each date can override the automatically
-    generated event information.
-
-    You only need to put something here when
-    a date needs to be different.
-
+    Use this for date-specific overrides.
 */
 
-const databaseDirectory = {
+const databaseDirectory = {};
 
-    
-    "2026-09-18": {
-        puzzleFriday: {
-            link: "https://chess.com/"
-        }
-    }
-
-    
-
-};
 
 /*
     ========================================
@@ -421,9 +400,13 @@ function addEvent(date, event) {
     }
 
     eventDatabase[date].push({
+
         title: event.title,
+
         time: event.time,
+
         link: event.link
+
     });
 
 }
@@ -431,13 +414,12 @@ function addEvent(date, event) {
 
 /*
     ========================================
-    GENERATE CURRENT SCHEDULE
+    GENERATE REPUBLIC SCHEDULE
     ========================================
 
     September 1, 2026
     through
     December 31, 2026
-
 */
 
 function generateRepublicSchedule() {
@@ -467,12 +449,17 @@ function generateRepublicSchedule() {
 
 
         /*
-            Make sure this date exists
-            in the database.
+            Make sure this date exists.
         */
 
         eventDatabase[dateKey] = [];
- 
+
+
+        /*
+            Monday
+            Opening Match Vote Chess
+        */
+
         if (dayOfWeek === 1) {
 
             addDatabaseEvent(
@@ -481,7 +468,14 @@ function generateRepublicSchedule() {
             );
 
         }
-               if (dayOfWeek === 2) {
+
+
+        /*
+            Tuesday
+            Republic as White
+        */
+
+        if (dayOfWeek === 2) {
 
             addDatabaseEvent(
                 dateKey,
@@ -489,7 +483,14 @@ function generateRepublicSchedule() {
             );
 
         }
-               if (dayOfWeek === 3) {
+
+
+        /*
+            Wednesday
+            Republic as Black
+        */
+
+        if (dayOfWeek === 3) {
 
             addDatabaseEvent(
                 dateKey,
@@ -497,7 +498,14 @@ function generateRepublicSchedule() {
             );
 
         }
-               if (dayOfWeek === 4) {
+
+
+        /*
+            Thursday
+            Chess960 Vote Chess
+        */
+
+        if (dayOfWeek === 4) {
 
             addDatabaseEvent(
                 dateKey,
@@ -505,8 +513,11 @@ function generateRepublicSchedule() {
             );
 
         }
+
+
         /*
             Friday
+            Daily Match
         */
 
         if (dayOfWeek === 5) {
@@ -534,6 +545,7 @@ function generateRepublicSchedule() {
                 dateKey,
                 "saturdayKnightSwiss"
             );
+
             addDatabaseEvent(
                 dateKey,
                 "bughouseBattle"
@@ -552,6 +564,7 @@ function generateRepublicSchedule() {
                 dateKey,
                 "socialSunday"
             );
+
             addDatabaseEvent(
                 dateKey,
                 "gameReview"
@@ -561,16 +574,20 @@ function generateRepublicSchedule() {
 
     }
 
-}function addDatabaseEvent(dateKey, eventType) {
+}
+
+
+/*
+    ========================================
+    ADD DATABASE EVENT
+    ========================================
+*/
+
+function addDatabaseEvent(dateKey, eventType) {
 
     const pattern =
         eventPatterns[eventType];
 
-
-    /*
-        Copy the recurring pattern into
-        this specific date.
-    */
 
     const event = {
 
@@ -586,8 +603,7 @@ function generateRepublicSchedule() {
 
 
     /*
-        Check whether this specific date
-        has an override.
+        Check for date-specific override.
     */
 
     if (
@@ -623,95 +639,96 @@ function generateRepublicSchedule() {
     ========================================
     SPECIAL EVENTS
     ========================================
-
-    Put one-off events here.
-
-    These are added AFTER the regular
-    schedule, so a date can contain both
-    regular and special events.
-
 */
 
 const specialEvents = {
 
-"2026-10-26": [
-        {
-            title: "Rating Range Week",
-            time: "Required Rating: 100-399",
-            link: "https://example.com"
-        }
-    ]
-"2026-10-27": [
-        {
-            title: "Rating Range Week",
-            time: "Required Rating: 400-699",
-            link: "https://example.com"
-        }
-    ]
-"2026-10-28": [
-        {
-            title: "Rating Range Week",
-            time: "Required Rating: 700-999",
-            link: "https://example.com"
-        }
-    ] 
-   "2026-10-29": [
-        {
-            title: "Rating Range Week",
-            time: "Required Rating: 1000-1399",
-            link: "https://example.com"
-        }
-    ]
-   "2026-10-30": [
-        {
-            title: "Rating Range Week",
-            time: "Required Rating: 1400-1599",
-            link: "https://example.com"
-        }
-    ]
-   "2026-10-31": [
-        {
-            title: "Raing Range Week",
-            time: "Required Rating: 1600+",
-            link: "https://example.com"
-        }
-    ]
-   "2026-10-15": [
+    "2026-10-15": [
+
         {
             title: "Republic VS Owner Vote Chess",
             time: "Team up and try to outplay @Wildis_Knight",
-            link: "https://example.com"
+            link: ""
         }
+
+    ],
+
+    "2026-10-26": [
+
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 100-399",
+            link: ""
+        }
+
+    ],
+
+    "2026-10-27": [
+
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 400-699",
+            link: ""
+        }
+
+    ],
+
+    "2026-10-28": [
+
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 700-999",
+            link: ""
+        }
+
+    ],
+
+    "2026-10-29": [
+
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 1000-1399",
+            link: ""
+        }
+
+    ],
+
+    "2026-10-30": [
+
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 1400-1599",
+            link: ""
+        }
+
+    ],
+
+    "2026-10-31": [
+
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 1600+",
+            link: ""
+        }
+
     ]
 
 };
 
 
 /*
-    Add special events to database
+    ========================================
+    GENERATE THE REGULAR SCHEDULE
+    ========================================
 */
-
-Object.keys(specialEvents).forEach(function(date) {
-
-    specialEvents[date].forEach(function(event) {
-
-        addEvent(date, event);
-
-    });
-
-});
-
-
-/*
-    Generate the regular schedule.
-*/
-
 
 generateRepublicSchedule();
 
 
 /*
-    Then add special events.
+    ========================================
+    ADD SPECIAL EVENTS
+    ========================================
 */
 
 Object.keys(specialEvents).forEach(function(date) {
@@ -733,63 +750,110 @@ Object.keys(specialEvents).forEach(function(date) {
 
 function buildCalendar() {
 
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+    const year =
+        currentDate.getFullYear();
 
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
+    const month =
+        currentDate.getMonth();
 
-    const firstWeekday = firstDay.getDay();
-    const daysInMonth = lastDay.getDate();
 
-    const monthName = document.getElementById("monthName");
-    const days = document.getElementById("days");
+    const firstDay =
+        new Date(year, month, 1);
+
+    const lastDay =
+        new Date(year, month + 1, 0);
+
+
+    const firstWeekday =
+        firstDay.getDay();
+
+    const daysInMonth =
+        lastDay.getDate();
+
+
+    const monthName =
+        document.getElementById("monthName");
+
+    const days =
+        document.getElementById("days");
+
 
     monthName.textContent =
         firstDay.toLocaleString("en-US", {
+
             month: "long",
+
             year: "numeric"
+
         });
+
 
     days.innerHTML = "";
 
+
     /*
-        Empty spaces before the first day
+        Empty spaces before first day.
     */
 
-    for (let i = 0; i < firstWeekday; i++) {
+    for (
+        let i = 0;
+        i < firstWeekday;
+        i++
+    ) {
 
-        const empty = document.createElement("div");
+        const empty =
+            document.createElement("div");
 
-        empty.className = "day empty";
+        empty.className =
+            "day empty";
 
         days.appendChild(empty);
 
     }
 
+
     /*
-        Generate every day
+        Generate every day.
     */
 
-    for (let dayNumber = 1; dayNumber <= daysInMonth; dayNumber++) {
+    for (
+        let dayNumber = 1;
+        dayNumber <= daysInMonth;
+        dayNumber++
+    ) {
 
-        const date = new Date(year, month, dayNumber);
+        const date =
+            new Date(
+                year,
+                month,
+                dayNumber
+            );
 
-        const cell = document.createElement("div");
 
-        cell.className = "day";
+        const cell =
+            document.createElement("div");
+
+        cell.className =
+            "day";
 
 
         /*
-            Highlight today
+            Highlight today.
         */
 
-        const today = new Date();
+        const today =
+            new Date();
+
 
         if (
-            date.getFullYear() === today.getFullYear() &&
-            date.getMonth() === today.getMonth() &&
-            date.getDate() === today.getDate()
+            date.getFullYear() ===
+                today.getFullYear() &&
+
+            date.getMonth() ===
+                today.getMonth() &&
+
+            date.getDate() ===
+                today.getDate()
         ) {
 
             cell.classList.add("today");
@@ -798,51 +862,75 @@ function buildCalendar() {
 
 
         /*
-            Date number
+            Date number.
         */
 
-        const number = document.createElement("div");
+        const number =
+            document.createElement("div");
 
-        number.className = "day-number";
+        number.className =
+            "day-number";
 
-        number.textContent = dayNumber;
+        number.textContent =
+            dayNumber;
 
         cell.appendChild(number);
 
 
+        /*
+            Events for this date.
+        */
+
         const dateKey =
-    getDateKey(
-        year,
-        month + 1,
-        dayNumber
-    );
+            getDateKey(
+                year,
+                month + 1,
+                dayNumber
+            );
 
-const events =
-    eventDatabase[dateKey] || [];
 
-        events.slice(0, 2).forEach(function(event) {
+        const events =
+            eventDatabase[dateKey] || [];
 
-            const dot =
-                document.createElement("span");
 
-            dot.className = "event-dot";
+        /*
+            Show up to two event names.
+        */
 
-            dot.textContent = event.title;
+        events
+            .slice(0, 2)
+            .forEach(function(event) {
 
-            cell.appendChild(dot);
+                const dot =
+                    document.createElement("span");
 
-        });
+                dot.className =
+                    "event-dot";
 
+                dot.textContent =
+                    event.title;
+
+                cell.appendChild(dot);
+
+            });
+
+
+        /*
+            Show +X more when needed.
+        */
 
         if (events.length > 2) {
 
             const more =
                 document.createElement("span");
 
-            more.className = "event-dot";
+            more.className =
+                "event-dot";
 
             more.textContent =
-                "+" + (events.length - 2) + " more";
+                "+" +
+                (events.length - 2) +
+                " more";
 
             cell.appendChild(more);
 
@@ -850,17 +938,18 @@ const events =
 
 
         /*
-            Click date
+            Click date.
         */
 
-        cell.onclick = function() {
+        cell.onclick =
+            function() {
 
-            showEvents(
-                date,
-                events
-            );
+                showEvents(
+                    date,
+                    events
+                );
 
-        };
+            };
 
 
         days.appendChild(cell);
@@ -881,21 +970,29 @@ function showEvents(date, events) {
     const panel =
         document.getElementById("eventPanel");
 
+
     panel.innerHTML = "";
 
 
     const heading =
         document.createElement("div");
 
-    heading.className = "event-date";
+
+    heading.className =
+        "event-date";
+
 
     heading.textContent =
-        date.toLocaleString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        });
+        date.toLocaleString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
 
     panel.appendChild(heading);
 
@@ -905,7 +1002,8 @@ function showEvents(date, events) {
         const none =
             document.createElement("div");
 
-        none.className = "no-events";
+        none.className =
+            "no-events";
 
         none.textContent =
             "No scheduled Republic events.";
@@ -913,6 +1011,7 @@ function showEvents(date, events) {
         panel.appendChild(none);
 
     }
+
     else {
 
         events.forEach(function(event) {
@@ -920,45 +1019,57 @@ function showEvents(date, events) {
             const eventBox =
                 document.createElement("div");
 
-            eventBox.className = "event";
+
+            eventBox.className =
+                "event";
 
 
-const title =
-    document.createElement(
-        event.link ? "a" : "div"
-    );
-
-title.className = "event-title";
-
-title.textContent =
-    event.title;
+            const title =
+                document.createElement(
+                    event.link ? "a" : "div"
+                );
 
 
-if (event.link) {
-
-    title.href = event.link;
-
-    title.target = "_blank";
-
-    title.style.color = "white";
-
-    title.style.textDecoration = "none";
-
-}
+            title.className =
+                "event-title";
 
 
-const time =
-    document.createElement("div");
-
-time.className = "event-time";
-
-time.textContent =
-    event.time;
+            title.textContent =
+                event.title;
 
 
-eventBox.appendChild(title);
+            if (event.link) {
 
-eventBox.appendChild(time);
+                title.href =
+                    event.link;
+
+                title.target =
+                    "_blank";
+
+                title.style.color =
+                    "white";
+
+                title.style.textDecoration =
+                    "none";
+
+            }
+
+
+            const time =
+                document.createElement("div");
+
+
+            time.className =
+                "event-time";
+
+
+            time.textContent =
+                event.time;
+
+
+            eventBox.appendChild(title);
+
+            eventBox.appendChild(time);
 
             panel.appendChild(eventBox);
 
@@ -967,7 +1078,7 @@ eventBox.appendChild(time);
     }
 
 
-panel.classList.add("active");
+    panel.classList.add("active");
 
 }
 
@@ -984,13 +1095,21 @@ function changeMonth(amount) {
         currentDate.getMonth() + amount
     );
 
+
+    /*
+        Rebuild the calendar.
+    */
+
     buildCalendar();
+
+
+    /*
+        Hide the old event panel.
+    */
 
     document
         .getElementById("eventPanel")
         .classList.remove("active");
-
-    window.parent.postMessage("calendar-close","*");
 
 }
 
@@ -1004,9 +1123,72 @@ function changeMonth(amount) {
 function getDateKey(year, month, day) {
 
     return (
-        year + "-" +
-        String(month).padStart(2, "0") + "-" +
+
+        year +
+        "-" +
+        String(month).padStart(2, "0") +
+        "-" +
         String(day).padStart(2, "0")
+
+    );
+
+}
+
+
+/*
+    ========================================
+    DYNAMIC IFRAME HEIGHT
+    ========================================
+*/
+
+function reportCalendarHeight() {
+
+    const calendarElement =
+        document.querySelector(".calendar");
+
+
+    if (!calendarElement) {
+        return;
+    }
+
+
+    const calendarHeight =
+        calendarElement.getBoundingClientRect().height;
+
+
+    const bodyStyle =
+        getComputedStyle(document.body);
+
+
+    const paddingTop =
+        parseFloat(
+            bodyStyle.paddingTop
+        ) || 0;
+
+
+    const paddingBottom =
+        parseFloat(
+            bodyStyle.paddingBottom
+        ) || 0;
+
+
+    const height =
+        Math.ceil(
+
+            calendarHeight +
+            paddingTop +
+            paddingBottom
+
+        );
+
+
+    window.parent.postMessage(
+
+        "calendar-height:" +
+        height,
+
+        "*"
+
     );
 
 }
@@ -1017,41 +1199,6 @@ function getDateKey(year, month, day) {
     START
     ========================================
 */
-function reportCalendarHeight() {
-
-    var calendarElement =
-        document.querySelector(".calendar");
-
-    if (!calendarElement) {
-        return;
-    }
-
-    var calendarHeight =
-        calendarElement.getBoundingClientRect().height;
-
-    var bodyStyle =
-        getComputedStyle(document.body);
-
-    var paddingTop =
-        parseFloat(bodyStyle.paddingTop) || 0;
-
-    var paddingBottom =
-        parseFloat(bodyStyle.paddingBottom) || 0;
-
-    var height =
-        Math.ceil(
-            calendarHeight +
-            paddingTop +
-            paddingBottom
-        );
-
-    window.parent.postMessage(
-        "calendar-height:" + height,
-        "*"
-    );
-
-}
-
 
 buildCalendar();
 
@@ -1059,22 +1206,32 @@ buildCalendar();
 const calendarElement =
     document.querySelector(".calendar");
 
+
 if (calendarElement) {
 
     const calendarObserver =
-        new ResizeObserver(function() {
+        new ResizeObserver(
+            function() {
 
-            requestAnimationFrame(
-                reportCalendarHeight
-            );
+                requestAnimationFrame(
+                    reportCalendarHeight
+                );
 
-        });
+            }
+        );
 
-    calendarObserver.observe(calendarElement);
+
+    calendarObserver.observe(
+        calendarElement
+    );
 
 }
 
-requestAnimationFrame(reportCalendarHeight);
+
+requestAnimationFrame(
+    reportCalendarHeight
+);
+
 </script>
 
 </body>
