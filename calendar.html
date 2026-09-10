@@ -259,7 +259,7 @@
     <div class="calendar-header">
 
         <div class="calendar-title">
-            ♜ THE ROOK REPUBLIC CALENDAR ♜
+            📅 Republic Calendar
         </div>
 
         <div class="calendar-controls">
@@ -327,14 +327,34 @@ const eventDatabase = {};
 
 const eventPatterns = {
 
-    puzzleFriday: {
-        title: "🧩 Puzzle Friday",
+   openingMatch: {
+        title: "Vote Chess",
+        time: "Based on Saturday's Opening Academy opening",
+        link: ""
+    },
+   whiteMatch: {
+        title: "Vote Chess",
+        time: "Republic plays as White",
+        link: ""
+    },
+   blackMatch: {
+        title: "Vote Chess",
+        time: "Republic plays as Black",
+        link: ""
+    },
+   nineSixtyMatch: {
+        title: "Vote Chess",
+        time: "Random chess960 starting position",
+        link: ""
+    }, 
+   dailyMatch: {
+        title: "Friday Daily Match",
         time: "All day",
-        link: "https://example.com"
+        link: ""
     },
 
     openingAcademy: {
-        title: "📖 Opening Academy Saturday",
+        title: "Opening Academy Saturday",
         time: "All day",
         link: ""
     },
@@ -344,10 +364,20 @@ const eventPatterns = {
         time: "7:00 PM CST",
         link: ""
     },
+    bughouseBattle: {
+        title: "Bughouse Battle",
+        time: "8:15 PM CST",
+        link: ""
+    },
 
-    tacticsEndgameSunday: {
+    socialSunday: {
         title: "Social Sunday",
         time: "All day",
+        link: ""
+    },
+    gameReview: {
+        title: "Community Game Review",
+        time: "3:00 PM CST",
         link: ""
     }
 
@@ -442,8 +472,39 @@ function generateRepublicSchedule() {
         */
 
         eventDatabase[dateKey] = [];
+ 
+        if (dayOfWeek === 1) {
 
+            addDatabaseEvent(
+                dateKey,
+                "openingMatch"
+            );
 
+        }
+               if (dayOfWeek === 2) {
+
+            addDatabaseEvent(
+                dateKey,
+                "whiteMatch"
+            );
+
+        }
+               if (dayOfWeek === 3) {
+
+            addDatabaseEvent(
+                dateKey,
+                "blackMatch"
+            );
+
+        }
+               if (dayOfWeek === 4) {
+
+            addDatabaseEvent(
+                dateKey,
+                "nineSixtyMatch"
+            );
+
+        }
         /*
             Friday
         */
@@ -452,7 +513,7 @@ function generateRepublicSchedule() {
 
             addDatabaseEvent(
                 dateKey,
-                "puzzleFriday"
+                "dailyMatch"
             );
 
         }
@@ -473,6 +534,10 @@ function generateRepublicSchedule() {
                 dateKey,
                 "saturdayKnightSwiss"
             );
+            addDatabaseEvent(
+                dateKey,
+                "bughouseBattle"
+            );
 
         }
 
@@ -485,7 +550,11 @@ function generateRepublicSchedule() {
 
             addDatabaseEvent(
                 dateKey,
-                "tacticsEndgameSunday"
+                "socialSunday"
+            );
+            addDatabaseEvent(
+                dateKey,
+                "gameReview"
             );
 
         }
@@ -565,18 +634,55 @@ function generateRepublicSchedule() {
 
 const specialEvents = {
 
-    /*
-    Example:
-
-    "2026-10-31": [
+"2026-10-26": [
         {
-            title: "🎃 Republic Halloween Event",
-            time: "7:00 PM CST",
+            title: "Rating Range Week",
+            time: "Required Rating: 100-399",
             link: "https://example.com"
         }
     ]
-
-    */
+"2026-10-27": [
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 400-699",
+            link: "https://example.com"
+        }
+    ]
+"2026-10-28": [
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 700-999",
+            link: "https://example.com"
+        }
+    ] 
+   "2026-10-29": [
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 1000-1399",
+            link: "https://example.com"
+        }
+    ]
+   "2026-10-30": [
+        {
+            title: "Rating Range Week",
+            time: "Required Rating: 1400-1599",
+            link: "https://example.com"
+        }
+    ]
+   "2026-10-31": [
+        {
+            title: "Raing Range Week",
+            time: "Required Rating: 1600+",
+            link: "https://example.com"
+        }
+    ]
+   "2026-10-15": [
+        {
+            title: "Republic VS Owner Vote Chess",
+            time: "Team up and try to outplay @Wildis_Knight",
+            link: "https://example.com"
+        }
+    ]
 
 };
 
