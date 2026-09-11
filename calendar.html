@@ -10,6 +10,7 @@
 <style>
     * {
         box-sizing: border-box;
+        cursor: none;
     }
 
     body {
@@ -1190,7 +1191,13 @@ function reportCalendarHeight() {
     );
 
 }
-
+document.addEventListener('mousemove', function(e) {
+    window.parent.postMessage({
+        type: 'republic-mouse',
+        x: e.clientX,
+        y: e.clientY
+    }, '*');
+});
 
 /*
     ========================================
