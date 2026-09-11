@@ -1191,14 +1191,27 @@ function reportCalendarHeight() {
     );
 
 }
-document.addEventListener('mousemove', function(e) {
-    window.parent.postMessage({
-        type: 'republic-mouse',
-        x: e.clientX,
-        y: e.clientY
-    }, '*');
+let mx=-100;
+let my=-100;
+let time=0;
+const logoUrl='https://cdn.phototourl.com/free/2026-09-11-af1f0b73-21ad-46ac-9e42-b35890b4fc25.png';
+
+document.addEventListener('mousemove',function(e){
+  mx=e.clientX;
+  my=e.clientY;
 });
 
+window.addEventListener('message',function(e){
+  if(!e.data||e.data.type!=='republic-mouse')return;
+
+  var frame=document.getElementById('republicCalendar');
+  if(!frame||e.source!==frame.contentWindow)return;
+
+  var rect=frame.getBoundingClientRect();
+
+  mx=rect.left+e.data.x;
+  my=rect.top+e.data.y;
+});
 /*
     ========================================
     START
