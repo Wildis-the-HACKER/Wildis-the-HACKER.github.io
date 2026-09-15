@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,121 +138,141 @@
       places, matching the general structure of the original sketch.
     -->
 
-    <!-- Remaining / future path -->
+   <!-- Future / complete snake path -->
+<path
+  id="snakePath"
+  d="
+    M 70 80
+    H 870
+    C 910 80 930 105 930 135
+    C 930 165 910 185 870 185
+    H 70
+    C 35 185 20 210 20 240
+    C 20 270 35 295 70 295
+    H 870
+    C 910 295 930 320 930 350
+    C 930 380 910 400 870 400
+    H 70
+    C 35 400 20 425 20 455
+    C 20 485 35 510 70 510
+    H 870
+    C 910 510 930 535 930 565
+    C 930 595 910 615 870 615
+    H 160
+    C 120 615 100 640 100 670
+    C 100 700 120 725 160 725
+    H 870
+    C 910 725 930 750 930 780
+    C 930 810 910 830 870 830
+    H 350
+  "
+  fill="none"
+  stroke="#c7c7c7"
+  stroke-width="38"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+/>
+
+<path
+  id="snakePath"
+  d="
+    M 70 80
+    H 870
+    C 910 80 930 105 930 135
+    C 930 165 910 185 870 185
+    H 70
+    C 35 185 20 210 20 240
+    C 20 270 35 295 70 295
+    H 870
+    C 910 295 930 320 930 350
+    C 930 380 910 400 870 400
+    H 70
+    C 35 400 20 425 20 455
+    C 20 485 35 510 70 510
+    H 870
+    C 910 510 930 535 930 565
+    C 930 595 910 615 870 615
+    H 160
+    C 120 615 100 640 100 670
+    C 100 700 120 725 160 725
+    H 870
+    C 910 725 930 750 930 780
+    C 930 810 910 830 870 830
+    H 350
+  "
+  fill="none"
+  stroke="#c7c7c7"
+  stroke-width="38"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+/>
     <path
-      id="snakePath"
-      d="
-        M 95 80
-
-        C 180 80, 300 80, 470 80
-        C 620 80, 790 75, 875 95
-
-        C 920 110, 920 155, 875 180
-        C 780 230, 600 210, 420 205
-        C 280 200, 175 195, 105 220
-
-        C 75 235, 80 270, 120 280
-        C 250 315, 410 325, 570 325
-        C 720 325, 820 315, 875 290
-
-        C 915 270, 915 330, 865 350
-        C 760 390, 570 390, 420 390
-        C 300 390, 190 380, 110 410
-
-        C 75 425, 90 465, 145 475
-        C 275 500, 430 505, 590 500
-        C 700 497, 790 490, 850 475
-
-        C 900 462, 910 500, 875 530
-
-        C 805 590, 620 575, 470 570
-        C 340 565, 240 580, 180 610
-
-        C 145 630, 170 670, 225 680
-        C 360 705, 560 700, 710 690
-
-        C 820 683, 875 700, 855 735
-
-        C 820 790, 610 780, 450 780
-        C 320 780, 255 800, 300 830
-
-        C 360 865, 590 855, 760 850
-      "
-      fill="none"
-      stroke="#c7c7c7"
-      stroke-width="38"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      pathLength="1000"
-    />
-
-    <!-- Completed portion -->
-    <path
-      d="
-        M 95 80
-
-        C 180 80, 300 80, 470 80
-        C 620 80, 790 75, 875 95
-
-        C 920 110, 920 155, 875 180
-        C 780 230, 600 210, 420 205
-        C 280 200, 175 195, 105 220
-
-        C 75 235, 80 270, 120 280
-        C 250 315, 410 325, 570 325
-        C 720 325, 820 315, 875 290
-
-        C 915 270, 915 330, 865 350
-        C 760 390, 570 390, 420 390
-        C 300 390, 190 380, 110 410
-
-        C 75 425, 90 465, 145 475
-        C 275 500, 430 505, 590 500
-        C 700 497, 790 490, 850 475
-      "
-      fill="none"
-      stroke="#20b34b"
-      stroke-width="38"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-
+  id="snakeProgress"
+  d="
+    M 70 80
+    H 870
+    C 910 80 930 105 930 135
+    C 930 165 910 185 870 185
+    H 70
+    C 35 185 20 210 20 240
+    C 20 270 35 295 70 295
+    H 870
+    C 910 295 930 320 930 350
+    C 930 380 910 400 870 400
+    H 70
+    C 35 400 20 425 20 455
+    C 20 485 35 510 70 510
+    H 870
+    C 910 510 930 535 930 565
+    C 930 595 910 615 870 615
+    H 160
+    C 120 615 100 640 100 670
+    C 100 700 120 725 160 725
+    H 870
+    C 910 725 930 750 930 780
+    C 930 810 910 830 870 830
+    H 350
+  "
+  fill="none"
+  stroke="#20b34b"
+  stroke-width="38"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-dasharray="0 100000"
+/>
     <!-- ============================================================
          MILESTONE NUMBERS
          ============================================================ -->
 
-    <text x="72" y="70" class="milestone">0</text>
+    <text x="38" y="70" class="milestone">0</text>
 
-    <text x="390" y="65" class="milestone">10</text>
+<text x="385" y="70" class="milestone">10</text>
 
-    <text x="790" y="80" class="milestone">50</text>
+<text x="825" y="70" class="milestone">50</text>
 
-    <text x="430" y="190" class="milestone">75</text>
+<text x="455" y="175" class="milestone">75</text>
 
-    <text x="55" y="275" class="milestone">100</text>
+<text x="18" y="285" class="milestone">100</text>
 
-    <text x="355" y="315" class="milestone">150</text>
+<text x="355" y="285" class="milestone">150</text>
 
-    <text x="715" y="315" class="milestone">200</text>
+<text x="810" y="285" class="milestone">200</text>
 
-    <text x="70" y="455" class="milestone">250</text>
+<text x="20" y="500" class="milestone">250</text>
 
-    <text x="360" y="490" class="milestone">300</text>
+<text x="355" y="500" class="milestone">300</text>
 
-    <text x="650" y="490" class="milestone">350</text>
+<text x="680" y="500" class="milestone">350</text>
 
-    <text x="715" y="580" class="future milestone">400</text>
+<text x="800" y="605" class="future milestone">400</text>
 
-    <text x="90" y="650" class="future milestone">450</text>
+<text x="55" y="715" class="future milestone">450</text>
 
-    <text x="410" y="665" class="future milestone">475</text>
+<text x="405" y="715" class="future milestone">475</text>
 
-    <!-- 500 is intentionally special -->
-    <text x="700" y="820" class="goal-500">500</text>
+<text x="760" y="820" class="goal-500">500</text>
 
-    <text x="735" y="855" class="goal-text">
-      100%
-    </text>
+<text x="795" y="855" class="goal-text">100%</text>
 
     <!-- ============================================================
          STATIC SNAKE HEAD
@@ -267,118 +286,254 @@
          automatically.
     -->
 
-    <g transform="translate(775 475) rotate(-8)">
+   <g id="snakeHead">
 
-      <!-- head -->
-      <ellipse
-        cx="0"
-        cy="0"
-        rx="32"
-        ry="25"
-        fill="#20b34b"
-        stroke="#007a32"
-        stroke-width="4"
-      />
+  <ellipse
+    cx="0"
+    cy="0"
+    rx="32"
+    ry="25"
+    fill="#20b34b"
+    stroke="#007a32"
+    stroke-width="4"
+  />
 
-      <!-- eyes -->
-      <circle
-        cx="-11"
-        cy="-8"
-        r="5"
-        class="snake-eye"
-      />
+  <circle
+    cx="-11"
+    cy="-8"
+    r="5"
+    class="snake-eye"
+  />
 
-      <circle
-        cx="11"
-        cy="-8"
-        r="5"
-        class="snake-eye"
-      />
+  <circle
+    cx="11"
+    cy="-8"
+    r="5"
+    class="snake-eye"
+  />
 
-      <!-- pupils -->
-      <circle
-        cx="-10"
-        cy="-8"
-        r="2"
-        fill="white"
-      />
+  <circle
+    cx="-10"
+    cy="-8"
+    r="2"
+    fill="white"
+  />
 
-      <circle
-        cx="12"
-        cy="-8"
-        r="2"
-        fill="white"
-      />
+  <circle
+    cx="12"
+    cy="-8"
+    r="2"
+    fill="white"
+  />
 
-      <!-- tongue -->
-      <path
-        d="M 30 4 L 50 4 M 50 4 L 58 -3 M 50 4 L 58 11"
-        class="snake-tongue"
-      />
+  <path
+    d="M 30 4 L 50 4 M 50 4 L 58 -3 M 50 4 L 58 11"
+    class="snake-tongue"
+  />
 
-    </g>
+</g>
 
     <!-- ============================================================
          CURRENT CITIZEN LABEL
          ============================================================ -->
 
-    <g transform="translate(690 420)">
+    <g id="citizenLabel">
+  <rect
+    x="0"
+    y="0"
+    width="170"
+    height="70"
+    class="count-box"
+  />
 
-      <rect
-        x="0"
-        y="0"
-        width="170"
-        height="70"
-        class="count-box"
-      />
+  <text
+    id="citizenNumber"
+    x="85"
+    y="30"
+    text-anchor="middle"
+    class="count-number"
+  >
+    346
+  </text>
 
-      <text
-        x="85"
-        y="30"
-        text-anchor="middle"
-        class="count-number"
-      >
-        346
-      </text>
+  <text
+    x="85"
+    y="52"
+    text-anchor="middle"
+    class="count-label"
+  >
+    Citizens
+  </text>
+</g>
 
-      <text
-        x="85"
-        y="52"
-        text-anchor="middle"
-        class="count-label"
-      >
-        Citizens
-      </text>
-
-    </g>
-
-    <!-- ============================================================
-         FUTURE GOALS
-         ============================================================ -->
-
-    <text
-      x="910"
-      y="135"
-      transform="rotate(-72 910 135)"
-      class="future small-milestone"
-    >
-      * Future Goals
-    </text>
-
-    <text
-      x="925"
-      y="205"
-      transform="rotate(-72 925 205)"
-      class="future small-milestone"
-    >
-      * Maybe less coils but hope
-    </text>
 
   </svg>
 
 </div>
+<script>
+(function(){
 
+  var snake = document.getElementById('snakePath');
+  var progress = document.getElementById('snakeProgress');
+  var head = document.getElementById('snakeHead');
+  var label = document.getElementById('citizenLabel');
+  var number = document.getElementById('citizenNumber');
+
+  if(!snake || !progress || !head || !label || !number){
+    return;
+  }
+
+  var milestones = [
+    0,
+    10,
+    50,
+    75,
+    100,
+    150,
+    200,
+    250,
+    300,
+    350,
+    400,
+    450,
+    475,
+    500
+  ];
+
+  var totalLength = snake.getTotalLength();
+
+  progress.style.strokeDasharray = '0 ' + totalLength;
+
+  function getGoal(count){
+
+    for(var i = 0; i < milestones.length; i++){
+
+      if(count < milestones[i]){
+        return milestones[i];
+      }
+
+    }
+
+    return milestones[milestones.length - 1];
+  }
+
+  function updateSnake(count){
+
+    var goal = getGoal(count);
+
+    if(goal <= 0){
+      goal = 500;
+    }
+
+    var ratio = count / 500;
+
+    if(ratio > 1){
+      ratio = 1;
+    }
+
+    if(ratio < 0){
+      ratio = 0;
+    }
+
+    var distance = totalLength * ratio;
+
+    progress.style.strokeDasharray =
+      distance + ' ' + totalLength;
+
+    var point = snake.getPointAtLength(distance);
+
+    var previousDistance =
+      Math.max(0, distance - 1);
+
+    var previous =
+      snake.getPointAtLength(previousDistance);
+
+    var dx = point.x - previous.x;
+    var dy = point.y - previous.y;
+
+    var angle =
+      Math.atan2(dy, dx) * 180 / Math.PI;
+
+    head.setAttribute(
+      'transform',
+      'translate(' + point.x + ' ' + point.y + ') rotate(' + angle + ')'
+    );
+
+    /*
+      Put the citizen box slightly above/right of the head.
+    */
+
+    var labelX = point.x + 35;
+    var labelY = point.y - 85;
+
+    /*
+      Keep the label inside the SVG.
+    */
+
+    if(labelX > 810){
+      labelX = point.x - 205;
+    }
+
+    if(labelY < 10){
+      labelY = point.y + 35;
+    }
+
+    label.setAttribute(
+      'transform',
+      'translate(' + labelX + ' ' + labelY + ')'
+    );
+
+    number.textContent = count;
+
+    /*
+      Update the 500 marker appearance.
+    */
+
+    var goalText =
+      document.getElementById('goalText');
+
+    if(goalText){
+      goalText.textContent =
+        goal === 500 ? '500' : goal;
+    }
+  }
+
+  function loadCount(){
+
+    fetch(
+      'https://api.chess.com/pub/club/the-rook-republic-chess-club'
+    )
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(data){
+
+      var count =
+        Number(data.members) ||
+        Number(data.member_count) ||
+        0;
+
+      if(count > 0){
+        updateSnake(count);
+      }
+
+    })
+    .catch(function(){
+
+      /*
+        Keep the prototype usable if the API
+        cannot be reached.
+      */
+
+      updateSnake(346);
+
+    });
+
+  }
+
+  loadCount();
+
+})();
+</script>
 </body>
 </html>
-```
-
