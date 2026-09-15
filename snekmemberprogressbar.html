@@ -1,0 +1,384 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rook Republic Snake Bar — Version 1</title>
+
+<style>
+  *{
+    box-sizing:border-box;
+  }
+
+  body{
+    margin:0;
+    padding:20px;
+    background:#00a2e8;
+    font-family:Arial,Helvetica,sans-serif;
+  }
+
+  .snake-container{
+    width:100%;
+    max-width:1000px;
+    margin:0 auto;
+    background:#00a2e8;
+    border-radius:12px;
+    overflow:hidden;
+  }
+
+  .snake-title{
+    text-align:center;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:5px;
+  }
+
+  .snake-subtitle{
+    text-align:center;
+    color:white;
+    font-size:16px;
+    margin-bottom:12px;
+  }
+
+  .snake-svg{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+
+  .milestone{
+    font-weight:bold;
+    font-size:42px;
+    fill:#000;
+  }
+
+  .small-milestone{
+    font-weight:bold;
+    font-size:34px;
+    fill:#000;
+  }
+
+  .future{
+    fill:#555;
+  }
+
+  .goal-500{
+    fill:#f5c400;
+    font-size:58px;
+    font-weight:bold;
+  }
+
+  .goal-text{
+    fill:#000;
+    font-size:30px;
+    font-weight:bold;
+  }
+
+  .count-box{
+    fill:white;
+    stroke:#0077b6;
+    stroke-width:3;
+    rx:10;
+  }
+
+  .count-number{
+    fill:#0077b6;
+    font-size:28px;
+    font-weight:bold;
+  }
+
+  .count-label{
+    fill:#000;
+    font-size:16px;
+    font-weight:bold;
+  }
+
+  .snake-eye{
+    fill:#000;
+  }
+
+  .snake-tongue{
+    stroke:#000;
+    stroke-width:3;
+    stroke-linecap:round;
+    fill:none;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="snake-container">
+
+  <div class="snake-title">
+    ♜ Republic Membership
+  </div>
+
+  <div class="snake-subtitle">
+    The Official Republic Membership Serpent
+  </div>
+
+  <svg
+    class="snake-svg"
+    viewBox="0 0 1000 900"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-label="Rook Republic membership snake bar"
+  >
+
+    <!--
+      ============================================================
+      SNAKE PATH
+      ============================================================
+
+      One continuous path from 0 to 500.
+
+      The path deliberately curves underneath itself in several
+      places, matching the general structure of the original sketch.
+    -->
+
+    <!-- Remaining / future path -->
+    <path
+      id="snakePath"
+      d="
+        M 95 80
+
+        C 180 80, 300 80, 470 80
+        C 620 80, 790 75, 875 95
+
+        C 920 110, 920 155, 875 180
+        C 780 230, 600 210, 420 205
+        C 280 200, 175 195, 105 220
+
+        C 75 235, 80 270, 120 280
+        C 250 315, 410 325, 570 325
+        C 720 325, 820 315, 875 290
+
+        C 915 270, 915 330, 865 350
+        C 760 390, 570 390, 420 390
+        C 300 390, 190 380, 110 410
+
+        C 75 425, 90 465, 145 475
+        C 275 500, 430 505, 590 500
+        C 700 497, 790 490, 850 475
+
+        C 900 462, 910 500, 875 530
+
+        C 805 590, 620 575, 470 570
+        C 340 565, 240 580, 180 610
+
+        C 145 630, 170 670, 225 680
+        C 360 705, 560 700, 710 690
+
+        C 820 683, 875 700, 855 735
+
+        C 820 790, 610 780, 450 780
+        C 320 780, 255 800, 300 830
+
+        C 360 865, 590 855, 760 850
+      "
+      fill="none"
+      stroke="#c7c7c7"
+      stroke-width="38"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      pathLength="1000"
+    />
+
+    <!-- Completed portion -->
+    <path
+      d="
+        M 95 80
+
+        C 180 80, 300 80, 470 80
+        C 620 80, 790 75, 875 95
+
+        C 920 110, 920 155, 875 180
+        C 780 230, 600 210, 420 205
+        C 280 200, 175 195, 105 220
+
+        C 75 235, 80 270, 120 280
+        C 250 315, 410 325, 570 325
+        C 720 325, 820 315, 875 290
+
+        C 915 270, 915 330, 865 350
+        C 760 390, 570 390, 420 390
+        C 300 390, 190 380, 110 410
+
+        C 75 425, 90 465, 145 475
+        C 275 500, 430 505, 590 500
+        C 700 497, 790 490, 850 475
+      "
+      fill="none"
+      stroke="#20b34b"
+      stroke-width="38"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- ============================================================
+         MILESTONE NUMBERS
+         ============================================================ -->
+
+    <text x="72" y="70" class="milestone">0</text>
+
+    <text x="390" y="65" class="milestone">10</text>
+
+    <text x="790" y="80" class="milestone">50</text>
+
+    <text x="430" y="190" class="milestone">75</text>
+
+    <text x="55" y="275" class="milestone">100</text>
+
+    <text x="355" y="315" class="milestone">150</text>
+
+    <text x="715" y="315" class="milestone">200</text>
+
+    <text x="70" y="455" class="milestone">250</text>
+
+    <text x="360" y="490" class="milestone">300</text>
+
+    <text x="650" y="490" class="milestone">350</text>
+
+    <text x="715" y="580" class="future milestone">400</text>
+
+    <text x="90" y="650" class="future milestone">450</text>
+
+    <text x="410" y="665" class="future milestone">475</text>
+
+    <!-- 500 is intentionally special -->
+    <text x="700" y="820" class="goal-500">500</text>
+
+    <text x="735" y="855" class="goal-text">
+      100%
+    </text>
+
+    <!-- ============================================================
+         STATIC SNAKE HEAD
+         ============================================================
+
+         Temporary Version 1 position:
+         approximately 346 citizens.
+
+         The head is angled in the direction of travel along the
+         snake path. Later JavaScript will calculate this position
+         automatically.
+    -->
+
+    <g transform="translate(775 475) rotate(-8)">
+
+      <!-- head -->
+      <ellipse
+        cx="0"
+        cy="0"
+        rx="32"
+        ry="25"
+        fill="#20b34b"
+        stroke="#007a32"
+        stroke-width="4"
+      />
+
+      <!-- eyes -->
+      <circle
+        cx="-11"
+        cy="-8"
+        r="5"
+        class="snake-eye"
+      />
+
+      <circle
+        cx="11"
+        cy="-8"
+        r="5"
+        class="snake-eye"
+      />
+
+      <!-- pupils -->
+      <circle
+        cx="-10"
+        cy="-8"
+        r="2"
+        fill="white"
+      />
+
+      <circle
+        cx="12"
+        cy="-8"
+        r="2"
+        fill="white"
+      />
+
+      <!-- tongue -->
+      <path
+        d="M 30 4 L 50 4 M 50 4 L 58 -3 M 50 4 L 58 11"
+        class="snake-tongue"
+      />
+
+    </g>
+
+    <!-- ============================================================
+         CURRENT CITIZEN LABEL
+         ============================================================ -->
+
+    <g transform="translate(690 420)">
+
+      <rect
+        x="0"
+        y="0"
+        width="170"
+        height="70"
+        class="count-box"
+      />
+
+      <text
+        x="85"
+        y="30"
+        text-anchor="middle"
+        class="count-number"
+      >
+        346
+      </text>
+
+      <text
+        x="85"
+        y="52"
+        text-anchor="middle"
+        class="count-label"
+      >
+        Citizens
+      </text>
+
+    </g>
+
+    <!-- ============================================================
+         FUTURE GOALS
+         ============================================================ -->
+
+    <text
+      x="910"
+      y="135"
+      transform="rotate(-72 910 135)"
+      class="future small-milestone"
+    >
+      * Future Goals
+    </text>
+
+    <text
+      x="925"
+      y="205"
+      transform="rotate(-72 925 205)"
+      class="future small-milestone"
+    >
+      * Maybe less coils but hope
+    </text>
+
+  </svg>
+
+</div>
+
+</body>
+</html>
+```
+
