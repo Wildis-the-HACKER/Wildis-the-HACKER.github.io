@@ -24,17 +24,17 @@
         display: block;
     }
 
-    .milestone {
-        font-size: 48px;
-        font-weight: bold;
-        fill: black;
-    }
+.milestone {
+    font-size: 48px;
+    font-weight: bold;
+    fill: black;
+}
 
-    .final-milestone {
-        font-size: 58px;
-        font-weight: bold;
-        fill: #ffb900;
-    }
+.final-milestone {
+    font-size: 58px;
+    font-weight: bold;
+    fill: #ffb900;
+}
 </style>
 </head>
 
@@ -278,6 +278,54 @@ function generateRows() {
 // ============================================================
 
 const svg = document.getElementById("snakeSvg");
+function updateMilestoneSizes() {
+
+    const renderedWidth =
+        svg.getBoundingClientRect().width;
+
+    /*
+     * The snake's viewBox is 1200 units wide.
+     *
+     * We want the numbers to remain visually readable
+     * regardless of how wide the iframe happens to be.
+     */
+    const scale =
+        renderedWidth / 1200;
+
+    const normalSize =
+        Math.max(
+            48,
+            Math.min(
+                80,
+                48 / scale
+            )
+        );
+
+    const finalSize =
+        Math.max(
+            58,
+            Math.min(
+                96,
+                58 / scale
+            )
+        );
+
+    svg.querySelectorAll(".milestone")
+        .forEach(label => {
+            label.setAttribute(
+                "font-size",
+                normalSize
+            );
+        });
+
+    svg.querySelectorAll(".final-milestone")
+        .forEach(label => {
+            label.setAttribute(
+                "font-size",
+                finalSize
+            );
+        });
+}
 
 svg.innerHTML = "";
 
@@ -1161,14 +1209,31 @@ function drawText(x, y, text, color = "black") {
     label.setAttribute("fill", color);
 
     label.setAttribute(
-    "font-size",
-    text == 500 ? "50" : "30"
-);
-    label.setAttribute("font-family", "Arial, sans-serif");
-    label.setAttribute("font-weight", "bold");
+        "font-family",
+        "Arial, sans-serif"
+    );
 
-    label.setAttribute("text-anchor", "middle");
-    label.setAttribute("dominant-baseline", "middle");
+    label.setAttribute(
+        "font-weight",
+        "bold"
+    );
+
+    label.setAttribute(
+        "text-anchor",
+        "middle"
+    );
+
+    label.setAttribute(
+        "dominant-baseline",
+        "middle"
+    );
+
+    label.setAttribute(
+        "class",
+        text == 500
+            ? "final-milestone"
+            : "milestone"
+    );
 
     label.textContent = text;
 
@@ -1418,6 +1483,11 @@ rows.forEach((row, rowIndex) => {
     });
 
 }
+window.addEventListener(
+    "resize",
+    updateMilestoneSizes
+);
+updateMilestoneSizes();
   drawSnake();
 </script>
 
