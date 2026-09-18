@@ -3,108 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Rook Republic Snake Bar — Version 1</title>
+<title>Rook Republic Member Snake</title>
 
 <style>
-  *{
-    box-sizing:border-box;
-  }
+    body {
+        margin: 0;
+        background: #00a2e8;
+        font-family: Arial, sans-serif;
+    }
 
-  body{
-    margin:0;
-    padding:20px;
-    background:#00a2e8;
-    font-family:Arial,Helvetica,sans-serif;
-  }
+    .snake-container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 30px auto;
+    }
 
-  .snake-container{
-    width:100%;
-    max-width:1000px;
-    margin:0 auto;
-    background:#00a2e8;
-    border-radius:12px;
-    overflow:hidden;
-  }
+    svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 
-  .snake-title{
-    text-align:center;
-    color:white;
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:5px;
-  }
+    .milestone {
+        font-size: 48px;
+        font-weight: bold;
+        fill: black;
+    }
 
-  .snake-subtitle{
-    text-align:center;
-    color:white;
-    font-size:16px;
-    margin-bottom:12px;
-  }
-
-  .snake-svg{
-    display:block;
-    width:100%;
-    height:auto;
-  }
-
-  .milestone{
-    font-weight:bold;
-    font-size:42px;
-    fill:#000;
-  }
-
-  .small-milestone{
-    font-weight:bold;
-    font-size:34px;
-    fill:#000;
-  }
-
-  .future{
-    fill:#555;
-  }
-
-  .goal-500{
-    fill:#f5c400;
-    font-size:58px;
-    font-weight:bold;
-  }
-
-  .goal-text{
-    fill:#000;
-    font-size:30px;
-    font-weight:bold;
-  }
-
-  .count-box{
-    fill:white;
-    stroke:#0077b6;
-    stroke-width:3;
-    rx:10;
-  }
-
-  .count-number{
-    fill:#0077b6;
-    font-size:28px;
-    font-weight:bold;
-  }
-
-  .count-label{
-    fill:#000;
-    font-size:16px;
-    font-weight:bold;
-  }
-
-  .snake-eye{
-    fill:#000;
-  }
-
-  .snake-tongue{
-    stroke:#000;
-    stroke-width:3;
-    stroke-linecap:round;
-    fill:none;
-  }
+    .final-milestone {
+        font-size: 58px;
+        font-weight: bold;
+        fill: #ffb900;
+    }
 </style>
 </head>
 
@@ -112,428 +42,1384 @@
 
 <div class="snake-container">
 
-  <div class="snake-title">
-    ♜ Republic Membership
-  </div>
-
-  <div class="snake-subtitle">
-    The Official Republic Membership Serpent
-  </div>
-
-  <svg
-    class="snake-svg"
-    viewBox="0 0 1000 900"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-label="Rook Republic membership snake bar"
-  >
-
-    <!--
-      ============================================================
-      SNAKE PATH
-      ============================================================
-
-      One continuous path from 0 to 500.
-
-      The path deliberately curves underneath itself in several
-      places, matching the general structure of the original sketch.
-    -->
-
-   <!-- Future / complete snake path -->
-<path
-  id="snakePath"
-  d="
-    M 70 80
-    H 870
-    C 910 80 930 105 930 135
-    C 930 165 910 185 870 185
-    H 70
-    C 35 185 20 210 20 240
-    C 20 270 35 295 70 295
-    H 870
-    C 910 295 930 320 930 350
-    C 930 380 910 400 870 400
-    H 70
-    C 35 400 20 425 20 455
-    C 20 485 35 510 70 510
-    H 870
-    C 910 510 930 535 930 565
-    C 930 595 910 615 870 615
-    H 160
-    C 120 615 100 640 100 670
-    C 100 700 120 725 160 725
-    H 870
-    C 910 725 930 750 930 780
-    C 930 810 910 830 870 830
-    H 350
-  "
-  fill="none"
-  stroke="#c7c7c7"
-  stroke-width="38"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-/>
-
-<path
-  id="snakePath"
-  d="
-    M 70 80
-    H 870
-    C 910 80 930 105 930 135
-    C 930 165 910 185 870 185
-    H 70
-    C 35 185 20 210 20 240
-    C 20 270 35 295 70 295
-    H 870
-    C 910 295 930 320 930 350
-    C 930 380 910 400 870 400
-    H 70
-    C 35 400 20 425 20 455
-    C 20 485 35 510 70 510
-    H 870
-    C 910 510 930 535 930 565
-    C 930 595 910 615 870 615
-    H 160
-    C 120 615 100 640 100 670
-    C 100 700 120 725 160 725
-    H 870
-    C 910 725 930 750 930 780
-    C 930 810 910 830 870 830
-    H 350
-  "
-  fill="none"
-  stroke="#c7c7c7"
-  stroke-width="38"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-/>
-    <path
-  id="snakeProgress"
-  d="
-    M 70 80
-    H 870
-    C 910 80 930 105 930 135
-    C 930 165 910 185 870 185
-    H 70
-    C 35 185 20 210 20 240
-    C 20 270 35 295 70 295
-    H 870
-    C 910 295 930 320 930 350
-    C 930 380 910 400 870 400
-    H 70
-    C 35 400 20 425 20 455
-    C 20 485 35 510 70 510
-    H 870
-    C 910 510 930 535 930 565
-    C 930 595 910 615 870 615
-    H 160
-    C 120 615 100 640 100 670
-    C 100 700 120 725 160 725
-    H 870
-    C 910 725 930 750 930 780
-    C 930 810 910 830 870 830
-    H 350
-  "
-  fill="none"
-  stroke="#20b34b"
-  stroke-width="38"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  stroke-dasharray="0 100000"
-/>
-    <!-- ============================================================
-         MILESTONE NUMBERS
-         ============================================================ -->
-
-    <text x="38" y="70" class="milestone">0</text>
-
-<text x="385" y="70" class="milestone">10</text>
-
-<text x="825" y="70" class="milestone">50</text>
-
-<text x="455" y="175" class="milestone">75</text>
-
-<text x="18" y="285" class="milestone">100</text>
-
-<text x="355" y="285" class="milestone">150</text>
-
-<text x="810" y="285" class="milestone">200</text>
-
-<text x="20" y="500" class="milestone">250</text>
-
-<text x="355" y="500" class="milestone">300</text>
-
-<text x="680" y="500" class="milestone">350</text>
-
-<text x="800" y="605" class="future milestone">400</text>
-
-<text x="55" y="715" class="future milestone">450</text>
-
-<text x="405" y="715" class="future milestone">475</text>
-
-<text x="760" y="820" class="goal-500">500</text>
-
-<text x="795" y="855" class="goal-text">100%</text>
-
-    <!-- ============================================================
-         STATIC SNAKE HEAD
-         ============================================================
-
-         Temporary Version 1 position:
-         approximately 346 citizens.
-
-         The head is angled in the direction of travel along the
-         snake path. Later JavaScript will calculate this position
-         automatically.
-    -->
-
-   <g id="snakeHead">
-
-  <ellipse
-    cx="0"
-    cy="0"
-    rx="32"
-    ry="25"
-    fill="#20b34b"
-    stroke="#007a32"
-    stroke-width="4"
-  />
-
-  <circle
-    cx="-11"
-    cy="-8"
-    r="5"
-    class="snake-eye"
-  />
-
-  <circle
-    cx="11"
-    cy="-8"
-    r="5"
-    class="snake-eye"
-  />
-
-  <circle
-    cx="-10"
-    cy="-8"
-    r="2"
-    fill="white"
-  />
-
-  <circle
-    cx="12"
-    cy="-8"
-    r="2"
-    fill="white"
-  />
-
-  <path
-    d="M 30 4 L 50 4 M 50 4 L 58 -3 M 50 4 L 58 11"
-    class="snake-tongue"
-  />
-
-</g>
-
-    <!-- ============================================================
-         CURRENT CITIZEN LABEL
-         ============================================================ -->
-
-    <g id="citizenLabel">
-  <rect
-    x="0"
-    y="0"
-    width="170"
-    height="70"
-    class="count-box"
-  />
-
-  <text
-    id="citizenNumber"
-    x="85"
-    y="30"
-    text-anchor="middle"
-    class="count-number"
-  >
-    346
-  </text>
-
-  <text
-    x="85"
-    y="52"
-    text-anchor="middle"
-    class="count-label"
-  >
-    Citizens
-  </text>
-</g>
-
-
-  </svg>
-
+<svg id="snakeSvg" viewBox="0 0 2000 1050">
+</svg>
 </div>
+
+
 <script>
-(function(){
 
-  var snake = document.getElementById('snakePath');
-  var progress = document.getElementById('snakeProgress');
-  var head = document.getElementById('snakeHead');
-  var label = document.getElementById('citizenLabel');
-  var number = document.getElementById('citizenNumber');
+ const memberCount = 360;
 
-  if(!snake || !progress || !head || !label || !number){
-    return;
-  }
+// ============================================================
+// BASE SNAKE SEGMENTS
+// These are the actual logical progress segments.
+// Curves are NOT included in the progress calculation.
+// ============================================================
 
-  var milestones = [
-    0,
-    10,
-    50,
-    75,
-    100,
-    150,
-    200,
-    250,
-    300,
-    350,
-    400,
-    450,
-    475,
-    500
-  ];
+const baseSegments = [
+    { start: 0,   end: 50,  milestones: [0, 10, 25, 50] },
+    { start: 50,  end: 100, milestones: [50, 75, 100] },
+    { start: 100, end: 150, milestones: [100, 130, 150] },
+    { start: 150, end: 200, milestones: [150, 175, 200] },
+    { start: 200, end: 300, milestones: [200, 250, 275, 300] },
+    { start: 300, end: 420, milestones: [300, 350, 420] },
+    { start: 420, end: 500, milestones: [420, 450, 475, 500] }
+];
 
-  var totalLength = snake.getTotalLength();
 
-  progress.style.strokeDasharray = '0 ' + totalLength;
+// ============================================================
+// COLORS
+// ============================================================
 
-  function getGoal(count){
+const COMPLETED_COLOR = "#00ff00";
+const FUTURE_COLOR = "#d0d0d0";
 
-    for(var i = 0; i < milestones.length; i++){
+const BLUE = "#0da3d8";
+const GOLD = "#ffd700";
 
-      if(count < milestones[i]){
-        return milestones[i];
-      }
 
+// ============================================================
+// BUILD A ROW PARTITION
+//
+// A "row" can contain one or more base segments.
+// A bit in the mask means:
+//     1 = put a break here
+//     0 = merge across this boundary
+//
+// There are only 2^6 = 64 possible arrangements.
+// ============================================================
+
+function buildRowsFromMask(mask) {
+    const rows = [];
+    let current = null;
+
+    for (let i = 0; i < baseSegments.length; i++) {
+        const segment = baseSegments[i];
+
+        if (!current) {
+            current = {
+                start: segment.start,
+                end: segment.end,
+                milestones: [...segment.milestones],
+                baseIndices: [i]
+            };
+        } else {
+            current.end = segment.end;
+
+            // Avoid duplicating the shared endpoint.
+            current.milestones.push(
+                ...segment.milestones.filter(
+                    value => value !== current.milestones[current.milestones.length - 1]
+                )
+            );
+
+            current.baseIndices.push(i);
+        }
+
+        // Bit i means there is a break after segment i.
+        if (i === baseSegments.length - 1 || (mask & (1 << i))) {
+            rows.push(current);
+            current = null;
+        }
     }
 
-    return milestones[milestones.length - 1];
-  }
+    return rows;
+}
 
-  function updateSnake(count){
 
-    var goal = getGoal(count);
+// ============================================================
+// FIND WHICH ROW CONTAINS THE CURRENT MEMBER COUNT
+// ============================================================
 
-    if(goal <= 0){
-      goal = 500;
+function getActiveRowIndex(rows) {
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+
+        if (
+            memberCount >= row.start &&
+            (
+                memberCount < row.end ||
+                (i === rows.length - 1 && memberCount <= row.end)
+            )
+        ) {
+            return i;
+        }
     }
 
-    var ratio = count / 500;
+    return rows.length - 1;
+}
 
-    if(ratio > 1){
-      ratio = 1;
+
+// ============================================================
+// CALCULATE WHICH BASE BOUNDARIES WERE MERGED
+// ============================================================
+
+function getMergedBoundaries(rows) {
+    const merged = [];
+
+    for (const row of rows) {
+        for (let i = 0; i < row.baseIndices.length - 1; i++) {
+            merged.push(row.baseIndices[i]);
+        }
     }
 
-    if(ratio < 0){
-      ratio = 0;
+    return merged;
+}
+
+
+// ============================================================
+// ROW-GENERATION ALGORITHM
+//
+// Rules:
+//
+// 1. Use as few changes to the normal snake as possible.
+// 2. The active row MUST point right.
+// 3. Prefer not to merge the active row itself.
+// 4. Prefer merging similarly-sized neighboring segments.
+// 5. If still tied, prefer the later merge.
+//
+// That last rule is what naturally gives us:
+//
+//     100 ---------------- 200
+//              150
+//
+// in the 300–420 case.
+// ============================================================
+
+function generateRows() {
+    let bestRows = null;
+    let bestScore = null;
+
+    for (let mask = 0; mask < (1 << (baseSegments.length - 1)); mask++) {
+
+        const rows = buildRowsFromMask(mask);
+        const activeIndex = getActiveRowIndex(rows);
+
+        // Even row = right
+        // Odd row = left
+        const activeGoesRight = activeIndex % 2 === 0;
+
+        // We only want layouts where the head faces right.
+        if (!activeGoesRight) continue;
+
+        const mergedBoundaries = getMergedBoundaries(rows);
+
+        // Number of modifications.
+        const mergeCount = baseSegments.length - rows.length;
+
+        // Is the active row itself merged?
+        const activeRowMerged =
+            rows[activeIndex].baseIndices.length > 1;
+
+        // Prefer merges where the two segments are similarly sized.
+        let balancePenalty = 0;
+
+        for (const row of rows) {
+            for (let i = 0; i < row.baseIndices.length - 1; i++) {
+                const a = baseSegments[row.baseIndices[i]];
+                const b = baseSegments[row.baseIndices[i + 1]];
+
+                const lengthA = a.end - a.start;
+                const lengthB = b.end - b.start;
+
+                balancePenalty += Math.abs(lengthA - lengthB);
+            }
+        }
+
+        // Prefer later merge locations if everything else is equal.
+        const latestMerge =
+            mergedBoundaries.length
+                ? Math.max(...mergedBoundaries)
+                : -1;
+
+        // Lower score is better.
+        const score = [
+            mergeCount,
+            activeRowMerged ? 1 : 0,
+            balancePenalty,
+            -latestMerge
+        ];
+
+        let better = false;
+
+        if (!bestScore) {
+            better = true;
+        } else {
+            for (let i = 0; i < score.length; i++) {
+                if (score[i] < bestScore[i]) {
+                    better = true;
+                    break;
+                }
+
+                if (score[i] > bestScore[i]) {
+                    break;
+                }
+            }
+        }
+
+        if (better) {
+            bestRows = rows;
+            bestScore = score;
+        }
     }
 
-    var distance = totalLength * ratio;
+    // Fallback — should never happen.
+    if (!bestRows) {
+        bestRows = buildRowsFromMask((1 << 6) - 1);
+    }
 
-    progress.style.strokeDasharray =
-      distance + ' ' + totalLength;
+    return bestRows;
+}
 
-    var point = snake.getPointAtLength(distance);
 
-    var previousDistance =
-      Math.max(0, distance - 1);
+// ============================================================
+// SVG
+// ============================================================
 
-    var previous =
-      snake.getPointAtLength(previousDistance);
+const svg = document.getElementById("snakeSvg");
 
-    var dx = point.x - previous.x;
-    var dy = point.y - previous.y;
+svg.innerHTML = "";
 
-    var angle =
-      Math.atan2(dy, dx) * 180 / Math.PI;
+const leftX = 480;
+const rightX = 1550;
 
-    head.setAttribute(
-      'transform',
-      'translate(' + point.x + ' ' + point.y + ') rotate(' + angle + ')'
+const topY = 180;
+const bottomY = 900;
+
+const strokeWidth = 20;
+const curveWidth = 50;
+
+
+// ============================================================
+// GENERATE ROWS
+// ============================================================
+
+const rows = generateRows();
+
+
+// ============================================================
+// VERTICAL POSITIONING
+//
+// Always keep the first row at 180 and the last at 900.
+// If rows are merged, the remaining rows spread out to fill
+// the same vertical space.
+// ============================================================
+
+const rowSpacing =
+    rows.length > 1
+        ? (bottomY - topY) / (rows.length - 1)
+        : 0;
+
+function getY(rowIndex) {
+    return topY + rowIndex * rowSpacing;
+}
+
+
+// ============================================================
+// DRAW A HORIZONTAL TRACK
+// ============================================================
+
+function drawLine(x1, y1, x2, y2, color) {
+    const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
     );
 
-    /*
-      Put the citizen box slightly above/right of the head.
-    */
+    line.setAttribute("x1", x1);
+    line.setAttribute("y1", y1);
+    line.setAttribute("x2", x2);
+    line.setAttribute("y2", y2);
 
-    var labelX = point.x + 35;
-    var labelY = point.y - 85;
+    line.setAttribute("stroke", color);
+    line.setAttribute("stroke-width", strokeWidth);
+    line.setAttribute("stroke-linecap", "round");
 
-    /*
-      Keep the label inside the SVG.
-    */
+    svg.appendChild(line);
+}
 
-    if(labelX > 810){
-      labelX = point.x - 205;
+// ============================================================
+// DRAW CURVE
+//
+// Curves are visual only.
+// They NEVER contribute to member-count progress.
+// ============================================================
+
+function drawCurve(rowIndex, color) {
+    const y1 = getY(rowIndex);
+    const y2 = getY(rowIndex + 1);
+
+    const goingRight = rowIndex % 2 === 0;
+
+    const x = goingRight ? rightX : leftX;
+    const direction = goingRight ? 1 : -1;
+
+    const path = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path"
+    );
+
+    const half = rowSpacing / 2;
+
+    const d = `
+        M ${x} ${y1}
+        Q ${x + direction * curveWidth} ${y1}
+          ${x + direction * curveWidth} ${y1 + half}
+        Q ${x + direction * curveWidth} ${y2}
+          ${x} ${y2}
+    `;
+
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", color);
+    path.setAttribute("stroke-width", strokeWidth);
+    path.setAttribute("stroke-linecap", "round");
+
+    svg.appendChild(path);
+}
+
+
+// ============================================================
+// DRAW ROWS
+// ============================================================
+
+rows.forEach((row, rowIndex) => {
+
+    const y = getY(rowIndex);
+
+    const goingRight = rowIndex % 2 === 0;
+
+    const x1 = goingRight ? leftX : rightX;
+    const x2 = goingRight ? rightX : leftX;
+
+
+    // --------------------------------------------------------
+    // 1. Draw the FUTURE portion of the row.
+    // --------------------------------------------------------
+
+    drawLine(
+        x1,
+        y,
+        x2,
+        y,
+        FUTURE_COLOR
+    );
+
+
+    // --------------------------------------------------------
+    // 2. Draw the COMPLETED portion of the row.
+    //
+    // IMPORTANT:
+    // This uses only the logical row range.
+    // Curves are ignored.
+    // --------------------------------------------------------
+
+    if (memberCount > row.start) {
+
+        const progress = Math.min(
+            1,
+            Math.max(
+                0,
+                (memberCount - row.start) /
+                (row.end - row.start)
+            )
+        );
+
+        if (progress > 0) {
+
+            const progressX =
+                goingRight
+                    ? leftX + (rightX - leftX) * progress
+                    : rightX - (rightX - leftX) * progress;
+
+            drawLine(
+                x1,
+                y,
+                progressX,
+                y,
+                COMPLETED_COLOR
+            );
+        }
     }
 
-    if(labelY < 10){
-      labelY = point.y + 35;
+
+    // --------------------------------------------------------
+    // 3. Milestone labels
+    //
+    // Global Set prevents shared endpoints from being drawn
+    // twice.
+    // --------------------------------------------------------
+
+});
+
+
+// ============================================================
+// DRAW CURVES AFTER ROWS
+//
+// A curve is green only when the entire row before it has
+// been completed.
+// ============================================================
+
+for (let i = 0; i < rows.length - 1; i++) {
+
+    const completed =
+        memberCount >= rows[i].end;
+
+    drawCurve(
+        i,
+        completed
+            ? COMPLETED_COLOR
+            : FUTURE_COLOR
+    );
+}
+// ============================================================
+// SNAKE HEAD
+// ============================================================
+
+function drawHead() {
+
+    const activeIndex = getActiveRowIndex(rows);
+    const row = rows[activeIndex];
+
+    const y = getY(activeIndex);
+
+    // Even rows go right, odd rows go left.
+    const goingRight = activeIndex % 2 === 0;
+
+    // Progress through the current logical row.
+    const progress =
+        Math.min(
+            1,
+            Math.max(
+                0,
+                (memberCount - row.start) /
+                (row.end - row.start)
+            )
+        );
+
+    // Find the actual head position on the horizontal row.
+    const headX =
+        goingRight
+            ? leftX + (rightX - leftX) * progress
+            : rightX - (rightX - leftX) * progress;
+
+    const direction = goingRight ? 1 : -1;
+
+    const group = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "g"
+    );
+
+    // --------------------------------------------------------
+    // HEAD
+    // --------------------------------------------------------
+
+    const head = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "ellipse"
+    );
+
+    head.setAttribute("cx", headX);
+    head.setAttribute("cy", y);
+    head.setAttribute("rx", 22);
+    head.setAttribute("ry", 17);
+
+    head.setAttribute("fill", COMPLETED_COLOR);
+    head.setAttribute("stroke", "#008000");
+    head.setAttribute("stroke-width", "3");
+
+    group.appendChild(head);
+
+
+    // --------------------------------------------------------
+    // EYES
+    // --------------------------------------------------------
+
+    // The eyes sit toward the front/top of the head.
+    const eye1 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+    eye1.setAttribute(
+        "cx",
+        headX + direction * 10
+    );
+
+    eye1.setAttribute(
+        "cy",
+        y - 10
+    );
+
+    eye1.setAttribute("r", "6");
+    eye1.setAttribute("fill", "white");
+
+    group.appendChild(eye1);
+
+
+    const eye2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+    eye2.setAttribute(
+        "cx",
+        headX + direction * 10
+    );
+
+    eye2.setAttribute(
+        "cy",
+        y + 2
+    );
+
+    eye2.setAttribute("r", "6");
+    eye2.setAttribute("fill", "white");
+
+    group.appendChild(eye2);
+
+
+    // --------------------------------------------------------
+    // PUPILS
+    // --------------------------------------------------------
+
+    const pupil1 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+    pupil1.setAttribute(
+        "cx",
+        headX + direction * 12
+    );
+
+    pupil1.setAttribute(
+        "cy",
+        y - 10
+    );
+
+    pupil1.setAttribute("r", "3");
+    pupil1.setAttribute("fill", "black");
+
+    group.appendChild(pupil1);
+
+
+    const pupil2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+    pupil2.setAttribute(
+        "cx",
+        headX + direction * 12
+    );
+
+    pupil2.setAttribute(
+        "cy",
+        y + 2
+    );
+
+    pupil2.setAttribute("r", "3");
+    pupil2.setAttribute("fill", "black");
+
+    group.appendChild(pupil2);
+
+
+    // --------------------------------------------------------
+    // TONGUE
+    // --------------------------------------------------------
+
+    const tongue = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path"
+    );
+
+    const tongueStartX =
+        headX + direction * 20;
+
+    const tongueEndX =
+        headX + direction * 38;
+
+    const tongueY = y + 0;
+
+    const tonguePath = `
+        M ${tongueStartX} ${tongueY}
+        L ${tongueEndX} ${tongueY}
+        M ${tongueEndX} ${tongueY}
+        L ${tongueEndX + direction * 7} ${tongueY - 5}
+        M ${tongueEndX} ${tongueY}
+        L ${tongueEndX + direction * 7} ${tongueY + 5}
+    `;
+
+    tongue.setAttribute("d", tonguePath);
+    tongue.setAttribute("fill", "none");
+    tongue.setAttribute("stroke", "#ff4d6d");
+    tongue.setAttribute("stroke-width", "3");
+    tongue.setAttribute("stroke-linecap", "round");
+
+    group.appendChild(tongue);
+
+
+    // Draw the entire head.
+    svg.appendChild(group);
+}
+
+drawHead();
+  // ============================================================
+// TRAVELLING SNAKE GLOW
+// ============================================================
+//
+// A bright white pulse starts at the head and travels backward
+// through the entire physical snake toward the tail.
+//
+// This is purely visual.
+// It does NOT affect member-count calculations.
+// ============================================================
+
+
+// ------------------------------------------------------------
+// SVG FILTER — soft white glow
+// ------------------------------------------------------------
+
+const defs = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "defs"
+);
+
+const glowFilter = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "filter"
+);
+
+glowFilter.setAttribute("id", "snakeGlowFilter");
+
+glowFilter.setAttribute(
+    "x",
+    "-100%"
+);
+
+glowFilter.setAttribute(
+    "y",
+    "-100%"
+);
+
+glowFilter.setAttribute(
+    "width",
+    "300%"
+);
+
+glowFilter.setAttribute(
+    "height",
+    "300%"
+);
+
+
+// Blur the white light.
+const blur = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "feGaussianBlur"
+);
+
+blur.setAttribute("stdDeviation", "8");
+
+glowFilter.appendChild(blur);
+defs.appendChild(glowFilter);
+svg.appendChild(defs);
+
+
+// ------------------------------------------------------------
+// BUILD THE PHYSICAL SNAKE PATH
+//
+// Unlike the membership calculation, this path DOES include
+// the curves because the glow actually travels through them.
+// ------------------------------------------------------------
+
+function buildSnakePath() {
+
+    let d = "";
+
+    for (let i = 0; i < rows.length; i++) {
+
+        const y = getY(i);
+
+        const goingRight = i % 2 === 0;
+
+        const startX = goingRight
+            ? leftX
+            : rightX;
+
+        const endX = goingRight
+            ? rightX
+            : leftX;
+
+
+        // First row begins at the tail.
+        if (i === 0) {
+            d += `M ${startX} ${y}`;
+        }
+
+        // Horizontal row.
+        d += ` L ${endX} ${y}`;
+
+
+        // Curve into the next row.
+        if (i < rows.length - 1) {
+
+            const nextY = getY(i + 1);
+
+            const direction = goingRight ? 1 : -1;
+
+            const half = rowSpacing / 2;
+
+            d += `
+                Q ${endX + direction * curveWidth} ${y}
+                  ${endX + direction * curveWidth} ${y + half}
+
+                Q ${endX + direction * curveWidth} ${nextY}
+                  ${endX} ${nextY}
+            `;
+        }
     }
+
+    return d;
+}
+
+
+const snakeGlowPath = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path"
+);
+
+snakeGlowPath.setAttribute(
+    "id",
+    "snakeGlowPath"
+);
+
+snakeGlowPath.setAttribute(
+    "d",
+    buildSnakePath()
+);
+
+snakeGlowPath.setAttribute(
+    "fill",
+    "none"
+);
+
+snakeGlowPath.setAttribute(
+    "stroke",
+    "none"
+);
+
+svg.appendChild(snakeGlowPath);
+// ============================================================
+// PRE-CALCULATE SNAKE PHYSICAL DISTANCES
+// ============================================================
+//
+// The membership system still ignores curves.
+//
+// These measurements are ONLY for the visual travelling glow.
+// They are calculated once when the snake is generated.
+// ============================================================
+
+const snakeMetrics = [];
+
+let accumulatedDistance = 0;
+
+
+// ------------------------------------------------------------
+// Approximate the length of one quadratic Bézier curve.
+//
+// We only need this for the visual glow, so a small number of
+// samples is more than enough.
+// ------------------------------------------------------------
+
+function quadraticPoint(p0, p1, p2, t) {
+
+    const oneMinusT = 1 - t;
+
+    return {
+        x:
+            oneMinusT * oneMinusT * p0.x +
+            2 * oneMinusT * t * p1.x +
+            t * t * p2.x,
+
+        y:
+            oneMinusT * oneMinusT * p0.y +
+            2 * oneMinusT * t * p1.y +
+            t * t * p2.y
+    };
+}
+
+
+function quadraticLength(p0, p1, p2) {
+
+    const samples = 20;
+
+    let length = 0;
+
+    let previous =
+        quadraticPoint(p0, p1, p2, 0);
+
+    for (let i = 1; i <= samples; i++) {
+
+        const t = i / samples;
+
+        const point =
+            quadraticPoint(p0, p1, p2, t);
+
+        const dx =
+            point.x - previous.x;
+
+        const dy =
+            point.y - previous.y;
+
+        length += Math.sqrt(
+            dx * dx + dy * dy
+        );
+
+        previous = point;
+    }
+
+    return length;
+}
+
+
+// ------------------------------------------------------------
+// Build the distance table.
+//
+// rowStartDistance[i] = physical distance from the tail to
+// the beginning of row i.
+// ------------------------------------------------------------
+
+for (let i = 0; i < rows.length; i++) {
+
+    const y = getY(i);
+
+    const goingRight = i % 2 === 0;
+
+    const startX =
+        goingRight
+            ? leftX
+            : rightX;
+
+    const endX =
+        goingRight
+            ? rightX
+            : leftX;
+
+
+    snakeMetrics.push({
+        rowStartDistance: accumulatedDistance,
+        rowLength: rightX - leftX
+    });
+
+
+    // Horizontal portion.
+    accumulatedDistance += rightX - leftX;
+
+
+    // Curve into the next row.
+    if (i < rows.length - 1) {
+
+        const nextY = getY(i + 1);
+
+        const direction =
+            goingRight ? 1 : -1;
+
+        const half =
+            rowSpacing / 2;
+
+        const p0 = {
+            x: endX,
+            y: y
+        };
+
+        const p1 = {
+            x: endX + direction * curveWidth,
+            y: y
+        };
+
+        const p2 = {
+            x: endX + direction * curveWidth,
+            y: y + half
+        };
+
+        const p3 = {
+            x: endX,
+            y: nextY
+        };
+
+
+        // First half of the U-turn.
+        accumulatedDistance +=
+            quadraticLength(p0, p1, p2);
+
+        // Second half of the U-turn.
+        accumulatedDistance +=
+            quadraticLength(p2, p2, p3);
+    }
+}
+
+
+// Total physical length of the snake.
+const totalSnakeLength = accumulatedDistance;
+
+// ------------------------------------------------------------
+// FIND THE PHYSICAL POSITION OF THE HEAD
+//
+// This DOES use physical path length, because the glow is
+// moving through the actual SVG snake.
+//
+// Membership progress itself still ignores curves.
+// ------------------------------------------------------------
+
+// ============================================================
+// FIND THE HEAD'S PHYSICAL DISTANCE
+// ============================================================
+
+function getHeadPathDistance() {
+
+    const activeIndex =
+        getActiveRowIndex(rows);
+
+    const row =
+        rows[activeIndex];
+
+
+    // Logical progress through this row.
+    const progress =
+        Math.min(
+            1,
+            Math.max(
+                0,
+                (memberCount - row.start) /
+                (row.end - row.start)
+            )
+        );
+
+
+    const metric =
+        snakeMetrics[activeIndex];
+
+
+    // The head is simply:
+    //
+    // distance to beginning of row
+    // +
+    // progress through horizontal row
+    //
+    // No searching. No 3,000-point scan.
+    return (
+        metric.rowStartDistance +
+        metric.rowLength * progress
+    );
+}
+// ------------------------------------------------------------
+// CREATE ONE GLOW PULSE
+// ------------------------------------------------------------
+
+function createSnakeGlow() {
+
+    const totalLength =
+        snakeGlowPath.getTotalLength();
+
+    const headDistance =
+        getHeadPathDistance();
+
+
+    // --------------------------------------------------------
+    // Outer halo
+    // --------------------------------------------------------
+
+    const halo = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+    halo.setAttribute("r", "18");
+    halo.setAttribute("fill", "white");
+    halo.setAttribute(
+        "filter",
+        "url(#snakeGlowFilter)"
+    );
+
+    svg.appendChild(halo);
+
+
+    // --------------------------------------------------------
+    // Bright center
+    // --------------------------------------------------------
+
+    const core = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+
+    core.setAttribute("r", "7");
+    core.setAttribute("fill", "white");
+
+    svg.appendChild(core);
+
+
+    // --------------------------------------------------------
+    // Animate head → tail
+    // --------------------------------------------------------
+
+    const duration = 4000;
+
+    const startTime = performance.now();
+
+
+    function animate(now) {
+
+        const elapsed =
+            now - startTime;
+
+        const t =
+            Math.min(
+                1,
+                elapsed / duration
+            );
+
+
+        // Head → tail.
+        const distance =
+            headDistance * (1 - t);
+
+        const point =
+            snakeGlowPath.getPointAtLength(distance);
+
+
+        halo.setAttribute(
+            "cx",
+            point.x
+        );
+
+        halo.setAttribute(
+            "cy",
+            point.y
+        );
+
+        core.setAttribute(
+            "cx",
+            point.x
+        );
+
+        core.setAttribute(
+            "cy",
+            point.y
+        );
+
+
+        if (t < 1) {
+
+            requestAnimationFrame(animate);
+
+        } else {
+
+            halo.remove();
+            core.remove();
+        }
+    }
+
+
+    requestAnimationFrame(animate);
+}
+
+
+// ------------------------------------------------------------
+// FIRST PULSE
+// ------------------------------------------------------------
+
+createSnakeGlow();
+
+
+// ------------------------------------------------------------
+// NEW PULSE EVERY 10 SECONDS
+// ------------------------------------------------------------
+
+setInterval(
+    createSnakeGlow,
+    10000
+);
+
+// ============================================================
+// MILESTONE LABELS
+// ============================================================
+
+const drawnMilestones = new Set();
+
+function drawText(x, y, text, color = "black") {
+
+    const label = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "text"
+    );
+
+    label.setAttribute("x", x);
+    label.setAttribute("y", y);
+
+    label.setAttribute("fill", color);
 
     label.setAttribute(
-      'transform',
-      'translate(' + labelX + ' ' + labelY + ')'
-    );
+    "font-size",
+    text == 500 ? "50" : "30"
+);
+    label.setAttribute("font-family", "Arial, sans-serif");
+    label.setAttribute("font-weight", "bold");
 
-    number.textContent = count;
+    label.setAttribute("text-anchor", "middle");
+    label.setAttribute("dominant-baseline", "middle");
 
-    /*
-      Update the 500 marker appearance.
-    */
+    label.textContent = text;
 
-    var goalText =
-      document.getElementById('goalText');
+    svg.appendChild(label);
+}
 
-    if(goalText){
-      goalText.textContent =
-        goal === 500 ? '500' : goal;
-    }
-  }
 
-  function loadCount(){
+rows.forEach((row, rowIndex) => {
 
-    fetch(
-      'https://api.chess.com/pub/club/the-rook-republic-chess-club'
-    )
-    .then(function(response){
-      return response.json();
-    })
-    .then(function(data){
+    const y = getY(rowIndex);
+    const goingRight = rowIndex % 2 === 0;
 
-      var count =
-        Number(data.members) ||
-        Number(data.member_count) ||
-        0;
+    row.milestones.forEach(value => {
 
-      if(count > 0){
-        updateSnake(count);
-      }
+        // THIS is the duplicate-number killer.
+        //
+        // 50, 100, 150, 200, etc. only get rendered once,
+        // even though they are shared by two logical rows.
+        if (drawnMilestones.has(value)) return;
 
-    })
-    .catch(function(){
+        drawnMilestones.add(value);
 
-      /*
-        Keep the prototype usable if the API
-        cannot be reached.
-      */
+        const normalized =
+            (value - row.start) /
+            (row.end - row.start);
 
-      updateSnake(346);
+        const t =
+            goingRight
+                ? normalized
+                : 1 - normalized;
+
+        const x =
+            leftX +
+            (rightX - leftX) * t;
+
+        const color =
+            value === 500
+                ? GOLD
+                : "black";
+
+        drawText(
+            x,
+            y,
+            value,
+            color
+        );
+    });
+});
+/* =====================================================
+       DRAW THE SNAKE
+       ===================================================== */
+
+   function drawSnake() {
+
+    trackGroup.innerHTML = "";
+    progressGroup.innerHTML = "";
+    milestoneGroup.innerHTML = "";
+
+
+    const rows = generateRows();
+
+
+    rows.forEach((row, index) => {
+
+        const y =
+            startY + index * rowSpacing;
+
+
+        /*
+         * Even rows travel RIGHT.
+         * Odd rows travel LEFT.
+         */
+
+        const goingRight =
+            index % 2 === 0;
+
+
+        const x1 =
+            goingRight ? leftX : rightX;
+
+        const x2 =
+            goingRight ? rightX : leftX;
+
+
+        /* =================================================
+           GREEN TRACK
+           ================================================= */
+
+        trackGroup.appendChild(
+            createLine(
+                x1,
+                y,
+                x2,
+                y
+            )
+        );
+
+
+        /* =================================================
+           WHITE PROGRESS
+           ================================================= */
+
+        let progress = 0;
+
+        if (memberCount >= row.end) {
+
+            progress = 1;
+
+        } else if (memberCount > row.start) {
+
+            progress =
+                (memberCount - row.start) /
+                (row.end - row.start);
+        }
+
+
+        const length =
+            Math.abs(x2 - x1);
+
+        const progressLength =
+            length * progress;
+
+
+        const progressX2 =
+            goingRight
+                ? x1 + progressLength
+                : x1 - progressLength;
+
+
+        const progressLine =
+            createLine(
+                x1,
+                y,
+                progressX2,
+                y
+            );
+
+
+        progressLine.setAttribute(
+            "stroke",
+            "#ffffff"
+        );
+
+        progressLine.setAttribute(
+            "stroke-width",
+            "40"
+        );
+
+        progressLine.setAttribute(
+            "stroke-linecap",
+            "round"
+        );
+
+
+        progressGroup.appendChild(
+            progressLine
+        );
+
+
+        /* =================================================
+           MILESTONES
+           ================================================= */
+
+        row.milestones.forEach(value => {
+
+            /*
+             * Find where this milestone falls within
+             * the row.
+             */
+
+            const position =
+                (value - row.start) /
+                (row.end - row.start);
+
+
+            const visualPosition =
+                goingRight
+                    ? position
+                    : 1 - position;
+
+
+            const x =
+                leftX +
+                (rightX - leftX) *
+                visualPosition;
+
+
+            const text =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "text"
+                );
+
+
+            text.setAttribute(
+                "x",
+                x
+            );
+
+            text.setAttribute(
+                "y",
+                y + 25
+            );
+
+            text.setAttribute(
+                "text-anchor",
+                "middle"
+            );
+
+            text.setAttribute(
+                "class",
+                value === 500
+                    ? "final-milestone"
+                    : "milestone"
+            );
+
+            text.textContent = value;
+
+            milestoneGroup.appendChild(text);
+
+        });
+
+
+        /* =================================================
+           CURVE TO NEXT ROW
+           ================================================= */
+
+        if (index < rows.length - 1) {
+
+            const curveX =
+                goingRight
+                    ? rightX
+                    : leftX;
+
+
+            trackGroup.appendChild(
+                createCurve(
+                    curveX,
+                    y,
+                    goingRight
+                        ? "right"
+                        : "left"
+                )
+            );
+        }
 
     });
 
-  }
-
-  loadCount();
-
-})();
+}
+  drawSnake();
 </script>
+
 </body>
 </html>
