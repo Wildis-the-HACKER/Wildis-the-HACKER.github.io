@@ -48,7 +48,25 @@
 
 
 <script>
+// ============================================================
+// REPUBLIC MOUSE — IFRAME BRIDGE
+// ============================================================
 
+if (!window.rrRepublicMouseBridge) {
+
+    window.rrRepublicMouseBridge = true;
+
+    document.addEventListener("mousemove", function(e) {
+
+        window.parent.postMessage({
+            type: "republic-mouse",
+            x: e.clientX,
+            y: e.clientY
+        }, "*");
+
+    });
+
+}
  const memberCount = 360;
 
 // ============================================================
