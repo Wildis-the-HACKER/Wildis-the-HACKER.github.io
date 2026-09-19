@@ -1522,15 +1522,6 @@ rows.forEach((row, rowIndex) => {
     });
 
 }
-function sendSnakeHeight(){
-    window.parent.postMessage(
-        'snake-height:'+document.documentElement.scrollHeight,
-        '*'
-    );
-}
-
-window.addEventListener('load',sendSnakeHeight);
-window.addEventListener('resize',sendSnakeHeight);
 
 window.addEventListener(
     "resize",
@@ -1539,7 +1530,48 @@ window.addEventListener(
   
 updateMilestoneSizes();
   drawSnake();
-  sendSnakeHeight();
+drawSnake();
+
+
+// ============================================================
+// REPORT SNAKE HEIGHT TO THE PARENT IFRAME
+// ============================================================
+
+function sendSnakeHeight() {
+
+    const height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+    );
+
+    window.parent.postMessage(
+        'snake-height:' + height,
+        '*'
+    );
+}
+
+
+// Send the initial height.
+window.addEventListener(
+    'load',
+    sendSnakeHeight
+);
+
+
+// Recalculate if the iframe's width changes.
+window.addEventListener(
+    'resize',
+    sendSnakeHeight
+);
+
+
+// Automatically detect any content-size changes.
+if (window.ResizeObserver) {
+
+    new ResizeObserver(
+        sendSnakeHeight
+    ).observe(document.body);
+}
 </script>
 
 </body>
