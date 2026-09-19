@@ -1191,15 +1191,13 @@ function reportCalendarHeight() {
     );
 
 }
-if (window.parent !== window) {
-  document.addEventListener('mousemove', function(e) {
-    window.parent.postMessage({
-      type: 'republic-mouse-calendar',
-      x: e.clientX,
-      y: e.clientY
-    }, '*');
-  });
-}
+document.addEventListener('mousemove',function(e){
+  window.parent.postMessage({
+    type:'republic-mouse',
+    x:e.clientX,
+    y:e.clientY
+  },'*');
+});
 /*
     ========================================
     START
