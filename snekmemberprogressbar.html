@@ -1522,12 +1522,22 @@ rows.forEach((row, rowIndex) => {
     });
 
 }
+  function reportSnakeHeight(){
+  window.parent.postMessage(
+    'snake-height:'+document.documentElement.scrollHeight,
+    '*'
+  );
+}
+
+window.addEventListener('load',reportSnakeHeight);
+window.addEventListener('resize',reportSnakeHeight);
 window.addEventListener(
     "resize",
     updateMilestoneSizes
 );
 updateMilestoneSizes();
   drawSnake();
+  
 </script>
 
 </body>
