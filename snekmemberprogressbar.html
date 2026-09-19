@@ -1522,22 +1522,24 @@ rows.forEach((row, rowIndex) => {
     });
 
 }
-  function reportSnakeHeight(){
-  window.parent.postMessage(
-    'snake-height:'+document.documentElement.scrollHeight,
-    '*'
-  );
+function sendSnakeHeight(){
+    window.parent.postMessage(
+        'snake-height:'+document.documentElement.scrollHeight,
+        '*'
+    );
 }
 
-window.addEventListener('load',reportSnakeHeight);
-window.addEventListener('resize',reportSnakeHeight);
+window.addEventListener('load',sendSnakeHeight);
+window.addEventListener('resize',sendSnakeHeight);
+
 window.addEventListener(
     "resize",
     updateMilestoneSizes
 );
+  
 updateMilestoneSizes();
   drawSnake();
-  
+  sendSnakeHeight();
 </script>
 
 </body>
