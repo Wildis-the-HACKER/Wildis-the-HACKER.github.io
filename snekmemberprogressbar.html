@@ -1529,7 +1529,6 @@ window.addEventListener(
 );
   
 updateMilestoneSizes();
-  drawSnake();
 drawSnake();
 
 
@@ -1539,38 +1538,40 @@ drawSnake();
 
 function sendSnakeHeight() {
 
-    const height = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight
+    const height = Math.ceil(
+        svg.getBoundingClientRect().height
     );
 
     window.parent.postMessage(
-        'snake-height:' + height,
-        '*'
+        "snake-height:" + height,
+        "*"
     );
 }
 
 
-// Send the initial height.
+// Send the initial height AFTER the snake is drawn.
+requestAnimationFrame(sendSnakeHeight);
+
+
+// Recalculate whenever the iframe changes size.
 window.addEventListener(
-    'load',
-    sendSnakeHeight
+    "resize",
+    function() {
+        updateMilestoneSizes();
+
+        requestAnimationFrame(function() {
+            sendSnakeHeight();
+        });
+    }
 );
 
 
-// Recalculate if the iframe's width changes.
-window.addEventListener(
-    'resize',
-    sendSnakeHeight
-);
-
-
-// Automatically detect any content-size changes.
+// Detect actual SVG size changes.
 if (window.ResizeObserver) {
 
-    new ResizeObserver(
-        sendSnakeHeight
-    ).observe(document.body);
+    new ResizeObserver(function() {
+        requestAnimationFrame(sendSnakeHeight);
+    }).observe(svg);
 }
 </script>
 
