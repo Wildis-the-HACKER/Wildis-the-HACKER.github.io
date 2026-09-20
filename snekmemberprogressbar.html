@@ -1537,9 +1537,11 @@ drawSnake();
 // ============================================================
 
 function sendSnakeHeight() {
-
-    const height = Math.ceil(
-        svg.getBoundingClientRect().height
+    const height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
     );
 
     window.parent.postMessage(
@@ -1549,30 +1551,34 @@ function sendSnakeHeight() {
 }
 
 
-// Send the initial height AFTER the snake is drawn.
-requestAnimationFrame(sendSnakeHeight);
+// Initial report — wait until the snake has been drawn.
+requestAnimationFrame(function() {
+    requestAnimationFrame(sendSnakeHeight);
+});
 
 
-// Recalculate whenever the iframe changes size.
-window.addEventListener(
-    "resize",
-    function() {
-        updateMilestoneSizes();
+// Report again whenever the iframe width changes.
+window.addEventListener("resize", function() {
+    updateMilestoneSizes();
 
-        requestAnimationFrame(function() {
-            sendSnakeHeight();
-        });
-    }
-);
+    requestAnimationFrame(function() {
+        sendSnakeHeight();
+    });
+});
 
 
-// Detect actual SVG size changes.
+// Catch changes caused by the SVG itself.
 if (window.ResizeObserver) {
-
     new ResizeObserver(function() {
         requestAnimationFrame(sendSnakeHeight);
-    }).observe(svg);
+    }).observe(document.documentElement);
 }
+
+
+// One more report after the page has completely loaded.
+window.addEventListener("load", function() {
+    requestAnimationFrame(sendSnakeHeight);
+});
 </script>
 
 </body>
