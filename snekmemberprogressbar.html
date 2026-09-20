@@ -67,27 +67,7 @@ document.addEventListener("mousemove", function(e) {
     }, "*");
 
 });
-// ============================================================
-// REPORT SNAKE SIZE TO THE PARENT IFRAME
-// ============================================================
 
-function reportSnakeSize() {
-
-    const height =
-        document.documentElement.scrollHeight;
-
-    window.parent.postMessage({
-        type: "republic-snake-size",
-        height: height
-    }, "*");
-}
-
-reportSnakeSize();
-
-window.addEventListener(
-    "resize",
-    reportSnakeSize
-);
  const memberCount = 360;
 
 // ============================================================
@@ -1530,19 +1510,17 @@ window.addEventListener(
   
 updateMilestoneSizes();
 drawSnake();
-
-
 // ============================================================
 // REPORT SNAKE HEIGHT TO THE PARENT IFRAME
 // ============================================================
 
 function sendSnakeHeight() {
-    const height = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight
-    );
+
+    const svgHeight =
+        svg.getBoundingClientRect().height;
+
+    const height =
+        Math.ceil(svgHeight);
 
     window.parent.postMessage(
         "snake-height:" + height,
@@ -1551,34 +1529,70 @@ function sendSnakeHeight() {
 }
 
 
-// Initial report — wait until the snake has been drawn.
+// ------------------------------------------------------------
+// INITIAL REPORT
+// ------------------------------------------------------------
+
 requestAnimationFrame(function() {
-    requestAnimationFrame(sendSnakeHeight);
-});
-
-
-// Report again whenever the iframe width changes.
-window.addEventListener("resize", function() {
-    updateMilestoneSizes();
 
     requestAnimationFrame(function() {
+
         sendSnakeHeight();
+
     });
+
 });
 
 
-// Catch changes caused by the SVG itself.
+// ------------------------------------------------------------
+// WIDTH / SIZE CHANGES
+// ------------------------------------------------------------
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        updateMilestoneSizes();
+
+        requestAnimationFrame(
+            sendSnakeHeight
+        );
+
+    }
+);
+
+
+// ------------------------------------------------------------
+// WATCH THE SVG ITSELF
+// ------------------------------------------------------------
+
 if (window.ResizeObserver) {
+
     new ResizeObserver(function() {
-        requestAnimationFrame(sendSnakeHeight);
-    }).observe(document.documentElement);
+
+        requestAnimationFrame(
+            sendSnakeHeight
+        );
+
+    }).observe(svg);
+
 }
 
 
-// One more report after the page has completely loaded.
-window.addEventListener("load", function() {
-    requestAnimationFrame(sendSnakeHeight);
-});
+// ------------------------------------------------------------
+// EXTRA INITIAL REPORT AFTER PAGE LOAD
+// ------------------------------------------------------------
+
+window.addEventListener(
+    "load",
+    function() {
+
+        requestAnimationFrame(
+            sendSnakeHeight
+        );
+
+    }
+);
 </script>
 
 </body>
