@@ -1508,30 +1508,7 @@ function sendSnakeHeight() {
         "*"
     );
 }
-window.addEventListener("message", function(event) {
-    if (
-        typeof event.data === "string" &&
-        event.data.startsWith("snake-height:")
-    ) {
-        const height = parseInt(
-            event.data.substring("snake-height:".length),
-            10
-        );
 
-        if (
-            Number.isFinite(height) &&
-            height > 0
-        ) {
-            const iframe =
-                document.getElementById("republicSnake");
-
-            if (iframe) {
-                iframe.style.height =
-                    height + "px";
-            }
-        }
-    }
-});
 
 // ============================================================
 // STARTUP
