@@ -1493,9 +1493,14 @@ function updateMilestoneSizes() {
 // ============================================================
 
 function sendSnakeHeight() {
+    const container =
+        document.querySelector(".snake-container");
+
+    if (!container) return;
+
     const height =
         Math.ceil(
-            svg.getBoundingClientRect().height
+            container.getBoundingClientRect().height
         );
 
     window.parent.postMessage(
@@ -1503,7 +1508,30 @@ function sendSnakeHeight() {
         "*"
     );
 }
+window.addEventListener("message", function(event) {
+    if (
+        typeof event.data === "string" &&
+        event.data.startsWith("snake-height:")
+    ) {
+        const height = parseInt(
+            event.data.substring("snake-height:".length),
+            10
+        );
 
+        if (
+            Number.isFinite(height) &&
+            height > 0
+        ) {
+            const iframe =
+                document.getElementById("republicSnake");
+
+            if (iframe) {
+                iframe.style.height =
+                    height + "px";
+            }
+        }
+    }
+});
 
 // ============================================================
 // STARTUP
@@ -1554,11 +1582,16 @@ window.addEventListener(
 );
 
 if (window.ResizeObserver) {
-    new ResizeObserver(function() {
-        requestAnimationFrame(
-            sendSnakeHeight
-        );
-    }).observe(svg);
+    const container =
+        document.querySelector(".snake-container");
+
+    if (container) {
+        new ResizeObserver(function() {
+            requestAnimationFrame(
+                sendSnakeHeight
+            );
+        }).observe(container);
+    }
 }
 
 window.addEventListener(
