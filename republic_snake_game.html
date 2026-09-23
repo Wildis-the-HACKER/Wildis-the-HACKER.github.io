@@ -59,7 +59,9 @@ if(nh.x===food.x&&nh.y===food.y){score++;scoreEl.textContent=score;if(score>best
 function end(t){running=false;msg.textContent=t+" Score: "+score;overlay.classList.add("show");draw()}
 function loop(now){if(!running)return;if(now-last>=STEP){step();last=now}if(running){draw();requestAnimationFrame(loop)}}
 function draw(){
-const s=canvas.width/(devicePixelRatio||1);ctx.fillStyle="#031d2b";ctx.fillRect(0,0,s,s);
+    if (!snake || !food) return;
+
+    const s=canvas.width/(devicePixelRatio||1);ctx.fillStyle="#031d2b";ctx.fillRect(0,0,s,s);
 ctx.strokeStyle="rgba(0,162,232,.10)";ctx.lineWidth=1;
 for(let i=0;i<=GRID;i++){let p=i*cell;ctx.beginPath();ctx.moveTo(p,0);ctx.lineTo(p,s);ctx.stroke();ctx.beginPath();ctx.moveTo(0,p);ctx.lineTo(s,p);ctx.stroke()}
 let pad=cell*.22;ctx.fillStyle="#00ff66";ctx.fillRect(food.x*cell+pad,food.y*cell+pad,cell-pad*2,cell-pad*2);
@@ -70,7 +72,9 @@ document.querySelectorAll(".controls button").forEach(b=>b.addEventListener("cli
 document.getElementById("restart").addEventListener("click",start);window.addEventListener("resize",resize);
 function report(){window.parent.postMessage("republic-game-height:"+Math.ceil(document.getElementById("game").getBoundingClientRect().height),"*")}
 if(window.ResizeObserver)new ResizeObserver(report).observe(document.getElementById("game"));
-resize();start();report();
+start();
+resize();
+report();
 })();
 </script>
 </body>
