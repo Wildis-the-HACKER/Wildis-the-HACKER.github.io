@@ -1,0 +1,284 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reaction Test</title>
+<style>
+    * { box-sizing: border-box; }
+    html, body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+    }
+
+    #game {
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 8px;
+    }
+
+    #stats {
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+
+    .stat {
+        flex: 1;
+        text-align: center;
+        padding: 6px 4px;
+        border: 1px solid #0088aa;
+        border-radius: 6px;
+        background: rgba(0,60,100,.25);
+    }
+
+    #reaction {
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 2px;
+    }
+
+    #arena {
+        width: 100%;
+        height: 260px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        background: #444;
+        border: 2px solid #777;
+        transition: background .08s;
+    }
+
+    #message {
+        text-align: center;
+        padding: 15px;
+        pointer-events: none;
+    }
+
+    #message .big {
+        display: block;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    #message .small {
+        display: block;
+        font-size: 12px;
+        opacity: .9;
+    }
+
+    #controls {
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    button {
+        border: 1px solid #00a2e8;
+        border-radius: 6px;
+        background: rgba(0,100,150,.35);
+        color: white;
+        padding: 7px 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: rgba(0,130,180,.5);
+    }
+
+    #results {
+        display: none;
+        margin-top: 8px;
+        padding: 9px;
+        border: 1px solid #0088aa;
+        border-radius: 6px;
+        background: rgba(0,60,100,.25);
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+<div id="game">
+    <div id="stats">
+        <div class="stat">Trial<br><strong id="trial">0 / 5</strong></div>
+        <div class="stat">Last<br><strong id="last">—</strong></div>
+        <div class="stat">Average<br><strong id="average">—</strong></div>
+        <div class="stat">Best<br><strong id="best">—</strong></div>
+    </div>
+
+    <div id="arena">
+        <div id="message">
+            <span class="big">⚡ REACTION TEST</span>
+            <span class="small">Click START, then wait for the arena to turn green.</span>
+        </div>
+    </div>
+
+    <div id="controls">
+        <button id="start" type="button">▶ START</button>
+    </div>
+
+    <div id="results"></div>
+</div>
+
+<script>
+(function(){
+    const arena = document.getElementById("arena");
+    const message = document.getElementById("message");
+    const startBtn = document.getElementById("start");
+    const trialEl = document.getElementById("trial");
+    const lastEl = document.getElementById("last");
+    const averageEl = document.getElementById("average");
+    const bestEl = document.getElementById("best");
+    const resultsEl = document.getElementById("results");
+
+    const TRIALS = 5;
+    let trial = 0;
+    let times = [];
+    let state = "idle";
+    let goTime = 0;
+    let timer = null;
+
+    let best = Number(localStorage.getItem("republicReactionBest") || 0);
+    if (best > 0) bestEl.textContent = best + " ms";
+
+    function reportHeight(){
+        const h = Math.ceil(document.getElementById("game").getBoundingClientRect().height);
+        window.parent.postMessage("republic-game-height:" + h, "*");
+    }
+
+    function setMessage(big, small){
+        message.innerHTML =
+            '<span class="big">' + big + '</span>' +
+            '<span class="small">' + small + '</span>';
+    }
+
+    function resetArena(){
+        arena.style.background = "#444";
+        arena.style.borderColor = "#777";
+    }
+
+    function updateStats(){
+        trialEl.textContent = trial + " / " + TRIALS;
+        lastEl.textContent = times.length ? times[times.length - 1] + " ms" : "—";
+
+        if(times.length){
+            const avg = Math.round(times.reduce((a,b)=>a+b,0) / times.length);
+            averageEl.textContent = avg + " ms";
+        } else {
+            averageEl.textContent = "—";
+        }
+
+        if(best > 0) bestEl.textContent = best + " ms";
+    }
+
+    function startTest(){
+        clearTimeout(timer);
+        trial = 0;
+        times = [];
+        resultsEl.style.display = "none";
+        startBtn.textContent = "RESTART";
+        resetArena();
+        updateStats();
+        nextTrial();
+    }
+
+    function nextTrial(){
+        if(trial >= TRIALS){
+            finish();
+            return;
+        }
+
+        trial++;
+        updateStats();
+        state = "waiting";
+        resetArena();
+        setMessage("WAIT...", "Don't click yet!");
+
+        const delay = 1200 + Math.random() * 3200;
+
+        timer = setTimeout(function(){
+            state = "go";
+            goTime = performance.now();
+            arena.style.background = "#19a84a";
+            arena.style.borderColor = "#6cff98";
+            setMessage("CLICK!", "Go! Go! Go!");
+        }, delay);
+    }
+
+    function handleClick(){
+        if(state === "idle"){
+            startTest();
+            return;
+        }
+
+        if(state === "waiting"){
+            clearTimeout(timer);
+            state = "idle";
+            arena.style.background = "#b51f2a";
+            arena.style.borderColor = "#ff6670";
+            setMessage("TOO SOON!", "False start. Click START to try again.");
+            startBtn.textContent = "▶ START";
+            return;
+        }
+
+        if(state === "go"){
+            const reaction = Math.round(performance.now() - goTime);
+            times.push(reaction);
+
+            if(best === 0 || reaction < best){
+                best = reaction;
+                localStorage.setItem("republicReactionBest", best);
+            }
+
+            state = "result";
+            resetArena();
+            setMessage(reaction + " ms", "Nice! Get ready for the next one...");
+            updateStats();
+
+            timer = setTimeout(nextTrial, 850);
+        }
+    }
+
+    function finish(){
+        state = "idle";
+        startBtn.textContent = "▶ TRY AGAIN";
+
+        const avg = Math.round(times.reduce((a,b)=>a+b,0) / times.length);
+        const roundBest = Math.min(...times);
+
+        resultsEl.style.display = "block";
+        resultsEl.innerHTML =
+            "<strong>🏁 TEST COMPLETE</strong><br>" +
+            "Average: <strong>" + avg + " ms</strong> · " +
+            "Best this round: <strong>" + roundBest + " ms</strong>";
+
+        setMessage("DONE!", "Your results are shown below.");
+        reportHeight();
+    }
+
+    arena.addEventListener("click", handleClick);
+    startBtn.addEventListener("click", startTest);
+
+    window.addEventListener("resize", reportHeight);
+    if(window.ResizeObserver){
+        new ResizeObserver(reportHeight).observe(document.getElementById("game"));
+    }
+
+    updateStats();
+    reportHeight();
+})();
+</script>
+</body>
+</html>
