@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Republic Color Reflex</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:transparent;font-family:Arial,Helvetica,sans-serif;color:white}
+#game{width:100%;max-width:520px;margin:0 auto;padding:8px}
+#stats{display:flex;gap:6px;margin-bottom:8px}
+.stat{flex:1;text-align:center;padding:6px 4px;border:1px solid #0088aa;border-radius:6px;background:rgba(0,60,100,.25);font-size:12px}
+#arena{width:100%;min-height:250px;border-radius:8px;display:flex;align-items:center;justify-content:center;user-select:none;-webkit-user-select:none;border:2px solid rgba(255,255,255,.35);transition:background .08s}
+#word{font-size:clamp(32px,9vw,64px);font-weight:900;letter-spacing:2px;text-align:center;padding:20px;pointer-events:none}
+#message{text-align:center;font-size:13px;margin:8px 0 0;min-height:18px}
+#colorButtons{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}
+.colorButton{height:42px;border:2px solid #999;border-radius:7px;cursor:pointer;padding:0;min-width:44px;background:#fff!important;color:#000!important;font-size:12px;font-weight:bold;box-shadow:0 1px 2px rgba(0,0,0,.35)}
+.colorButton:focus-visible{outline:3px solid white;outline-offset:2px}
+.colorButton:hover{background:#eee!important}
+#controls{text-align:center;margin-top:8px}
+#start{border:1px solid #00a2e8;border-radius:6px;background:rgba(0,100,150,.35);color:white;padding:8px 15px;font-weight:bold;cursor:pointer}
+#start:hover{background:rgba(0,130,180,.5)}
+#results{display:none;margin-top:8px;padding:9px;border:1px solid #0088aa;border-radius:6px;background:rgba(0,60,100,.25);text-align:center;font-size:13px;line-height:1.5}
+@media(max-width:360px){#colorButtons{grid-template-columns:repeat(4,1fr);gap:5px}.colorButton{height:38px}.stat{font-size:11px}}
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="stats">
+    <div class="stat">Round<br><strong id="round">0 / 10</strong></div>
+    <div class="stat">Last<br><strong id="last">—</strong></div>
+    <div class="stat">Average<br><strong id="avg">—</strong></div>
+    <div class="stat">Best<br><strong id="best">—</strong></div>
+  </div>
+
+  <div id="arena" aria-label="Color reflex target" style="background-color: #222";>
+    <div id="word">COLOR REFLEX</div>
+  </div>
+
+  <div id="message" aria-live="polite">Click START to begin.</div>
+
+  <div id="colorButtons" aria-label="Color choices">
+    <button class="colorButton" type="button" data-color="RED" aria-label="Red" title="Red">RED</button>
+    <button class="colorButton" type="button" data-color="ORANGE" aria-label="Orange" title="Orange">ORANGE</button>
+    <button class="colorButton" type="button" data-color="YELLOW" aria-label="Yellow" title="Yellow">YELLOW</button>
+    <button class="colorButton" type="button" data-color="GREEN" aria-label="Green" title="Green">GREEN</button>
+    <button class="colorButton" type="button" data-color="CYAN" aria-label="Cyan" title="Cyan">CYAN</button>
+    <button class="colorButton" type="button" data-color="BLUE" aria-label="Blue" title="Blue">BLUE</button>
+    <button class="colorButton" type="button" data-color="PURPLE" aria-label="Purple" title="Purple">PURPLE</button>
+    <button class="colorButton" type="button" data-color="PINK" aria-label="Magenta" title="Magenta">PINK</button>
+  </div>
+
+  <div id="controls"><button id="start" type="button">▶ START</button></div>
+  <div id="results" aria-live="polite"></div>
+</div>
+<script>
+(function(){
+  const root=document.getElementById('game'),arena=document.getElementById('arena'),word=document.getElementById('word');
+  const roundEl=document.getElementById('round'),lastEl=document.getElementById('last'),avgEl=document.getElementById('avg'),bestEl=document.getElementById('best');
+  const msg=document.getElementById('message'),start=document.getElementById('start'),results=document.getElementById('results');
+  const buttons=[...document.querySelectorAll('.colorButton')];
+
+  const colors=[
+    {name:'RED',hex:'#ff0000',text:'#00ffff'},
+    {name:'ORANGE',hex:'#ff8000',text:'#007fff'},
+    {name:'YELLOW',hex:'#ffff00',text:'#0000ff'},
+    {name:'GREEN',hex:'#00ff00',text:'#ff00ff'},
+    {name:'CYAN',hex:'#00ffff',text:'#ff0000'},
+    {name:'BLUE',hex:'#0000ff',text:'#ffff00'},
+    {name:'PURPLE',hex:'#8000ff',text:'#7fff00'},
+    {name:'PINK',hex:'#ff00ff',text:'#00ff00'}
+  ];
+
+  const rounds=10;
+  let round=0,started=false,shown=null,shownAt=0,times=[];
+  let best=Number(localStorage.getItem('republicColorReflexBest')||0);
+
+  function reportHeight(){
+    window.parent.postMessage('republic-game-height:'+Math.ceil(root.getBoundingClientRect().height),'*');
+  }
+
+  function update(){
+    roundEl.textContent=round+' / '+rounds;
+    lastEl.textContent=times.length?times[times.length-1]+' ms':'—';
+    avgEl.textContent=times.length?Math.round(times.reduce((a,b)=>a+b,0)/times.length)+' ms':'—';
+    bestEl.textContent=best?best+' ms':'—';
+  }
+
+  function randomWrongColor(){
+    const choices=colors.filter(function(color){return color.name!==shown.name;});
+    return choices[Math.floor(Math.random()*choices.length)].name;
+  }
+
+  function pick(){
+    shown=colors[Math.floor(Math.random()*colors.length)];
+    arena.style.background=shown.hex;
+    word.style.color=shown.text;
+    word.textContent=randomWrongColor();
+    shownAt=performance.now();
+  }
+
+  function startGame(){
+    round=0;
+    times=[];
+    started=true;
+    results.style.display='none';
+    start.textContent='RESTART';
+    msg.textContent='Click the button matching the background color.';
+    update();
+    next();
+  }
+
+  function next(){
+    if(round>=rounds){finish();return}
+    round++;
+    update();
+    pick();
+  }
+
+  function finish(){
+    started=false;
+    shown=null;
+    start.textContent='▶ TRY AGAIN';
+    const average=Math.round(times.reduce((a,b)=>a+b,0)/times.length);
+    const fastest=Math.min(...times);
+    results.style.display='block';
+    results.innerHTML='<strong>TEST COMPLETE</strong><br>Average: <strong>'+average+' ms</strong> · Fastest: <strong>'+fastest+' ms</strong>';
+    msg.textContent='10 rounds complete!';
+    arena.style.background='#222';
+    word.style.color='#fff';
+    word.textContent='DONE!';
+    reportHeight();
+  }
+
+  function clickColor(name){
+    if(!started||!shown)return;
+
+    if(name!==shown.name){
+      started=false;
+      shown=null;
+      arena.style.background='#8f2028';
+      word.style.color='#fff';
+      word.textContent='WRONG!';
+      msg.textContent='Wrong color! Click START to restart the test.';
+      start.textContent='▶ START';
+      update();
+      reportHeight();
+      return;
+    }
+
+    const t=Math.round(performance.now()-shownAt);
+    times.push(t);
+    if(!best||t<best){
+      best=t;
+      localStorage.setItem('republicColorReflexBest',best);
+    }
+    arena.style.background='#222';
+    word.style.color='#fff';
+    word.textContent=t+' ms';
+    msg.textContent='Correct! Get ready...';
+    update();
+    setTimeout(function(){if(started)next()},220);
+  }
+
+  buttons.forEach(function(button){
+    button.addEventListener('click',function(){clickColor(button.dataset.color)});
+  });
+  start.addEventListener('click',startGame);
+
+  update();
+  reportHeight();
+  if(window.ResizeObserver)new ResizeObserver(reportHeight).observe(root);
+})();
+</script>
+</body>
+</html>
