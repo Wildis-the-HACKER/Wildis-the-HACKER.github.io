@@ -33,7 +33,7 @@ html,body{margin:0;padding:0;background:transparent;font-family:Arial,Helvetica,
     <div class="stat">Best<br><strong id="best">—</strong></div>
   </div>
 
-  <div id="arena" aria-label="Color reflex target" style="background-color: #222";>
+  <div id="arena" aria-label="Color reflex target" style="background-color: #222;">
     <div id="word">COLOR REFLEX</div>
   </div>
 
@@ -162,9 +162,11 @@ html,body{margin:0;padding:0;background:transparent;font-family:Arial,Helvetica,
     setTimeout(function(){if(started)next()},220);
   }
 
-  buttons.forEach(function(button){
-    button.addEventListener('click',function(){clickColor(button.dataset.color)});
+buttons.forEach(function(button,index){
+  button.addEventListener('click',function(){
+    clickColor(colors[index].name);
   });
+});
   start.addEventListener('click',startGame);
 
   update();
