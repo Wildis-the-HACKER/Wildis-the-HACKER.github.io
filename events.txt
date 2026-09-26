@@ -3,22 +3,22 @@
 # Comments are allowed here, but NOT inside an event block.
 
 Date: 2026-10-05
-Event: Monday Marathon
-Time: All day
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
 Link:
 
 Date: 2026-10-06
-Event: Tuesday Bullet
-Time: All day
+Event: Vote Chess
+Time: Republic plays as White
 Link:
 
 Date: 2026-10-07
-Event: Wednesday Blitz
-Time: All day
+Event: Vote Chess
+Time: Republic plays as Black
 Link:
 
 Date: 2026-10-08
-Event: Thursday Rapid
+Event: Random Chess960 starting position
 Time: All day
 Link:
 
