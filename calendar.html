@@ -1049,6 +1049,14 @@ loadEventDatabase().then(function() {
         showDatabaseError();
     }
 
+    /*
+        The calendar may have changed height after
+        events were loaded and rendered.
+    */
+    requestAnimationFrame(function() {
+        reportCalendarHeight();
+    });
+
 });
 
 
@@ -1077,6 +1085,12 @@ if (calendarElement) {
 }
 
 
+/*
+    Initial height report.
+
+    This catches the initial render before any
+    asynchronous event loading finishes.
+*/
 requestAnimationFrame(
     reportCalendarHeight
 );
