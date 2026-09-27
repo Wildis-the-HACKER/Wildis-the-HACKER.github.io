@@ -52,21 +52,6 @@ Event: Community Game Review
 Time: 3:00 PM CT
 Link:
 
-Date: 2026-10-15
-Event: Republic VS Owner Vote Chess
-Time: Rotating time control
-Link:
-
-Date: 2026-11-01
-Event: Multi-Club Arena
-Time: 8:00 PM CT
-Link:
-
-Date: TBD
-Event: 500 Citizen Celebration
-Time: Date to be announced
-Link:
-
 Date: 2026-10-12
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
@@ -85,6 +70,11 @@ Link:
 Date: 2026-10-15
 Event: Vote Chess
 Time: Random Chess960 starting position
+Link:
+
+Date: 2026-10-15
+Event: Republic VS Owner Vote Chess
+Time: 2 Days
 Link:
 
 Date: 2026-10-16
@@ -207,6 +197,36 @@ Event: Bughouse Battle
 Time: 8:15 PM CT
 Link:
 
+Date: 2026-10-26
+Event: Rating Range Week — 100–399
+Time: All day
+Link:
+
+Date: 2026-10-27
+Event: Rating Range Week — 400–699
+Time: All day
+Link:
+
+Date: 2026-10-28
+Event: Rating Range Week — 700–999
+Time: All day
+Link:
+
+Date: 2026-10-29
+Event: Rating Range Week — 1000–1399
+Time: All day
+Link:
+
+Date: 2026-10-30
+Event: Rating Range Week — 1400–1599
+Time: All day
+Link:
+
+Date: 2026-10-31
+Event: Rating Range Week — 1600+
+Time: All day
+Link:
+
 #-----------------
 #  N O V E M B E R
 #-----------------
@@ -219,6 +239,11 @@ Link:
 Date: 2026-11-01
 Event: Community Game Review
 Time: 3:00 PM CT
+Link:
+
+Date: 2026-11-01
+Event: Multi-Club Arena
+Time: 8:00 PM CT
 Link:
 
 Date: 2026-11-02
@@ -321,6 +346,11 @@ Event: Community Game Review
 Time: 3:00 PM CT
 Link:
 
+Date: 2026-11-15
+Event: Republic VS Owner Vote Chess
+Time: 3 Days
+Link:
+
 Date: 2026-11-16
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
@@ -421,36 +451,6 @@ Event: Community Game Review
 Time: 3:00 PM CT
 Link:
 
-Date: 2026-10-26
-Event: Rating Range Week — 100–399
-Time: All day
-Link:
-
-Date: 2026-10-27
-Event: Rating Range Week — 400–699
-Time: All day
-Link:
-
-Date: 2026-10-28
-Event: Rating Range Week — 700–999
-Time: All day
-Link:
-
-Date: 2026-10-29
-Event: Rating Range Week — 1000–1399
-Time: All day
-Link:
-
-Date: 2026-10-30
-Event: Rating Range Week — 1400–1599
-Time: All day
-Link:
-
-Date: 2026-10-31
-Event: Rating Range Week — 1600+
-Time: All day
-Link:
-
 Date: 2026-11-23
 Event: Rating Range Week — 100–399
 Time: All day
@@ -477,6 +477,260 @@ Time: All day
 Link:
 
 Date: 2026-11-28
+Event: Rating Range Week — 1600+
+Time: All day
+Link:
+
+#----------------------
+#    D E C E M B E R
+#----------------------
+
+Date: 2026-12-01
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-02
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-03
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-04
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-05
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-05
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-05
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-06
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-06
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-07
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-08
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-09
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-10
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-11
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-12
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-12
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-12
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-13
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-13
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-14
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-15
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-15
+Event: Republic VS Owner Vote Chess
+Time: 7 Days
+Link:
+
+Date: 2026-12-16
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-17
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-18
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-19
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-19
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-19
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-20
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-20
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-21
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-22
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-23
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-24
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-25
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-26
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-26
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-26
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-27
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-27
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-28
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-29
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-30
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-31
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-21
+Event: Rating Range Week — 100–399
+Time: All day
+Link:
+
+Date: 2026-12-22
+Event: Rating Range Week — 400–699
+Time: All day
+Link:
+
+Date: 2026-12-23
+Event: Rating Range Week — 700–999
+Time: All day
+Link:
+
+Date: 2026-12-24
+Event: Rating Range Week — 1000–1399
+Time: All day
+Link:
+
+Date: 2026-12-25
+Event: Rating Range Week — 1400–1599
+Time: All day
+Link:
+
+Date: 2026-12-26
 Event: Rating Range Week — 1600+
 Time: All day
 Link:
