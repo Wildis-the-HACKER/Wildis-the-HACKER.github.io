@@ -197,6 +197,11 @@ Event: Bughouse Battle
 Time: 8:15 PM CT
 Link:
 
+Date: 2026-10-31
+Event: Halloween Head-to-Head
+Time: 5:45 PM CT
+Link:
+
 Date: 2026-10-26
 Event: Rating Range Week — 100–399
 Time: All day
@@ -419,6 +424,11 @@ Link:
 Date: 2026-11-26
 Event: Vote Chess
 Time: Random Chess960 starting position
+Link:
+
+Date: 2026-11-26
+Event: Turkey Tournament (swiss)
+Time: 7:00 PM CT
 Link:
 
 Date: 2026-11-27
@@ -658,6 +668,11 @@ Link:
 Date: 2026-12-25
 Event: Friday Daily Match
 Time: All day
+Link:
+
+Date: 2026-12-25
+Event: Christmas Swiss
+Time: 6:30 PM CT
 Link:
 
 Date: 2026-12-26
