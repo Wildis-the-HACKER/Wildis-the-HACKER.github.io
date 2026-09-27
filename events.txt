@@ -2,6 +2,21 @@
 # Blank lines separate events.
 # Comments are allowed here, but NOT inside an event block.
 
+Date: 2026-10-01
+Event: Thursday Rapid Vote
+Time: 3 Days
+Link:
+
+Date: 2026-10-03
+Event: Opening Academy Saturday
+Time: All Day
+Link:
+
+Date: 2026-10-03
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link: https://www.chess.com/play/tournament/31132879
+
 Date: 2026-10-05
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
