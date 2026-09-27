@@ -206,6 +206,7 @@ Date: 2026-10-31
 Event: Bughouse Battle
 Time: 8:15 PM CT
 Link:
+
 #-----------------
 #  N O V E M B E R
 #-----------------
