@@ -916,6 +916,10 @@ function showEvents(date, events) {
 
     panel.classList.add("active");
 
+requestAnimationFrame(function() {
+    reportCalendarHeight();
+});
+
 }
 
 
