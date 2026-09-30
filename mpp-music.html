@@ -5,148 +5,237 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rook Radio</title>
 <style>
-* { box-sizing: border-box; }
-body {
-    margin: 0;
-    padding: 12px;
-    background: #111;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.radio { max-width: 900px; margin: 0 auto; }
-.title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.search, .filter {
-    width: 100%;
-    border: 1px solid #777;
-    border-radius: 7px;
-    font-size: 15px;
-    margin-bottom: 8px;
-}
-.search { padding: 10px; }
-.filter { padding: 8px; }
-.results {
-    height: 260px;
-    overflow-y: auto;
-    border: 1px solid #555;
-    border-radius: 7px;
-    background: #1b1b1b;
-    padding: 5px;
-}
-.song {
-    width: 100%;
-    text-align: left;
-    border: 0;
-    border-bottom: 1px solid #333;
-    background: transparent;
-    color: #fff;
-    padding: 9px;
-    cursor: pointer;
-}
-.song:hover { background: #292929; }
-.song-title { font-weight: bold; font-size: 14px; }
-.song-meta { color: #aaa; font-size: 12px; margin-top: 3px; }
-.now-playing {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
-}
-.player {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin-top: 6px;
-    border: 0;
-    border-radius: 7px;
-    background: #000;
-}
-.empty { padding: 15px; color: #aaa; text-align: center; }
+    :root {
+        color-scheme: dark;
+        --bg: #0b1117;
+        --panel: #121c25;
+        --panel2: #182530;
+        --border: #00a2e8;
+        --accent: #00d9ff;
+        --text: #f2f7fa;
+        --muted: #9eb0bd;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 12px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .radio {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        margin: 0 0 10px;
+        font-size: 24px;
+        text-align: center;
+        color: var(--accent);
+    }
+
+    .search-row {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+
+    #search {
+        flex: 1;
+        min-width: 0;
+        padding: 9px 10px;
+        border: 1px solid #4b6473;
+        border-radius: 6px;
+        background: #0f1820;
+        color: var(--text);
+        font-size: 14px;
+        outline: none;
+    }
+
+    #genre {
+        width: 130px;
+        padding: 9px 6px;
+        border: 1px solid #4b6473;
+        border-radius: 6px;
+        background: #0f1820;
+        color: var(--text);
+    }
+
+    #results {
+        height: 260px;
+        overflow-y: auto;
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        background: var(--panel);
+        padding: 5px;
+    }
+
+    .song {
+        width: 100%;
+        display: block;
+        text-align: left;
+        padding: 9px;
+        margin-bottom: 4px;
+        border: 0;
+        border-radius: 5px;
+        background: var(--panel2);
+        color: var(--text);
+        cursor: pointer;
+    }
+
+    .song:hover {
+        background: #203746;
+    }
+
+    .song-title {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .song-meta {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 11px;
+    }
+
+    .now-playing {
+        margin-top: 10px;
+        padding: 8px 10px;
+        border-left: 3px solid var(--accent);
+        background: var(--panel);
+        font-size: 13px;
+    }
+
+    #player {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        margin-top: 8px;
+        border: 1px solid #294452;
+        border-radius: 7px;
+        background: #000;
+    }
+
+    .empty {
+        padding: 20px 10px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    @media (max-width: 420px) {
+        body { padding: 7px; }
+        h1 { font-size: 20px; }
+        #genre { width: 105px; }
+        #results { height: 220px; }
+    }
 </style>
 </head>
+
 <body>
 <div class="radio">
-    <div class="title">♜ Rook Radio</div>
-    <input id="search" class="search" type="search" placeholder="Search music..." autocomplete="off">
-    <select id="genre" class="filter">
-        <option value="">All genres</option>
-    </select>
-    <div id="results" class="results"></div>
-    <div id="nowPlaying" class="now-playing">Select a song to begin.</div>
+    <h1>♜ Rook Radio</h1>
+
+    <div class="search-row">
+        <input id="search" type="search" placeholder="Search music..." autocomplete="off">
+        <select id="genre" aria-label="Filter by genre">
+            <option value="">All genres</option>
+        </select>
+    </div>
+
+    <div id="results"></div>
+
+    <div class="now-playing">
+        <strong>Now Playing:</strong>
+        <span id="nowPlaying">Nothing selected</span>
+    </div>
+
     <iframe
         id="player"
-        class="player"
-        src="about:blank"
         title="Rook Radio player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        src="about:blank"
+        allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
     </iframe>
 </div>
 
-<script src="songs.js"></script>
+<script src="mpp-songs.js"></script>
 <script>
 (function () {
+    "use strict";
+
     const search = document.getElementById("search");
     const genre = document.getElementById("genre");
     const results = document.getElementById("results");
     const player = document.getElementById("player");
     const nowPlaying = document.getElementById("nowPlaying");
 
-    const genres = [];
-    songs.forEach(function (song) {
-        song.genre.forEach(function (item) {
-            if (genres.indexOf(item) === -1) genres.push(item);
-        });
-    });
+    function allGenres() {
+        const set = new Set();
+        songs.forEach(song => (song.genre || []).forEach(g => set.add(g)));
+        return Array.from(set).sort();
+    }
 
-    genres.sort().forEach(function (item) {
+    allGenres().forEach(g => {
         const option = document.createElement("option");
-        option.value = item.toLowerCase();
-        option.textContent = item;
+        option.value = g;
+        option.textContent = g;
         genre.appendChild(option);
     });
 
-    function getVideoId(url) {
-        try {
-            return new URL(url).searchParams.get("v") || "";
-        } catch (error) {
-            return "";
+    function matches(song) {
+        const query = search.value.trim().toLowerCase();
+        const selectedGenre = genre.value;
+
+        if (selectedGenre && !(song.genre || []).includes(selectedGenre)) {
+            return false;
         }
+
+        if (!query) return true;
+
+        const searchable = [
+            song.title || "",
+            song.composer || "",
+            ...(song.genre || []),
+            ...(song.keywords || [])
+        ].join(" ").toLowerCase();
+
+        return query.split(/\s+/).every(word => searchable.includes(word));
+    }
+
+    function play(song) {
+        const match = song.url.match(/[?&]v=([^&]+)/);
+        if (!match) return;
+
+        const videoId = match[1];
+
+        player.src =
+            "https://www.youtube.com/embed/" +
+            encodeURIComponent(videoId) +
+            "?rel=0";
+
+        nowPlaying.textContent =
+            song.title + (song.composer ? " — " + song.composer : "");
     }
 
     function render() {
-        const query = search.value.trim().toLowerCase();
-        const selectedGenre = genre.value.toLowerCase();
         results.innerHTML = "";
 
-        const matches = songs.filter(function (song) {
-            const searchable = [
-                song.title,
-                song.composer,
-                song.genre.join(" "),
-                song.keywords.join(" ")
-            ].join(" ").toLowerCase();
+        const matchesFound = songs.filter(matches);
 
-            const queryMatches = !query || searchable.indexOf(query) !== -1;
-            const genreMatches =
-                !selectedGenre ||
-                song.genre.some(function (item) {
-                    return item.toLowerCase() === selectedGenre;
-                });
-
-            return queryMatches && genreMatches;
-        });
-
-        if (!matches.length) {
-            results.innerHTML = '<div class="empty">No songs found.</div>';
+        if (!matchesFound.length) {
+            results.innerHTML =
+                '<div class="empty">No songs found.</div>';
             return;
         }
 
-        matches.forEach(function (song) {
-            const button = document.createElement("button");
-            button.className = "song";
+        matchesFound.forEach(song => {
+            const item = document.createElement("div");
+            item.className = "song";
+            item.tabIndex = 0;
 
             const title = document.createElement("div");
             title.className = "song-title";
@@ -154,32 +243,31 @@ body {
 
             const meta = document.createElement("div");
             meta.className = "song-meta";
-            meta.textContent = song.composer + " • " + song.genre.join(", ");
+            meta.textContent =
+                (song.composer ? song.composer + " • " : "") +
+                (song.genre || []).join(" • ");
 
-            button.appendChild(title);
-            button.appendChild(meta);
+            item.appendChild(title);
+            item.appendChild(meta);
 
-            button.addEventListener("click", function () {
-                const videoId = getVideoId(song.url);
-                if (!videoId) {
-                    nowPlaying.textContent = "Invalid YouTube URL.";
-                    return;
+            item.onclick = function () {
+                play(song);
+            };
+
+            item.onkeydown = function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    play(song);
                 }
+            };
 
-                player.src =
-                    "https://www.youtube.com/embed/" +
-                    encodeURIComponent(videoId) +
-                    "?autoplay=1";
-
-                nowPlaying.textContent = "▶ " + song.title;
-            });
-
-            results.appendChild(button);
+            results.appendChild(item);
         });
     }
 
-    search.addEventListener("input", render);
-    genre.addEventListener("change", render);
+    search.oninput = render;
+    genre.onchange = render;
+
     render();
 })();
 </script>
