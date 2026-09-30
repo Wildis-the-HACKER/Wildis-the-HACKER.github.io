@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rook Radio</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 12px;
+    background: #111;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.radio { max-width: 900px; margin: 0 auto; }
+.title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.search, .filter {
+    width: 100%;
+    border: 1px solid #777;
+    border-radius: 7px;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+.search { padding: 10px; }
+.filter { padding: 8px; }
+.results {
+    height: 260px;
+    overflow-y: auto;
+    border: 1px solid #555;
+    border-radius: 7px;
+    background: #1b1b1b;
+    padding: 5px;
+}
+.song {
+    width: 100%;
+    text-align: left;
+    border: 0;
+    border-bottom: 1px solid #333;
+    background: transparent;
+    color: #fff;
+    padding: 9px;
+    cursor: pointer;
+}
+.song:hover { background: #292929; }
+.song-title { font-weight: bold; font-size: 14px; }
+.song-meta { color: #aaa; font-size: 12px; margin-top: 3px; }
+.now-playing {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.player {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 6px;
+    border: 0;
+    border-radius: 7px;
+    background: #000;
+}
+.empty { padding: 15px; color: #aaa; text-align: center; }
+</style>
+</head>
+<body>
+<div class="radio">
+    <div class="title">♜ Rook Radio</div>
+    <input id="search" class="search" type="search" placeholder="Search music..." autocomplete="off">
+    <select id="genre" class="filter">
+        <option value="">All genres</option>
+    </select>
+    <div id="results" class="results"></div>
+    <div id="nowPlaying" class="now-playing">Select a song to begin.</div>
+    <iframe
+        id="player"
+        class="player"
+        src="about:blank"
+        title="Rook Radio player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<script src="songs.js"></script>
+<script>
+(function () {
+    const search = document.getElementById("search");
+    const genre = document.getElementById("genre");
+    const results = document.getElementById("results");
+    const player = document.getElementById("player");
+    const nowPlaying = document.getElementById("nowPlaying");
+
+    const genres = [];
+    songs.forEach(function (song) {
+        song.genre.forEach(function (item) {
+            if (genres.indexOf(item) === -1) genres.push(item);
+        });
+    });
+
+    genres.sort().forEach(function (item) {
+        const option = document.createElement("option");
+        option.value = item.toLowerCase();
+        option.textContent = item;
+        genre.appendChild(option);
+    });
+
+    function getVideoId(url) {
+        try {
+            return new URL(url).searchParams.get("v") || "";
+        } catch (error) {
+            return "";
+        }
+    }
+
+    function render() {
+        const query = search.value.trim().toLowerCase();
+        const selectedGenre = genre.value.toLowerCase();
+        results.innerHTML = "";
+
+        const matches = songs.filter(function (song) {
+            const searchable = [
+                song.title,
+                song.composer,
+                song.genre.join(" "),
+                song.keywords.join(" ")
+            ].join(" ").toLowerCase();
+
+            const queryMatches = !query || searchable.indexOf(query) !== -1;
+            const genreMatches =
+                !selectedGenre ||
+                song.genre.some(function (item) {
+                    return item.toLowerCase() === selectedGenre;
+                });
+
+            return queryMatches && genreMatches;
+        });
+
+        if (!matches.length) {
+            results.innerHTML = '<div class="empty">No songs found.</div>';
+            return;
+        }
+
+        matches.forEach(function (song) {
+            const button = document.createElement("button");
+            button.className = "song";
+
+            const title = document.createElement("div");
+            title.className = "song-title";
+            title.textContent = song.title;
+
+            const meta = document.createElement("div");
+            meta.className = "song-meta";
+            meta.textContent = song.composer + " • " + song.genre.join(", ");
+
+            button.appendChild(title);
+            button.appendChild(meta);
+
+            button.addEventListener("click", function () {
+                const videoId = getVideoId(song.url);
+                if (!videoId) {
+                    nowPlaying.textContent = "Invalid YouTube URL.";
+                    return;
+                }
+
+                player.src =
+                    "https://www.youtube.com/embed/" +
+                    encodeURIComponent(videoId) +
+                    "?autoplay=1";
+
+                nowPlaying.textContent = "▶ " + song.title;
+            });
+
+            results.appendChild(button);
+        });
+    }
+
+    search.addEventListener("input", render);
+    genre.addEventListener("change", render);
+    render();
+})();
+</script>
+</body>
+</html>
