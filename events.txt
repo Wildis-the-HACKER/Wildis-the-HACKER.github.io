@@ -5,12 +5,12 @@
 Date: 2026-10-01
 Event: Thursday Rapid Vote
 Time: 3 Days
-Link:
+Link: https://www.chess.com/votechess/game/455804
 
 Date: 2026-10-03
 Event: Opening Academy Saturday
 Time: All Day
-Link:
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-3-26
 
 Date: 2026-10-03
 Event: Saturday Knight Swiss
@@ -220,32 +220,32 @@ Link:
 Date: 2026-10-26
 Event: Rating Range Week — 100–399
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/rising-momentum/2006490
 
 Date: 2026-10-27
 Event: Rating Range Week — 400–699
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/rising-momentum/2006492
 
 Date: 2026-10-28
 Event: Rating Range Week — 700–999
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/rising-momentum/2006494
 
 Date: 2026-10-29
 Event: Rating Range Week — 1000–1399
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/rising-momentum/2006496
 
 Date: 2026-10-30
 Event: Rating Range Week — 1400–1599
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/rising-momentum/2006498
 
 Date: 2026-10-31
 Event: Rating Range Week — 1600+
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/rising-momentum/2006500
 
 #-----------------
 #  N O V E M B E R
@@ -263,8 +263,8 @@ Link:
 
 Date: 2026-11-01
 Event: Multi-Club Arena
-Time: 8:00 PM CT
-Link:
+Time: 6:30 PM CT
+Link: https://www.chess.com/play/arena/31105194
 
 Date: 2026-11-02
 Event: Vote Chess
