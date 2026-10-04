@@ -40,7 +40,7 @@ Link:
 Date: 2026-10-09
 Event: Friday Daily Match
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/2007812
 
 Date: 2026-10-10
 Event: Opening Academy Saturday
@@ -50,12 +50,12 @@ Link:
 Date: 2026-10-10
 Event: Saturday Knight Swiss
 Time: 7:00 PM CT
-Link:
+Link: https://www.chess.com/play/tournament/31161465
 
 Date: 2026-10-10
 Event: Bughouse Battle
 Time: 8:15 PM CT
-Link:
+Link: https://www.chess.com/play/arena/31390869
 
 Date: 2026-10-11
 Event: Social Sunday
