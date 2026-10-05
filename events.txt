@@ -20,7 +20,7 @@ Link: https://www.chess.com/play/tournament/31132879
 Date: 2026-10-05
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
-Link:
+Link: https://www.chess.com/votechess/game/456204
 
 Date: 2026-10-06
 Event: Vote Chess
