@@ -25,17 +25,17 @@ Link: https://www.chess.com/votechess/game/456204
 Date: 2026-10-06
 Event: Vote Chess
 Time: Republic plays as White
-Link:
+Link: https://www.chess.com/votechess/game/456352
 
 Date: 2026-10-07
 Event: Vote Chess
 Time: Republic plays as Black
-Link:
+Link: https://www.chess.com/votechess/game/456522
 
 Date: 2026-10-08
 Event: Vote Chess
 Time: Random Chess960 starting position
-Link:
+Link: https://www.chess.com/votechess/game/456352
 
 Date: 2026-10-09
 Event: Friday Daily Match
