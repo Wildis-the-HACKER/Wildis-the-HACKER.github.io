@@ -218,32 +218,32 @@ Time: 5:45 PM CT
 Link:
 
 Date: 2026-10-26
-Event: Rating Range Week — 100–399
+Event: Rating Range Week: 100–399
 Time: All day
 Link: https://www.chess.com/club/matches/rising-momentum/2006490
 
 Date: 2026-10-27
-Event: Rating Range Week — 400–699
+Event: Rating Range Week: 400–699
 Time: All day
 Link: https://www.chess.com/club/matches/rising-momentum/2006492
 
 Date: 2026-10-28
-Event: Rating Range Week — 700–999
+Event: Rating Range Week: 700–999
 Time: All day
 Link: https://www.chess.com/club/matches/rising-momentum/2006494
 
 Date: 2026-10-29
-Event: Rating Range Week — 1000–1399
+Event: Rating Range Week: 1000–1399
 Time: All day
 Link: https://www.chess.com/club/matches/rising-momentum/2006496
 
 Date: 2026-10-30
-Event: Rating Range Week — 1400–1599
+Event: Rating Range Week: 1400–1599
 Time: All day
 Link: https://www.chess.com/club/matches/rising-momentum/2006498
 
 Date: 2026-10-31
-Event: Rating Range Week — 1600+
+Event: Rating Range Week: 1600+
 Time: All day
 Link: https://www.chess.com/club/matches/rising-momentum/2006500
 
@@ -477,32 +477,32 @@ Time: 3:00 PM CT
 Link:
 
 Date: 2026-11-23
-Event: Rating Range Week — 100–399
+Event: Rating Range Week: 100–399
 Time: All day
 Link:
 
 Date: 2026-11-24
-Event: Rating Range Week — 400–699
+Event: Rating Range Week: 400–699
 Time: All day
 Link:
 
 Date: 2026-11-25
-Event: Rating Range Week — 700–999
+Event: Rating Range Week: 700–999
 Time: All day
 Link:
 
 Date: 2026-11-26
-Event: Rating Range Week — 1000–1399
+Event: Rating Range Week: 1000–1399
 Time: All day
 Link:
 
 Date: 2026-11-27
-Event: Rating Range Week — 1400–1599
+Event: Rating Range Week: 1400–1599
 Time: All day
 Link:
 
 Date: 2026-11-28
-Event: Rating Range Week — 1600+
+Event: Rating Range Week: 1600+
 Time: All day
 Link:
 
@@ -736,31 +736,31 @@ Time: Random Chess960 starting position
 Link:
 
 Date: 2026-12-21
-Event: Rating Range Week — 100–399
+Event: Rating Range Week: 100–399
 Time: All day
 Link:
 
 Date: 2026-12-22
-Event: Rating Range Week — 400–699
+Event: Rating Range Week: 400–699
 Time: All day
 Link:
 
 Date: 2026-12-23
-Event: Rating Range Week — 700–999
+Event: Rating Range Week: 700–999
 Time: All day
 Link:
 
 Date: 2026-12-24
-Event: Rating Range Week — 1000–1399
+Event: Rating Range Week: 1000–1399
 Time: All day
 Link:
 
 Date: 2026-12-25
-Event: Rating Range Week — 1400–1599
+Event: Rating Range Week: 1400–1599
 Time: All day
 Link:
 
 Date: 2026-12-26
-Event: Rating Range Week — 1600+
+Event: Rating Range Week: 1600+
 Time: All day
 Link:
