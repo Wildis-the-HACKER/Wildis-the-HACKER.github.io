@@ -70,12 +70,12 @@ Link:
 Date: 2026-10-12
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
-Link:
+Link: https://www.chess.com/votechess/game/457342
 
 Date: 2026-10-13
 Event: Vote Chess
 Time: Republic plays as White
-Link:
+Link: https://www.chess.com/votechess/game/457466
 
 Date: 2026-10-14
 Event: Vote Chess
