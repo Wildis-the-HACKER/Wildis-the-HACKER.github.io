@@ -45,7 +45,7 @@ Link: https://www.chess.com/club/matches/2007812
 Date: 2026-10-10
 Event: Opening Academy Saturday
 Time: All day
-Link:
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-17-26
 
 Date: 2026-10-10
 Event: Saturday Knight Swiss
@@ -60,12 +60,12 @@ Link: https://www.chess.com/play/arena/31390869
 Date: 2026-10-11
 Event: Social Sunday
 Time: All day
-Link:
+Link: https://www.chess.com/clubs/forum/view/social-sunday-10-11-26
 
 Date: 2026-10-11
 Event: Community Game Review
 Time: 3:00 PM CT
-Link:
+Link: https://www.chess.com/clubs/forum/view/social-sunday-10-11-26#comment-135107293
 
 Date: 2026-10-12
 Event: Vote Chess
@@ -80,37 +80,37 @@ Link: https://www.chess.com/votechess/game/457466
 Date: 2026-10-14
 Event: Vote Chess
 Time: Republic plays as Black
-Link:
+Link: https://www.chess.com/votechess/game/457636
 
 Date: 2026-10-15
 Event: Vote Chess
 Time: Random Chess960 starting position
-Link:
+Link:https://www.chess.com/votechess/game/457814
 
 Date: 2026-10-15
 Event: Republic VS Owner Vote Chess
 Time: 2 Days
-Link:
+Link: https://www.chess.com/votechess/game/457810
 
 Date: 2026-10-16
 Event: Friday Daily Match
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/the-rook-republic-chess-club/2010716
 
 Date: 2026-10-17
 Event: Opening Academy Saturday
 Time: All day
-Link:
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-17-26
 
 Date: 2026-10-17
 Event: Saturday Knight Swiss
 Time: 7:00 PM CT
-Link:
+Link: https://www.chess.com/play/tournament/31172431
 
 Date: 2026-10-17
 Event: Bughouse Battle
 Time: 8:15 PM CT
-Link:
+Link: https://www.chess.com/play/arena/31391119
 
 Date: 2026-10-18
 Event: Social Sunday
