@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rook Republic — Election Calendar</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #0b1426;
+  --panel: #131f35;
+  --panel2: #1b2a43;
+  --gold: #e8c66f;
+  --gold-dark: #b38b2e;
+  --text: #f4f0e6;
+  --muted: #b8c4d6;
+  --border: #34435b;
+  --green: #75d6a0;
+  --blue: #8fc8ff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+button { font: inherit; }
+.calendar {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid var(--gold-dark);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.header {
+  padding: 25px 20px;
+  text-align: center;
+  background: linear-gradient(140deg, #192b47, #0b1426 72%);
+  border-bottom: 2px solid var(--gold-dark);
+}
+.rook { font-size: 36px; color: var(--gold); }
+.kicker {
+  margin-top: 6px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+h1 {
+  margin: 10px 0 5px;
+  color: var(--gold);
+  font-size: clamp(23px, 5vw, 34px);
+  line-height: 1.2;
+}
+.subtitle { color: var(--muted); font-size: 14px; }
+.effective {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 5px 11px;
+  border: 1px solid var(--gold-dark);
+  border-radius: 5px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: bold;
+}
+.content { padding: 18px; }
+.cycle-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.nav-button {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel2);
+  color: var(--text);
+  cursor: pointer;
+}
+.nav-button:hover { border-color: var(--gold); }
+.nav-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.cycle-title {
+  text-align: center;
+  min-width: 0;
+}
+.cycle-title h2 {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(17px, 3vw, 22px);
+}
+.cycle-title p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.phase {
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.phase strong { color: var(--gold); }
+.phase p { margin: 3px 0 0; font-size: 13px; }
+.office-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.office {
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel);
+  min-width: 0;
+}
+.office:first-child { border-top: 3px solid var(--gold); }
+.office h3 {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 16px;
+}
+.status {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--panel2);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: bold;
+}
+.status.campaign { color: var(--gold); }
+.status.voting { color: var(--green); }
+.status.finished { color: var(--muted); }
+.status.upcoming { color: var(--blue); }
+.event {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px solid var(--border);
+}
+.event-label {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.event-date { font-size: 14px; font-weight: bold; }
+.campaign-date { color: var(--gold); }
+.vote-date { color: var(--green); }
+.break-card {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel2);
+}
+.break-card h3 { margin: 0 0 4px; color: var(--gold); }
+.break-card p { margin: 3px 0; font-size: 13px; }
+.footer {
+  padding: 15px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  text-align: center;
+  font-size: 11px;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 15px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.dot.gold { background: var(--gold); }
+.dot.green { background: var(--green); }
+.dot.blue { background: var(--blue); }
+@media (max-width: 580px) {
+  body { padding: 7px; }
+  .content { padding: 12px; }
+  .office-list { grid-template-columns: 1fr; }
+  .office { padding: 13px; }
+  .nav-button { padding: 7px 8px; font-size: 12px; }
+  .cycle-title p { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+<main class="calendar">
+  <header class="header">
+    <div class="kicker">THE ROOK REPUBLIC</div>
+    <h1>Election Calendar</h1>
+    <div class="subtitle">Official schedule for the five elected offices</div>
+    <div class="effective">ELECTION SYSTEM · EFFECTIVE NOV 1, 2026</div>
+  </header>
+
+  <section class="content">
+    <div class="cycle-nav">
+      <button class="nav-button" id="previous" type="button"
+        aria-label="Previous election cycle">← Previous</button>
+      <div class="cycle-title">
+        <h2 id="cycle-title">Loading…</h2>
+        <p id="cycle-subtitle"></p>
+      </div>
+      <button class="nav-button" id="next" type="button"
+        aria-label="Next election cycle">Next →</button>
+    </div>
+
+    <div class="phase" aria-live="polite">
+      <strong id="phase-title">Checking current phase…</strong>
+      <p id="phase-detail"></p>
+    </div>
+
+    <div class="office-list" id="office-list"></div>
+
+    <div class="break-card">
+      <h3>Election Break</h3>
+      <p id="break-dates"></p>
+      <p id="next-cycle-date"></p>
+    </div>
+
+    <div class="legend">
+      <span><i class="dot gold"></i>Campaign period</span>
+      <span><i class="dot green"></i>Voting period</span>
+      <span><i class="dot blue"></i>Upcoming</span>
+    </div>
+  </section>
+
+  <footer class="footer">
+    ROOK REPUBLIC · OFFICIAL ELECTION CALENDAR<br>
+    Campaigns last 14 days · Voting lasts 7 days · Cycles begin every other month
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  const offices = [
+    "Executive Director",
+    "Tournament Director",
+    "Education Director",
+    "Secretary & Records Director",
+    "Administration Director"
+  ];
+
+  // The first cycle begins November 1, 2026.
+  // All later cycles begin every two calendar months.
+  let cycleStart = new Date(2026, 10, 1);
+
+  const $ = id => document.getElementById(id);
+  const day = 86400000;
+
+  function addDays(date, amount) {
+    const result = new Date(date);
+    result.setDate(result.getDate() + amount);
+    return result;
+  }
+
+  function addMonths(date, amount) {
+    return new Date(date.getFullYear(), date.getMonth() + amount, 1);
+  }
+
+  function format(date, options) {
+    return date.toLocaleDateString("en-US", options || {
+      month: "short", day: "numeric", year: "numeric"
+    });
+  }
+
+  function range(start, end) {
+    const sameYear = start.getFullYear() === end.getFullYear();
+    const sameMonth = sameYear && start.getMonth() === end.getMonth();
+
+    if (sameMonth) {
+      return start.toLocaleDateString("en-US", {
+        month: "short", day: "numeric"
+      }) + "–" + end.getDate() + ", " + end.getFullYear();
+    }
+
+    const startText = start.toLocaleDateString("en-US", {
+      month: "short", day: "numeric"
+    });
+    const endText = end.toLocaleDateString("en-US", {
+      month: "short", day: "numeric"
+    });
+
+    return startText + " – " + endText + ", " + end.getFullYear();
+  }
+
+  function sameDate(a, b) {
+    return a.getFullYear() === b.getFullYear() &&
+      a.getMonth() === b.getMonth() &&
+      a.getDate() === b.getDate();
+  }
+
+  function statusFor(now, campaignStart, campaignEnd, voteStart, voteEnd) {
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    if (today < campaignStart) {
+      return { text: "UPCOMING", cls: "upcoming" };
+    }
+    if (today <= campaignEnd) {
+      return { text: "CAMPAIGN OPEN", cls: "campaign" };
+    }
+    if (today >= voteStart && today <= voteEnd) {
+      return { text: "VOTING OPEN", cls: "voting" };
+    }
+    if (today > voteEnd) {
+      return { text: "COMPLETED", cls: "finished" };
+    }
+    return { text: "UPCOMING", cls: "upcoming" };
+  }
+
+  function makeOfficeCard(name, campaignStart, campaignEnd, voteStart, voteEnd, now) {
+    const card = document.createElement("article");
+    card.className = "office";
+
+    const status = statusFor(now, campaignStart, campaignEnd, voteStart, voteEnd);
+
+    const heading = document.createElement("h3");
+    heading.textContent = name;
+    card.appendChild(heading);
+
+    const badge = document.createElement("span");
+    badge.className = "status " + status.cls;
+    badge.textContent = status.text;
+    card.appendChild(badge);
+
+    const campaign = document.createElement("div");
+    campaign.className = "event";
+    campaign.innerHTML =
+      '<span class="event-label">CAMPAIGN · 14 DAYS</span>' +
+      '<span class="event-date campaign-date"></span>';
+    campaign.querySelector(".event-date").textContent =
+      range(campaignStart, campaignEnd);
+    card.appendChild(campaign);
+
+    const voting = document.createElement("div");
+    voting.className = "event";
+    voting.innerHTML =
+      '<span class="event-label">VOTING · 7 DAYS</span>' +
+      '<span class="event-date vote-date"></span>';
+    voting.querySelector(".event-date").textContent =
+      range(voteStart, voteEnd);
+    card.appendChild(voting);
+
+    return card;
+  }
+
+  function render() {
+    const now = new Date();
+    const start = new Date(
+      cycleStart.getFullYear(), cycleStart.getMonth(), 1
+    );
+    const nextStart = addMonths(start, 2);
+    const cycleEnd = addDays(nextStart, -1);
+
+    $("cycle-title").textContent =
+      start.toLocaleDateString("en-US", { month: "long", year: "numeric" }) +
+      " – " +
+      cycleEnd.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+    const cycleNumber = Math.floor(
+      (start.getFullYear() * 12 + start.getMonth() -
+       (2026 * 12 + 10)) / 2
+    ) + 1;
+
+    $("cycle-subtitle").textContent =
+      "Cycle " + cycleNumber + " · Begins " + format(start);
+
+    const list = $("office-list");
+    list.replaceChildren();
+
+    const events = [];
+
+    offices.forEach((office, index) => {
+      const campaignStart = addDays(start, index * 7);
+      const campaignEnd = addDays(campaignStart, 13);
+      const voteStart = addDays(campaignStart, 14);
+      const voteEnd = addDays(campaignStart, 20);
+
+      events.push({
+        office, campaignStart, campaignEnd, voteStart, voteEnd
+      });
+
+      list.appendChild(makeOfficeCard(
+        office, campaignStart, campaignEnd, voteStart, voteEnd, now
+      ));
+    });
+
+    const lastVoteEnd = events[events.length - 1].voteEnd;
+    const breakStart = addDays(lastVoteEnd, 1);
+
+    $("break-dates").textContent =
+      range(breakStart, cycleEnd);
+
+    $("next-cycle-date").textContent =
+      "Next cycle begins " + format(nextStart) + ".";
+
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const active = events.find(e =>
+      today >= e.campaignStart && today <= e.voteEnd
+    );
+
+    if (today < start) {
+      $("phase-title").textContent = "Cycle has not started";
+      $("phase-detail").textContent =
+        "The first campaign begins " + format(start) + ".";
+    } else if (active) {
+      if (today <= active.campaignEnd) {
+        $("phase-title").textContent =
+          "Campaigning: " + active.office;
+        $("phase-detail").textContent =
+          "Campaign closes " + format(active.campaignEnd) +
+          ". Voting runs " + range(active.voteStart, active.voteEnd) + ".";
+      } else {
+        $("phase-title").textContent =
+          "Voting: " + active.office;
+        $("phase-detail").textContent =
+          "Voting closes " + format(active.voteEnd) + ".";
+      }
+    } else if (today > cycleEnd) {
+      $("phase-title").textContent = "Cycle complete";
+      $("phase-detail").textContent =
+        "The next cycle begins " + format(nextStart) + ".";
+    } else {
+      $("phase-title").textContent = "Election break";
+      $("phase-detail").textContent =
+        "No campaigns or voting are scheduled. The next cycle begins " +
+        format(nextStart) + ".";
+    }
+
+    $("previous").disabled =
+      start.getFullYear() === 2026 && start.getMonth() === 10;
+
+    $("previous").style.opacity =
+      $("previous").disabled ? "0.4" : "1";
+  }
+
+  $("previous").addEventListener("click", function () {
+    if (cycleStart.getFullYear() === 2026 && cycleStart.getMonth() === 10) {
+      return;
+    }
+    cycleStart = addMonths(cycleStart, -2);
+    render();
+  });
+
+  $("next").addEventListener("click", function () {
+    cycleStart = addMonths(cycleStart, 2);
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
