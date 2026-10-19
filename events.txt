@@ -125,7 +125,7 @@ Link:
 Date: 2026-10-19
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
-Link:
+Link: https://www.chess.com/votechess/game/458328
 
 Date: 2026-10-20
 Event: Vote Chess
