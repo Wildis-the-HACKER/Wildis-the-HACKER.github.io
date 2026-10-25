@@ -130,17 +130,17 @@ Link: https://www.chess.com/votechess/game/458328
 Date: 2026-10-20
 Event: Vote Chess
 Time: Republic plays as White
-Link:
+Link: https://www.chess.com/votechess/game/458498
 
 Date: 2026-10-21
 Event: Vote Chess
 Time: Republic plays as Black
-Link:
+Link: https://www.chess.com/votechess/game/458606
 
 Date: 2026-10-22
 Event: Vote Chess
 Time: Random Chess960 starting position
-Link:
+Link: https://www.chess.com/votechess/game/458784
 
 Date: 2026-10-23
 Event: Friday Daily Match
@@ -150,22 +150,22 @@ Link:
 Date: 2026-10-24
 Event: Opening Academy Saturday
 Time: All day
-Link:
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-24-26
 
 Date: 2026-10-24
 Event: Saturday Knight Swiss
 Time: 7:00 PM CT
-Link:
+Link: https://www.chess.com/play/tournament/31181997
 
 Date: 2026-10-24
 Event: Bughouse Battle
 Time: 8:15 PM CT
-Link:
+Link: https://www.chess.com/play/arena/31129804
 
 Date: 2026-10-25
 Event: Social Sunday
 Time: All day
-Link:
+Link: https://www.chess.com/clubs/forum/view/social-sunday-10-25-26
 
 Date: 2026-10-25
 Event: Community Game Review
@@ -195,7 +195,7 @@ Link:
 Date: 2026-10-30
 Event: Friday Daily Match
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/infinity-chess-7/2015720
 
 Date: 2026-10-31
 Event: Opening Academy Saturday
