@@ -6,7 +6,9 @@
 
     <meta charset="UTF-8">
 
-    <title>Nyan Flap - Chess.com Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chess.com Nyan Cat Flappy Bird</title>
 
     <style>
 
@@ -14,35 +16,33 @@
 
             margin: 0;
 
-            background: #111;
+            background-color: #312e2b; /* Chess.com dark background */
+
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
             display: flex;
 
-            flex-direction: column;
+            justify-content: center;
 
             align-items: center;
 
-            justify-content: center;
-
             height: 100vh;
-
-            color: #fff;
-
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
             overflow: hidden;
 
+            color: #fff;
+
         }
 
-        #game-container {
+        #gameContainer {
 
             position: relative;
 
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 
-            border: 4px solid #444;
+            border-radius: 4px;
 
-            border-radius: 8px;
+            overflow: hidden;
 
         }
 
@@ -50,19 +50,63 @@
 
             display: block;
 
-            background: linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460);
+            background: #262421; /* Chessboard dark square color vibe */
 
         }
 
         #ui {
 
-            margin-top: 10px;
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            text-align: center;
+
+            background: rgba(49, 46, 43, 0.9);
+
+            padding: 20px 40px;
+
+            border-radius: 8px;
+
+            border: 2px solid #81b64c; /* Chess.com green button color */
+
+        }
+
+        button {
+
+            background-color: #81b64c;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 24px;
 
             font-size: 18px;
 
-            display: flex;
+            font-weight: bold;
 
-            gap: 20px;
+            border-radius: 4px;
+
+            cursor: pointer;
+
+            transition: background 0.2s;
+
+        }
+
+        button:hover {
+
+            background-color: #a3d16c;
+
+        }
+
+        .hidden {
+
+            display: none !important;
 
         }
 
@@ -72,209 +116,215 @@
 
 <body>
 
-<div id="game-container">
+<div id="gameContainer">
 
-    <canvas id="gameCanvas" width="400" height="500"></canvas>
+    <canvas id="gameCanvas" width="480" height="640"></canvas>
 
-</div>
+    <div id="ui">
 
-<div id="ui">
+        <h1 id="title">Chess Nyan Cat</h1>
 
-    <span>Score: <strong id="scoreVal">0</strong></span>
+        <p id="info">Press SPACE or Click to Jump</p>
 
-    <span>High Score: <strong id="highScoreVal">0</strong></span>
+        <button id="startBtn" onclick="startGame()">PLAY</button>
 
-    <span>Press <strong>SPACE</strong> or <strong>CLICK</strong> to Flap</span>
+    </div>
 
 </div>
 
 <script>
 
-const canvas = document.getElementById('gameCanvas');
+const canvas = document.getElementById("gameCanvas");
 
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext("2d");
 
-const scoreVal = document.getElementById('scoreVal');
+const ui = document.getElementById("ui");
 
-const highScoreVal = document.getElementById('highScoreVal');
+const startBtn = document.getElementById("startBtn");
 
-let score = 0;
+const title = document.getElementById("title");
 
-let highScore = 0;
+const info = document.getElementById("info");
 
-let gameOver = false;
+// Game variables
 
-let gameStarted = false;
+let gameState = "START"; 
 
-// Nyan Cat Player
+let cat, pipes, frameCount, score;
 
-const nyan = {
+// Real Audio Synthesizer (No external file assets needed)
 
-    x: 80,
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-    y: 250,
+function playSound(type) {
 
-    width: 45,
+    const osc = audioCtx.createOscillator();
 
-    height: 30,
+    const gain = audioCtx.createGain();
 
-    gravity: 0.25,
+    osc.connect(gain);
 
-    lift: -5.5,
+    gain.connect(audioCtx.destination);
 
-    velocity: 0,
+    if (type === 'jump') {
 
-    trail: []
+        osc.type = 'sine';
 
-};
+        osc.frequency.setValueAtTime(150, audioCtx.currentTime);
 
-// Obstacles (Chess themed: pipes styled as chess board columns/rooks)
+        osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.15);
 
-const pipes = [];
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
 
-const pipeWidth = 50;
+        gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.15);
 
-const pipeGap = 130;
+        osc.start();
 
-let frameCount = 0;
+        osc.stop(audioCtx.currentTime + 0.15);
 
-function resetGame() {
+    } else if (type === 'score') {
 
-    nyan.y = 250;
+        osc.type = 'triangle';
 
-    nyan.velocity = 0;
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
 
-    nyan.trail = [];
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.08); // A5
 
-    pipes.length = 0;
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+
+        gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.25);
+
+        osc.start();
+
+        osc.stop(audioCtx.currentTime + 0.25);
+
+    } else if (type === 'hit') {
+
+        osc.type = 'sawtooth';
+
+        osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+
+        osc.frequency.linearRampToValueAtTime(60, audioCtx.currentTime + 0.4);
+
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+
+        gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.4);
+
+        osc.start();
+
+        osc.stop(audioCtx.currentTime + 0.4);
+
+    }
+
+}
+
+// Controls
+
+function triggerJump() {
+
+    if (gameState === "PLAYING") {
+
+        cat.velocity = cat.jump;
+
+        playSound('jump');
+
+    } else if (gameState === "START" || gameState === "GAMEOVER") {
+
+        startGame();
+
+    }
+
+}
+
+window.addEventListener("keydown", (e) => { if (e.code === "Space") triggerJump(); });
+
+canvas.addEventListener("touchstart", (e) => { e.preventDefault(); triggerJump(); });
+
+canvas.addEventListener("mousedown", triggerJump);
+
+function startGame() {
+
+    // Resume context if suspended (browser security policies)
+
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    
+
+    gameState = "PLAYING";
+
+    ui.classList.add("hidden");
+
+    
 
     score = 0;
 
-    scoreVal.innerText = score;
+    frameCount = 0;
 
-    gameOver = false;
+    pipes = [];
 
-    gameStarted = true;
+    cat = {
+
+        x: 80,
+
+        y: 250,
+
+        w: 50,
+
+        h: 30,
+
+        gravity: 0.35,
+
+        velocity: 0,
+
+        jump: -7.5,
+
+        trail: []
+
+    };
 
     loop();
 
 }
 
-function flap() {
+function gameOver() {
 
-    if (!gameStarted) {
+    gameState = "GAMEOVER";
 
-        resetGame();
+    playSound('hit');
 
-    } else if (gameOver) {
+    title.innerText = "Game Over";
 
-        resetGame();
+    info.innerText = `Final Score: ${score}`;
 
-    } else {
+    startBtn.innerText = "PLAY AGAIN";
 
-        nyan.velocity = nyan.lift;
-
-    }
+    ui.classList.remove("hidden");
 
 }
 
-window.addEventListener('keydown', (e) => {
+function createPipe() {
 
-    if (e.code === 'Space') {
+    const gap = 160;
 
-        e.preventDefault();
+    const minHeight = 50;
 
-        flap();
+    const maxHeight = canvas.height - gap - minHeight;
 
-    }
+    const height = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
 
-});
+    pipes.push({
 
-canvas.addEventListener('click', flap);
+        x: canvas.width,
 
-function drawNyan() {
+        topHeight: height,
 
-    // Rainbow trail
+        bottomY: height + gap,
 
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+        width: 70,
 
-    nyan.trail.forEach((pos, index) => {
+        speed: 3,
 
-        ctx.fillStyle = colors[index % colors.length];
-
-        ctx.fillRect(pos.x, pos.y + 6, 8, nyan.height - 12);
-
-    });
-
-    // Body (Pop-Tart / Cat representation)
-
-    ctx.fillStyle = '#ff9999'; // Pop-tart pink/brown
-
-    ctx.fillRect(nyan.x, nyan.y, nyan.width, nyan.height);
-
-    ctx.strokeStyle = '#660033';
-
-    ctx.lineWidth = 2;
-
-    ctx.strokeRect(nyan.x, nyan.y, nyan.width, nyan.height);
-
-    // Frosting & sprinkles
-
-    ctx.fillStyle = '#ff66b2';
-
-    ctx.fillRect(nyan.x + 6, nyan.y + 4, nyan.width - 12, nyan.height - 8);
-
-    ctx.fillStyle = '#fff';
-
-    ctx.fillRect(nyan.x + 12, nyan.y + 8, 4, 4);
-
-    ctx.fillRect(nyan.x + 24, nyan.y + 16, 4, 4);
-
-    ctx.fillRect(nyan.x + 18, nyan.y + 20, 4, 4);
-
-    // Cat head / ears
-
-    ctx.fillStyle = '#b3b3b3';
-
-    ctx.beginPath();
-
-    ctx.arc(nyan.x + nyan.width - 5, nyan.y + 10, 10, 0, Math.PI * 2);
-
-    ctx.fill();
-
-    ctx.stroke();
-
-    // Update trail
-
-    nyan.trail.unshift({ x: nyan.x, y: nyan.y });
-
-    if (nyan.trail.length > 25) nyan.trail.pop();
-
-}
-
-function drawPipes() {
-
-    pipes.forEach(pipe => {
-
-        // Top pipe (Rook/Castle style)
-
-        ctx.fillStyle = '#e2e8f0';
-
-        ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
-
-        ctx.strokeStyle = '#1e293b';
-
-        ctx.lineWidth = 2;
-
-        ctx.strokeRect(pipe.x, 0, pipeWidth, pipe.top);
-
-        // Bottom pipe
-
-        ctx.fillStyle = '#e2e8f0';
-
-        ctx.fillRect(pipe.x, canvas.height - pipe.bottom, pipeWidth, pipe.bottom);
-
-        ctx.strokeRect(pipe.x, canvas.height - pipe.bottom, pipeWidth, pipe.bottom);
+        passed: false
 
     });
 
@@ -282,167 +332,193 @@ function drawPipes() {
 
 function update() {
 
-    if (!gameStarted || gameOver) return;
+    // Update Cat Position
 
-    nyan.velocity += nyan.gravity;
+    cat.velocity += cat.gravity;
 
-    nyan.y += nyan.velocity;
+    cat.y += cat.velocity;
 
-    frameCount++;
+    // Track Nyan Rainbow Trail
 
-    if (frameCount % 90 === 0) {
+    cat.trail.push({ x: cat.x, y: cat.y + cat.h/2 });
 
-        const minHeight = 40;
+    if (cat.trail.length > 25) cat.trail.shift();
 
-        const maxHeight = canvas.height - pipeGap - minHeight;
+    // Check floor/ceiling crash
 
-        const topHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+    if (cat.y + cat.h > canvas.height || cat.y < 0) {
 
-        const bottomHeight = canvas.height - topHeight - pipeGap;
+        gameOver();
 
-        pipes.push({
-
-            x: canvas.width,
-
-            top: topHeight,
-
-            bottom: bottomHeight,
-
-            passed: false
-
-        });
+        return;
 
     }
 
-    pipes.forEach(pipe => {
+    // Spawn & Update Pipes
 
-        pipe.x -= 2;
+    if (frameCount % 100 === 0) createPipe();
 
-        // Score check
+    for (let i = pipes.length - 1; i >= 0; i--) {
 
-        if (!pipe.passed && pipe.x + pipeWidth < nyan.x) {
+        pipes[i].x -= pipes[i].speed;
 
-            pipe.passed = true;
+        // Collision Check (AABB box)
+
+        if (
+
+            cat.x < pipes[i].x + pipes[i].width &&
+
+            cat.x + cat.w > pipes[i].x &&
+
+            (cat.y < pipes[i].topHeight || cat.y + cat.h > pipes[i].bottomY)
+
+        ) {
+
+            gameOver();
+
+            return;
+
+        }
+
+        // Score Track
+
+        if (!pipes[i].passed && pipes[i].x + pipes[i].width < cat.x) {
+
+            pipes[i].passed = true;
 
             score++;
 
-            scoreVal.innerText = score;
+            playSound('score');
 
-            if (score > highScore) {
+        }
 
-                highScore = score;
+        // Clean out screen boundaries
 
-                highScoreVal.innerText = highScore;
+        if (pipes[i].x + pipes[i].width < 0) {
+
+            pipes.splice(i, 1); 
+
+        }
+
+    }
+
+    frameCount++;
+
+}
+
+function draw() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw Chess-board Background grid accent
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.02)";
+
+    for (let i = 0; i < canvas.width; i += 40) {
+
+        for (let j = 0; j < canvas.height; j += 40) {
+
+            if ((i / 40 + j / 40) % 2 === 0) {
+
+                ctx.fillRect(i, j, 40, 40);
 
             }
 
         }
 
-        // Collision detection
+    }
 
-        if (
+    if (gameState === "PLAYING" || gameState === "GAMEOVER") {
 
-            nyan.x < pipe.x + pipeWidth &&
+        // Draw Nyan Rainbow Trail
 
-            nyan.x + nyan.width > pipe.x &&
+        const colors = ["#ff0000", "#ff9900", "#ffff00", "#33cc33", "#0099ff", "#6633ff"];
 
-            (nyan.y < pipe.top || nyan.y + nyan.height > canvas.height - pipe.bottom)
+        for (let i = 0; i < cat.trail.length; i++) {
 
-        ) {
+            let pt = cat.trail[i];
 
-            gameOver = true;
+            let segmentX = pt.x - (cat.trail.length - i) * 3; 
+
+            colors.forEach((color, index) => {
+
+                ctx.fillStyle = color;
+
+                ctx.fillRect(segmentX, pt.y - 12 + (index * 4), 4, 4);
+
+            });
 
         }
 
-    });
+        // Draw Nyan Cat Asset (Pop-Tart body + Chess Pawn Head Accent wrapper)
 
-    // Remove off-screen pipes
+        ctx.fillStyle = "#ffcc99"; // skin
 
-    if (pipes.length > 0 && pipes[0].x < -pipeWidth) {
+        ctx.fillRect(cat.x + cat.w - 12, cat.y + 10, 10, 10); // head
 
-        pipes.shift();
+        ctx.fillStyle = "#ff99cc"; // pop-tart
+
+        ctx.fillRect(cat.x + 8, cat.y + 2, cat.w - 20, cat.h - 4);
+
+        ctx.fillStyle = "#000"; // eyes
+
+        ctx.fillRect(cat.x + cat.w - 6, cat.y + 12, 2, 2);
+
+        // Draw Pipes as stylized Chess Rooks
+
+        pipes.forEach(pipe => {
+
+            ctx.fillStyle = "#7d8796"; // Light piece gray
+
+            
+
+            // Top Rook
+
+            ctx.fillRect(pipe.x, 0, pipe.width, pipe.topHeight);
+
+            ctx.fillStyle = "#525a66"; // Top Rook base rim
+
+            ctx.fillRect(pipe.x - 4, pipe.topHeight - 15, pipe.width + 8, 15);
+
+            // Bottom Rook
+
+            ctx.fillStyle = "#7d8796";
+
+            ctx.fillRect(pipe.x, pipe.bottomY, pipe.width, canvas.height - pipe.bottomY);
+
+            ctx.fillStyle = "#525a66"; // Bottom Rook base rim
+
+            ctx.fillRect(pipe.x - 4, pipe.bottomY, pipe.width + 8, 15);
+
+        });
+
+        // Draw HUD Live Score
+
+        ctx.fillStyle = "#fff";
+
+        ctx.font = "bold 32px sans-serif";
+
+        ctx.fillText(score, canvas.width / 2 - 10, 50);
 
     }
-
-    // Floor / ceiling collision
-
-    if (nyan.y + nyan.height >= canvas.height || nyan.y <= 0) {
-
-        gameOver = true;
-
-    }
-
-}
-
-function drawStartScreen() {
-
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = '#fff';
-
-    ctx.font = 'bold 24px sans-serif';
-
-    ctx.textAlign = 'center';
-
-    ctx.fillText('NYAN FLAP', canvas.width / 2, canvas.height / 2 - 30);
-
-    ctx.font = '16px sans-serif';
-
-    ctx.fillText('Press SPACE or Click to Start', canvas.width / 2, canvas.height / 2 + 10);
-
-}
-
-function drawGameOverScreen() {
-
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = '#ff4d4d';
-
-    ctx.font = 'bold 28px sans-serif';
-
-    ctx.textAlign = 'center';
-
-    ctx.fillText('CHECKMATE!', canvas.width / 2, canvas.height / 2 - 20);
-
-    ctx.fillStyle = '#fff';
-
-    ctx.font = '16px sans-serif';
-
-    ctx.fillText('Press SPACE or Click to Restart', canvas.width / 2, canvas.height / 2 + 20);
 
 }
 
 function loop() {
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    drawNyan();
-
-    drawPipes();
+    if (gameState !== "PLAYING") return;
 
     update();
 
-    if (!gameStarted) {
+    draw();
 
-        drawStartScreen();
-
-    } else if (gameOver) {
-
-        drawGameOverScreen();
-
-    } else {
-
-        requestAnimationFrame(loop);
-
-    }
+    requestAnimationFrame(loop);
 
 }
 
-loop();
+// Initial draw canvas screen
+
+draw();
 
 </script>
 
