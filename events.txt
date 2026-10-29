@@ -175,17 +175,17 @@ Link:
 Date: 2026-10-26
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
-Link:
+Link: https://www.chess.com/votechess/game/459340
 
 Date: 2026-10-27
 Event: Vote Chess
 Time: Republic plays as White
-Link:
+Link: https://www.chess.com/votechess/game/459610
 
 Date: 2026-10-28
 Event: Vote Chess
 Time: Republic plays as Black
-Link:
+Link: https://www.chess.com/votechess/game/459612
 
 Date: 2026-10-29
 Event: Vote Chess
