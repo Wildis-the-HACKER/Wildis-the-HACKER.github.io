@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Among Us Forever Lovers</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: white;
+}
+
+#aul-sidebar {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, #351313 0%, #160909 32%, #080808 75%, #030303 100%);
+  border: 3px solid #ff3030;
+  border-radius: 20px;
+  padding: 18px;
+  max-width: 520px;
+  margin: auto;
+  box-shadow: 0 0 28px rgba(255,30,30,.45),
+              inset 0 0 35px rgba(255,190,0,.06);
+}
+
+h1, h2, p { overflow-wrap: anywhere; }
+
+.header {
+  text-align: center;
+  background: linear-gradient(135deg,#1a0808,#2b1111,#120909);
+  border: 2px solid #ff3434;
+  border-radius: 15px;
+  padding: 17px;
+  box-shadow: 0 0 20px rgba(255,40,40,.35);
+}
+
+.header h1 {
+  margin: 7px 0 4px;
+  color: #ff3434;
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px red, 0 0 20px rgba(255,0,0,.7);
+}
+
+.tagline {
+  margin: 0;
+  color: #ffd52e;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.ticker {
+  margin-top: 13px;
+  overflow: hidden;
+  background: #080808;
+  border: 1px solid #ffbd00;
+  border-radius: 9px;
+  padding: 9px 0;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  width: max-content;
+  animation: aul-scroll 22s linear infinite;
+  color: #ffd52e;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.ticker-track span { padding-right: 35px; }
+
+@keyframes aul-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.section {
+  margin-top: 14px;
+  background: linear-gradient(135deg,#180b0b,#100c0c);
+  border: 1px solid #ff3636;
+  border-radius: 13px;
+  padding: 15px;
+}
+
+.section h2 {
+  margin: 0;
+  color: #ff3b3b;
+  font-size: 16px;
+  text-shadow: 0 0 8px red;
+}
+
+.description {
+  margin: 11px 0 0;
+  color: #dedede;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.crew-size {
+  margin-top: 14px;
+  background: linear-gradient(135deg,#130d0d,#1b1111);
+  border: 2px solid #ffd21f;
+  border-radius: 13px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(255,205,0,.2);
+}
+
+.crew-size h2 {
+  margin: 0;
+  color: #ffd52e;
+  font-size: 16px;
+  text-shadow: 0 0 8px #ffb900;
+}
+
+.count {
+  font-size: 29px;
+  font-weight: bold;
+  margin-top: 9px;
+  color: white;
+  text-shadow: 0 0 10px #ff3030;
+}
+
+.count-label {
+  margin: 4px 0 0;
+  color: #aaa;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.meeting {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.meeting button {
+  background: linear-gradient(135deg,#ff2222,#c90000);
+  border: 2px solid #ffd52e;
+  border-radius: 9px;
+  padding: 10px 18px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255,30,30,.6);
+}
+
+.meeting button:hover {
+  box-shadow: 0 0 25px rgba(255,30,30,.9);
+  filter: brightness(1.15);
+}
+
+#aul-fall {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.falling-emoji {
+  position: fixed;
+  top: -120px;
+  animation: aul-fall linear forwards;
+  pointer-events: none;
+}
+
+@keyframes aul-fall {
+  to {
+    transform: translateY(115vh) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+.radio {
+  margin-top: 14px;
+  background: #090909;
+  border: 1px solid #ff3030;
+  border-radius: 13px;
+  padding: 14px;
+  text-align: center;
+}
+
+.radio h2 {
+  margin: 0 0 9px;
+  color: #ff3c3c;
+  font-size: 15px;
+  text-shadow: 0 0 8px red;
+}
+
+.radio p {
+  font-size: 10px;
+  color: #999;
+  margin: 0 0 12px;
+}
+
+.youtube-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 8px;
+  display: block;
+}
+
+.links {
+  margin-top: 14px;
+  background: linear-gradient(135deg,#120909,#0d0d0d);
+  border: 1px solid #ffbd00;
+  border-radius: 13px;
+  padding: 15px;
+}
+
+.links h2 {
+  margin: 0;
+  color: #ffd52e;
+  font-size: 16px;
+  text-shadow: 0 0 8px #ffb900;
+}
+
+.link {
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  background: #1b0b0b;
+  border: 1px solid #ff3030;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+}
+
+.link.gold {
+  background: #1b1205;
+  border-color: #ffd21f;
+  color: #ffd52e;
+}
+
+.link:hover { filter: brightness(1.35); }
+
+.roles {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+}
+
+.role {
+  flex: 1;
+  background: #120909;
+  border: 1px solid #ff3030;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.role.impostor {
+  background: #121006;
+  border-color: #ffd21f;
+}
+
+.role-icon { font-size: 24px; }
+
+.role strong {
+  color: #ff4a4a;
+  font-size: 12px;
+}
+
+.role.impostor strong { color: #ffd52e; }
+
+.role p {
+  margin: 5px 0 0;
+  font-size: 9px;
+  color: #999;
+  line-height: 1.5;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 17px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(255,50,50,.3);
+}
+
+.footer .main {
+  margin: 0;
+  color: #ff3434;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.footer p {
+  margin: 7px 0 0;
+  color: #806f6f;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.footer .credit {
+  margin-top: 9px;
+  color: #635858;
+  letter-spacing: 0;
+}
+
+.footer a {
+  color: #a88d8d;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+<div id="aul-sidebar">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>AMONG US FOREVER LOVERS</h1>
+  <p class="tagline">CREWMATES • CHAOS • COMMUNITY</p>
+</div>
+
+<!-- MOVING MESSAGE -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>🚨 EMERGENCY MEETING! &nbsp; • &nbsp; WELCOME, CREWMATES! &nbsp; • &nbsp; WATCH OUT FOR IMPOSTORS! &nbsp; • &nbsp; 🚨 EMERGENCY MEETING!</span>
+    <span>🚨 EMERGENCY MEETING! &nbsp; • &nbsp; WELCOME, CREWMATES! &nbsp; • &nbsp; WATCH OUT FOR IMPOSTORS! &nbsp; • &nbsp; 🚨 EMERGENCY MEETING!</span>
+  </div>
+</div>
+
+<!-- CLUB DESCRIPTION -->
+<div class="section">
+  <h2>👨‍🚀 ABOUT THE CLUB</h2>
+  <p class="description">
+    Welcome to <strong style="color:#ffd52e;">Among Us Forever Lovers</strong> —
+    a community for players who love Among Us, chaotic moments,
+    suspicious accusations, and having fun together!
+    <br><br>
+    Whether you're a loyal Crewmate or a suspicious little Impostor,
+    you're welcome aboard. 🚀
+  </p>
+</div>
+
+<!-- MEMBER COUNT -->
+<div class="crew-size">
+  <h2>👥 CREW SIZE</h2>
+  <div class="count" id="aul-count">32</div>
+  <p class="count-label">TOTAL MEMBERS</p>
+</div>
+
+<!-- EMERGENCY MEETING -->
+<div class="meeting">
+  <button type="button" id="aul-meeting">
+    🚨 CALL AN EMERGENCY MEETING 🚨
+  </button>
+  <div id="aul-fall"></div>
+</div>
+
+<!-- CREWMATE RADIO -->
+<div class="radio">
+  <h2>🎵 CREWMATE RADIO</h2>
+  <p>Listen while you browse the ship.</p>
+
+  <iframe
+    class="youtube-player"
+    src="https://www.youtube.com/embed/WwQOQ-0FwKM?controls=1&playsinline=1&rel=0"
+    title="Hide n Seek Among Us Mode 1 Hour Loop"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- IMPORTANT LINKS -->
+<div class="links">
+  <h2>🔗 IMPORTANT LINKS</h2>
+
+  <a class="link" href="https://www.chess.com/club/among-us-forever-lovers">
+    🚀 Club Home
+  </a>
+
+  <a class="link gold" href="YOUR_FORUM_URL">
+    💬 Club Forum
+  </a>
+
+  <a class="link" href="YOUR_EVENTS_URL">
+    📅 Events
+  </a>
+
+  <a class="link gold" href="YOUR_RULES_URL">
+    📜 Club Rules
+  </a>
+</div>
+
+<!-- CREWMATE / IMPOSTOR -->
+<div class="roles">
+  <div class="role">
+    <div class="role-icon">👨‍🚀</div>
+    <strong>CREWMATE</strong>
+    <p>Complete tasks.<br>Trust nobody.</p>
+  </div>
+
+  <div class="role impostor">
+    <div class="role-icon">👽</div>
+    <strong>IMPOSTOR</strong>
+    <p>Blend in.<br>Cause chaos.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p class="main">🚨 SUS • VOTE • SURVIVE 🚨</p>
+  <p>AMONG US FOREVER LOVERS</p>
+  <p class="credit">
+    Sidebar created by
+    <a href="https://www.chess.com/club/wildis-knights-sidebars">
+      <strong>Wildis_Knight</strong>
+    </a>
+  </p>
+</div>
+
+</div>
+
+<script>
+// MEMBER COUNT
+async function loadMemberCount() {
+  try {
+    const response = await fetch(
+      "https://api.chess.com/pub/club/among-us-forever-lovers"
+    );
+
+    if (!response.ok) return;
+
+    const data = await response.json();
+
+    if (typeof data.members_count === "number") {
+      document.getElementById("aul-count").textContent =
+        data.members_count.toLocaleString();
+    }
+  } catch (error) {
+    console.warn("Could not retrieve club member count:", error);
+  }
+}
+
+loadMemberCount();
+
+// EMERGENCY MEETING
+document.getElementById("aul-meeting").addEventListener("click", () => {
+  const container = document.getElementById("aul-fall");
+  container.innerHTML = "";
+
+  const emojis = ["🔴", "🟡", "⚫", "👨‍🚀", "🚨", "💀", "⭐"];
+
+  for (let i = 0; i < 24; i++) {
+    const emoji = document.createElement("span");
+
+    emoji.className = "falling-emoji";
+    emoji.textContent =
+      emojis[Math.floor(Math.random() * emojis.length)];
+
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.fontSize = (30 + Math.random() * 45) + "px";
+
+    const duration = 2.5 + Math.random() * 2;
+
+    emoji.style.animationDuration = duration + "s";
+    emoji.style.animationDelay = Math.random() * 0.7 + "s";
+
+    container.appendChild(emoji);
+  }
+
+  setTimeout(() => {
+    container.innerHTML = "";
+  }, 5500);
+});
+</script>
+
+</body>
+</html>
