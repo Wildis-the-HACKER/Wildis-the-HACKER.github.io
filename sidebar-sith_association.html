@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="responsive-embedded-sizing" content="allow-origins=*">
+<style>
+*{box-sizing:border-box}body{margin:0;padding:8px;background:#100d10;color:#f6eee5;font-family:Arial,sans-serif}
+#wookiee-empire{width:100%;max-width:520px;margin:auto;padding:12px;overflow:hidden;background:#100d10;border:2px solid #a51e2d;border-radius:12px}
+.we-header{background:#1b1014;border:1px solid #c39a47;border-radius:9px;text-align:center;padding:16px 8px}
+.we-title{font-size:25px;font-weight:900;color:#ed3546;line-height:1.3}.we-tagline{font-size:11px;letter-spacing:2px;color:#c39a47;margin-top:12px}
+.we-status{display:inline-block;background:#a51e2d;color:white;padding:6px 12px;border-radius:3px;font-size:10px;font-weight:bold;letter-spacing:1px;margin-top:12px}
+.we-card{margin-top:12px;padding:12px;background:#1a1417;border:1px solid #42252a;border-radius:8px}
+.we-heading{font-size:15px;font-weight:bold;color:#ed3546;margin-bottom:7px}.we-gold{color:#c39a47}
+.we-copy{font-size:13px;line-height:1.65;color:#e5d8d0}.we-quote{margin-top:10px;padding:9px;border-left:3px solid #c39a47;background:#24191b;color:#e4c98d;font-size:12px;font-style:italic}
+.we-muted{font-size:11px;color:#b9a5a0;margin-top:8px;letter-spacing:1px}.we-number{font-size:26px;font-weight:bold;color:#fff;margin-top:4px}
+.we-number small{font-size:15px;color:#b9a5a0}.we-progress{height:12px;background:#332126;border-radius:6px;overflow:hidden;margin-top:8px;border:1px solid #59303a}
+#we-bar{height:100%;width:0%;background:#d62b3d;border-radius:6px;transition:width .35s ease}#we-percent{text-align:right;font-size:10px;color:#ed3546;margin-top:6px}
+#we-newest{font-size:13px;color:#f5e5d0}.we-member{padding:7px 4px;border-bottom:1px solid #42252a;color:#f5e5d0;font-size:13px}.we-member:last-child{border-bottom:0}
+.we-recruit{background:#241216;border-color:#a51e2d;text-align:center}.we-recruit .we-heading{font-size:16px}
+#we-copy{background:#a51e2d;color:white;border:1px solid #d64a55;border-radius:5px;padding:11px 10px;font-weight:bold;font-size:12px;cursor:pointer;width:100%}
+#we-copy:hover{filter:brightness(1.15)}.we-nav a{display:block;text-decoration:none;color:#f6eee5;background:#24191b;border-left:3px solid #ed3546;border-radius:3px;padding:10px;margin-bottom:7px;font-size:13px}
+.we-nav a:nth-of-type(even){border-left-color:#c39a47}.we-nav a:last-child{margin-bottom:0}
+.we-footer{text-align:center;padding:15px 4px 5px}.we-longlive{font-size:12px;font-weight:bold;color:#ed3546;letter-spacing:2px}
+.we-sub{font-size:10px;color:#a58b88;margin-top:7px;letter-spacing:1px}.we-footer a{color:#a58b88;font-size:10px}.we-crown{font-size:17px;color:#c39a47;margin-top:8px}
+</style>
+</head>
+<body>
+<main id="wookiee-empire">
+<header class="we-header">
+<div class="we-title">THE SITH</div><div class="we-title">ASSOCIATION</div>
+<div class="we-tagline">POWER &bull; HONOR &bull; CHECKMATE</div>
+<div class="we-status">IMPERIAL COMMAND ONLINE</div>
+</header>
+<section class="we-card">
+<div class="we-heading">THE EMPIRE WELCOMES YOU</div>
+<div class="we-copy">Welcome to the Sith Association, where strategy rules the galaxy and every move shapes your destiny. Sharpen your mind, stand with your fellow imperial chess players, and make your next move count.</div>
+<div class="we-quote">&ldquo;The board is vast. Your next move is yours to command.&rdquo;</div>
+</section>
+<section class="we-card">
+<div class="we-heading we-gold">IMPERIAL RECRUITMENT</div><div class="we-muted">THE EMPIRE'S CURRENT STRENGTH</div>
+<div class="we-number"><span id="we-count">54</span><small> / <span id="we-goal">100</span></small></div>
+<div class="we-progress"><div id="we-bar"></div></div><div id="we-percent">81% OF IMPERIAL STRENGTH</div>
+</section>
+<section class="we-card">
+<div class="we-heading we-gold" style="margin-bottom:5px">NEW IMPERIAL RECRUITS</div>
+<div class="we-muted" style="letter-spacing:0;margin-top:0;margin-bottom:6px">Honor those newly joining our ranks.</div>
+<div id="we-newest">
+<div class="we-member">✦ darthvader181</div><div class="we-member">✦ darthvall</div><div class="we-member">✦ srxster</div><div class="we-member">✦ darth_miku</div><div class="we-member">✦ sithlord_darthvader</div>
+</div></section>
+<section class="we-card we-recruit">
+<div class="we-heading">EXPAND THE EMPIRE</div>
+<div class="we-copy" style="font-size:12px;margin-bottom:10px">Every great empire needs allies. Invite another chess player into our galactic ranks.</div>
+<button id="we-copy" type="button">COPY IMPERIAL INVITE</button>
+</section>
+<nav class="we-card we-nav" aria-label="Galactic navigation">
+<div class="we-heading we-gold" style="margin-bottom:10px">GALACTIC NAVIGATION</div>
+<a href="https://www.chess.com/puzzles">Tactical Training &mdash; Puzzles ↗</a>
+<a href="https://www.chess.com/lessons">Jedi-Level Knowledge &mdash; Lessons ↗</a>
+<a href="https://www.chess.com/analysis">Battle Analysis ↗</a>
+<a href="https://www.chess.com/openings">Opening Archives ↗</a>
+</nav>
+<footer class="we-footer">
+<div class="we-longlive">LONG LIVE THE EMPIRE</div><div class="we-sub">MAY YOUR STRATEGY BE UNSTOPPABLE</div>
+<div style="margin-top:5px"><a href="https://www.chess.com/club/wildis-knights-sidebars">Sidebar Designed by Wildis_Knight</a></div>
+<div class="we-crown">♛ ✦ ♛</div>
+</footer></main>
+<script>
+(()=>{
+const club="the-almighty-wookiee-sith-empire",goal=100;
+const inviteLink="https://www.chess.com/club/the-almighty-wookiee-sith-empire/join/9e3af8?utm_campaign=club_invite_link&utm_source=chesscom&utm_medium=copy";
+const countEl=document.getElementById("we-count"),barEl=document.getElementById("we-bar");
+const percentEl=document.getElementById("we-percent"),newestEl=document.getElementById("we-newest");
+document.getElementById("we-goal").textContent=goal.toLocaleString();
+function joinedTime(m){const n=Number(m.joined);if(Number.isFinite(n)&&n>0)return n;const d=new Date(m.joined).getTime();return Number.isFinite(d)?d:0}
+async function loadData(){
+try{const r=await fetch("https://api.chess.com/pub/club/"+club);if(!r.ok)throw Error(r.status);
+const d=await r.json(),count=Number(d.members_count)||0;countEl.textContent=count.toLocaleString();
+barEl.style.width=Math.min(100,count/goal*100)+"%";percentEl.textContent=Math.floor(count/goal*100)+"% OF IMPERIAL STRENGTH";
+}catch(e){console.warn("Sith Association count unavailable",e)}
+try{const r=await fetch("https://api.chess.com/pub/club/"+club+"/members");if(!r.ok)throw Error(r.status);
+const d=await r.json(),all=[].concat(Array.isArray(d.weekly)?d.weekly:[],Array.isArray(d.monthly)?d.monthly:[],Array.isArray(d.all_time)?d.all_time:[]);
+const seen=new Set(),users=all.filter(m=>{const u=m&&m.username;if(!u||seen.has(u.toLowerCase()))return false;seen.add(u.toLowerCase());return true});
+users.sort((a,b)=>joinedTime(b)-joinedTime(a));const newest=users.slice(0,5);newestEl.replaceChildren();
+if(!newest.length){newestEl.textContent="Awaiting new imperial recruits...";return}
+newest.forEach(m=>{const row=document.createElement("div");row.className="we-member";row.textContent="✦ "+m.username;newestEl.appendChild(row)});
+}catch(e){console.warn("Sith Association member list unavailable",e)}
+}
+document.getElementById("we-copy").addEventListener("click",async()=>{
+const button=document.getElementById("we-copy"),original="COPY IMPERIAL INVITE";
+const result=message=>{button.textContent=message;setTimeout(()=>button.textContent=original,1800)};
+try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error("Clipboard unavailable");await navigator.clipboard.writeText(inviteLink);result("✓ LINK COPIED!")}
+catch(e){const t=document.createElement("textarea");t.value=inviteLink;t.style.position="fixed";t.style.left="-9999px";document.body.appendChild(t);t.select();let ok=false;try{ok=document.execCommand("copy")}catch(_){}t.remove();result(ok?"✓ LINK COPIED!":"COPY FAILED")}
+});
+loadData();
+})();
+</script>
+<script>
+new ResizeObserver(() => {
+  if ('requestResize' in window) {
+    window.requestResize();
+  }
+}).observe(document.body);
+</script>
+</body></html>
