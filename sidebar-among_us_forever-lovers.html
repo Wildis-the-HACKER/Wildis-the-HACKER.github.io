@@ -485,6 +485,12 @@ document.getElementById("aul-meeting").addEventListener("click", () => {
   }, 5500);
 });
 </script>
-
+      <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
 </body>
 </html>
