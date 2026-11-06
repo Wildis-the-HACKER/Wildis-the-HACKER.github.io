@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      color: #ffffff;
+      background-color: transparent;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #ffffff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: transparent;
+      color: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #ffd866;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #fff0b3;
+      outline-offset: 3px;
+    }
+
+    strong {
+      color: #ffcb58;
+      font-weight: 700;
+    }
+
+    .twi-sidebar {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px;
+      border: 2px solid #f5b942;
+      border-radius: 18px;
+      background: linear-gradient(
+        145deg,
+        #07070b,
+        #11101a,
+        #1a1010,
+        #08080d
+      );
+      color: #ffffff;
+      box-shadow:
+        0 0 28px rgba(245, 185, 66, 0.28),
+        inset 0 0 35px rgba(255, 0, 40, 0.06);
+    }
+
+    .twi-header {
+      padding: 18px;
+      border: 2px solid #f5c451;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #17130a, #30220c, #17100d);
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(245, 196, 81, 0.25);
+    }
+
+    .twi-header h1 {
+      color: #ffd866;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: 2px;
+      text-shadow:
+        0 0 10px #f5b942,
+        0 0 20px rgba(255, 183, 3, 0.55);
+    }
+
+    .twi-tagline {
+      margin-top: 8px;
+      color: #e7e7e7;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .twi-panel {
+      margin-top: 14px;
+      padding: 15px;
+      border: 1px solid #555b6e;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #11131a, #161019);
+      color: #d8d9df;
+    }
+
+    .twi-panel h2 {
+      color: #ffd866;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .twi-intro {
+      border-color: #d99b2b;
+      background: linear-gradient(135deg, #10131d, #18121b);
+      box-shadow: 0 0 15px rgba(217, 155, 43, 0.18);
+    }
+
+    .twi-intro h2 {
+      text-shadow: 0 0 8px rgba(255, 200, 70, 0.5);
+    }
+
+    .twi-intro p {
+      margin-top: 10px;
+      color: #d9d9df;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .twi-intro strong {
+      color: #ffcc55;
+    }
+
+    .twi-progress-panel {
+      border: 2px solid #e63946;
+      background: linear-gradient(135deg, #0d121b, #171017);
+      box-shadow: 0 0 18px rgba(230, 57, 70, 0.18);
+    }
+
+    .twi-progress-panel h2 {
+      color: #ff6b6b;
+      text-shadow: 0 0 9px rgba(230, 57, 70, 0.55);
+    }
+
+    .twi-member-total {
+      margin-top: 10px;
+      color: #ffffff;
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .twi-member-divider {
+      color: #888888;
+    }
+
+    .twi-member-label {
+      color: #cfcfcf;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .twi-progress-track {
+      width: 100%;
+      height: 20px;
+      margin-top: 12px;
+      overflow: hidden;
+      border: 1px solid #a86d19;
+      border-radius: 20px;
+      background: #08090d;
+      box-shadow: inset 0 0 8px #000000;
+    }
+
+    .twi-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #d62839, #f5b942, #ffe58a);
+      box-shadow: 0 0 16px rgba(245, 185, 66, 0.7);
+      transition: width 1s ease;
+    }
+
+    .twi-progress-caption {
+      margin-top: 8px;
+      color: #ffd866;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .twi-milestones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 10px;
+      margin-top: 12px;
+      color: #bfc0c8;
+      font-size: 12px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .twi-milestones strong {
+      color: #f5c451;
+    }
+
+    .twi-features h2 {
+      color: #f5c451;
+    }
+
+    .twi-feature-list {
+      margin-top: 12px;
+      color: #d8d9df;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .twi-feature-list p {
+      margin-bottom: 8px;
+      color: #d8d9df;
+    }
+
+    .twi-feature-list p:last-child {
+      margin-bottom: 0;
+    }
+
+    .twi-feature-list strong {
+      color: #ffcb58;
+    }
+
+    .twi-mission {
+      border-color: #c77d19;
+      background: linear-gradient(135deg, #17100f, #1d1510);
+    }
+
+    .twi-mission-intro {
+      margin: 12px 0 10px;
+      color: #dedee4;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .twi-mission-intro strong {
+      color: #ffca55;
+    }
+
+    .twi-mission-list {
+      padding: 10px;
+      border-left: 3px solid #e63946;
+      border-radius: 6px;
+      background: #0b0b10;
+      color: #cfd0d6;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .twi-links {
+      border-color: #f5b942;
+      background: linear-gradient(135deg, #0d1119, #151018);
+    }
+
+    .twi-links h2 {
+      margin-bottom: 12px;
+    }
+
+    .twi-link,
+    .twi-link:visited {
+      display: block;
+      margin-bottom: 7px;
+      padding: 9px;
+      border: 1px solid #343846;
+      border-radius: 7px;
+      background: #171923;
+      color: #ffd866;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-decoration: none;
+      transition:
+        background-color 160ms ease,
+        border-color 160ms ease;
+    }
+
+    .twi-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .twi-link:hover {
+      border-color: #d99b2b;
+      background: #24202a;
+      color: #ffe8a3;
+    }
+
+    .twi-join,
+    .twi-join:visited {
+      margin-bottom: 8px;
+      padding: 10px;
+      border: 1px solid #f5b942;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #d62839, #f5b942);
+      color: #08080b;
+      text-align: center;
+      box-shadow: 0 0 12px rgba(245, 185, 66, 0.3);
+    }
+
+    .twi-join:hover {
+      border-color: #ffe58a;
+      background: linear-gradient(90deg, #e53b49, #ffd16d);
+      color: #08080b;
+    }
+
+    .twi-mindset {
+      padding: 16px;
+      border: 2px solid #e63946;
+      background: linear-gradient(135deg, #190d12, #25140d);
+      text-align: center;
+      box-shadow: 0 0 18px rgba(230, 57, 70, 0.18);
+    }
+
+    .twi-mindset-symbols {
+      color: #ffffff;
+      font-size: 28px;
+      line-height: 1.5;
+    }
+
+    .twi-quote {
+      margin: 8px 0;
+      color: #ffe08a;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-shadow: 0 0 8px rgba(255, 210, 100, 0.35);
+    }
+
+    .twi-signature {
+      color: #ff6b6b;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .twi-footer {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #302b35;
+      color: #8f919b;
+      text-align: center;
+    }
+
+    .twi-footer-motto {
+      color: #8f919b;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+    }
+
+    .twi-credit {
+      margin-top: 6px;
+      color: #9295a0;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .twi-credit a,
+    .twi-credit a:visited,
+    .twi-credit strong {
+      color: #aaaaaa;
+      text-decoration: none;
+    }
+
+    .twi-credit a:hover,
+    .twi-credit a:hover strong {
+      color: #ffd866;
+    }
+
+    .twi-noscript {
+      margin-top: 10px;
+      color: #bfc0c8;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 360px) {
+      body {
+        padding: 3px;
+      }
+
+      .twi-sidebar {
+        padding: 12px;
+      }
+
+      .twi-header {
+        padding: 15px 10px;
+      }
+
+      .twi-header h1 {
+        font-size: 19px;
+        letter-spacing: 1px;
+      }
+
+      .twi-panel {
+        padding: 12px;
+      }
+
+      .twi-panel h2 {
+        font-size: 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .twi-progress-fill,
+      .twi-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="twi-sidebar" aria-label="The Winners International club sidebar">
+
+    <!-- HEADER -->
+    <header class="twi-header">
+      <h1>THE WINNERS<br>INTERNATIONAL</h1>
+      <p class="twi-tagline">COMPETE &bull; CONQUER &bull; EXCEL</p>
+    </header>
+
+    <!-- CLUB INTRODUCTION -->
+    <section class="twi-panel twi-intro">
+      <h2>INTERNATIONAL CHAMPIONS</h2>
+      <p>
+        A competitive international chess community focused on
+        <strong>arena matches, tournaments, improvement,</strong>
+        and helping every player become stronger.
+      </p>
+    </section>
+
+    <!-- MEMBER PROGRESS -->
+    <section class="twi-panel twi-progress-panel">
+      <h2>ROAD TO 100</h2>
+
+      <div class="twi-member-total">
+        <span id="twi-count" aria-live="polite">Loading…</span>
+        <span class="twi-member-divider"> / </span>
+        <span id="twi-goal">100</span>
+        <span class="twi-member-label"> MEMBERS</span>
+      </div>
+
+      <div
+        id="twi-progress"
+        class="twi-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="twi-bar" class="twi-progress-fill"></div>
+      </div>
+
+      <p
+        id="twi-progress-caption"
+        class="twi-progress-caption"
+        role="status"
+      >
+        <span id="twi-percent">Loading live membership…</span>
+      </p>
+
+      <div class="twi-milestones">
+        <span>🏆 <strong>100</strong> Members</span>
+        <span aria-hidden="true">&bull;</span>
+        <span>🌟 <strong>250</strong> Members</span>
+        <span aria-hidden="true">&bull;</span>
+        <span>👑 <strong>500</strong> Members</span>
+      </div>
+
+      <noscript>
+        <p class="twi-noscript">
+          Enable JavaScript to display the live member count.
+        </p>
+      </noscript>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section class="twi-panel twi-features">
+      <h2>WHAT WE DO</h2>
+
+      <div class="twi-feature-list">
+        <p>
+          🏟️ <strong>Arena Matches &amp; Tournaments</strong><br>
+          Compete, test your skills, and fight for the top.
+        </p>
+        <p>
+          📚 <strong>Improve Together</strong><br>
+          Share ideas, learn from each other, and become stronger.
+        </p>
+        <p>
+          🌎 <strong>International Community</strong><br>
+          Meet chess players from around the world.
+        </p>
+        <p>
+          🤝 <strong>Teamwork</strong><br>
+          A community where everyone has a chance to contribute.
+        </p>
+      </div>
+    </section>
+
+    <!-- CLUB GOALS -->
+    <section class="twi-panel twi-mission">
+      <h2>OUR MISSION</h2>
+
+      <p class="twi-mission-intro">
+        Our goal is simple:
+        <strong>get better so we can win.</strong>
+      </p>
+
+      <div class="twi-mission-list">
+        ✔ Compete with confidence<br>
+        ✔ Help other players improve<br>
+        ✔ Stay active and involved<br>
+        ✔ Respect every opponent<br>
+        ✔ Chase victory together
+      </div>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <nav class="twi-panel twi-links" aria-label="Club quick links">
+      <h2>QUICK LINKS</h2>
+
+      <a
+        class="twi-link twi-join"
+        href="https://www.chess.com/club/the-winners-international/join?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+        target="_blank"
+        rel="noopener noreferrer"
+      >✨ JOIN THE CLUB ✨</a>
+
+      <a
+        class="twi-link"
+        href="https://www.chess.com/club/the-winners-international/announcements"
+        target="_blank"
+        rel="noopener noreferrer"
+      >📢 Announcements</a>
+
+      <a
+        class="twi-link"
+        href="https://www.chess.com/club/notes/the-winners-international"
+        target="_blank"
+        rel="noopener noreferrer"
+      >📝 Club Notes</a>
+
+      <a
+        class="twi-link"
+        href="https://www.chess.com/clubs/forum/the-winners-international"
+        target="_blank"
+        rel="noopener noreferrer"
+      >💬 Forums</a>
+
+      <a
+        class="twi-link"
+        href="https://www.chess.com/clubs/events/the-winners-international"
+        target="_blank"
+        rel="noopener noreferrer"
+      >🏆 Events &amp; Arenas</a>
+    </nav>
+
+    <!-- CHAMPION'S MINDSET -->
+    <section class="twi-panel twi-mindset" aria-label="Champion's mindset">
+      <div class="twi-mindset-symbols" aria-hidden="true">♟️ 👑 ♟️</div>
+
+      <p class="twi-quote">
+        "Champions aren't made by winning once.<br>
+        They're made by improving every day."
+      </p>
+
+      <p class="twi-signature">THE WINNERS INTERNATIONAL</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="twi-footer">
+      <p class="twi-footer-motto">COMPETE &bull; CONQUER &bull; EXCEL</p>
+
+      <p class="twi-credit">
+        Sidebar Created by
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        ><strong>Wildis_Knight</strong></a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "the-winners-international";
+      const goal = 100;
+
+      const countElement = document.getElementById("twi-count");
+      const goalElement = document.getElementById("twi-goal");
+      const barElement = document.getElementById("twi-bar");
+      const percentElement = document.getElementById("twi-percent");
+      const progressElement = document.getElementById("twi-progress");
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function loadMemberCount() {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`,
+            { signal: controller.signal }
+          );
+
+          if (!response.ok) {
+            throw new Error(`Club request failed: ${response.status}`);
+          }
+
+          const data = await response.json();
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("The response did not include a valid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+          const percentage = Math.round(progress);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          percentElement.textContent =
+            `${percentage}% OF THE WAY TO ${goal.toLocaleString()}!`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          percentElement.textContent = "Live member count is currently unavailable.";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("The Winners International member count:", error);
+        } finally {
+          window.clearTimeout(timeout);
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
