@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #f5f6fa;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #f5f6fa;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: transparent;
+      color: #f5f6fa;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #8ed8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #c5ebff;
+      text-decoration: underline;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #00a8ff;
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    .dc-layout {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      color: #f5f6fa;
+    }
+
+    .dc-card {
+      width: 100%;
+      padding: 20px;
+      border: 1px solid #363a45;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #272a33, #1e2027);
+      color: #f5f6fa;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .dc-heading {
+      margin: 0 0 24px;
+      color: #dcdde1;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .dc-member-total {
+      margin-bottom: 15px;
+      color: #dcdde1;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .dc-member-divider {
+      color: #7f8fa6;
+    }
+
+    .dc-progress-track {
+      width: 100%;
+      height: 22px;
+      overflow: hidden;
+      border: 1px solid #363a45;
+      border-radius: 10px;
+      background: #15161b;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .dc-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #7070ff, #00a8ff);
+      box-shadow: 0 0 15px rgba(76, 209, 55, 0.4);
+      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .dc-member-status {
+      margin-top: 8px;
+      color: #a8b5c8;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .dc-member-status:empty {
+      display: none;
+    }
+
+    .dc-section-heading {
+      margin: 18px 0 15px;
+      color: #f5f6fa;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .dc-arrivals-heading {
+      letter-spacing: 1px;
+    }
+
+    .dc-newest {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #f5f6fa;
+      text-align: left;
+    }
+
+    .dc-member {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      padding: 12px;
+      border: 1px solid #fbc53140;
+      border-radius: 8px;
+      background: #272a33;
+      color: #fbc531;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .dc-member:nth-child(2) {
+      border-color: #00a8ff40;
+      color: #00a8ff;
+    }
+
+    .dc-member:nth-child(3) {
+      border-color: #4cd13740;
+      color: #4cd137;
+    }
+
+    .dc-member:last-child {
+      margin-bottom: 0;
+    }
+
+    .dc-member-star {
+      flex-shrink: 0;
+      color: inherit;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .dc-member-name {
+      min-width: 0;
+      color: inherit;
+      overflow-wrap: anywhere;
+    }
+
+    .dc-list-message {
+      padding: 15px;
+      border: 1px dashed #363a45;
+      border-radius: 8px;
+      background: #272a33;
+      color: #a8b5c8;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .dc-list-message.dc-error {
+      color: #ff6b6b;
+    }
+
+    .dc-partners {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    .dc-partners li {
+      margin: 5px 0;
+      padding: 0;
+      color: #ffffff;
+    }
+
+    .dc-partner-link,
+    .dc-partner-link:visited {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      width: fit-content;
+      max-width: 100%;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .dc-partner-link:hover {
+      color: #8ed8ff;
+      text-decoration: underline;
+    }
+
+    .dc-partner-icon {
+      display: block;
+      width: 25px;
+      height: 25px;
+      flex-shrink: 0;
+      border: 0;
+      object-fit: contain;
+    }
+
+    .dc-partner-text {
+      min-width: 0;
+      color: inherit;
+      overflow-wrap: anywhere;
+    }
+
+    .dc-partner-no-icon {
+      padding-left: 32px;
+    }
+
+    .dc-heroes {
+      margin-top: 16px;
+      color: #f5f6fa;
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .dc-heroes-intro {
+      margin-bottom: 5px;
+      color: #f5f6fa;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .dc-heroes p {
+      margin: 5px 0;
+      color: #f5f6fa;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .dc-titled-link,
+    .dc-titled-link:visited {
+      color: #8ed8ff;
+      font-size: 14px;
+      line-height: 1.6;
+      text-decoration: none;
+    }
+
+    .dc-titled-link:hover {
+      color: #c5ebff;
+      text-decoration: underline;
+    }
+
+    .dc-credit-card {
+      margin-top: 20px;
+    }
+
+    .dc-credit {
+      color: #dcdde1;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .dc-credit a,
+    .dc-credit a:visited {
+      color: #ffffff;
+      font-size: 10px;
+      text-decoration: none;
+    }
+
+    .dc-credit a:hover {
+      color: #8ed8ff;
+      text-decoration: underline;
+    }
+
+    .dc-noscript {
+      margin-top: 12px;
+      color: #a8b5c8;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 340px) {
+      body {
+        padding: 4px;
+      }
+
+      .dc-card {
+        padding: 15px;
+      }
+
+      .dc-member {
+        padding: 10px;
+        font-size: 13px;
+      }
+
+      .dc-partner-link,
+      .dc-heroes p,
+      .dc-titled-link {
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dc-progress-fill {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="dc-layout" aria-label="DC Club sidebar">
+    <div id="dc-sidebar" class="dc-card">
+
+      <!-- HEADER -->
+      <header>
+        <h1 class="dc-heading">DC CLUB</h1>
+      </header>
+
+      <!-- MEMBER PROGRESS -->
+      <section aria-label="Club membership goal">
+        <div class="dc-member-total">
+          <span id="dc-count" aria-live="polite">Loading…</span>
+          <span class="dc-member-divider">/</span>
+          <span id="dc-goal">50</span> Members
+        </div>
+
+        <div
+          id="dc-progress"
+          class="dc-progress-track"
+          role="progressbar"
+          aria-label="Membership goal progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuetext="Loading member count"
+          aria-busy="true"
+        >
+          <div id="dc-bar" class="dc-progress-fill"></div>
+        </div>
+
+        <p
+          id="dc-member-status"
+          class="dc-member-status"
+          role="status"
+        ></p>
+      </section>
+
+      <!-- NEWEST MEMBERS: PLAIN TEXT, NO PROFILE LINKS -->
+      <section aria-labelledby="dc-arrivals-heading">
+        <h2
+          id="dc-arrivals-heading"
+          class="dc-section-heading dc-arrivals-heading"
+        >Newest Vigilantes</h2>
+
+        <ul
+          id="dc-newest"
+          class="dc-newest"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <li class="dc-list-message">Loading newest vigilantes…</li>
+        </ul>
+      </section>
+
+      <!-- PARTNER CLUBS -->
+      <section aria-labelledby="dc-partners-heading">
+        <h2
+          id="dc-partners-heading"
+          class="dc-section-heading"
+        >Partner Clubs</h2>
+
+        <ul class="dc-partners">
+          <li>
+            <a
+              class="dc-partner-link"
+              href="https://www.chess.com/club/orca-squad"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="dc-partner-icon"
+                src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/php4o5qrqp3dor438tZHjN.png"
+                alt=""
+                width="25"
+                height="25"
+              >
+              <span class="dc-partner-text">Orca Squad</span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="dc-partner-link dc-partner-no-icon"
+              href="https://www.chess.com/club/ultimate-friends"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="dc-partner-text">Ultimate Friends</span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="dc-partner-link"
+              href="https://www.chess.com/club/the-blood-suckers"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="dc-partner-icon"
+                src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/phphso4hhatcmkr1fxVMGC.png"
+                alt=""
+                width="25"
+                height="25"
+              >
+              <span class="dc-partner-text">THE BLOOD SUCKERS</span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="dc-partner-link"
+              href="https://www.chess.com/club/the-anime-lover-forever-club"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="dc-partner-icon"
+                src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/php8kgjpg1lrkn9abxbjd0.png"
+                alt=""
+                width="25"
+                height="25"
+              >
+              <span class="dc-partner-text">
+                The anime lover forever club
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="dc-partner-link"
+              href="https://www.chess.com/club/messi-fans-can-join-this-club"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="dc-partner-icon"
+                src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/php6k45jvqjn3go0nr4fWK.png"
+                alt=""
+                width="25"
+                height="25"
+              >
+              <span class="dc-partner-text">
+                Messi fans can join this club
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              class="dc-partner-link"
+              href="https://www.chess.com/club/chess-college-official"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="dc-partner-icon"
+                src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/php2liuqrpa5h174u4A2lV.png"
+                alt=""
+                width="25"
+                height="25"
+              >
+              <span class="dc-partner-text">Reaching 500</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- SUPERHERO ROSTER -->
+      <section class="dc-heroes" aria-label="Our very own superheroes">
+        <p class="dc-heroes-intro">Our very own superheroes!</p>
+
+        <p>@GoodAtFlags- The One Above All 👑- The Owner</p>
+
+        <p>@10Nandini- Immortal ♾️ ⚔️- The oldest member</p>
+
+        <p>
+          @ryan-saxena- The Flash ⚡🏃‍♂️ -
+          Quickly trying to achieve partnerships
+        </p>
+
+        <p>@Pikachu_Orca- Aquaman🧜‍♂- Lover of the sea</p>
+
+        <p>@Wildis_Knight - Prescence👴 - Sidebar Designer</p>
+
+        <p>
+          @ChanelinmyYSL- Reed Richards🧠💡-
+          The smartest, with the highest rating
+        </p>
+
+        <p>
+          <a
+            class="dc-titled-link"
+            href="https://www.chess.com/clubs/forum/view/titled-players-61"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Click to View Titled Players</a>
+        </p>
+      </section>
+
+      <noscript>
+        <p class="dc-noscript">
+          Enable JavaScript for the live member count and newest vigilantes.
+        </p>
+      </noscript>
+    </div>
+
+    <!-- CREDITS -->
+    <footer class="dc-card dc-credit-card">
+      <p class="dc-credit">
+        Sidebar Created by
+        <a
+          href="https://www.chess.com/member/goodatflags"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GoodAtFlags</a>
+        and
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wildis_Knight</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "dc-club-1";
+      const goal = 50;
+
+      const countElement = document.getElementById("dc-count");
+      const goalElement = document.getElementById("dc-goal");
+      const barElement = document.getElementById("dc-bar");
+      const progressElement = document.getElementById("dc-progress");
+      const statusElement = document.getElementById("dc-member-status");
+      const newestElement = document.getElementById("dc-newest");
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+
+          statusElement.textContent = "";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          statusElement.textContent =
+            "The live member count is temporarily unavailable.";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("DC Club member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message, isError = false) {
+        const item = document.createElement("li");
+
+        item.className = isError
+          ? "dc-list-message dc-error"
+          : "dc-list-message";
+
+        item.textContent = message;
+        newestElement.replaceChildren(item);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage("No members found.");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const item = document.createElement("li");
+            item.className = "dc-member";
+
+            const star = document.createElement("span");
+            star.className = "dc-member-star";
+            star.setAttribute("aria-hidden", "true");
+            star.textContent = "★";
+
+            const name = document.createElement("span");
+            name.className = "dc-member-name";
+            name.textContent = member.username;
+
+            item.append(star, name);
+            fragment.appendChild(item);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage("Could not load members.", true);
+          console.warn("DC Club newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
