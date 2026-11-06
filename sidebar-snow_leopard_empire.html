@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #eafaff;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #eafaff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 5px;
+      background: transparent;
+      color: #eafaff;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #a9edff;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #e8fcff;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #snow-leopard-sidebar {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 15px;
+      border: 2px solid #a9e8ff;
+      border-radius: 17px;
+      background: radial-gradient(
+        circle at 50% 0%,
+        #21445a,
+        #0c1b25 45%,
+        #050b10 100%
+      );
+      color: #eafaff;
+      box-shadow: 0 0 22px rgba(100, 210, 255, 0.25);
+    }
+
+    .snow-header {
+      margin-bottom: 12px;
+      padding: 17px 12px 15px;
+      border: 1px solid #a9e8ff;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #234b60, #102938, #08151e);
+      color: #eafaff;
+      text-align: center;
+      box-shadow: 0 0 16px rgba(130, 220, 255, 0.25);
+    }
+
+    .snow-header h1 {
+      margin-top: 8px;
+      color: #e8fbff;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.4;
+      letter-spacing: 3px;
+      text-shadow: 0 0 9px rgba(160, 235, 255, 0.8);
+    }
+
+    .snow-subtitle {
+      margin-top: 5px;
+      color: #8fd9ef;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .snow-tagline {
+      margin-top: 6px;
+      color: #a9cbd6;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .snow-panel {
+      margin-bottom: 12px;
+      padding: 14px;
+      border: 1px solid #5faec7;
+      border-radius: 12px;
+      background: #0c1b24;
+      color: #eafaff;
+    }
+
+    .snow-panel h2 {
+      margin-bottom: 9px;
+      color: #a9edff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .snow-patrol {
+      padding: 10px;
+      overflow: hidden;
+      background: #0b1821;
+      text-align: center;
+    }
+
+    .snow-patrol h2 {
+      margin-bottom: 5px;
+      color: #8fd9ef;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .snow-patrol-note {
+      margin-top: 3px;
+      color: #638996;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .snow-expansion,
+    .snow-arrivals {
+      padding: 13px;
+    }
+
+    .snow-expansion h2 {
+      margin-bottom: 7px;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .snow-member-total {
+      margin-bottom: 9px;
+      color: #eafaff;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .snow-member-divider {
+      color: #668997;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .snow-member-label {
+      color: #a6c8d2;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .snow-progress-track {
+      width: 100%;
+      height: 17px;
+      overflow: hidden;
+      border: 1px solid #315461;
+      border-radius: 9px;
+      background: #050c11;
+    }
+
+    .snow-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 9px;
+      background: linear-gradient(90deg, #3e91b1, #9deaff, #f2fdff);
+      box-shadow: 0 0 11px rgba(140, 230, 255, 0.8);
+      transition: width 1s ease;
+    }
+
+    .snow-expansion-caption {
+      margin-top: 7px;
+      color: #759eac;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .snow-member-status {
+      margin-top: 7px;
+      color: #a9cbd6;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .snow-member-status:empty {
+      display: none;
+    }
+
+    .snow-arrivals h2 {
+      margin-bottom: 8px;
+    }
+
+    .snow-newest {
+      padding: 3px 7px;
+      border: 1px solid rgba(150, 225, 255, 0.15);
+      border-radius: 8px;
+      background: #071117;
+      color: #dff8ff;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .snow-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 7px 5px;
+      border-bottom: 1px solid rgba(150, 225, 255, 0.13);
+      color: #dff8ff;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .snow-member:last-child {
+      border-bottom: 0;
+    }
+
+    .snow-member-symbol {
+      flex-shrink: 0;
+      color: #dff8ff;
+    }
+
+    .snow-member-name {
+      min-width: 0;
+      color: #dff8ff;
+      overflow-wrap: anywhere;
+    }
+
+    .snow-list-message {
+      padding: 7px 5px;
+      color: #a9cbd6;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .snow-invite {
+      text-align: center;
+    }
+
+    .snow-invite h2 {
+      margin-bottom: 6px;
+      letter-spacing: 2px;
+    }
+
+    .snow-invite-description {
+      margin-bottom: 10px;
+      color: #9ab8c2;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .snow-copy-button {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 10px 5px;
+      border: 2px solid #e8fcff;
+      border-bottom: 5px solid #315f6d;
+      border-radius: 9px;
+      background: linear-gradient(180deg, #c9f5ff, #62b8d4);
+      color: #071117;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-align: center;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: filter 150ms ease;
+    }
+
+    .snow-copy-button:hover {
+      filter: brightness(1.1);
+    }
+
+    .snow-copy-button:disabled {
+      opacity: 0.8;
+      cursor: wait;
+    }
+
+    .snow-copy-status {
+      margin-top: 8px;
+      color: #c9f5ff;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .snow-copy-status:empty {
+      display: none;
+    }
+
+    .snow-manual-copy {
+      margin-top: 10px;
+      color: #a9cbd6;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .snow-manual-copy label {
+      display: block;
+      margin-bottom: 5px;
+      color: #a9cbd6;
+    }
+
+    .snow-invite-field {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 9px;
+      border: 1px solid #5faec7;
+      border-radius: 5px;
+      background: #071117;
+      color: #eafaff;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .snow-code-text {
+      color: #d5e8ed;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .snow-footer {
+      padding: 12px;
+      border-top: 1px dashed rgba(150, 225, 255, 0.25);
+      color: #7398a4;
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .snow-footer-motto {
+      color: #7398a4;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .snow-footer-note {
+      margin-top: 5px;
+      color: #506d77;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .snow-credit {
+      margin-top: 5px;
+      color: #506d77;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .snow-credit a,
+    .snow-credit a:visited {
+      color: #8fbcca;
+      font-size: 10px;
+      text-decoration: none;
+    }
+
+    .snow-credit a:hover {
+      color: #dff8ff;
+      text-decoration: underline;
+    }
+
+    .snow-noscript {
+      margin-top: 9px;
+      color: #a9cbd6;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: normal;
+      text-align: center;
+    }
+
+    .snow-noscript a,
+    .snow-noscript a:visited {
+      color: #c9f5ff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 340px) {
+      body {
+        padding: 3px;
+      }
+
+      #snow-leopard-sidebar {
+        padding: 11px;
+      }
+
+      .snow-header {
+        padding: 15px 9px;
+      }
+
+      .snow-header h1 {
+        font-size: 18px;
+        letter-spacing: 2px;
+      }
+
+      .snow-panel {
+        padding: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .snow-progress-fill,
+      .snow-copy-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="snow-leopard-sidebar" aria-label="Snow Leopard Empire club sidebar">
+
+    <!-- ARCTIC HEADER -->
+    <header class="snow-header">
+      <h1>SNOW LEOPARD EMPIRE</h1>
+      <p class="snow-subtitle">THE ARCTIC KINGDOM OF CHESS</p>
+      <p class="snow-tagline">
+        ❄️ Brave the cold. Conquer the board. ❄️
+      </p>
+    </header>
+
+    <!-- LEOPARD PATROL -->
+    <section class="snow-panel snow-patrol">
+      <h2>THE LEOPARD IS PATROLLING</h2>
+      <p class="snow-patrol-note">GUARDING THE EMPIRE</p>
+    </section>
+
+    <!-- MEMBER GOAL -->
+    <section class="snow-panel snow-expansion">
+      <h2>EMPIRE EXPANSION</h2>
+
+      <div class="snow-member-total">
+        <span id="snow-count" aria-live="polite">Loading…</span>
+        <span class="snow-member-divider"> / </span>
+        <span id="snow-goal">50</span>
+        <span class="snow-member-label"> MEMBERS</span>
+      </div>
+
+      <div
+        id="snow-progress"
+        class="snow-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="snow-bar" class="snow-progress-fill"></div>
+      </div>
+
+      <p class="snow-expansion-caption">
+        THE EMPIRE MARCHES TOWARD 50
+      </p>
+
+      <p
+        id="snow-member-status"
+        class="snow-member-status"
+        role="status"
+      ></p>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT -->
+    <section class="snow-panel snow-arrivals">
+      <h2>🐾 NEWEST IMPERIAL CITIZENS</h2>
+
+      <div
+        id="snow-newest"
+        class="snow-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <p class="snow-list-message">Finding the newest citizens…</p>
+      </div>
+    </section>
+
+    <!-- INVITE CENTER -->
+    <section class="snow-panel snow-invite">
+      <h2>SUMMON NEW MEMBERS</h2>
+
+      <p class="snow-invite-description">
+        Share the imperial invitation and grow the kingdom.
+      </p>
+
+      <button id="snow-copy" class="snow-copy-button" type="button">
+        ❄ COPY INVITE LINK
+      </button>
+
+      <p id="snow-copy-status" class="snow-copy-status" role="status"></p>
+
+      <div id="snow-manual-copy" class="snow-manual-copy" hidden>
+        <label for="snow-invite-field">
+          Automatic copying was unavailable. Select and copy this link:
+        </label>
+        <input
+          id="snow-invite-field"
+          class="snow-invite-field"
+          type="text"
+          value="https://www.chess.com/club/snow-leopard-empire/join"
+          readonly
+          spellcheck="false"
+          autocomplete="off"
+        >
+      </div>
+
+      <noscript>
+        <p class="snow-noscript">
+          <a
+            href="https://www.chess.com/club/snow-leopard-empire/join"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open the imperial invitation</a>
+        </p>
+      </noscript>
+    </section>
+
+    <!-- ARCTIC CODE -->
+    <section class="snow-panel">
+      <h2>THE ARCTIC CODE</h2>
+
+      <p class="snow-code-text">
+        Respect every challenger.<br>
+        Hunt for better moves.<br>
+        Think before you strike.<br>
+        Stay calm under pressure.<br>
+        Help the empire grow.
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="snow-footer">
+      <p class="snow-footer-motto">THINK &bull; PLAY &bull; CONQUER</p>
+      <p class="snow-footer-note">THE COLD NEVER BLUNDERS</p>
+
+      <p class="snow-credit">
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Sidebar Designed by Wildis_Knight</a>
+      </p>
+
+      <noscript>
+        <p class="snow-noscript">
+          Enable JavaScript for the live member count and newest citizens.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "snow-leopard-empire";
+      const goal = 50;
+      const inviteLink =
+        "https://www.chess.com/club/snow-leopard-empire/join";
+
+      const countElement = document.getElementById("snow-count");
+      const goalElement = document.getElementById("snow-goal");
+      const barElement = document.getElementById("snow-bar");
+      const progressElement = document.getElementById("snow-progress");
+      const statusElement = document.getElementById("snow-member-status");
+      const newestElement = document.getElementById("snow-newest");
+
+      const copyButton = document.getElementById("snow-copy");
+      const copyStatus = document.getElementById("snow-copy-status");
+      const manualCopy = document.getElementById("snow-manual-copy");
+      const inviteField = document.getElementById("snow-invite-field");
+
+      goalElement.textContent = goal.toLocaleString();
+      inviteField.value = inviteLink;
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+
+          statusElement.textContent = "";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          statusElement.textContent =
+            "The live member count is temporarily unavailable.";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("Snow Leopard Empire member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showCitizenMessage(message) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "snow-list-message";
+        paragraph.textContent = message;
+        newestElement.replaceChildren(paragraph);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 5);
+
+          if (!newest.length) {
+            showCitizenMessage("Awaiting new imperial citizens…");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const row = document.createElement("div");
+            row.className = "snow-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "snow-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = "🐆";
+
+            const name = document.createElement("span");
+            name.className = "snow-member-name";
+            name.textContent = member.username;
+
+            row.append(symbol, name);
+            fragment.appendChild(row);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showCitizenMessage(
+            "Imperial arrival records are temporarily unavailable."
+          );
+
+          console.warn("Snow Leopard Empire newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function legacyCopy() {
+        const textarea = document.createElement("textarea");
+        const previousFocus = document.activeElement;
+
+        textarea.value = inviteLink;
+        textarea.readOnly = true;
+        textarea.style.cssText =
+          "position:fixed;top:0;left:0;width:1px;height:1px;" +
+          "padding:0;border:0;opacity:0;font-size:16px;";
+
+        document.body.appendChild(textarea);
+
+        let copied = false;
+
+        try {
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        } finally {
+          textarea.remove();
+
+          if (previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+
+        return copied;
+      }
+
+      let resetCopyTimer;
+
+      copyButton.addEventListener("click", async () => {
+        window.clearTimeout(resetCopyTimer);
+        copyButton.disabled = true;
+        copyStatus.textContent = "";
+
+        let copied = false;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(inviteLink);
+              copied = true;
+            } catch {
+              copied = legacyCopy();
+            }
+          } else {
+            copied = legacyCopy();
+          }
+
+          if (copied) {
+            copyButton.textContent = "✓ LINK COPIED!";
+            copyStatus.textContent = "Imperial invitation copied.";
+            manualCopy.hidden = true;
+          } else {
+            copyButton.textContent = "SELECT INVITE BELOW";
+            copyStatus.textContent =
+              "Automatic copying was blocked. Copy the link below.";
+            manualCopy.hidden = false;
+            inviteField.focus({ preventScroll: true });
+            inviteField.select();
+            inviteField.setSelectionRange(0, inviteField.value.length);
+          }
+        } finally {
+          copyButton.disabled = false;
+
+          resetCopyTimer = window.setTimeout(() => {
+            copyButton.textContent = "❄ COPY INVITE LINK";
+          }, 1800);
+        }
+      });
+
+      inviteField.addEventListener("click", () => {
+        inviteField.select();
+        inviteField.setSelectionRange(0, inviteField.value.length);
+      });
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
