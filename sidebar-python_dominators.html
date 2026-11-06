@@ -889,4 +889,36 @@ board = chess.Board()
             symbol.textContent = "🐍";
 
             const name = document.createElement("span");
-            name.className = "py-member-na
+            name.className = "py-member-name";
+            name.textContent = member.username;
+
+            item.append(symbol, name);
+            fragment.appendChild(item);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage(
+            "The newest Dominators are temporarily unavailable."
+          );
+
+          console.warn("Python Dominators newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
