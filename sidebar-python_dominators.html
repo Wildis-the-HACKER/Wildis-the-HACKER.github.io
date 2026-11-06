@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #ffffff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: transparent;
+      color: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    pre {
+      margin: 0;
+      padding: 0;
+    }
+
+    strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    a,
+    a:visited {
+      color: #ecf0f1;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #7cffb4;
+      outline-offset: 3px;
+    }
+
+    #python-sidebar {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px;
+      border: 2px solid #5cff8d;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #0b1f13, #123524, #1d4d31);
+      color: #ffffff;
+      box-shadow: 0 0 18px rgba(92, 255, 141, 0.35);
+    }
+
+    .py-header {
+      padding: 14px;
+      border: 2px solid #7cffb4;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0e311e, #215b37, #2d7c4a);
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(124, 255, 180, 0.4);
+    }
+
+    .py-header h1 {
+      color: #ffffff;
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-shadow: 0 0 10px #7cffb4;
+    }
+
+    .py-snakes {
+      display: block;
+      color: #ffffff;
+      font-size: 23px;
+      line-height: 1.5;
+    }
+
+    .py-tagline {
+      margin-top: 6px;
+      color: #d9ffd9;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .py-club-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin: 0;
+      padding: 10px;
+      border: 0;
+      border-radius: 50px;
+      object-fit: contain;
+    }
+
+    .py-panel {
+      margin-top: 14px;
+      padding: 15px;
+      border: 1px solid #56ff8f;
+      border-radius: 10px;
+      background: #11261a;
+      color: #ffffff;
+    }
+
+    .py-panel h2 {
+      margin-bottom: 8px;
+      color: #61afef;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .py-statistics {
+      margin-top: 12px;
+      padding: 12px;
+      box-shadow: 0 0 12px rgba(86, 255, 143, 0.25);
+    }
+
+    .py-statistics h2 {
+      margin-bottom: 12px;
+      color: #8dffb4;
+      font-size: 17px;
+      letter-spacing: normal;
+      text-transform: none;
+    }
+
+    .py-member-total {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      text-shadow: 0 0 8px #008000;
+    }
+
+    .py-progress-track {
+      width: 100%;
+      height: 20px;
+      margin-top: 12px;
+      overflow: hidden;
+      border: 1px solid #56ff8f;
+      border-radius: 12px;
+      background: #180700;
+    }
+
+    .py-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #56ff8f, #7cffb4);
+      box-shadow: 0 0 18px #008000;
+      transition: width 1s ease;
+    }
+
+    .py-member-status {
+      margin-top: 8px;
+      color: #c3e6cf;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .py-member-status:empty {
+      display: none;
+    }
+
+    .py-arrivals {
+      margin-top: 12px;
+      padding: 12px;
+      border: 2px solid #56ff8f;
+      border-radius: 10px;
+      background: #0b1f13;
+      color: #ffffff;
+      box-shadow: 0 0 18px rgba(86, 255, 143, 0.4);
+    }
+
+    .py-arrivals h3 {
+      margin-bottom: 12px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-shadow: 0 0 10px #008000;
+    }
+
+    .py-newest {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #ffffff;
+    }
+
+    .py-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 8px;
+      padding: 10px;
+      border: 1px solid #56ff8f;
+      border-radius: 8px;
+      background: #0b1f13;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+      box-shadow: 0 0 12px rgba(86, 255, 143, 0.4);
+    }
+
+    .py-member:last-child {
+      margin-bottom: 0;
+    }
+
+    .py-member-symbol {
+      flex-shrink: 0;
+      color: #ffffff;
+    }
+
+    .py-member-name {
+      min-width: 0;
+      color: #ffffff;
+      overflow-wrap: anywhere;
+    }
+
+    .py-list-message {
+      padding: 10px;
+      border: 1px dashed #3fa968;
+      border-radius: 8px;
+      background: #0b1f13;
+      color: #c3e6cf;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .py-ranks h2,
+    .py-navigation h2 {
+      margin-bottom: 10px;
+    }
+
+    .py-rank {
+      margin-bottom: 6px;
+      padding: 7px 9px;
+      border-left: 3px solid #3776ab;
+      border-radius: 5px;
+      background: #0d1117;
+      color: #c9d1d9;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .py-rank:last-child {
+      margin-bottom: 0;
+    }
+
+    .py-rank-senior {
+      border-left-color: #61afef;
+    }
+
+    .py-rank-gold {
+      border-left-color: #ffd43b;
+    }
+
+    .py-rank-name {
+      color: #61afef;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .py-rank-gold .py-rank-name {
+      color: #ffd43b;
+    }
+
+    .py-rank-description {
+      color: #8892b0;
+      font-size: 12px;
+    }
+
+    .py-mission {
+      border-color: #3fa968;
+      background: linear-gradient(135deg, #10291c, #112019);
+    }
+
+    .py-mission h2 {
+      color: #7ee787;
+    }
+
+    .py-panel-text {
+      color: #d0d0d0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .py-philosophy h2 {
+      color: #ffd43b;
+    }
+
+    .py-philosophy p {
+      font-style: italic;
+    }
+
+    .py-rules {
+      border-color: #0b1f13;
+    }
+
+    .py-rules-list {
+      margin: 0;
+      padding-left: 18px;
+      list-style: disc;
+      color: #c9d1d9;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .py-rules-list li {
+      margin: 0;
+      padding: 0;
+      color: #c9d1d9;
+    }
+
+    .py-rules-list strong {
+      color: #c9d1d9;
+      font-weight: 700;
+    }
+
+    .py-goals,
+    .py-navigation {
+      border-color: #263442;
+    }
+
+    .py-goals p {
+      line-height: 1.8;
+    }
+
+    .py-link,
+    .py-link:visited {
+      display: block;
+      margin-bottom: 7px;
+      padding: 10px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: #3776ab;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-decoration: none;
+      transition: filter 150ms ease;
+    }
+
+    .py-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .py-link:hover {
+      color: #ffffff;
+      filter: brightness(1.12);
+    }
+
+    .py-link-home,
+    .py-link-home:visited,
+    .py-link-home:hover {
+      background: #ffd43b;
+      color: #111118;
+    }
+
+    .py-link-forum,
+    .py-link-forum:visited,
+    .py-link-forum:hover {
+      border-color: #30363d;
+      background: #21262d;
+      color: #c9d1d9;
+    }
+
+    .py-code-box {
+      margin: 12px 0 10px;
+      padding: 10px;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      background: #0d1117;
+      color: #7ee787;
+      font-family: Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.7;
+      text-align: left;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      tab-size: 4;
+    }
+
+    .py-code-box + .py-code-box {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .py-code-box code {
+      color: #7ee787;
+      font-family: Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: inherit;
+    }
+
+    .py-code-keyword {
+      color: #ff7b72;
+    }
+
+    .py-code-function {
+      color: #d2a8ff;
+    }
+
+    .py-code-string {
+      color: #a5d6ff;
+    }
+
+    .py-code-comment {
+      color: #8b949e;
+    }
+
+    .py-credit {
+      margin-top: 14px;
+      color: #d0d0d0;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .py-credit-name {
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .py-credit a,
+    .py-credit a:visited {
+      color: #ecf0f1;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .py-credit a:hover {
+      color: #7cffb4;
+      text-decoration: underline;
+    }
+
+    .py-noscript {
+      margin-top: 10px;
+      color: #c3e6cf;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 340px) {
+      body {
+        padding: 4px;
+      }
+
+      #python-sidebar {
+        padding: 12px;
+      }
+
+      .py-header {
+        padding: 12px 8px;
+      }
+
+      .py-header h1 {
+        font-size: 21px;
+      }
+
+      .py-snakes {
+        font-size: 21px;
+      }
+
+      .py-panel {
+        padding: 12px;
+      }
+
+      .py-member-total {
+        font-size: 20px;
+      }
+
+      .py-arrivals {
+        padding: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .py-progress-fill,
+      .py-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="python-sidebar" aria-label="Python Dominators club sidebar">
+
+    <!-- HEADER -->
+    <header class="py-header">
+      <h1>
+        <span class="py-snakes" aria-hidden="true">🐍🐍🐍🐍🐍</span>
+        Python Dominators
+        <span class="py-snakes" aria-hidden="true">🐍🐍🐍🐍🐍</span>
+      </h1>
+
+      <p class="py-tagline">
+        "Patience &bull; Precision &bull; Power"
+      </p>
+
+      <img
+        class="py-club-image"
+        src="https://images.chesscomfiles.com/uploads/v1/group/983778.2cc1198b.160x160o.234da5ffa0ca.jpg"
+        alt="Python Dominators club image"
+        width="160"
+        height="160"
+      >
+    </header>
+
+    <!-- CLUB STATISTICS -->
+    <section class="py-panel py-statistics">
+      <h2>Club Statistics</h2>
+
+      <div class="py-member-total">
+        <span id="py-count" aria-live="polite">Loading…</span>
+        / <span id="py-goal">20</span> Members
+      </div>
+
+      <div
+        id="py-progress"
+        class="py-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="py-bar" class="py-progress-fill"></div>
+      </div>
+
+      <p
+        id="py-member-status"
+        class="py-member-status"
+        role="status"
+      ></p>
+
+      <!-- NEWEST MEMBERS: PLAIN TEXT -->
+      <section class="py-arrivals">
+        <h3>Newest Dominators</h3>
+
+        <ul
+          id="py-newest"
+          class="py-newest"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <li class="py-list-message">Loading newest Dominators…</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- MEMBER RANKS -->
+    <section class="py-panel py-ranks">
+      <h2>Member Ranks</h2>
+
+      <div class="py-rank">
+        <strong class="py-rank-name">Junior Scripter</strong><br>
+        <span class="py-rank-description">New recruits &amp; beginners.</span>
+      </div>
+
+      <div class="py-rank py-rank-senior">
+        <strong class="py-rank-name">Senior Dev</strong><br>
+        <span class="py-rank-description">
+          Active match players &amp; contributors.
+        </span>
+      </div>
+
+      <div class="py-rank py-rank-gold">
+        <strong class="py-rank-name">Lead Architect</strong><br>
+        <span class="py-rank-description">Top tournament performers.</span>
+      </div>
+
+      <div class="py-rank py-rank-gold">
+        <strong class="py-rank-name">Python Grandmaster</strong><br>
+        <span class="py-rank-description">Club coordinators &amp; admins.</span>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="py-panel py-mission">
+      <h2>🐍 Our Mission</h2>
+      <p class="py-panel-text">
+        Become stronger together through teamwork, practice,
+        and respectful competition.
+      </p>
+    </section>
+
+    <!-- PYTHON PHILOSOPHY -->
+    <section class="py-panel py-philosophy">
+      <h2>🐍 Python Philosophy</h2>
+      <p class="py-panel-text">
+        A python doesn't attack wildly. It waits. It studies.
+        Then it strikes with perfect precision.
+      </p>
+    </section>
+
+    <!-- RULES -->
+    <section class="py-panel py-rules">
+      <h2>📋 Club Rules</h2>
+
+      <ul class="py-rules-list">
+        <li><strong>Fair Play Only:</strong> No engines or cheating.</li>
+        <li><strong>Be Respectful:</strong> Good sportsmanship is mandatory.</li>
+        <li><strong>Participate:</strong> Join matches, events, and discussions.</li>
+        <li><strong>Welcome Everyone:</strong> Help fellow Dominators improve.</li>
+      </ul>
+    </section>
+
+    <!-- CLUB GOALS -->
+    <section class="py-panel py-goals">
+      <h2>🎯 Club Goals</h2>
+      <p class="py-panel-text">
+        ✔ Improve Together<br>
+        ✔ Play Fair<br>
+        ✔ Learn New Ideas<br>
+        ✔ Welcome Everyone<br>
+        ✔ Dominate the Board
+      </p>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <nav class="py-panel py-navigation" aria-label="Club quick navigation">
+      <h2>🔗 Quick Navigation</h2>
+
+      <a
+        class="py-link"
+        href="https://www.chess.com/club/python-dominators/matches"
+        target="_blank"
+        rel="noopener noreferrer"
+      >⚔️ Active Club Matches</a>
+
+      <a
+        class="py-link py-link-home"
+        href="https://www.chess.com/club/python-dominators"
+        target="_blank"
+        rel="noopener noreferrer"
+      >🏆 Club Home</a>
+
+      <a
+        class="py-link py-link-forum"
+        href="https://www.chess.com/clubs/forum/python-dominators"
+        target="_blank"
+        rel="noopener noreferrer"
+      >💬 Club Forum &amp; Discussions</a>
+    </nav>
+
+    <!-- DECORATIVE CODE SNIPPET 1 -->
+    <pre class="py-code-box" aria-label="Dominate the board code snippet"><code><span class="py-code-keyword">def</span> <span class="py-code-function">dominate_board</span>(opponent):
+    <span class="py-code-keyword">while</span> opponent.king.is_safe():
+        play_brilliant_move()
+    <span class="py-code-keyword">return</span> <span class="py-code-string">"Checkmate!"</span></code></pre>
+
+    <!-- DECORATIVE CODE SNIPPET 2 -->
+    <pre class="py-code-box" aria-label="Inner Grandmaster code snippet"><code><span class="py-code-comment"># Import your inner Grandmaster</span>
+<span class="py-code-keyword">import</span> chess
+board = chess.Board()
+<span class="py-code-keyword">print</span>(<span class="py-code-string">"Victory is inevitable."</span>)</code></pre>
+
+    <!-- CREDITS -->
+    <footer>
+      <p class="py-credit">
+        Sidebar Designed by
+        <span class="py-credit-name">ChessDamonB and</span>
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wildis_Knight</a>
+      </p>
+
+      <noscript>
+        <p class="py-noscript">
+          Enable JavaScript for the live member count and newest Dominators.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "python-dominators";
+      const goal = 20;
+
+      const countElement = document.getElementById("py-count");
+      const goalElement = document.getElementById("py-goal");
+      const barElement = document.getElementById("py-bar");
+      const progressElement = document.getElementById("py-progress");
+      const statusElement = document.getElementById("py-member-status");
+      const newestElement = document.getElementById("py-newest");
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+
+          statusElement.textContent = "";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          statusElement.textContent =
+            "The live member count is temporarily unavailable.";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("Python Dominators member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const item = document.createElement("li");
+        item.className = "py-list-message";
+        item.textContent = message;
+        newestElement.replaceChildren(item);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage("Awaiting new Dominators…");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const item = document.createElement("li");
+            item.className = "py-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "py-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = "🐍";
+
+            const name = document.createElement("span");
+            name.className = "py-member-na
