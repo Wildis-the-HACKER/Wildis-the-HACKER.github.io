@@ -778,19 +778,6 @@
 
           const fragment = document.createDocumentFragment();
 
-          for (const member of newest) {
-            const link = document.createElement("a");
-
-            link.className = "dr-member";
-            link.href =
-              "https://www.chess.com/member/" +
-              encodeURIComponent(member.username);
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            link.textContent = `▸ ${member.username}`;
-
-            fragment.appendChild(link);
-          }
 
           newestElement.appendChild(fragment);
         } catch (error) {
