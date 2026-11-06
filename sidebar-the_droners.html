@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #e5eee5;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #e5eee5;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #e5eee5;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.65;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #e5eee5;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #d9e8c9;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #droners-sidebar {
+      width: 100%;
+      margin: 0;
+      padding: 12px;
+      overflow: hidden;
+      border: 2px solid #647d53;
+      border-radius: 10px;
+      background: #101713;
+      color: #e5eee5;
+    }
+
+    .dr-header {
+      padding: 16px 8px;
+      border: 1px solid #647d53;
+      border-radius: 8px;
+      background: #1b2920;
+      color: #e5eee5;
+      text-align: center;
+    }
+
+    .dr-network {
+      color: #a7c18a;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 3px;
+    }
+
+    .dr-header h1 {
+      margin-top: 10px;
+      color: #f0f5e9;
+      font-size: 29px;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: 2px;
+    }
+
+    .dr-subtitle {
+      margin-top: 8px;
+      color: #a7c18a;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .dr-command {
+      max-width: 190px;
+      margin: 13px auto 0;
+      padding: 7px 10px;
+      background: #647d53;
+      color: #101713;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .dr-header-motto {
+      margin-top: 12px;
+      color: #c0cfb6;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .dr-panel {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #354a37;
+      border-radius: 8px;
+      background: #19221b;
+      color: #d5e0d2;
+    }
+
+    .dr-panel h2 {
+      color: #a7c18a;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .dr-briefing {
+      margin-top: 7px;
+      color: #d5e0d2;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .dr-objective {
+      margin-top: 10px;
+      padding: 9px;
+      border-left: 3px solid #a7c18a;
+      background: #243126;
+      color: #c8d9b8;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .dr-count-label {
+      margin-top: 9px;
+      color: #9caf98;
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .dr-count-line {
+      margin-top: 4px;
+      color: #f0f5e9;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .dr-count-goal {
+      color: #9caf98;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .dr-progress-track {
+      width: 100%;
+      height: 12px;
+      margin-top: 8px;
+      overflow: hidden;
+      border: 1px solid #465d43;
+      border-radius: 3px;
+      background: #2b382c;
+    }
+
+    .dr-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #a7c18a;
+      transition: width 700ms ease;
+    }
+
+    .dr-percent {
+      margin-top: 6px;
+      color: #a7c18a;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .dr-arrivals-description {
+      margin: 5px 0 7px;
+      color: #9caf98;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .dr-newest {
+      color: #d9ead8;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .dr-member,
+    .dr-member:visited {
+      display: block;
+      padding: 7px 4px;
+      border-bottom: 1px solid #293b30;
+      background: transparent;
+      color: #d9ead8;
+      font-size: 13px;
+      line-height: 1.65;
+      text-decoration: none;
+    }
+
+    .dr-member:last-child {
+      border-bottom: 0;
+    }
+
+    .dr-member:hover {
+      background: #243126;
+      color: #f0f5e9;
+    }
+
+    .dr-recruitment {
+      border-color: #647d53;
+      background: #263526;
+      text-align: center;
+    }
+
+    .dr-recruitment h2 {
+      margin-bottom: 7px;
+      color: #d9e8c9;
+    }
+
+    .dr-recruitment-description {
+      margin-bottom: 10px;
+      color: #d5e0d2;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .dr-copy-button {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 11px 10px;
+      border: 0;
+      border-radius: 4px;
+      background: #a7c18a;
+      color: #101713;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: background-color 150ms ease;
+    }
+
+    .dr-copy-button:hover {
+      background: #bdd5a3;
+      color: #101713;
+    }
+
+    .dr-copy-button:disabled {
+      cursor: wait;
+      opacity: 0.8;
+    }
+
+    .dr-copy-status {
+      margin-top: 8px;
+      color: #d9e8c9;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .dr-copy-status:empty {
+      display: none;
+    }
+
+    .dr-manual-copy {
+      margin-top: 10px;
+      color: #d5e0d2;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .dr-manual-copy label {
+      display: block;
+      margin-bottom: 5px;
+      color: #d5e0d2;
+    }
+
+    .dr-invite-field {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 9px;
+      border: 1px solid #647d53;
+      border-radius: 4px;
+      background: #101713;
+      color: #e5eee5;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .dr-links h2 {
+      margin-bottom: 10px;
+    }
+
+    .dr-link,
+    .dr-link:visited {
+      display: block;
+      margin-bottom: 7px;
+      padding: 10px;
+      border-left: 3px solid #a7c18a;
+      border-radius: 3px;
+      background: #243126;
+      color: #e5eee5;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.65;
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+
+    .dr-link:nth-of-type(even) {
+      border-left-color: #647d53;
+    }
+
+    .dr-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .dr-link:hover {
+      background: #304333;
+      color: #ffffff;
+    }
+
+    .dr-footer {
+      padding: 15px 4px 5px;
+      color: #829580;
+      text-align: center;
+    }
+
+    .dr-footer-status {
+      color: #a7c18a;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .dr-footer-motto {
+      margin-top: 7px;
+      color: #829580;
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .dr-credit {
+      margin-top: 5px;
+      color: #829580;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .dr-credit a,
+    .dr-credit a:visited {
+      color: #829580;
+      font-size: 10px;
+      text-decoration: none;
+    }
+
+    .dr-credit a:hover {
+      color: #c0cfb6;
+    }
+
+    .dr-footer-symbols {
+      margin-top: 8px;
+      color: #647d53;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .dr-noscript {
+      margin-top: 10px;
+      color: #c0cfb6;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 320px) {
+      #droners-sidebar {
+        padding: 9px;
+      }
+
+      .dr-header h1 {
+        font-size: 25px;
+        letter-spacing: 1px;
+      }
+
+      .dr-panel {
+        padding: 10px;
+      }
+
+      .dr-network {
+        letter-spacing: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dr-progress-fill,
+      .dr-copy-button,
+      .dr-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="droners-sidebar" aria-label="The Droners club sidebar">
+
+    <!-- HEADER -->
+    <header class="dr-header">
+      <p class="dr-network">DRONERS NETWORK // ONLINE</p>
+      <h1>THE DRONERS</h1>
+      <p class="dr-subtitle">AERIAL CHESS OPERATIONS</p>
+      <div class="dr-command">COMMAND CENTER ACTIVE</div>
+      <p class="dr-header-motto">SCAN THE BOARD. PLAN THE MOVE.</p>
+    </header>
+
+    <!-- MISSION BRIEFING -->
+    <section class="dr-panel">
+      <h2>MISSION BRIEFING</h2>
+      <p class="dr-briefing">
+        Welcome to The Droners. Take the high ground, survey the board,
+        and think several moves ahead. Whether you're practicing tactics
+        or preparing your next brilliant attack, every game is a new mission.
+      </p>
+      <div class="dr-objective">
+        MISSION OBJECTIVE: OUTTHINK THE OPPOSITION.
+      </div>
+    </section>
+
+    <!-- SQUAD STATUS -->
+    <section class="dr-panel">
+      <h2>SQUAD STATUS</h2>
+      <p class="dr-count-label">ACTIVE MEMBERS</p>
+
+      <div class="dr-count-line">
+        <span id="dr-count" aria-live="polite">Loading…</span>
+        <span class="dr-count-goal"> / <span id="dr-goal">100</span></span>
+      </div>
+
+      <div
+        id="dr-progress"
+        class="dr-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="dr-bar" class="dr-progress-fill"></div>
+      </div>
+
+      <p id="dr-percent" class="dr-percent" role="status">
+        RETRIEVING SQUAD STATUS…
+      </p>
+    </section>
+
+    <!-- RECENT ARRIVALS -->
+    <section class="dr-panel">
+      <h2>RECENT ARRIVALS</h2>
+      <p class="dr-arrivals-description">New pilots joining the squad.</p>
+
+      <div
+        id="dr-newest"
+        class="dr-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >Retrieving recent arrivals…</div>
+    </section>
+
+    <!-- RECRUITMENT -->
+    <section class="dr-panel dr-recruitment">
+      <h2>RECRUITMENT CHANNEL</h2>
+
+      <p class="dr-recruitment-description">
+        Every mission needs a strong squad. Invite another chess player
+        to join the operation.
+      </p>
+
+      <button id="dr-copy" class="dr-copy-button" type="button">
+        COPY MISSION INVITE
+      </button>
+
+      <p id="dr-copy-status" class="dr-copy-status" role="status"></p>
+
+      <div id="dr-manual-copy" class="dr-manual-copy" hidden>
+        <label for="dr-invite-field">
+          Automatic copy was unavailable. Select and copy this link:
+        </label>
+        <input
+          id="dr-invite-field"
+          class="dr-invite-field"
+          type="text"
+          value="https://www.chess.com/club/the-droners/join?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+          readonly
+          spellcheck="false"
+          autocomplete="off"
+        >
+      </div>
+
+      <noscript>
+        <p class="dr-noscript">
+          <a
+            href="https://www.chess.com/club/the-droners/join?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open the mission invitation ↗</a>
+        </p>
+      </noscript>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <nav class="dr-panel dr-links" aria-label="Flight deck quick links">
+      <h2>FLIGHT DECK // QUICK LINKS</h2>
+
+      <a
+        class="dr-link"
+        href="https://www.chess.com/puzzles"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Tactical Radar — Puzzles ↗</a>
+
+      <a
+        class="dr-link"
+        href="https://www.chess.com/lessons"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Pilot Training — Lessons ↗</a>
+
+      <a
+        class="dr-link"
+        href="https://www.chess.com/analysis"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Black Box — Game Analysis ↗</a>
+
+      <a
+        class="dr-link"
+        href="https://www.chess.com/openings"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Navigation Charts — Openings ↗</a>
+    </nav>
+
+    <!-- FOOTER -->
+    <footer class="dr-footer">
+      <p class="dr-footer-status">MISSION STATUS: THINK AHEAD</p>
+
+      <p class="dr-footer-motto">
+        EYES UP. BOARD SCANNED. MOVE EXECUTED.
+      </p>
+
+      <p class="dr-credit">
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Sidebar Designed by Wildis_Knight</a>
+      </p>
+
+      <div class="dr-footer-symbols" aria-hidden="true">✦ ◉ ✦</div>
+
+      <noscript>
+        <p class="dr-noscript">
+          Enable JavaScript for live squad status and recent arrivals.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "the-droners";
+      const goal = 100;
+      const inviteLink =
+        "https://www.chess.com/club/the-droners/join" +
+        "?utm_campaign=club_invite_link&utm_source=chesscom&utm_medium=copy";
+
+      const countElement = document.getElementById("dr-count");
+      const goalElement = document.getElementById("dr-goal");
+      const barElement = document.getElementById("dr-bar");
+      const percentElement = document.getElementById("dr-percent");
+      const progressElement = document.getElementById("dr-progress");
+      const newestElement = document.getElementById("dr-newest");
+
+      const copyButton = document.getElementById("dr-copy");
+      const copyStatus = document.getElementById("dr-copy-status");
+      const manualCopy = document.getElementById("dr-manual-copy");
+      const inviteField = document.getElementById("dr-invite-field");
+
+      goalElement.textContent = goal.toLocaleString();
+      inviteField.value = inviteLink;
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadSquadStatus() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+          const capacity = Math.floor((count / goal) * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+          percentElement.textContent = `${capacity}% MISSION CAPACITY`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          percentElement.textContent = "SQUAD STATUS TEMPORARILY UNAVAILABLE";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("The Droners squad status:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      async function loadRecentArrivals() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 5);
+
+          newestElement.replaceChildren();
+
+          if (!newest.length) {
+            newestElement.textContent = "Awaiting new pilots…";
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const link = document.createElement("a");
+
+            link.className = "dr-member";
+            link.href =
+              "https://www.chess.com/member/" +
+              encodeURIComponent(member.username);
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = `▸ ${member.username}`;
+
+            fragment.appendChild(link);
+          }
+
+          newestElement.appendChild(fragment);
+        } catch (error) {
+          newestElement.textContent =
+            "Arrival records temporarily unavailable.";
+
+          console.warn("The Droners recent arrivals:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function legacyCopy() {
+        const textarea = document.createElement("textarea");
+        const previousFocus = document.activeElement;
+
+        textarea.value = inviteLink;
+        textarea.readOnly = true;
+        textarea.style.cssText =
+          "position:fixed;top:0;left:0;width:1px;height:1px;" +
+          "padding:0;border:0;opacity:0;font-size:16px;";
+
+        document.body.appendChild(textarea);
+
+        let copied = false;
+
+        try {
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        } finally {
+          textarea.remove();
+
+          if (previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+
+        return copied;
+      }
+
+      let resetCopyTimer;
+
+      copyButton.addEventListener("click", async () => {
+        window.clearTimeout(resetCopyTimer);
+        copyButton.disabled = true;
+        copyStatus.textContent = "";
+
+        let copied = false;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(inviteLink);
+              copied = true;
+            } catch {
+              copied = legacyCopy();
+            }
+          } else {
+            copied = legacyCopy();
+          }
+
+          if (copied) {
+            copyButton.textContent = "✓ LINK COPIED!";
+            copyStatus.textContent = "Mission invitation copied.";
+            manualCopy.hidden = true;
+          } else {
+            copyButton.textContent = "SELECT INVITE BELOW";
+            copyStatus.textContent =
+              "Automatic copying was blocked. Copy the link below.";
+            manualCopy.hidden = false;
+            inviteField.focus({ preventScroll: true });
+            inviteField.select();
+            inviteField.setSelectionRange(0, inviteField.value.length);
+          }
+        } finally {
+          copyButton.disabled = false;
+
+          resetCopyTimer = window.setTimeout(() => {
+            copyButton.textContent = "COPY MISSION INVITE";
+          }, 2200);
+        }
+      });
+
+      inviteField.addEventListener("click", () => {
+        inviteField.select();
+        inviteField.setSelectionRange(0, inviteField.value.length);
+      });
+
+      loadSquadStatus();
+      loadRecentArrivals();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
