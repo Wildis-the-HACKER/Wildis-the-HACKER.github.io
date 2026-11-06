@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #eef7ff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #eef7ff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: transparent;
+      color: #eef7ff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    strong {
+      color: #eef7ff;
+      font-weight: 700;
+    }
+
+    a,
+    a:visited {
+      color: #89a9c4;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #8cddff;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #small-one-sidebar {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px;
+      border: 2px solid #70b7ff;
+      border-radius: 20px;
+      background: radial-gradient(
+        circle at 50% 0%,
+        #263b63 0%,
+        #101b32 38%,
+        #070b16 78%,
+        #03050a 100%
+      );
+      color: #eef7ff;
+      box-shadow:
+        0 0 28px rgba(70, 160, 255, 0.3),
+        inset 0 0 35px rgba(80, 130, 255, 0.08);
+    }
+
+    .sto-header {
+      padding: 18px 10px 16px;
+      border: 1px solid #78c3ff;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #172b4b, #223c65, #18213d);
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(70, 170, 255, 0.25);
+    }
+
+    .sto-header h1 {
+      margin: 7px 0 4px;
+      color: #ffffff;
+      font-size: 27px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #54baff;
+    }
+
+    .sto-tagline {
+      color: #9bdcff;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .sto-panel {
+      margin-top: 14px;
+      padding: 15px;
+      border: 1px solid #467eb5;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #0d1b31, #111a2b);
+      color: #c8d7e8;
+    }
+
+    .sto-panel h2 {
+      color: #83cfff;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-shadow: 0 0 8px #3d9fff;
+    }
+
+    .sto-welcome-text {
+      margin-top: 11px;
+      color: #c8d7e8;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .sto-community {
+      border-color: #39c7ff;
+      background: linear-gradient(135deg, #0b2038, #091321);
+      box-shadow: 0 0 16px rgba(0, 200, 255, 0.12);
+    }
+
+    .sto-community h2 {
+      color: #6fddff;
+      text-shadow: 0 0 8px #00bfff;
+    }
+
+    .sto-member-total {
+      margin: 12px 0 8px;
+      color: #eef7ff;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .sto-member-divider {
+      color: #536b82;
+    }
+
+    .sto-member-label {
+      color: #8aa2bb;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    .sto-progress-track {
+      width: 100%;
+      height: 15px;
+      overflow: hidden;
+      border: 1px solid #24658c;
+      border-radius: 20px;
+      background: #020812;
+    }
+
+    .sto-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #3b9dff, #4fdfff, #8c6cff);
+      box-shadow: 0 0 13px rgba(50, 200, 255, 0.7);
+      transition: width 1s ease;
+    }
+
+    .sto-milestone {
+      margin-top: 9px;
+      color: #7f98b2;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .sto-milestone strong {
+      color: #78d7ff;
+    }
+
+    .sto-member-status {
+      margin-top: 7px;
+      color: #a9c7e3;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .sto-member-status:empty {
+      display: none;
+    }
+
+    .sto-arrivals {
+      border-color: #4c83b8;
+      background: linear-gradient(135deg, #101b31, #0a1120);
+    }
+
+    .sto-arrivals h2 {
+      color: #82cfff;
+    }
+
+    .sto-arrivals-description {
+      margin: 5px 0 11px;
+      color: #718ba8;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .sto-newest {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #eaf6ff;
+    }
+
+    .sto-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 7px;
+      padding: 10px;
+      border: 1px solid #315a86;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #0c1a31, #10182a);
+      color: #eaf6ff;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+      box-shadow: inset 0 0 10px rgba(80, 160, 255, 0.06);
+    }
+
+    .sto-member:last-child {
+      margin-bottom: 0;
+    }
+
+    .sto-member-symbol {
+      flex-shrink: 0;
+      color: #76c8ff;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .sto-member-name {
+      min-width: 0;
+      color: #eaf6ff;
+      overflow-wrap: anywhere;
+    }
+
+    .sto-list-message {
+      padding: 10px;
+      border-radius: 8px;
+      background: #0c1629;
+      color: #9bb1ca;
+      font-size: 12px;
+      font-style: italic;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .sto-features {
+      border-color: #7668cf;
+      background: linear-gradient(135deg, #171833, #10152b);
+    }
+
+    .sto-features h2 {
+      color: #b8adff;
+      text-shadow: 0 0 8px #7565df;
+    }
+
+    .sto-feature-list {
+      margin-top: 11px;
+      color: #cdd7e7;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .sto-feature-list p {
+      color: #cdd7e7;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .sto-feature-play {
+      color: #8fdcff;
+    }
+
+    .sto-feature-compete {
+      color: #c2b5ff;
+    }
+
+    .sto-feature-connect {
+      color: #8fffd8;
+    }
+
+    .sto-feature-improve {
+      color: #9fd8ff;
+    }
+
+    .sto-philosophy {
+      border-color: #4bd1a0;
+      background: linear-gradient(135deg, #132b25, #0d1c1b);
+      text-align: center;
+    }
+
+    .sto-philosophy-symbol {
+      color: #8fffe0;
+      font-size: 22px;
+      line-height: 1.5;
+      text-shadow: 0 0 10px #38d6a0;
+    }
+
+    .sto-small-club {
+      margin: 6px 0 3px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .sto-big-chess {
+      color: #82f0d1;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .sto-philosophy-note {
+      margin-top: 9px;
+      color: #7fa99d;
+      font-size: 10px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .sto-invite-button {
+      display: block;
+      width: 100%;
+      margin: 14px 0 0;
+      padding: 13px;
+      border: 2px solid #65c9ff;
+      border-radius: 11px;
+      background: linear-gradient(90deg, #12355b, #17416b, #202452);
+      color: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-align: center;
+      text-shadow: 0 0 8px #54caff;
+      box-shadow: 0 0 16px rgba(50, 190, 255, 0.25);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: filter 150ms ease;
+    }
+
+    .sto-invite-button:hover {
+      filter: brightness(1.15);
+    }
+
+    .sto-invite-button:disabled {
+      opacity: 0.8;
+      cursor: wait;
+    }
+
+    .sto-copy-status {
+      margin-top: 8px;
+      color: #a9dfff;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .sto-copy-status:empty {
+      display: none;
+    }
+
+    .sto-manual-copy {
+      margin-top: 10px;
+      color: #c8d7e8;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .sto-manual-copy label {
+      display: block;
+      margin-bottom: 5px;
+      color: #c8d7e8;
+    }
+
+    .sto-invite-field {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 9px;
+      border: 1px solid #467eb5;
+      border-radius: 6px;
+      background: #0c1629;
+      color: #eef7ff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .sto-footer {
+      margin-top: 17px;
+      padding-top: 13px;
+      border-top: 1px solid rgba(90, 160, 220, 0.25);
+      color: #9ac8e8;
+      text-align: center;
+    }
+
+    .sto-footer-motto {
+      color: #9ac8e8;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .sto-footer-subtitle {
+      margin-top: 7px;
+      color: #5e7691;
+      font-size: 9px;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+    }
+
+    .sto-credit {
+      margin-top: 9px;
+      color: #53687c;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .sto-credit a,
+    .sto-credit a:visited,
+    .sto-credit strong {
+      color: #89a9c4;
+      font-size: 9px;
+      text-decoration: none;
+    }
+
+    .sto-credit a:hover,
+    .sto-credit a:hover strong {
+      color: #bce9ff;
+    }
+
+    .sto-noscript {
+      margin-top: 10px;
+      color: #9bb1ca;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .sto-noscript a,
+    .sto-noscript a:visited {
+      color: #9bdcff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 340px) {
+      body {
+        padding: 4px;
+      }
+
+      #small-one-sidebar {
+        padding: 12px;
+      }
+
+      .sto-header h1 {
+        font-size: 23px;
+        letter-spacing: 1px;
+      }
+
+      .sto-panel {
+        padding: 12px;
+      }
+
+      .sto-member-total {
+        font-size: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sto-progress-fill,
+      .sto-invite-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="small-one-sidebar" aria-label="It's the Small One club sidebar">
+
+    <!-- HEADER -->
+    <header class="sto-header">
+      <h1>IT'S THE SMALL ONE</h1>
+      <p class="sto-tagline">SMALL CLUB &bull; BIG CHESS</p>
+    </header>
+
+    <!-- WELCOME -->
+    <section class="sto-panel">
+      <h2>♟ WELCOME TO THE CLUB</h2>
+      <p class="sto-welcome-text">
+        We're small, we're growing, and we're here to play some chess.
+        <br><br>
+        You don't need thousands of members to have a great community.
+        Sometimes the smallest clubs have the biggest conversations,
+        the best games, and the most fun.
+      </p>
+    </section>
+
+    <!-- MEMBER PROGRESS -->
+    <section class="sto-panel sto-community">
+      <h2>📈 OUR LITTLE COMMUNITY</h2>
+
+      <div class="sto-member-total">
+        <span id="sto-count" aria-live="polite">Loading…</span>
+        <span class="sto-member-divider"> / </span>
+        <span id="sto-goal">25</span>
+        <span class="sto-member-label"> members</span>
+      </div>
+
+      <div
+        id="sto-progress"
+        class="sto-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="sto-bar" class="sto-progress-fill"></div>
+      </div>
+
+      <p class="sto-milestone">
+        🎯 Next milestone: <strong>25 members</strong>
+      </p>
+
+      <p
+        id="sto-member-status"
+        class="sto-member-status"
+        role="status"
+      ></p>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT -->
+    <section class="sto-panel sto-arrivals">
+      <h2>✦ NEWEST MEMBERS</h2>
+      <p class="sto-arrivals-description">
+        The newest people joining our little chess community.
+      </p>
+
+      <ul
+        id="sto-newest"
+        class="sto-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <li class="sto-list-message">Loading newest members…</li>
+      </ul>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="sto-panel sto-features">
+      <h2>⚡ WHAT WE DO</h2>
+
+      <div class="sto-feature-list">
+        <p>
+          ♟ <strong class="sto-feature-play">Play Chess</strong>
+          — Enjoy games with fellow members.
+        </p>
+        <p>
+          🏆 <strong class="sto-feature-compete">Compete</strong>
+          — Take part in club activities.
+        </p>
+        <p>
+          💬 <strong class="sto-feature-connect">Connect</strong>
+          — Meet other chess players.
+        </p>
+        <p>
+          📚 <strong class="sto-feature-improve">Improve</strong>
+          — Learn, discuss and get better.
+        </p>
+      </div>
+    </section>
+
+    <!-- CLUB PHILOSOPHY -->
+    <section class="sto-panel sto-philosophy" aria-label="Club philosophy">
+      <div class="sto-philosophy-symbol" aria-hidden="true">♟</div>
+      <p class="sto-small-club">Small Club.</p>
+      <p class="sto-big-chess">Big Chess.</p>
+      <p class="sto-philosophy-note">
+        Every great community starts somewhere.
+      </p>
+    </section>
+
+    <!-- INVITE -->
+    <section aria-label="Invite another member">
+      <button
+        id="sto-copy"
+        class="sto-invite-button"
+        type="button"
+        aria-label="Copy club invite link"
+      >📋 COPY INVITE LINK</button>
+
+      <p id="sto-copy-status" class="sto-copy-status" role="status"></p>
+
+      <div id="sto-manual-copy" class="sto-manual-copy" hidden>
+        <label for="sto-invite-field">
+          Automatic copying was unavailable. Select and copy this link:
+        </label>
+        <input
+          id="sto-invite-field"
+          class="sto-invite-field"
+          type="text"
+          value="https://www.chess.com/club/its-the-small-one/join"
+          readonly
+          spellcheck="false"
+          autocomplete="off"
+        >
+      </div>
+
+      <noscript>
+        <p class="sto-noscript">
+          <a
+            href="https://www.chess.com/club/its-the-small-one/join"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open the club invitation</a>
+        </p>
+      </noscript>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="sto-footer">
+      <p class="sto-footer-motto">
+        ♟ PLAY &bull; CONNECT &bull; GROW ♟
+      </p>
+
+      <p class="sto-footer-subtitle">
+        IT'S THE SMALL ONE &bull; BIG IDEAS ON 64 SQUARES
+      </p>
+
+      <p class="sto-credit">
+        Sidebar created by
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        ><strong>Wildis_Knight</strong></a>
+      </p>
+
+      <noscript>
+        <p class="sto-noscript">
+          Enable JavaScript for the live member count and newest members.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "its-the-small-one";
+      const goal = 25;
+      const inviteLink =
+        "https://www.chess.com/club/its-the-small-one/join";
+
+      const countElement = document.getElementById("sto-count");
+      const goalElement = document.getElementById("sto-goal");
+      const barElement = document.getElementById("sto-bar");
+      const progressElement = document.getElementById("sto-progress");
+      const statusElement = document.getElementById("sto-member-status");
+      const newestElement = document.getElementById("sto-newest");
+
+      const copyButton = document.getElementById("sto-copy");
+      const copyStatus = document.getElementById("sto-copy-status");
+      const manualCopy = document.getElementById("sto-manual-copy");
+      const inviteField = document.getElementById("sto-invite-field");
+
+      goalElement.textContent = goal.toLocaleString();
+      inviteField.value = inviteLink;
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+
+          statusElement.textContent = "";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          statusElement.textContent =
+            "The live member count is temporarily unavailable.";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("It's the Small One member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const item = document.createElement("li");
+        item.className = "sto-list-message";
+        item.textContent = message;
+        newestElement.replaceChildren(item);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage("No new members found.");
+            return;
+          }
+
+          const symbols = ["♟", "♞", "♜"];
+          const fragment = document.createDocumentFragment();
+
+          newest.forEach((member, index) => {
+            const item = document.createElement("li");
+            item.className = "sto-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "sto-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = symbols[index % symbols.length];
+
+            const name = document.createElement("span");
+            name.className = "sto-member-name";
+            name.textContent = member.username;
+
+            item.append(symbol, name);
+            fragment.appendChild(item);
+          });
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage(
+            "The newest members are temporarily unavailable."
+          );
+
+          console.warn("It's the Small One newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function legacyCopy() {
+        const textarea = document.createElement("textarea");
+        const previousFocus = document.activeElement;
+
+        textarea.value = inviteLink;
+        textarea.readOnly = true;
+        textarea.style.cssText =
+          "position:fixed;top:0;left:0;width:1px;height:1px;" +
+          "padding:0;border:0;opacity:0;font-size:16px;";
+
+        document.body.appendChild(textarea);
+
+        let copied = false;
+
+        try {
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        } finally {
+          textarea.remove();
+
+          if (previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+
+        return copied;
+      }
+
+      let resetCopyTimer;
+
+      copyButton.addEventListener("click", async () => {
+        window.clearTimeout(resetCopyTimer);
+        copyButton.disabled = true;
+        copyStatus.textContent = "";
+
+        let copied = false;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(inviteLink);
+              copied = true;
+            } catch {
+              copied = legacyCopy();
+            }
+          } else {
+            copied = legacyCopy();
+          }
+
+          if (copied) {
+            copyButton.textContent = "✓ INVITE LINK COPIED";
+            copyStatus.textContent = "Club invitation copied.";
+            manualCopy.hidden = true;
+          } else {
+            copyButton.textContent = "SELECT INVITE BELOW";
+            copyStatus.textContent =
+              "Automatic copying was blocked. Copy the link below.";
+            manualCopy.hidden = false;
+            inviteField.focus({ preventScroll: true });
+            inviteField.select();
+            inviteField.setSelectionRange(0, inviteField.value.length);
+          }
+        } finally {
+          copyButton.disabled = false;
+
+          resetCopyTimer = window.setTimeout(() => {
+            copyButton.textContent = "📋 COPY INVITE LINK";
+          }, 1800);
+        }
+      });
+
+      inviteField.addEventListener("click", () => {
+        inviteField.select();
+        inviteField.setSelectionRange(0, inviteField.value.length);
+      });
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
