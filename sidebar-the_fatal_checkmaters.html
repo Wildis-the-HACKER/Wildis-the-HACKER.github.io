@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #eeeeee;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #eeeeee;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #eeeeee;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    strong {
+      color: #d8d3ce;
+      font-weight: 700;
+    }
+
+    a,
+    a:visited {
+      color: #d7ad68;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #e0bc7c;
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    #fatal-checkmaters-sidebar {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid #66513a;
+      border-radius: 8px;
+      background: #171513;
+      color: #eeeeee;
+    }
+
+    .fc-header {
+      padding: 18px 12px;
+      border-bottom: 2px solid #a47b3c;
+      background: #29231d;
+      color: #eeeeee;
+      text-align: center;
+    }
+
+    .fc-header h1 {
+      color: #d7ad68;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .fc-header-subtitle {
+      margin-top: 6px;
+      color: #b9b0a5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .fc-welcome {
+      padding: 16px 14px;
+      color: #dddddd;
+      text-align: center;
+    }
+
+    .fc-welcome h2 {
+      margin-bottom: 8px;
+      color: #d7ad68;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .fc-welcome-text {
+      color: #dddddd;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .fc-welcome-text strong {
+      color: #d7ad68;
+    }
+
+    .fc-welcome-motto {
+      margin-top: 13px;
+      color: #c8c0b7;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .fc-buttons {
+      padding: 0 12px 14px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .fc-button,
+    .fc-button:visited {
+      display: inline-block;
+      max-width: 100%;
+      margin: 3px;
+      padding: 10px 18px;
+      border-radius: 5px;
+      background: #8c6734;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+
+    .fc-button:hover {
+      background: #a47b3c;
+      color: #ffffff;
+    }
+
+    .fc-button-matches,
+    .fc-button-matches:visited {
+      background: #51422f;
+      color: #ffffff;
+    }
+
+    .fc-button-matches:hover {
+      background: #6b563c;
+      color: #ffffff;
+    }
+
+    .fc-creed {
+      margin: 0 12px 14px;
+      padding: 14px;
+      border: 1px solid #5e4b35;
+      border-radius: 5px;
+      background: #211d19;
+      color: #c5beb5;
+      text-align: center;
+    }
+
+    .fc-creed h2 {
+      color: #a89070;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .fc-creed-quote {
+      margin-top: 7px;
+      color: #e0bc7c;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .fc-creed-note {
+      margin-top: 6px;
+      color: #c5beb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .fc-section {
+      padding: 0 14px 15px;
+      color: #d8d3ce;
+    }
+
+    .fc-section h2 {
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #564631;
+      color: #d7ad68;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .fc-features {
+      color: #d8d3ce;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .fc-roster {
+      margin: 0 12px 15px;
+      overflow: hidden;
+      border: 1px solid #5e4b35;
+      border-radius: 5px;
+      background: #211d19;
+      color: #d8d3ce;
+    }
+
+    .fc-member-summary {
+      padding: 14px;
+      border-bottom: 1px solid #51432f;
+      color: #d8d3ce;
+      text-align: center;
+    }
+
+    .fc-member-summary h2 {
+      color: #a89070;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .fc-member-count {
+      margin-top: 4px;
+      color: #d7ad68;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .fc-member-label {
+      color: #a99f94;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .fc-member-status {
+      margin-top: 7px;
+      color: #b9b0a5;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .fc-member-status:empty {
+      display: none;
+    }
+
+    .fc-arrivals {
+      padding: 13px 14px;
+      color: #d8d3ce;
+    }
+
+    .fc-arrivals h2 {
+      margin-bottom: 9px;
+      color: #d7ad68;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .fc-newest {
+      color: #d8d3ce;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .fc-member {
+      color: #d7ad68;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .fc-list-message {
+      color: #b9b0a5;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    .fc-fork-warning {
+      margin: 0 12px 15px;
+      padding: 13px;
+      border-left: 4px solid #b2874b;
+      background: #30271e;
+      color: #d2cbc2;
+    }
+
+    .fc-fork-warning h2 {
+      color: #e0bc7c;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .fc-fork-warning p {
+      margin-top: 6px;
+      color: #d2cbc2;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .fc-ranks {
+      color: #d8d3ce;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .fc-footer {
+      padding: 13px;
+      border-top: 1px solid #564631;
+      background: #211d19;
+      color: #a99c8b;
+      text-align: center;
+    }
+
+    .fc-footer-name {
+      color: #d7ad68;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .fc-footer-motto,
+    .fc-credit {
+      margin-top: 5px;
+      color: #81786d;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .fc-credit a,
+    .fc-credit a:visited {
+      color: #81786d;
+      font-size: 11px;
+      text-decoration: none;
+    }
+
+    .fc-credit a:hover {
+      color: #d7ad68;
+      text-decoration: underline;
+    }
+
+    .fc-noscript {
+      margin-top: 9px;
+      color: #b9b0a5;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 340px) {
+      .fc-header h1 {
+        font-size: 26px;
+      }
+
+      .fc-button {
+        padding: 10px 13px;
+      }
+
+      .fc-member-count {
+        font-size: 30px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fc-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main
+    id="fatal-checkmaters-sidebar"
+    aria-label="The Fatal Checkmaters club sidebar"
+  >
+
+    <!-- HEADER -->
+    <header class="fc-header">
+      <h1>THE FATAL CHECKMATERS</h1>
+      <p class="fc-header-subtitle">THE HOME OF THE FATAL FORK</p>
+    </header>
+
+    <!-- WELCOME -->
+    <section class="fc-welcome">
+      <h2>Welcome, Forkers!</h2>
+
+      <p class="fc-welcome-text">
+        Welcome to <strong>The Fatal Checkmaters</strong> — the club
+        for players who believe one well-placed fork can change everything.
+      </p>
+
+      <p class="fc-welcome-motto">
+        Find the fork. Set the trap. Deliver the checkmate.
+      </p>
+    </section>
+
+    <!-- CLUB BUTTONS -->
+    <nav class="fc-buttons" aria-label="Club navigation">
+      <a
+        class="fc-button"
+        href="https://www.chess.com/club/fatal-forkers-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >♟ Club Home</a>
+
+      <a
+        class="fc-button fc-button-matches"
+        href="https://www.chess.com/club/fatal-forkers-1/matches"
+        target="_blank"
+        rel="noopener noreferrer"
+      >⚔️ Matches</a>
+    </nav>
+
+    <!-- MOTTO -->
+    <section class="fc-creed">
+      <h2>The Checkmater's Creed</h2>
+      <p class="fc-creed-quote">“Every piece is a weapon.”</p>
+      <p class="fc-creed-note">Especially the knight.</p>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section class="fc-section">
+      <h2>What We Do</h2>
+
+      <p class="fc-features">
+        ♞ <strong>Forks</strong> — Find them. Create them. Survive them.<br>
+        ♜ <strong>Club Matches</strong> — Put your tactics to the test.<br>
+        ♟ <strong>Chess Discussion</strong> — Openings, tactics, blunders
+        &amp; brilliance.<br>
+        👑 <strong>Checkmates</strong> — Because that's the whole point.
+      </p>
+    </section>
+
+    <!-- LIVE CLUB STATS -->
+    <div class="fc-roster">
+      <section class="fc-member-summary">
+        <h2>The Fatal Checkmater Roster</h2>
+
+        <p class="fc-member-count">
+          <span id="fc-count" aria-live="polite">Loading…</span>
+        </p>
+
+        <p class="fc-member-label">CURRENT MEMBERS</p>
+        <p
+          id="fc-member-status"
+          class="fc-member-status"
+          role="status"
+        ></p>
+      </section>
+
+      <!-- NEWEST MEMBERS: PLAIN TEXT -->
+      <section class="fc-arrivals">
+        <h2>Newest Checkmaters</h2>
+
+        <div
+          id="fc-newest"
+          class="fc-newest"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <p class="fc-list-message">Loading newest Checkmaters…</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- FATAL FORK -->
+    <section class="fc-fork-warning">
+      <h2>Beware the Fatal Fork</h2>
+      <p>Two pieces attacked. One move. No escape.</p>
+    </section>
+
+    <!-- RANKS -->
+    <section class="fc-section">
+      <h2>The Ranks</h2>
+
+      <p class="fc-ranks">
+        ♟ <strong>Pawn</strong> — New Arrival<br>
+        ♞ <strong>Knight</strong> — Fork Apprentice<br>
+        ♜ <strong>Rook</strong> — Tactical Veteran<br>
+        ♛ <strong>Queen</strong> — Master Forker<br>
+        ♚ <strong>Checkmater</strong> — Elite
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="fc-footer">
+      <p class="fc-footer-name">THE FATAL CHECKMATERS</p>
+      <p class="fc-footer-motto">Fork hard. Check harder. Mate hardest.</p>
+
+      <p class="fc-credit">
+        Sidebar Designed by
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wildis_Knight</a>
+      </p>
+
+      <noscript>
+        <p class="fc-noscript">
+          Enable JavaScript for the live member count and newest Checkmaters.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "fatal-forkers-1";
+
+      const countElement = document.getElementById("fc-count");
+      const statusElement = document.getElementById("fc-member-status");
+      const newestElement = document.getElementById("fc-newest");
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          countElement.textContent = count.toLocaleString();
+          statusElement.textContent = "";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          statusElement.textContent =
+            "The live member count is temporarily unavailable.";
+
+          console.warn("The Fatal Checkmaters member count:", error);
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "fc-list-message";
+        paragraph.textContent = message;
+        newestElement.replaceChildren(paragraph);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 5);
+
+          if (!newest.length) {
+            showMemberMessage("No members found.");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const row = document.createElement("div");
+            row.className = "fc-member";
+            row.textContent = member.username;
+            fragment.appendChild(row);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage(
+            "The newest Checkmaters are temporarily unavailable."
+          );
+
+          console.warn("The Fatal Checkmaters newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
