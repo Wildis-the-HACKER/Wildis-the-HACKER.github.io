@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #f1ead7;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #f1ead7;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #f1ead7;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    strong {
+      color: #f1ead7;
+      font-weight: 700;
+    }
+
+    a,
+    a:visited {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #f4d77b;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    #warrior-cats-sidebar {
+      width: 100%;
+      margin: 0;
+      padding: 16px;
+      border-radius: 14px;
+      background: #10231a;
+      color: #f1ead7;
+    }
+
+    .wc-header {
+      padding: 18px 10px;
+      border: 2px solid #c9a84e;
+      border-radius: 12px;
+      background: #183326;
+      color: #f1ead7;
+      text-align: center;
+    }
+
+    .wc-header h1 {
+      color: #f4d77b;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .wc-header-subtitle {
+      margin: 2px 0 8px;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .wc-header-quote,
+    .wc-founded {
+      color: #d9e5d5;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .wc-section {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #183326;
+      color: #f1ead7;
+    }
+
+    .wc-section h2 {
+      margin-bottom: 12px;
+      color: #f4d77b;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .wc-leadership {
+      border-left: 4px solid #c9a84e;
+      border-radius: 8px;
+    }
+
+    .wc-leadership h2 {
+      margin-bottom: 8px;
+    }
+
+    .wc-leadership p {
+      margin: 4px 0;
+      color: #f1ead7;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .wc-clan {
+      margin-top: 12px;
+      color: #f1ead7;
+    }
+
+    .wc-clan:first-of-type {
+      margin-top: 0;
+    }
+
+    .wc-clan-heading,
+    .wc-roster-row {
+      margin: 6px 0;
+      padding: 10px;
+      border-left: 4px solid #c94a4a;
+      border-radius: 6px;
+      background: #203d2d;
+      color: #f1ead7;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .wc-clan h3 {
+      color: #ff7777;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .wc-clan-description {
+      color: #f1ead7;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .wc-shadow .wc-clan-heading,
+    .wc-shadow .wc-roster-row {
+      border-left-color: #596b62;
+    }
+
+    .wc-shadow h3 {
+      color: #b7c4bd;
+    }
+
+    .wc-wind .wc-clan-heading,
+    .wc-wind .wc-roster-row {
+      border-left-color: #9bd6ed;
+    }
+
+    .wc-wind h3 {
+      color: #bceaff;
+    }
+
+    .wc-river .wc-clan-heading,
+    .wc-river .wc-roster-row {
+      border-left-color: #55b9d4;
+    }
+
+    .wc-river h3 {
+      color: #8ee6ff;
+    }
+
+    .wc-sky .wc-clan-heading,
+    .wc-sky .wc-roster-row {
+      border-left-color: #d7b35a;
+    }
+
+    .wc-sky h3 {
+      color: #f4d77b;
+    }
+
+    .wc-starclan {
+      margin-top: 12px;
+      padding: 10px;
+      border-left: 4px solid #d7b35a;
+      border-radius: 6px;
+      background: #203d2d;
+      color: #f1ead7;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .wc-starclan h3 {
+      color: #f4d77b;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .wc-code h2 {
+      margin-bottom: 10px;
+    }
+
+    .wc-rule {
+      margin: 5px 0;
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: #203d2d;
+      color: #f1ead7;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .wc-activity,
+    .wc-activity:visited {
+      display: block;
+      margin: 7px 0;
+      padding: 11px;
+      border: 1px solid #3e6b50;
+      border-radius: 7px;
+      background: #234936;
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+
+    .wc-activity:hover {
+      background: #2d5942;
+      color: #ffffff;
+    }
+
+    .wc-activity strong {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .wc-activity-description {
+      display: block;
+      color: #c8d8cc;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .wc-rank {
+      margin: 7px 0;
+      color: #f1ead7;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .wc-rank-kit {
+      color: #d8c9a0;
+    }
+
+    .wc-rank-apprentice {
+      color: #b9d7b8;
+    }
+
+    .wc-rank-warrior {
+      color: #f4d77b;
+    }
+
+    .wc-rank-elder {
+      color: #d0d0d0;
+    }
+
+    .wc-footer {
+      margin-top: 12px;
+      padding: 14px;
+      border: 2px solid #c9a84e;
+      border-radius: 10px;
+      background: #183326;
+      color: #f1ead7;
+      text-align: center;
+    }
+
+    .wc-footer-quote {
+      margin-bottom: 6px;
+      color: #f4d77b;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .wc-credit {
+      color: #aebdb2;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .wc-credit a,
+    .wc-credit a:visited {
+      color: #aebdb2;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .wc-credit a:hover {
+      color: #f4d77b;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 340px) {
+      #warrior-cats-sidebar {
+        padding: 12px;
+      }
+
+      .wc-header {
+        padding: 16px 8px;
+      }
+
+      .wc-header h1 {
+        font-size: 23px;
+      }
+
+      .wc-section {
+        padding: 10px;
+      }
+
+      .wc-clan-heading,
+      .wc-roster-row {
+        padding: 9px;
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wc-activity {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="warrior-cats-sidebar" aria-label="The Warrior Cats chess club sidebar">
+
+    <!-- HEADER -->
+    <header class="wc-header">
+      <h1>THE WARRIOR CATS</h1>
+      <p class="wc-header-subtitle">CHESS CLUB</p>
+      <p class="wc-header-quote">
+        “Hunt well, fight hard, and protect the Code.”
+      </p>
+      <p class="wc-founded">Founded June 17, 2026</p>
+    </header>
+
+    <!-- CLUB LEADERSHIP -->
+    <section class="wc-section wc-leadership">
+      <h2>Club Leadership</h2>
+      <p><strong>Leader:</strong> Avw87/H2C_Rules</p>
+      <p><strong>Deputy: insectyyy</strong></p>
+      <p><strong>Most Active Members</strong></p>
+      <p>1.</p>
+      <p>2.</p>
+    </section>
+
+    <!-- THE SIX CLANS -->
+    <section class="wc-section">
+      <h2>The Six Clans</h2>
+
+      <!-- THUNDERCLAN -->
+      <section class="wc-clan wc-thunder" aria-labelledby="wc-thunder-heading">
+        <div class="wc-clan-heading">
+          <h3 id="wc-thunder-heading">ThunderClan</h3>
+          <p class="wc-clan-description">Brave, fierce, and loyal.</p>
+        </div>
+
+        <p class="wc-roster-row">Leader:</p>
+        <p class="wc-roster-row">
+          Deputy: Smokehaze(Turtle_the_Seawing)
+        </p>
+        <p class="wc-roster-row">
+          Warriors: Thunderheart(michasia_huragan)
+        </p>
+        <p class="wc-roster-row">Moonlight(IL0v3er0blox)</p>
+        <p class="wc-roster-row">Lionpelt(Emychock8)</p>
+        <p class="wc-roster-row">Apprentices:</p>
+        <p class="wc-roster-row">Treepaw(ThunderChessPadres)</p>
+        <p class="wc-roster-row">Kits:</p>
+        <p class="wc-roster-row">Elders:</p>
+      </section>
+
+      <!-- SHADOWCLAN -->
+      <section class="wc-clan wc-shadow" aria-labelledby="wc-shadow-heading">
+        <div class="wc-clan-heading">
+          <h3 id="wc-shadow-heading">ShadowClan</h3>
+          <p class="wc-clan-description">Proud, clever, and fearless.</p>
+        </div>
+      </section>
+
+      <!-- WINDCLAN -->
+      <section class="wc-clan wc-wind" aria-labelledby="wc-wind-heading">
+        <div class="wc-clan-heading">
+          <h3 id="wc-wind-heading">WindClan</h3>
+          <p class="wc-clan-description">Swift, loyal, and fast runners.</p>
+        </div>
+
+        <p class="wc-roster-row">Leader: Ironstar(H2C_rules)</p>
+        <p class="wc-roster-row">Deputy:</p>
+        <p class="wc-roster-row">
+          Warriors: Deercreek(your_local_goober_e)
+        </p>
+        <p class="wc-roster-row">Dewshade(Avw87)</p>
+        <p class="wc-roster-row">Charredface(Avw87)</p>
+        <p class="wc-roster-row">Adderclaw(insectyyy)</p>
+        <p class="wc-roster-row">Swiftflight(Xxreddingdxx)</p>
+        <p class="wc-roster-row">Emeraldfur(Mario-The-Amazing1234)</p>
+        <p class="wc-roster-row">Apprentices:</p>
+        <p class="wc-roster-row">Kits:</p>
+      </section>
+
+      <!-- RIVERCLAN -->
+      <section class="wc-clan wc-river" aria-labelledby="wc-river-heading">
+        <div class="wc-clan-heading">
+          <h3 id="wc-river-heading">RiverClan</h3>
+          <p class="wc-clan-description">
+            Strong, graceful, and clever fishers.
+          </p>
+        </div>
+
+        <p class="wc-roster-row">Leader:</p>
+        <p class="wc-roster-row">Deputy:</p>
+        <p class="wc-roster-row">Warriors: Rainheart (Emychok8)</p>
+        <p class="wc-roster-row">Lakeshine(Turtle_the_Seawing)</p>
+      </section>
+
+      <!-- SKYCLAN -->
+      <section class="wc-clan wc-sky" aria-labelledby="wc-sky-heading">
+        <div class="wc-clan-heading">
+          <h3 id="wc-sky-heading">SkyClan</h3>
+          <p class="wc-clan-description">Noble, sky-bound, and resilient.</p>
+        </div>
+      </section>
+
+      <!-- STARCLAN -->
+      <section class="wc-starclan" aria-labelledby="wc-starclan-heading">
+        <h3 id="wc-starclan-heading">Starclan:</h3>
+      </section>
+    </section>
+
+    <!-- WARRIOR CODE -->
+    <section class="wc-section wc-code">
+      <h2>The Warrior Code</h2>
+
+      <p class="wc-rule">
+        <strong>1.</strong>
+        Respect all clanmates and opponents with Warrior Code honor.
+      </p>
+
+      <p class="wc-rule">
+        <strong>2.</strong>
+        No spamming or advertising in chat or notes unless there is
+        a forum where you can.
+      </p>
+
+      <p class="wc-rule">
+        <strong>3.</strong>
+        Active participation in club matches and Vote Chess is encouraged.
+      </p>
+
+      <p class="wc-rule">
+        <strong>4.</strong>
+        Have fun and share your love for both chess and the books!
+      </p>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <nav class="wc-section" aria-label="Quick links and activities">
+      <h2>Quick Links &amp; Activities</h2>
+
+      <a
+        class="wc-activity"
+        href="https://www.chess.com/clubs/currentevents/the-warrior-cats-3?type=daily"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>Daily Matches</strong>
+        <span class="wc-activity-description">
+          Fight against rival teams!
+        </span>
+      </a>
+
+      <a
+        class="wc-activity"
+        href="https://www.chess.com/clubs/currentevents/the-warrior-cats-3?type=vote"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>Vote Chess</strong>
+        <span class="wc-activity-description">
+          Cast your vote for our next big move.
+        </span>
+      </a>
+
+      <a
+        class="wc-activity"
+        href="https://www.chess.com/clubs/currentevents/the-warrior-cats-3"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>Clan Tournaments</strong>
+        <span class="wc-activity-description">
+          Compete for internal glory.
+        </span>
+      </a>
+
+      <a
+        class="wc-activity"
+        href="https://www.chess.com/club/notes/the-warrior-cats-3"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <strong>The Gathering</strong>
+        <span class="wc-activity-description">
+          Talk cats and chess with your fellow clanmates.
+        </span>
+      </a>
+    </nav>
+
+    <!-- RANK SYSTEM -->
+    <section class="wc-section">
+      <h2>Rank System</h2>
+
+      <p class="wc-rank">
+        <strong class="wc-rank-kit">Kit</strong><br>
+        New members joining the club.
+      </p>
+
+      <p class="wc-rank">
+        <strong class="wc-rank-apprentice">Apprentice</strong><br>
+        Played at least 5 club games.
+      </p>
+
+      <p class="wc-rank">
+        <strong class="wc-rank-warrior">Warrior</strong><br>
+        Active participant in matches.
+      </p>
+
+      <p class="wc-rank">
+        <strong class="wc-rank-elder">Elder</strong><br>
+        Long-standing, highly active members.
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="wc-footer">
+      <p class="wc-footer-quote">“May StarClan guide your moves!”</p>
+      <p class="wc-credit">
+        Sidebar designed by
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wildis_Knight</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
