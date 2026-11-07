@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #ffffff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.7;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1, h2, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a, a:visited {
+      color: #00eaff;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #ffffff;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #nyan-reboot {
+      width: 100%;
+      margin: 0;
+      padding: 12px;
+      overflow: hidden;
+      border: 2px solid #ff4fc8;
+      border-radius: 13px;
+      background: #10101c;
+      color: #ffffff;
+    }
+
+    #nyan-reboot.ny-rainbow {
+      border-color: #ffffff;
+      background: linear-gradient(135deg, #ff4fc8, #754cff, #00dfff, #10101c);
+    }
+
+    .ny-header {
+      padding: 16px 8px;
+      border: 2px solid #754cff;
+      border-radius: 10px;
+      background: #1b1230;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .ny-division {
+      color: #00eaff;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 4px;
+    }
+
+    .ny-header h1 {
+      margin-top: 9px;
+      color: #ff69dc;
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: 2px;
+    }
+
+    .ny-serious {
+      margin-top: 7px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .ny-tagline {
+      margin-top: 7px;
+      color: #00eaff;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .ny-alert {
+      margin-top: 12px;
+      padding: 8px;
+      border-radius: 5px;
+      background: #ff4fc8;
+      color: #170c27;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .ny-panel {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #754cff;
+      border-radius: 9px;
+      background: #211332;
+      color: #f2e7ff;
+    }
+
+    .ny-panel h2 {
+      color: #ff69dc;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .ny-news h2 {
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .ny-news-text {
+      margin-top: 8px;
+      color: #f2e7ff;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .ny-meme {
+      margin-top: 10px;
+      padding: 11px;
+      border: 1px dashed #00eaff;
+      border-radius: 6px;
+      background: #120c20;
+      color: #00eaff;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .ny-button {
+      display: block;
+      width: 100%;
+      margin: 10px 0 0;
+      padding: 10px;
+      border: 0;
+      border-radius: 6px;
+      background: #754cff;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: filter 150ms ease;
+    }
+
+    .ny-button:hover {
+      filter: brightness(1.15);
+    }
+
+    .ny-button:disabled {
+      opacity: 0.8;
+      cursor: wait;
+    }
+
+    .ny-button-pink {
+      background: #ff4fc8;
+      color: #170c27;
+    }
+
+    .ny-button-cyan {
+      background: #00dfff;
+      color: #10101c;
+    }
+
+    .ny-mouse-button {
+      margin-top: 12px;
+      padding: 8px;
+      border-radius: 5px;
+      font-size: 11px;
+    }
+
+    .ny-army {
+      border-color: #ff4fc8;
+      background: #151526;
+    }
+
+    .ny-army h2,
+    .ny-chaos-panel h2,
+    .ny-portals h2 {
+      color: #00eaff;
+    }
+
+    .ny-population-label {
+      margin-top: 8px;
+      color: #b9a3d9;
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .ny-member-total {
+      margin-top: 4px;
+      color: #ffffff;
+      font-size: 27px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .ny-member-goal {
+      color: #b9a3d9;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .ny-progress-track {
+      width: 100%;
+      height: 13px;
+      margin-top: 8px;
+      overflow: hidden;
+      border: 1px solid #754cff;
+      border-radius: 6px;
+      background: #322347;
+    }
+
+    .ny-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #ff4fc8;
+      transition: width 800ms ease;
+    }
+
+    .ny-progress-caption {
+      margin-top: 6px;
+      color: #00eaff;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .ny-arrivals h2 {
+      margin-bottom: 6px;
+    }
+
+    .ny-arrivals-description {
+      margin-bottom: 8px;
+      color: #c4addd;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .ny-newest {
+      color: #f7eaff;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .ny-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 7px 4px;
+      border-bottom: 1px dashed #693d85;
+      color: #f7eaff;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .ny-member:last-child {
+      border-bottom: 0;
+    }
+
+    .ny-member-symbol {
+      flex-shrink: 0;
+      color: #f7eaff;
+    }
+
+    .ny-member-name {
+      min-width: 0;
+      color: #f7eaff;
+      overflow-wrap: anywhere;
+    }
+
+    .ny-list-message {
+      padding: 7px 4px;
+      color: #c4addd;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .ny-chaos-panel,
+    .ny-portals {
+      border-color: #00eaff;
+      background: #151526;
+    }
+
+    .ny-chaos-text {
+      margin-top: 8px;
+      color: #ff69dc;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .ny-chaos-track {
+      width: 100%;
+      height: 12px;
+      margin-top: 8px;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #322347;
+    }
+
+    .ny-chaos-fill {
+      width: 87%;
+      height: 100%;
+      background: linear-gradient(90deg, #754cff, #ff4fc8, #00eaff);
+      transition: width 250ms ease;
+    }
+
+    .ny-rainbow-button {
+      margin-top: 8px;
+    }
+
+    .ny-laws h2 {
+      margin-bottom: 8px;
+    }
+
+    .ny-laws-text {
+      color: #f2e7ff;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .ny-arcade {
+      border: 2px solid #00eaff;
+    }
+
+    .ny-arcade h2 {
+      color: #00eaff;
+      font-size: 17px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .ny-arcade-description {
+      margin: 7px 0 12px;
+      color: #f2e7ff;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .ny-game-wrapper {
+      width: 100%;
+      overflow: hidden;
+      border: 2px solid #754cff;
+      border-radius: 7px;
+      background: #10101c;
+    }
+
+    .ny-game {
+      display: block;
+      width: 100%;
+      height: 400px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: #10101c;
+    }
+
+    .ny-arcade-caption {
+      margin-top: 9px;
+      color: #ff69dc;
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .ny-portals h2 {
+      margin-bottom: 10px;
+    }
+
+    .ny-link,
+    .ny-link:visited {
+      display: block;
+      margin-bottom: 7px;
+      padding: 10px;
+      border-left: 4px solid #ff4fc8;
+      border-radius: 4px;
+      background: #29203d;
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1.7;
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+
+    .ny-link:nth-of-type(2) {
+      border-left-color: #00eaff;
+    }
+
+    .ny-link:nth-of-type(3) {
+      border-left-color: #754cff;
+    }
+
+    .ny-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .ny-link:hover {
+      background: #3b2c55;
+      color: #ffffff;
+    }
+
+    .ny-invite {
+      border-color: #ff4fc8;
+      text-align: center;
+    }
+
+    .ny-invite h2 {
+      margin-bottom: 7px;
+    }
+
+    .ny-invite-description {
+      margin-bottom: 10px;
+      color: #f2e7ff;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .ny-copy-button {
+      margin-top: 0;
+      padding: 11px;
+    }
+
+    .ny-copy-status {
+      margin-top: 8px;
+      color: #00eaff;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .ny-copy-status:empty {
+      display: none;
+    }
+
+    .ny-manual-copy {
+      margin-top: 10px;
+      color: #f2e7ff;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .ny-manual-copy label {
+      display: block;
+      margin-bottom: 5px;
+      color: #f2e7ff;
+    }
+
+    .ny-invite-field {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 9px;
+      border: 1px solid #ff4fc8;
+      border-radius: 5px;
+      background: #120c20;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .ny-footer {
+      padding: 16px 4px 5px;
+      color: #b9a3d9;
+      text-align: center;
+    }
+
+    .ny-footer-motto {
+      color: #00eaff;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .ny-footer-note {
+      margin-top: 8px;
+      color: #b9a3d9;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .ny-credit {
+      margin-top: 15px;
+      color: #8794b5;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .ny-credit a,
+    .ny-credit a:visited {
+      color: #00eaff;
+      font-size: 10px;
+      text-decoration: none;
+    }
+
+    .ny-credit a:hover {
+      color: #ff69dc;
+      text-decoration: underline;
+    }
+
+    .ny-noscript {
+      margin-top: 10px;
+      color: #c4addd;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .ny-mouse-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .ny-mouse-segment,
+    .ny-mouse-particle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 12px currentColor, 0 0 24px currentColor;
+    }
+
+    .ny-mouse-head::before,
+    .ny-mouse-head::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 3px;
+      border-radius: 2px;
+      background: #ff69dc;
+      box-shadow: 0 0 10px #00eaff;
+    }
+
+    .ny-mouse-head::before {
+      left: -16px;
+      transform: rotate(-40deg);
+    }
+
+    .ny-mouse-head::after {
+      right: -16px;
+      transform: rotate(40deg);
+    }
+
+    .ny-mouse-particle {
+      width: 6px;
+      height: 6px;
+      transition: transform 650ms ease-out, opacity 650ms ease-out;
+    }
+
+    body.ny-cursor-hidden,
+    body.ny-cursor-hidden * {
+      cursor: none !important;
+    }
+
+    @media (max-width: 340px) {
+      #nyan-reboot {
+        padding: 9px;
+      }
+
+      .ny-header h1 {
+        font-size: 29px;
+        letter-spacing: 1px;
+      }
+
+      .ny-division {
+        letter-spacing: 2px;
+      }
+
+      .ny-panel {
+        padding: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ny-button,
+      .ny-progress-fill,
+      .ny-chaos-fill,
+      .ny-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="nyan-reboot" aria-label="Nyan Chess club sidebar">
+
+    <!-- HEADER -->
+    <header class="ny-header">
+      <p class="ny-division">INTERNET CAT DIVISION</p>
+      <h1>NYAN CHESS</h1>
+      <p class="ny-serious">VERY SERIOUS CHESS. DEFINITELY.</p>
+      <p class="ny-tagline">MEOW &bull; BLUNDER &bull; REPEAT</p>
+
+      <div class="ny-alert">SERIOUSNESS LEVEL: CRITICALLY LOW</div>
+
+      <button
+        id="ny-mousebtn"
+        class="ny-button ny-button-pink ny-mouse-button"
+        type="button"
+        aria-pressed="false"
+      >TOGGLE NYAN MOUSE</button>
+    </header>
+
+    <!-- CAT NEWS -->
+    <section class="ny-panel ny-news">
+      <h2>BREAKING CAT NEWS</h2>
+      <p class="ny-news-text">
+        Welcome to Nyan Chess, where cats run the show, chess pieces
+        fear the floor, and the only thing more powerful than a queen
+        is a cat sitting on your keyboard.
+      </p>
+
+      <p id="ny-meme" class="ny-meme" aria-live="polite">
+        100% skill. 0% responsible pet ownership.
+      </p>
+
+      <button id="ny-memebtn" class="ny-button" type="button">
+        GENERATE CAT NONSENSE
+      </button>
+    </section>
+
+    <!-- MEMBERSHIP -->
+    <section class="ny-panel ny-army">
+      <h2>THE NYAN ARMY</h2>
+      <p class="ny-population-label">CURRENT CAT POPULATION</p>
+
+      <div class="ny-member-total">
+        <span id="ny-count" aria-live="polite">Loading…</span>
+        <span class="ny-member-goal"> / <span id="ny-goal">50</span></span>
+      </div>
+
+      <div
+        id="ny-member-progress"
+        class="ny-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="ny-bar" class="ny-progress-fill"></div>
+      </div>
+
+      <p id="ny-progress" class="ny-progress-caption" role="status">
+        COUNTING THE CATS…
+      </p>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT -->
+    <section class="ny-panel ny-arrivals">
+      <h2>NEWLY SPAWNED NYANS</h2>
+      <p class="ny-arrivals-description">Fresh cats have entered the server.</p>
+
+      <div
+        id="ny-newest"
+        class="ny-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <p class="ny-list-message">Locating newly spawned Nyans…</p>
+      </div>
+    </section>
+
+    <!-- CHAOS -->
+    <section class="ny-panel ny-chaos-panel">
+      <h2>THE CHAOS METER</h2>
+      <p id="ny-chaos" class="ny-chaos-text" aria-live="polite">87% CHAOS</p>
+
+      <div class="ny-chaos-track" aria-hidden="true">
+        <div id="ny-chaosbar" class="ny-chaos-fill"></div>
+      </div>
+
+      <button
+        id="ny-chaosbtn"
+        class="ny-button ny-button-cyan"
+        type="button"
+      >💥 INCREASE THE CHAOS</button>
+
+      <button
+        id="ny-rainbowbtn"
+        class="ny-button ny-button-pink ny-rainbow-button"
+        type="button"
+        aria-pressed="false"
+      >🌈 ACTIVATE RAINBOW</button>
+    </section>
+
+    <!-- CAT LAWS -->
+    <section class="ny-panel ny-laws">
+      <h2>THE SACRED CAT LAWS</h2>
+      <p class="ny-laws-text">
+        Rule 1: Thou shalt respect the mighty blunder.<br>
+        Rule 2: The cat is always right. Even when it isn't.<br>
+        Rule 3: No boring allowed. This is a cat-based operation.<br>
+        Rule 4: When in doubt, play another game.
+      </p>
+    </section>
+
+    <!-- ARCADE -->
+    <section class="ny-panel ny-arcade">
+      <h2>FLAPPY CAT ARCADE</h2>
+      <p class="ny-arcade-description">
+        Dodge the pipes. Defy gravity. Protect the cat.
+      </p>
+
+      <div class="ny-game-wrapper">
+        <iframe
+          class="ny-game"
+          src="https://Wildis-the-HACKER.github.io/otherclub-flappybird.html"
+          title="Flappy Cat arcade game"
+          width="100%"
+          height="400"
+          scrolling="no"
+        ></iframe>
+      </div>
+
+      <p class="ny-arcade-caption">
+        HIGH SCORE: YOUR REFLEXES VS. GRAVITY
+      </p>
+    </section>
+
+    <!-- PORTALS -->
+    <nav class="ny-panel ny-portals" aria-label="Chess learning portals">
+      <h2>PORTALS TO OTHER DIMENSIONS</h2>
+
+      <a class="ny-link" href="https://www.chess.com/puzzles"
+         target="_blank" rel="noopener noreferrer">
+        Brain Cell Training — Puzzles ↗
+      </a>
+
+      <a class="ny-link" href="https://www.chess.com/lessons"
+         target="_blank" rel="noopener noreferrer">
+        Forbidden Knowledge — Lessons ↗
+      </a>
+
+      <a class="ny-link" href="https://www.chess.com/analysis"
+         target="_blank" rel="noopener noreferrer">
+        Investigate Your Blunders ↗
+      </a>
+
+      <a class="ny-link" href="https://www.chess.com/openings"
+         target="_blank" rel="noopener noreferrer">
+        Opening Spellbook ↗
+      </a>
+    </nav>
+
+    <!-- INVITE -->
+    <section class="ny-panel ny-invite">
+      <h2>SUMMON MORE CATS</h2>
+      <p class="ny-invite-description">
+        The Nyan Army must grow. Recruit a friend. Spread the meow.
+      </p>
+
+      <button
+        id="ny-copy"
+        class="ny-button ny-button-pink ny-copy-button"
+        type="button"
+      >COPY THE PORTAL LINK</button>
+
+      <p id="ny-copy-status" class="ny-copy-status" role="status"></p>
+
+      <div id="ny-manual-copy" class="ny-manual-copy" hidden>
+        <label for="ny-invite-field">
+          Automatic copying was unavailable. Select and copy this link:
+        </label>
+        <input
+          id="ny-invite-field"
+          class="ny-invite-field"
+          type="text"
+          value="https://www.chess.com/club/nyan-chess/join?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+          readonly
+          spellcheck="false"
+          autocomplete="off"
+        >
+      </div>
+
+      <noscript>
+        <p class="ny-noscript">
+          <a
+            href="https://www.chess.com/club/nyan-chess/join?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open the portal invitation</a>
+        </p>
+      </noscript>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="ny-footer">
+      <p class="ny-footer-motto">NYAN HARD. NYAN FAST. NYAN MATE.</p>
+      <p class="ny-footer-note">
+        THIS SIDEBAR HAS TOO MANY CAT-ALOGUED FEATURES.
+      </p>
+      <p class="ny-credit">
+        Sidebar Designed by
+        <a href="https://www.chess.com/member/wildis_knight"
+           target="_blank" rel="noopener noreferrer">Wildis_Knight</a>
+      </p>
+
+      <noscript>
+        <p class="ny-noscript">
+          Enable JavaScript for live membership, cat nonsense,
+          chaos controls, rainbow mode, and the Nyan mouse.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "nyan-chess";
+      const goal = 50;
+      const inviteLink =
+        "https://www.chess.com/club/nyan-chess/join" +
+        "?utm_campaign=club_invite_link&utm_source=chesscom&utm_medium=copy";
+
+      const root = document.getElementById("nyan-reboot");
+      const meme = document.getElementById("ny-meme");
+      const chaosText = document.getElementById("ny-chaos");
+      const chaosBar = document.getElementById("ny-chaosbar");
+      const chaosButton = document.getElementById("ny-chaosbtn");
+      const rainbowButton = document.getElementById("ny-rainbowbtn");
+
+      const memes = [
+        "The cat has calculated 47 moves. The cat forgot why.",
+        "TACTICAL PAW-SITION DETECTED.",
+        "Your opponent blundered. The cat knocked over the board.",
+        "Chess engine says brilliant. Cat says knock it off the table.",
+        "100% skill. 0% responsible pet ownership.",
+        "The Nyan Council has reviewed your move. Meow.",
+        "ERROR 404: SERIOUSNESS NOT FOUND.",
+        "If it moves, we can probably put a knight on it."
+      ];
+
+      let chaos = 87;
+      let rainbow = false;
+
+      function setChaos(value) {
+        chaos = Math.max(0, Math.min(100, value));
+        chaosText.textContent = `${chaos}% CHAOS`;
+        chaosBar.style.width = `${chaos}%`;
+        chaosButton.textContent = chaos >= 100
+          ? "MAXIMUM NYAN"
+          : "💥 INCREASE THE CHAOS";
+      }
+
+      document.getElementById("ny-memebtn").addEventListener("click", () => {
+        const choices = memes.filter(message => message !== meme.textContent);
+        meme.textContent = choices[Math.floor(Math.random() * choices.length)];
+        setChaos(chaos + Math.floor(Math.random() * 9) + 3);
+      });
+
+      chaosButton.addEventListener("click", () => {
+        setChaos(chaos + 13);
+        meme.textContent = chaos >= 100
+          ? "MAXIMUM NYAN REACHED. THE CAT HAS ASCENDED."
+          : "CHAOS INCREASED. THE CHESSBOARD IS TREMBLING.";
+      });
+
+      rainbowButton.addEventListener("click", () => {
+        rainbow = !rainbow;
+        root.classList.toggle("ny-rainbow", rainbow);
+        rainbowButton.setAttribute("aria-pressed", String(rainbow));
+        rainbowButton.textContent = rainbow
+          ? "TURN OFF RAINBOW"
+          : "🌈 ACTIVATE RAINBOW";
+        meme.textContent = rainbow
+          ? "RAINBOW MODE ACTIVATED. THE CAT HAS BECOME TOO POWERFUL."
+          : "Rainbow mode off. The cat is plotting a sequel.";
+      });
+
+      setChaos(chaos);
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, { signal: controller.signal });
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        const countElement = document.getElementById("ny-count");
+        const bar = document.getElementById("ny-bar");
+        const caption = document.getElementById("ny-progress");
+        const progress = document.getElementById("ny-member-progress");
+
+        document.getElementById("ny-goal").textContent = goal.toLocaleString();
+
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+          const count = data.members_count;
+
+          if (typeof count !== "number" ||
+              !Number.isFinite(count) || count < 0) {
+            throw new Error("Invalid member count.");
+          }
+
+          const percentage = Math.min(100, count / goal * 100);
+          countElement.textContent = count.toLocaleString();
+          bar.style.width = `${percentage}%`;
+          caption.textContent =
+            `${Math.floor(count / goal * 100)}% TO THE NEXT LEVEL`;
+
+          progress.setAttribute("aria-valuenow", String(percentage));
+          progress.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} cats out of a goal of ${goal}`
+          );
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          caption.textContent = "CAT CENSUS TEMPORARILY UNAVAILABLE";
+          progress.removeAttribute("aria-valuenow");
+          progress.setAttribute("aria-valuetext", "Live member count unavailable");
+          console.warn("Nyan Chess member count:", error);
+        } finally {
+          progress.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+        return 0;
+      }
+
+      async function loadNewestMembers() {
+        const list = document.getElementById("ny-newest");
+
+        function showMessage(text) {
+          const paragraph = document.createElement("p");
+          paragraph.className = "ny-list-message";
+          paragraph.textContent = text;
+          list.replaceChildren(paragraph);
+        }
+
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (!member || typeof member.username !== "string" ||
+                  !member.username.trim()) continue;
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 5);
+
+          if (!newest.length) {
+            showMessage("The next legendary cat could be YOU.");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const row = document.createElement("div");
+            row.className = "ny-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "ny-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = "🐾";
+
+            const name = document.createElement("span");
+            name.className = "ny-member-name";
+            name.textContent = member.username;
+
+            row.append(symbol, name);
+            fragment.appendChild(row);
+          }
+
+          list.replaceChildren(fragment);
+        } catch (error) {
+          showMessage("Newly spawned Nyans are temporarily unavailable.");
+          console.warn("Nyan Chess newest members:", error);
+        } finally {
+          list.setAttribute("aria-busy", "false");
+        }
+      }
+
+      const copyButton = document.getElementById("ny-copy");
+      const copyStatus = document.getElementById("ny-copy-status");
+      const manualCopy = document.getElementById("ny-manual-copy");
+      const inviteField = document.getElementById("ny-invite-field");
+      inviteField.value = inviteLink;
+
+      function legacyCopy() {
+        const textarea = document.createElement("textarea");
+        const previousFocus = document.activeElement;
+        textarea.value = inviteLink;
+        textarea.readOnly = true;
+        textarea.style.cssText =
+          "position:fixed;top:0;left:0;width:1px;height:1px;" +
+          "padding:0;border:0;opacity:0;font-size:16px;";
+        document.body.appendChild(textarea);
+
+        let copied = false;
+        try {
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        } finally {
+          textarea.remove();
+          if (previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+        return copied;
+      }
+
+      let copyTimer;
+
+      copyButton.addEventListener("click", async () => {
+        window.clearTimeout(copyTimer);
+        copyButton.disabled = true;
+        copyStatus.textContent = "";
+        let copied = false;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(inviteLink);
+              copied = true;
+            } catch {
+              copied = legacyCopy();
+            }
+          } else {
+            copied = legacyCopy();
+          }
+
+          if (copied) {
+            copyButton.textContent = "✓ PORTAL LINK COPIED!";
+            copyStatus.textContent = "The portal is ready to share.";
+            manualCopy.hidden = true;
+          } else {
+            copyButton.textContent = "SELECT PORTAL BELOW";
+            copyStatus.textContent =
+              "Automatic copying was blocked. Copy the link below.";
+            manualCopy.hidden = false;
+            inviteField.focus({ preventScroll: true });
+            inviteField.select();
+            inviteField.setSelectionRange(0, inviteField.value.length);
+          }
+        } finally {
+          copyButton.disabled = false;
+          copyTimer = window.setTimeout(() => {
+            copyButton.textContent = "COPY THE PORTAL LINK";
+          }, 1800);
+        }
+      });
+
+      inviteField.addEventListener("click", () => {
+        inviteField.select();
+        inviteField.setSelectionRange(0, inviteField.value.length);
+      });
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const button = document.getElementById("ny-mousebtn");
+      const colors = [
+        "#ff4fc8", "#ff8c42", "#ffe95b", "#65ff8f",
+        "#00eaff", "#5685ff", "#b56bff", "#ffffff"
+      ];
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      let enabled = false;
+      let layer = null;
+      let segments = [];
+      let points = [];
+      let animationId = null;
+      let pointerInside = false;
+      let x = 0;
+      let y = 0;
+      let time = 0;
+      let angle = 0;
+      let lastFrame = 0;
+      let lastParticle = 0;
+
+      function clearTrail() {
+        if (animationId !== null) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+
+        if (layer) layer.remove();
+        layer = null;
+        segments = [];
+        points = [];
+        lastFrame = 0;
+        lastParticle = 0;
+        document.body.classList.remove("ny-cursor-hidden");
+      }
+
+      function createTrail() {
+        if (!enabled || !pointerInside || layer || document.hidden) return;
+
+        layer = document.createElement("div");
+        layer.className = "ny-mouse-layer";
+        layer.setAttribute("aria-hidden", "true");
+        document.body.appendChild(layer);
+
+        const count = reducedMotion.matches ? 1 : 25;
+        points = Array.from({ length: count }, () => ({ x, y }));
+
+        for (let i = 0; i < count; i++) {
+          const segment = document.createElement("div");
+          segment.className = i === 0
+            ? "ny-mouse-segment ny-mouse-head"
+            : "ny-mouse-segment";
+
+          const size = i === 0 ? 26 : Math.max(4, 26 - i * 0.8);
+          const color = colors[i % colors.length];
+
+          segment.style.width = `${size}px`;
+          segment.style.height = `${size}px`;
+          segment.style.backgroundColor = color;
+          segment.style.color = color;
+          segment.style.left = `${x}px`;
+          segment.style.top = `${y}px`;
+
+          layer.appendChild(segment);
+          segments.push(segment);
+        }
+
+        document.body.classList.add("ny-cursor-hidden");
+        time = 0;
+
+        if (!reducedMotion.matches) {
+          animationId = requestAnimationFrame(animate);
+        }
+      }
+
+      function addParticle() {
+        if (!layer) return;
+
+        const index = Math.random() < 0.3 ? 0 : points.length - 1;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const particle = document.createElement("div");
+
+        particle.className = "ny-mouse-particle";
+        particle.style.left = `${points[index].x}px`;
+        particle.style.top = `${points[index].y}px`;
+        particle.style.backgroundColor = color;
+        particle.style.color = color;
+
+        layer.appendChild(particle);
+
+        requestAnimationFrame(() => {
+          if (!particle.isConnected) return;
+          const dx = Math.random() * 80 - 40;
+          const dy = Math.random() * 80 - 40;
+          particle.style.transform =
+            `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(0.1)`;
+          particle.style.opacity = "0";
+        });
+
+        window.setTimeout(() => particle.remove(), 800);
+      }
+
+      function animate(timestamp) {
+        if (!enabled || !pointerInside || !layer || document.hidden) {
+          clearTrail();
+          return;
+        }
+
+        const delta = lastFrame
+          ? Math.min(3, (timestamp - lastFrame) / 16.667)
+          : 1;
+
+        lastFrame = timestamp;
+        time += 0.2 * delta;
+
+        const headEase = 1 - Math.pow(0.6, delta);
+        const tailEase = 1 - Math.pow(0.55, delta);
+        const dx = x - points[0].x;
+        const dy = y - points[0].y;
+
+        if (Math.hypot(dx, dy) > 0.5) {
+          angle = Math.atan2(dy, dx);
+        }
+
+        points[0].x += dx * headEase;
+        points[0].y += dy * headEase;
+
+        for (let i = 1; i < points.length; i++) {
+          points[i].x += (points[i - 1].x - points[i].x) * tailEase;
+          points[i].y += (points[i - 1].y - points[i].y) * tailEase;
+        }
+
+        for (let i = 0; i < segments.length; i++) {
+          const segmentAngle = i === 0
+            ? angle
+            : Math.atan2(
+                points[i - 1].y - points[i].y,
+                points[i - 1].x - points[i].x
+              );
+
+          const wave = i === 0 ? 0 : Math.sin(time - i * 0.3) * i * 1.5;
+          segments[i].style.left =
+            `${points[i].x - Math.sin(segmentAngle) * wave}px`;
+          segments[i].style.top =
+            `${points[i].y + Math.cos(segmentAngle) * wave}px`;
+
+          if (i === 0) {
+            segments[i].style.transform =
+              `translate(-50%, -50%) rotate(${segmentAngle + Math.PI / 2}rad) scaleX(1.3)`;
+          }
+        }
+
+        if (timestamp - lastParticle >= 60) {
+          addParticle();
+          lastParticle = timestamp;
+        }
+
+        animationId = requestAnimationFrame(animate);
+      }
+
+      function trackPointer(event) {
+        if (event.pointerType && event.pointerType !== "mouse") return;
+
+        pointerInside = true;
+        x = event.clientX;
+        y = event.clientY;
+
+        if (enabled && !layer) createTrail();
+
+        if (enabled && layer && reducedMotion.matches) {
+          segments[0].style.left = `${x}px`;
+          segments[0].style.top = `${y}px`;
+        }
+      }
+
+      document.addEventListener("pointermove", trackPointer, { passive: true });
+
+      document.addEventListener("pointerout", event => {
+        if (event.relatedTarget === null ||
+            event.relatedTarget instanceof HTMLIFrameElement) {
+          pointerInside = false;
+          clearTrail();
+        }
+      });
+
+      document.querySelector(".ny-game").addEventListener("pointerenter", () => {
+        pointerInside = false;
+        clearTrail();
+      });
+
+      window.addEventListener("blur", () => {
+        pointerInside = false;
+        clearTrail();
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          pointerInside = false;
+          clearTrail();
+        }
+      });
+
+      reducedMotion.addEventListener("change", () => {
+        clearTrail();
+        createTrail();
+      });
+
+      button.addEventListener("click", event => {
+        enabled = !enabled;
+        button.setAttribute("aria-pressed", String(enabled));
+        button.textContent = enabled
+          ? "TURN OFF NYAN MOUSE"
+          : "TOGGLE NYAN MOUSE";
+
+        if (!enabled) {
+          clearTrail();
+          return;
+        }
+
+        if (event.detail > 0 && window.matchMedia("(any-hover: hover)").matches) {
+          pointerInside = true;
+          x = event.clientX;
+          y = event.clientY;
+        }
+
+        createTrail();
+      });
+
+      window.addEventListener("pagehide", clearTrail);
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
