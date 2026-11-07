@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: light;
+      background: transparent;
+      color: #153a27;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #153a27;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #153a27;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.65;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #17633d;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #23834e;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #football-legends {
+      width: 100%;
+      margin: 0;
+      padding: 12px;
+      overflow: hidden;
+      border: 2px solid #1b6942;
+      border-radius: 12px;
+      background: #f4f8f1;
+      color: #153a27;
+    }
+
+    .fl-header {
+      padding: 16px 8px;
+      border: 1px solid #c6a34a;
+      border-radius: 8px;
+      background: #12472e;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .fl-matchday {
+      color: #e4c86d;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 3px;
+    }
+
+    .fl-header h1 {
+      margin-top: 10px;
+      color: #ffffff;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .fl-title-gold {
+      display: block;
+      color: #e4c86d;
+    }
+
+    .fl-tagline {
+      margin-top: 10px;
+      color: #d9eadb;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .fl-stand {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 7px 12px;
+      border-radius: 4px;
+      background: #e4c86d;
+      color: #12472e;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .fl-panel {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #d4e3d2;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #153a27;
+    }
+
+    .fl-panel h2 {
+      color: #17633d;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .fl-welcome h2 {
+      margin-bottom: 7px;
+    }
+
+    .fl-welcome-text {
+      color: #365442;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .fl-community-motto {
+      margin-top: 10px;
+      padding: 9px;
+      border-left: 4px solid #c6a34a;
+      background: #edf5e9;
+      color: #31543b;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .fl-squad-label {
+      margin-top: 9px;
+      color: #738a77;
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .fl-member-total {
+      margin-top: 4px;
+      color: #153a27;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .fl-member-goal {
+      color: #738a77;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .fl-progress-track {
+      width: 100%;
+      height: 13px;
+      margin-top: 8px;
+      overflow: hidden;
+      border: 1px solid #cbdcc8;
+      border-radius: 3px;
+      background: #e3eddf;
+    }
+
+    .fl-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #23834e;
+      transition: width 800ms ease;
+    }
+
+    .fl-percent {
+      margin-top: 6px;
+      color: #17633d;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .fl-invite {
+      border-color: #c6a34a;
+      background: #e4c86d;
+      text-align: center;
+    }
+
+    .fl-invite h2 {
+      margin-bottom: 7px;
+      color: #153a27;
+      font-size: 16px;
+    }
+
+    .fl-invite-description {
+      margin-bottom: 10px;
+      color: #365033;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .fl-copy-button {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 11px 10px;
+      border: 0;
+      border-radius: 5px;
+      background: #12472e;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: background-color 150ms ease;
+    }
+
+    .fl-copy-button:hover {
+      background: #1b6942;
+      color: #ffffff;
+    }
+
+    .fl-copy-button:disabled {
+      opacity: 0.8;
+      cursor: wait;
+    }
+
+    .fl-copy-status {
+      margin-top: 8px;
+      color: #153a27;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .fl-copy-status:empty {
+      display: none;
+    }
+
+    .fl-manual-copy {
+      margin-top: 10px;
+      color: #153a27;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .fl-manual-copy label {
+      display: block;
+      margin-bottom: 5px;
+      color: #153a27;
+    }
+
+    .fl-invite-field {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 9px;
+      border: 1px solid #1b6942;
+      border-radius: 5px;
+      background: #ffffff;
+      color: #153a27;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .fl-training h2 {
+      margin-bottom: 10px;
+    }
+
+    .fl-training-link,
+    .fl-training-link:visited {
+      display: block;
+      margin-bottom: 7px;
+      padding: 10px;
+      border-left: 4px solid #23834e;
+      border-radius: 3px;
+      background: #edf5e9;
+      color: #153a27;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.65;
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+
+    .fl-training-link:nth-of-type(even) {
+      border-left-color: #c6a34a;
+    }
+
+    .fl-training-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .fl-training-link:hover {
+      background: #dcebd7;
+      color: #12472e;
+    }
+
+    .fl-footer {
+      padding: 15px 4px 5px;
+      color: #738a77;
+      text-align: center;
+    }
+
+    .fl-footer-motto {
+      color: #17633d;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .fl-footer-note {
+      margin-top: 7px;
+      color: #738a77;
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .fl-credit {
+      margin-top: 5px;
+      color: #738a77;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .fl-credit a,
+    .fl-credit a:visited {
+      color: #738a77;
+      font-size: 10px;
+      text-decoration: none;
+    }
+
+    .fl-credit a:hover {
+      color: #17633d;
+      text-decoration: underline;
+    }
+
+    .fl-footer-symbols {
+      margin-top: 8px;
+      color: #c6a34a;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .fl-noscript {
+      margin-top: 10px;
+      color: #365442;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .fl-noscript a,
+    .fl-noscript a:visited {
+      color: #12472e;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 320px) {
+      #football-legends {
+        padding: 9px;
+      }
+
+      .fl-header h1 {
+        font-size: 24px;
+      }
+
+      .fl-matchday {
+        letter-spacing: 2px;
+      }
+
+      .fl-panel {
+        padding: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fl-progress-fill,
+      .fl-copy-button,
+      .fl-training-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="football-legends" aria-label="Football Legends Fans club sidebar">
+
+    <!-- HEADER -->
+    <header class="fl-header">
+      <p class="fl-matchday">WELCOME TO MATCHDAY</p>
+
+      <h1>
+        FOOTBALL
+        <span class="fl-title-gold">LEGENDS FANS</span>
+      </h1>
+
+      <p class="fl-tagline">PASSION &bull; PRIDE &bull; VICTORY</p>
+      <div class="fl-stand">THE FANS' STAND</div>
+    </header>
+
+    <!-- WELCOME -->
+    <section class="fl-panel fl-welcome">
+      <h2>WELCOME TO THE CLUB</h2>
+
+      <p class="fl-welcome-text">
+        Welcome to Football Legends Fans! A place for fans who love the
+        beautiful game, legendary players, unforgettable moments, and
+        great competition. Bring your passion, connect with fellow fans,
+        and enjoy every matchday!
+      </p>
+
+      <div class="fl-community-motto">
+        ONE COMMUNITY. COUNTLESS LEGENDS.
+      </div>
+    </section>
+
+    <!-- CLUB SCOREBOARD -->
+    <section class="fl-panel">
+      <h2>CLUB SCOREBOARD</h2>
+      <p class="fl-squad-label">SQUAD SIZE</p>
+
+      <div class="fl-member-total">
+        <span id="fl-count" aria-live="polite">Loading…</span>
+        <span class="fl-member-goal"> / <span id="fl-goal">50</span></span>
+      </div>
+
+      <div
+        id="fl-progress"
+        class="fl-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="fl-bar" class="fl-progress-fill"></div>
+      </div>
+
+      <p id="fl-percent" class="fl-percent" role="status">
+        LOADING SCOREBOARD…
+      </p>
+    </section>
+
+    <!-- INVITE CENTER -->
+    <section class="fl-panel fl-invite">
+      <h2>BRING A FRIEND</h2>
+
+      <p class="fl-invite-description">
+        Every great club needs great supporters. Invite another fan
+        to join our community!
+      </p>
+
+      <button id="fl-copy" class="fl-copy-button" type="button">
+        COPY INVITE LINK
+      </button>
+
+      <p id="fl-copy-status" class="fl-copy-status" role="status"></p>
+
+      <div id="fl-manual-copy" class="fl-manual-copy" hidden>
+        <label for="fl-invite-field">
+          Automatic copying was unavailable. Select and copy this link:
+        </label>
+
+        <input
+          id="fl-invite-field"
+          class="fl-invite-field"
+          type="text"
+          value="https://www.chess.com/club/football-lagends-fans/join/474435?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+          readonly
+          spellcheck="false"
+          autocomplete="off"
+        >
+      </div>
+
+      <noscript>
+        <p class="fl-noscript">
+          <a
+            href="https://www.chess.com/club/football-lagends-fans/join/474435?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open the club invitation</a>
+        </p>
+      </noscript>
+    </section>
+
+    <!-- TRAINING GROUND -->
+    <nav class="fl-panel fl-training" aria-label="Training ground links">
+      <h2>TRAINING GROUND</h2>
+
+      <a
+        class="fl-training-link"
+        href="https://www.chess.com/puzzles"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Tactical Drills — Puzzles ↗</a>
+
+      <a
+        class="fl-training-link"
+        href="https://www.chess.com/lessons"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Coaching Room — Lessons ↗</a>
+
+      <a
+        class="fl-training-link"
+        href="https://www.chess.com/analysis"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Review the Replay — Analysis ↗</a>
+
+      <a
+        class="fl-training-link"
+        href="https://www.chess.com/openings"
+        target="_blank"
+        rel="noopener noreferrer"
+      >♟ Strategy Playbook — Openings ↗</a>
+    </nav>
+
+    <!-- FOOTER -->
+    <footer class="fl-footer">
+      <p class="fl-footer-motto">PLAY WITH PASSION</p>
+      <p class="fl-footer-note">SUPPORT THE LEGENDS. MAKE HISTORY.</p>
+
+      <p class="fl-credit">
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Sidebar Designed by Wildis_Knight</a>
+      </p>
+
+      <div class="fl-footer-symbols" aria-hidden="true">🏈 ★ 🏈</div>
+
+      <noscript>
+        <p class="fl-noscript">
+          Enable JavaScript for the live club scoreboard.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "football-lagends-fans";
+      const goal = 50;
+      const inviteLink =
+        "https://www.chess.com/club/football-lagends-fans/join/474435" +
+        "?utm_campaign=club_invite_link&utm_source=chesscom&utm_medium=copy";
+
+      const countElement = document.getElementById("fl-count");
+      const goalElement = document.getElementById("fl-goal");
+      const barElement = document.getElementById("fl-bar");
+      const percentElement = document.getElementById("fl-percent");
+      const progressElement = document.getElementById("fl-progress");
+
+      const copyButton = document.getElementById("fl-copy");
+      const copyStatus = document.getElementById("fl-copy-status");
+      const manualCopy = document.getElementById("fl-manual-copy");
+      const inviteField = document.getElementById("fl-invite-field");
+
+      goalElement.textContent = goal.toLocaleString();
+      inviteField.value = inviteLink;
+
+      async function loadScoreboard() {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`,
+            { signal: controller.signal }
+          );
+
+          if (!response.ok) {
+            throw new Error(`Club request failed: ${response.status}`);
+          }
+
+          const data = await response.json();
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+          const percentage = Math.floor((count / goal) * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+          percentElement.textContent = `${percentage}% TO THE TARGET`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          percentElement.textContent =
+            "SCOREBOARD TEMPORARILY UNAVAILABLE";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("Football Legends Fans scoreboard:", error);
+        } finally {
+          window.clearTimeout(timeout);
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function legacyCopy() {
+        const textarea = document.createElement("textarea");
+        const previousFocus = document.activeElement;
+
+        textarea.value = inviteLink;
+        textarea.readOnly = true;
+        textarea.style.cssText =
+          "position:fixed;top:0;left:0;width:1px;height:1px;" +
+          "padding:0;border:0;opacity:0;font-size:16px;";
+
+        document.body.appendChild(textarea);
+
+        let copied = false;
+
+        try {
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        } finally {
+          textarea.remove();
+
+          if (previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+
+        return copied;
+      }
+
+      let resetCopyTimer;
+
+      copyButton.addEventListener("click", async () => {
+        window.clearTimeout(resetCopyTimer);
+        copyButton.disabled = true;
+        copyStatus.textContent = "";
+
+        let copied = false;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(inviteLink);
+              copied = true;
+            } catch {
+              copied = legacyCopy();
+            }
+          } else {
+            copied = legacyCopy();
+          }
+
+          if (copied) {
+            copyButton.textContent = "✓ LINK COPIED!";
+            copyStatus.textContent = "Club invitation copied.";
+            manualCopy.hidden = true;
+          } else {
+            copyButton.textContent = "SELECT INVITE BELOW";
+            copyStatus.textContent =
+              "Automatic copying was blocked. Copy the link below.";
+            manualCopy.hidden = false;
+
+            inviteField.focus({ preventScroll: true });
+            inviteField.select();
+            inviteField.setSelectionRange(0, inviteField.value.length);
+          }
+        } finally {
+          copyButton.disabled = false;
+
+          resetCopyTimer = window.setTimeout(() => {
+            copyButton.textContent = "COPY INVITE LINK";
+          }, 1800);
+        }
+      });
+
+      inviteField.addEventListener("click", () => {
+        inviteField.select();
+        inviteField.setSelectionRange(0, inviteField.value.length);
+      });
+
+      loadScoreboard();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
