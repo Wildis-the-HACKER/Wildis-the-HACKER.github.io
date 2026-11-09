@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: light;
+      background: transparent;
+      color: #38244f;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #38244f;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #38244f;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #6636a3;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #7544b5;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #pawn-academy {
+      width: 100%;
+      margin: 0;
+      padding: 12px;
+      overflow: hidden;
+      border: 2px solid #b99be8;
+      border-radius: 14px;
+      background: #faf7ff;
+      color: #38244f;
+    }
+
+    .pa-header {
+      padding: 15px 8px;
+      border: 1px solid #d5c0f5;
+      border-radius: 11px;
+      background: #eee3ff;
+      color: #38244f;
+      text-align: center;
+    }
+
+    .pa-pawn-images {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #6636a3;
+      line-height: 1.3;
+    }
+
+    .pa-pawn-image {
+      display: block;
+      width: 50px;
+      max-width: 33.333%;
+      height: auto;
+      margin: 0;
+      padding: 8px;
+      border: 0;
+    }
+
+    .pa-header h1 {
+      color: #6636a3;
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 1px;
+    }
+
+    .pa-tagline {
+      margin-top: 5px;
+      color: #8062a7;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .pa-header-note {
+      margin-top: 10px;
+      color: #624a80;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .pa-panel {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #e4d7f7;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #594b6d;
+    }
+
+    .pa-panel h2 {
+      color: #6636a3;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .pa-welcome h2 {
+      margin-bottom: 7px;
+    }
+
+    .pa-welcome-text {
+      color: #594b6d;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .pa-member-label {
+      margin-top: 8px;
+      color: #76658a;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .pa-member-total {
+      color: #6636a3;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .pa-member-goal {
+      color: #9a88b0;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .pa-progress-track {
+      width: 100%;
+      height: 12px;
+      margin-top: 8px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #eee5fa;
+    }
+
+    .pa-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 8px;
+      background: #9b6be0;
+      transition: width 500ms ease;
+    }
+
+    .pa-percent {
+      margin-top: 5px;
+      color: #8062a7;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .pa-arrivals h2 {
+      margin-bottom: 5px;
+    }
+
+    .pa-arrivals-description {
+      margin-bottom: 5px;
+      color: #8a78a0;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .pa-newest {
+      color: #594b6d;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .pa-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 7px 4px;
+      border-bottom: 1px solid #e8dcfa;
+      color: #49356b;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .pa-member:last-child {
+      border-bottom: 0;
+    }
+
+    .pa-member-symbol {
+      flex-shrink: 0;
+      color: #49356b;
+    }
+
+    .pa-member-name {
+      min-width: 0;
+      color: #49356b;
+      overflow-wrap: anywhere;
+    }
+
+    .pa-list-message {
+      padding: 7px 4px;
+      color: #76658a;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .pa-invite {
+      border-color: #d5c0f5;
+      background: #eee3ff;
+      text-align: center;
+    }
+
+    .pa-invite h2 {
+      margin-bottom: 6px;
+    }
+
+    .pa-invite-description {
+      margin-bottom: 10px;
+      color: #624a80;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .pa-copy-button {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 8px;
+      background: #7544b5;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: background-color 150ms ease;
+    }
+
+    .pa-copy-button:hover {
+      background: #6636a3;
+      color: #ffffff;
+    }
+
+    .pa-copy-button:disabled {
+      opacity: 0.8;
+      cursor: wait;
+    }
+
+    .pa-copy-status {
+      margin-top: 8px;
+      color: #624a80;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .pa-copy-status:empty {
+      display: none;
+    }
+
+    .pa-manual-copy {
+      margin-top: 10px;
+      color: #624a80;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .pa-manual-copy label {
+      display: block;
+      margin-bottom: 5px;
+      color: #624a80;
+    }
+
+    .pa-invite-field {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 9px;
+      border: 1px solid #b99be8;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #49356b;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .pa-training h2 {
+      margin-bottom: 9px;
+    }
+
+    .pa-training-link,
+    .pa-training-link:visited {
+      display: block;
+      margin-bottom: 6px;
+      padding: 9px;
+      border-radius: 7px;
+      background: #f4edff;
+      color: #6636a3;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-decoration: none;
+      transition: background-color 150ms ease;
+    }
+
+    .pa-training-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .pa-training-link:hover {
+      background: #e9dcfc;
+      color: #54258d;
+    }
+
+    .pa-footer {
+      padding: 13px 5px 4px;
+      color: #8b74a9;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .pa-footer-motto {
+      color: #8b74a9;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .pa-footer-note {
+      margin-top: 5px;
+      color: #8b74a9;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    .pa-noscript {
+      margin-top: 9px;
+      color: #76658a;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .pa-noscript a,
+    .pa-noscript a:visited {
+      color: #6636a3;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 320px) {
+      #pawn-academy {
+        padding: 9px;
+      }
+
+      .pa-header h1 {
+        font-size: 21px;
+      }
+
+      .pa-panel {
+        padding: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pa-progress-fill,
+      .pa-copy-button,
+      .pa-training-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="pawn-academy" aria-label="Pawn Academy club sidebar">
+
+    <!-- HEADER -->
+    <header class="pa-header">
+      <div class="pa-pawn-images" aria-hidden="true">
+        <img
+          class="pa-pawn-image"
+          src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/phppshbfq9lc1lb8KcD5pw.png"
+          alt=""
+          width="50"
+        >
+        <img
+          class="pa-pawn-image"
+          src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/phppshbfq9lc1lb8KcD5pw.png"
+          alt=""
+          width="50"
+        >
+        <img
+          class="pa-pawn-image"
+          src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/Wildis_Knight/phppshbfq9lc1lb8KcD5pw.png"
+          alt=""
+          width="50"
+        >
+      </div>
+
+      <h1>PAWN ACADEMY</h1>
+      <p class="pa-tagline">LEARN &bull; THINK &bull; IMPROVE</p>
+      <p class="pa-header-note">Your next move starts here.</p>
+    </header>
+
+    <!-- WELCOME -->
+    <section class="pa-panel pa-welcome">
+      <h2>Welcome to the Academy</h2>
+      <p class="pa-welcome-text">
+        A place for chess players to learn, sharpen their skills,
+        explore new strategies, and enjoy the game together.
+        Every move is a chance to improve!
+      </p>
+    </section>
+
+    <!-- MEMBERSHIP GOAL -->
+    <section class="pa-panel">
+      <h2>Our Membership Goal</h2>
+      <p class="pa-member-label">MEMBERS</p>
+
+      <div class="pa-member-total">
+        <span id="pa-count" aria-live="polite">Loading…</span>
+        <span class="pa-member-goal"> / <span id="pa-goal">20</span></span>
+      </div>
+
+      <div
+        id="pa-progress"
+        class="pa-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="pa-bar" class="pa-progress-fill"></div>
+      </div>
+
+      <p id="pa-percent" class="pa-percent" role="status">Loading…</p>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT -->
+    <section class="pa-panel pa-arrivals">
+      <h2>Latest Students</h2>
+      <p class="pa-arrivals-description">
+        A warm welcome to our newest members!
+      </p>
+
+      <div
+        id="pa-newest"
+        class="pa-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <p class="pa-list-message">Loading latest students…</p>
+      </div>
+    </section>
+
+    <!-- INVITE -->
+    <section class="pa-panel pa-invite">
+      <h2>Invite a Friend</h2>
+      <p class="pa-invite-description">
+        Great chess is even better with friends. Invite another player
+        to join the academy!
+      </p>
+
+      <button id="pa-copy" class="pa-copy-button" type="button">
+        ♟ COPY INVITE LINK
+      </button>
+
+      <p id="pa-copy-status" class="pa-copy-status" role="status"></p>
+
+      <div id="pa-manual-copy" class="pa-manual-copy" hidden>
+        <label for="pa-invite-field">
+          Automatic copying was unavailable. Select and copy this link:
+        </label>
+        <input
+          id="pa-invite-field"
+          class="pa-invite-field"
+          type="text"
+          value="https://www.chess.com/club/pawn-academy/join?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+          readonly
+          spellcheck="false"
+          autocomplete="off"
+        >
+      </div>
+
+      <noscript>
+        <p class="pa-noscript">
+          <a
+            href="https://www.chess.com/club/pawn-academy/join?utm_campaign=club_invite_link&amp;utm_source=chesscom&amp;utm_medium=copy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open the academy invitation</a>
+        </p>
+      </noscript>
+    </section>
+
+    <!-- TRAINING TOOLS -->
+    <nav class="pa-panel pa-training" aria-label="Chess training tools">
+      <h2>Chess Training Tools</h2>
+
+      <a
+        class="pa-training-link"
+        href="https://www.chess.com/puzzles"
+        target="_blank"
+        rel="noopener noreferrer"
+      >♟ Daily Chess Puzzles ↗</a>
+
+      <a
+        class="pa-training-link"
+        href="https://www.chess.com/lessons"
+        target="_blank"
+        rel="noopener noreferrer"
+      >📖 Chess Lessons ↗</a>
+
+      <a
+        class="pa-training-link"
+        href="https://www.chess.com/analysis"
+        target="_blank"
+        rel="noopener noreferrer"
+      >🔍 Analyze a Game ↗</a>
+
+      <a
+        class="pa-training-link"
+        href="https://www.chess.com/openings"
+        target="_blank"
+        rel="noopener noreferrer"
+      >♜ Opening Explorer ↗</a>
+    </nav>
+
+    <!-- FOOTER -->
+    <footer class="pa-footer">
+      <p class="pa-footer-motto">THINK SMART &bull; PLAY BOLD</p>
+      <p class="pa-footer-note">Every master was once a beginner.</p>
+
+      <noscript>
+        <p class="pa-noscript">
+          Enable JavaScript for the live member count and latest students.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "pawn-academy";
+      const goal = 20;
+      const inviteLink =
+        "https://www.chess.com/club/pawn-academy/join" +
+        "?utm_campaign=club_invite_link&utm_source=chesscom&utm_medium=copy";
+
+      const countElement = document.getElementById("pa-count");
+      const goalElement = document.getElementById("pa-goal");
+      const barElement = document.getElementById("pa-bar");
+      const percentElement = document.getElementById("pa-percent");
+      const progressElement = document.getElementById("pa-progress");
+      const newestElement = document.getElementById("pa-newest");
+
+      const copyButton = document.getElementById("pa-copy");
+      const copyStatus = document.getElementById("pa-copy-status");
+      const manualCopy = document.getElementById("pa-manual-copy");
+      const inviteField = document.getElementById("pa-invite-field");
+
+      goalElement.textContent = goal.toLocaleString();
+      inviteField.value = inviteLink;
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, count / goal * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+          percentElement.textContent = `${Math.floor(count / goal * 100)}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          percentElement.textContent = "Live membership unavailable";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("Pawn Academy member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinedTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showStudentMessage(message) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "pa-list-message";
+        paragraph.textContent = message;
+        newestElement.replaceChildren(paragraph);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinedTime(member) > joinedTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinedTime(b) - joinedTime(a))
+            .slice(0, 5);
+
+          if (!newest.length) {
+            showStudentMessage("Welcome, new members!");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const row = document.createElement("div");
+            row.className = "pa-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "pa-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = "♟";
+
+            const name = document.createElement("span");
+            name.className = "pa-member-name";
+            name.textContent = member.username;
+
+            row.append(symbol, name);
+            fragment.appendChild(row);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showStudentMessage(
+            "The latest students are temporarily unavailable."
+          );
+
+          console.warn("Pawn Academy latest students:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function legacyCopy() {
+        const textarea = document.createElement("textarea");
+        const previousFocus = document.activeElement;
+
+        textarea.value = inviteLink;
+        textarea.readOnly = true;
+        textarea.style.cssText =
+          "position:fixed;top:0;left:0;width:1px;height:1px;" +
+          "padding:0;border:0;opacity:0;font-size:16px;";
+
+        document.body.appendChild(textarea);
+
+        let copied = false;
+
+        try {
+          textarea.focus();
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+          copied = document.execCommand("copy");
+        } catch {
+          copied = false;
+        } finally {
+          textarea.remove();
+
+          if (previousFocus instanceof HTMLElement) {
+            previousFocus.focus({ preventScroll: true });
+          }
+        }
+
+        return copied;
+      }
+
+      let resetCopyTimer;
+
+      copyButton.addEventListener("click", async () => {
+        window.clearTimeout(resetCopyTimer);
+        copyButton.disabled = true;
+        copyStatus.textContent = "";
+
+        let copied = false;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            try {
+              await navigator.clipboard.writeText(inviteLink);
+              copied = true;
+            } catch {
+              copied = legacyCopy();
+            }
+          } else {
+            copied = legacyCopy();
+          }
+
+          if (copied) {
+            copyButton.textContent = "✓ LINK COPIED!";
+            copyStatus.textContent = "Academy invitation copied.";
+            manualCopy.hidden = true;
+          } else {
+            copyButton.textContent = "SELECT INVITE BELOW";
+            copyStatus.textContent =
+              "Automatic copying was blocked. Copy the link below.";
+            manualCopy.hidden = false;
+            inviteField.focus({ preventScroll: true });
+            inviteField.select();
+            inviteField.setSelectionRange(0, inviteField.value.length);
+          }
+        } finally {
+          copyButton.disabled = false;
+
+          resetCopyTimer = window.setTimeout(() => {
+            copyButton.textContent = "♟ COPY INVITE LINK";
+          }, 1800);
+        }
+      });
+
+      inviteField.addEventListener("click", () => {
+        inviteField.select();
+        inviteField.setSelectionRange(0, inviteField.value.length);
+      });
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
