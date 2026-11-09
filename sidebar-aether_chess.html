@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #ffffff;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #ffffff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: transparent;
+      color: #ffffff;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1, h2, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a, a:visited {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    button, select {
+      font-family: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    select:focus-visible,
+    audio:focus-visible {
+      outline: 2px solid #00f0ff;
+      outline-offset: 3px;
+    }
+
+    #aether-sidebar {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 240, 255, 0.55);
+      border-radius: 20px;
+      background: radial-gradient(
+        circle at 50% 0%,
+        #111b3d 0%,
+        #060914 45%,
+        #020308 100%
+      );
+      color: #ffffff;
+      box-shadow:
+        0 0 45px rgba(0, 240, 255, 0.16),
+        inset 0 0 30px rgba(112, 0, 255, 0.08);
+    }
+
+    .ae-top-line {
+      height: 3px;
+      margin: -18px -18px 16px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #00f0ff,
+        #7000ff,
+        #ff007f,
+        #00f0ff,
+        transparent
+      );
+      box-shadow: 0 0 12px #00f0ff;
+    }
+
+    .ae-hero {
+      padding: 20px;
+      border: 1px solid rgba(0, 240, 255, 0.55);
+      border-radius: 17px;
+      background: linear-gradient(
+        145deg,
+        rgba(8, 23, 44, 0.9),
+        rgba(20, 15, 55, 0.85)
+      );
+      color: #ffffff;
+      text-align: center;
+      box-shadow:
+        0 0 28px rgba(0, 240, 255, 0.18),
+        inset 0 0 20px rgba(112, 0, 255, 0.1);
+    }
+
+    .ae-hero-symbols {
+      color: #ffffff;
+      font-size: 23px;
+      line-height: 1.5;
+      letter-spacing: 8px;
+      text-shadow: 0 0 12px #00f0ff;
+    }
+
+    .ae-hero h1 {
+      margin-top: 5px;
+      color: #ffffff;
+      font-size: 31px;
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 12px rgba(0, 240, 255, 0.9),
+        0 0 28px rgba(112, 0, 255, 0.7);
+    }
+
+    .ae-tagline {
+      margin-top: 7px;
+      color: #b18aff;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1.6;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .ae-online-badge {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 12px;
+      border: 1px solid rgba(0, 240, 255, 0.5);
+      border-radius: 20px;
+      background: rgba(0, 240, 255, 0.07);
+      color: #00f0ff;
+      font-size: 8px;
+      font-weight: 800;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+    }
+
+    .ae-status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .ae-status-tile {
+      padding: 9px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(5, 15, 30, 0.75);
+      color: #9aa9bc;
+      text-align: center;
+    }
+
+    .ae-status-tile:nth-child(2) {
+      border-color: rgba(112, 0, 255, 0.4);
+      background: rgba(15, 7, 35, 0.75);
+    }
+
+    .ae-status-tile:nth-child(3) {
+      border-color: rgba(255, 0, 127, 0.35);
+      background: rgba(30, 5, 25, 0.75);
+    }
+
+    .ae-status-symbol {
+      color: #00f0ff;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.5;
+      text-shadow: 0 0 8px #00f0ff;
+    }
+
+    .ae-status-tile:nth-child(2) .ae-status-symbol {
+      color: #b18aff;
+      text-shadow: 0 0 8px #7000ff;
+    }
+
+    .ae-status-tile:nth-child(3) .ae-status-symbol {
+      color: #ff5cad;
+      text-shadow: 0 0 8px #ff007f;
+    }
+
+    .ae-status-label {
+      margin-top: 3px;
+      color: #9aa9bc;
+      font-size: 8px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .ae-panel {
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 15px;
+      background: rgba(8, 17, 32, 0.8);
+      color: #ffffff;
+    }
+
+    .ae-panel h2 {
+      color: #00f0ff;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+    }
+
+    .ae-heading-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ae-core {
+      padding: 15px;
+      border-color: rgba(112, 0, 255, 0.45);
+      background: linear-gradient(
+        135deg,
+        rgba(8, 19, 38, 0.8),
+        rgba(18, 13, 48, 0.8)
+      );
+    }
+
+    .ae-core-label {
+      color: #b18aff;
+      font-size: 8px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .ae-member-total {
+      margin-top: 7px;
+      color: #ffffff;
+      font-size: 25px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .ae-member-count {
+      color: #00f0ff;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+    }
+
+    .ae-member-divider {
+      color: #4d586b;
+    }
+
+    .ae-progress-track {
+      width: 100%;
+      height: 12px;
+      margin-top: 9px;
+      padding: 2px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 20px;
+      background: #02050b;
+    }
+
+    .ae-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #00f0ff, #7000ff, #ff007f);
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.8);
+      transition: width 1s ease;
+    }
+
+    .ae-capacity-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 7px;
+      color: #7f8ca0;
+      font-size: 8px;
+      line-height: 1.6;
+    }
+
+    .ae-capacity-value {
+      color: #00f0ff;
+    }
+
+    .ae-core-status {
+      margin-top: 7px;
+      color: #aebbd0;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .ae-core-status:empty {
+      display: none;
+    }
+
+    .ae-sparks {
+      border-color: rgba(0, 240, 255, 0.45);
+      background: linear-gradient(
+        145deg,
+        rgba(5, 18, 35, 0.96),
+        rgba(18, 8, 42, 0.96)
+      );
+      box-shadow:
+        0 0 25px rgba(0, 240, 255, 0.08),
+        inset 0 0 20px rgba(112, 0, 255, 0.06);
+    }
+
+    .ae-sparks .ae-heading-row {
+      margin-bottom: 12px;
+    }
+
+    .ae-sparks h2 {
+      letter-spacing: 1.8px;
+    }
+
+    .ae-sparks-subtitle {
+      margin-top: 3px;
+      color: #718096;
+      font-size: 8px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .ae-live-status {
+      padding: 5px 8px;
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 20px;
+      background: rgba(0, 240, 255, 0.06);
+      color: #00f0ff;
+      font-size: 7px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .ae-live-status.ae-offline {
+      color: #ff5cad;
+    }
+
+    .ae-member-card {
+      margin-top: 8px;
+      padding: 9px;
+      border-left: 4px solid #00f0ff;
+      border-radius: 9px;
+      background: rgba(0, 0, 0, 0.25);
+      color: #ffffff;
+    }
+
+    .ae-member-card:nth-child(2) {
+      border-left-color: #b18aff;
+    }
+
+    .ae-member-card:nth-child(3) {
+      border-left-color: #ff5cad;
+    }
+
+    .ae-member-label {
+      color: #00f0ff;
+      font-size: 7px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1.2px;
+    }
+
+    .ae-member-card:nth-child(2) .ae-member-label {
+      color: #b18aff;
+    }
+
+    .ae-member-card:nth-child(3) .ae-member-label {
+      color: #ff5cad;
+    }
+
+    .ae-member-name {
+      margin-top: 3px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .ae-member-message {
+      padding: 9px;
+      border-radius: 9px;
+      background: rgba(0, 0, 0, 0.25);
+      color: #aebbd0;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .ae-refresh {
+      display: block;
+      width: 100%;
+      margin: 10px 0 0;
+      padding: 9px 10px;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      border-radius: 8px;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 240, 255, 0.12),
+        rgba(112, 0, 255, 0.14)
+      );
+      color: #00f0ff;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .ae-refresh:hover {
+      background: rgba(0, 240, 255, 0.16);
+    }
+
+    .ae-refresh:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
+    .ae-refresh-note {
+      margin-top: 9px;
+      color: #596579;
+      font-size: 7px;
+      line-height: 1.6;
+      letter-spacing: 1.2px;
+      text-align: center;
+    }
+
+    .ae-mission {
+      padding: 15px;
+      background: rgba(8, 18, 35, 0.72);
+    }
+
+    .ae-mission h2 {
+      margin-bottom: 8px;
+    }
+
+    .ae-mission-line {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.5;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    }
+
+    .ae-mission-line-purple {
+      color: #b18aff;
+      text-shadow: 0 0 10px rgba(112, 0, 255, 0.4);
+    }
+
+    .ae-mission-text {
+      margin-top: 9px;
+      color: #aebbd0;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .ae-jukebox {
+      border-color: rgba(112, 0, 255, 0.45);
+      background: rgba(8, 13, 30, 0.82);
+      box-shadow: 0 0 20px rgba(112, 0, 255, 0.08);
+    }
+
+    .ae-jukebox .ae-heading-row {
+      margin-bottom: 10px;
+    }
+
+    .ae-jukebox-label {
+      color: #ff007f;
+      font-size: 8px;
+      line-height: 1.6;
+    }
+
+    .ae-player-box {
+      padding: 12px;
+      border: 1px solid rgba(112, 0, 255, 0.35);
+      border-radius: 11px;
+      background: linear-gradient(145deg, #05050d, #111124);
+      color: #00f0ff;
+    }
+
+    .ae-song-selector {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 10px;
+      border: 1px solid #7000ff;
+      border-radius: 8px;
+      background: #080512;
+      color: #00f0ff;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .ae-song-selector option {
+      background: #080512;
+      color: #00f0ff;
+      font-size: 11px;
+    }
+
+    .ae-audio {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      height: 38px;
+      margin-top: 10px;
+      filter: drop-shadow(0 0 7px #7000ff);
+    }
+
+    .ae-audio-status {
+      margin-top: 8px;
+      color: #aebbd0;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .ae-audio-status:empty {
+      display: none;
+    }
+
+    .ae-battle h2,
+    .ae-navigation h2 {
+      margin-bottom: 10px;
+    }
+
+    .ae-battle-link,
+    .ae-battle-link:visited {
+      display: block;
+      margin-bottom: 7px;
+      padding: 10px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00f0ff, #00a2ff);
+      color: #020308;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 0 13px rgba(0, 240, 255, 0.35);
+      transition: filter 150ms ease;
+    }
+
+    .ae-battle-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .ae-battle-link-purple,
+    .ae-battle-link-purple:visited {
+      background: linear-gradient(90deg, #7000ff, #a855f7);
+      color: #ffffff;
+      box-shadow: 0 0 13px rgba(112, 0, 255, 0.35);
+    }
+
+    .ae-battle-link:hover {
+      filter: brightness(1.12);
+    }
+
+    .ae-navigation {
+      border-color: rgba(112, 0, 255, 0.3);
+    }
+
+    .ae-navigation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .ae-nav-link,
+    .ae-nav-link:visited {
+      display: block;
+      padding: 10px 5px;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 8px;
+      background: rgba(3, 10, 20, 0.8);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1.6;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .ae-nav-link:last-child {
+      border-color: rgba(112, 0, 255, 0.3);
+    }
+
+    .ae-nav-link:hover {
+      background: #15213b;
+      color: #ffffff;
+    }
+
+    .ae-directive {
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px solid rgba(255, 0, 127, 0.5);
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 0, 127, 0.09),
+        rgba(112, 0, 255, 0.09)
+      );
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 0 18px rgba(255, 0, 127, 0.12);
+    }
+
+    .ae-directive h2 {
+      color: #ff5cad;
+      font-size: 8px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .ae-directive-primary {
+      margin-top: 6px;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .ae-directive-secondary {
+      color: #b18aff;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .ae-directive-note {
+      margin-top: 7px;
+      color: #8895a8;
+      font-size: 8px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .ae-footer,
+    .ae-credits {
+      margin-top: 15px;
+      padding-top: 11px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: #7f8ca0;
+      text-align: center;
+    }
+
+    .ae-footer-motto {
+      color: #7f8ca0;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+    }
+
+    .ae-system-label {
+      margin-top: 5px;
+      color: #00f0ff;
+      font-size: 8px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+      text-shadow: 0 0 7px #00f0ff;
+    }
+
+    .ae-credits {
+      padding-top: 12px;
+    }
+
+    .ae-credit-label {
+      margin-top: 7px;
+      color: #00f0ff;
+      font-size: 8px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #00f0ff, 0 0 18px #7000ff;
+    }
+
+    .ae-credit-names {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px 12px;
+      margin-top: 7px;
+      padding: 8px 5px;
+      border-radius: 10px;
+      background: radial-gradient(
+        circle,
+        rgba(112, 0, 255, 0.08),
+        transparent 75%
+      );
+      color: #b18aff;
+    }
+
+    .ae-credit-names span {
+      color: #b18aff;
+      font-size: 9px;
+      font-weight: 800;
+      line-height: 1.6;
+      text-shadow: 0 0 7px rgba(177, 138, 255, 0.8);
+    }
+
+    .ae-wizard {
+      margin-top: 5px;
+      color: #7000ff;
+      font-size: 7px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #7000ff;
+    }
+
+    .ae-noscript {
+      margin-top: 10px;
+      color: #aebbd0;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 340px) {
+      body {
+        padding: 4px;
+      }
+
+      #aether-sidebar {
+        padding: 12px;
+      }
+
+      .ae-top-line {
+        margin: -12px -12px 12px;
+      }
+
+      .ae-hero {
+        padding: 16px 10px;
+      }
+
+      .ae-hero h1 {
+        font-size: 26px;
+        letter-spacing: 2px;
+      }
+
+      .ae-tagline {
+        letter-spacing: 2px;
+      }
+
+      .ae-panel {
+        padding: 12px;
+      }
+
+      .ae-player-box {
+        padding: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ae-progress-fill,
+      .ae-battle-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="aether-sidebar" aria-label="Aether Chess club sidebar">
+    <div class="ae-top-line" aria-hidden="true"></div>
+
+    <!-- HERO -->
+    <header class="ae-hero">
+      <div class="ae-hero-symbols" aria-hidden="true">♟ ⚡ ♞</div>
+      <h1>AETHER CHESS</h1>
+      <p class="ae-tagline">PLAY WITH PASSION &bull; COMPETE WITH PURPOSE</p>
+      <div class="ae-online-badge">● SYSTEM ONLINE</div>
+    </header>
+
+    <!-- COMMUNITY PILLARS -->
+    <div class="ae-status-grid" aria-label="Chess, battles, and community">
+      <div class="ae-status-tile">
+        <div class="ae-status-symbol" aria-hidden="true">♟</div>
+        <p class="ae-status-label">CHESS</p>
+      </div>
+      <div class="ae-status-tile">
+        <div class="ae-status-symbol" aria-hidden="true">⚔</div>
+        <p class="ae-status-label">BATTLES</p>
+      </div>
+      <div class="ae-status-tile">
+        <div class="ae-status-symbol" aria-hidden="true">☕</div>
+        <p class="ae-status-label">COMMUNITY</p>
+      </div>
+    </div>
+
+    <!-- MEMBER CORE -->
+    <section class="ae-panel ae-core">
+      <div class="ae-heading-row">
+        <h2>⚡ CLUB CORE</h2>
+        <span class="ae-core-label">MEMBERS</span>
+      </div>
+
+      <div class="ae-member-total">
+        <span id="aether-count" class="ae-member-count" aria-live="polite">
+          Loading…
+        </span>
+        <span class="ae-member-divider"> / </span>
+        <span id="aether-goal">250</span>
+      </div>
+
+      <div
+        id="aether-progress"
+        class="ae-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="aether-bar" class="ae-progress-fill"></div>
+      </div>
+
+      <div class="ae-capacity-row">
+        <span>CLUB CAPACITY</span>
+        <span id="aether-percent" class="ae-capacity-value">LOADING…</span>
+      </div>
+
+      <p id="aether-core-status" class="ae-core-status" role="status"></p>
+    </section>
+
+    <!-- NEW SPARKS -->
+    <section class="ae-panel ae-sparks">
+      <div class="ae-heading-row">
+        <div>
+          <h2>⚡ NEW SPARKS</h2>
+          <p class="ae-sparks-subtitle">LATEST AETHER RECRUITS</p>
+        </div>
+        <span
+          id="aether-live-status"
+          class="ae-live-status"
+          role="status"
+        >● SCANNING</span>
+      </div>
+
+      <div
+        id="aether-new-members"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <p class="ae-member-message">Locating the newest sparks…</p>
+      </div>
+
+      <button id="aether-refresh" class="ae-refresh" type="button">
+        ↻ UPDATE MEMBERS
+      </button>
+
+      <p class="ae-refresh-note">
+        TAP TO REFRESH &bull; NEWEST 3 MEMBERS
+      </p>
+    </section>
+
+    <!-- MISSION -->
+    <section class="ae-panel ae-mission">
+      <h2>◈ AETHER MISSION</h2>
+      <p class="ae-mission-line">MASTER THE BOARD.</p>
+      <p class="ae-mission-line ae-mission-line-purple">MASTER YOUR MIND.</p>
+      <p class="ae-mission-text">
+        A competitive sanctuary for players who want to improve, compete,
+        create friendships, and push their chess beyond ordinary limits.
+      </p>
+    </section>
+
+    <!-- JUKEBOX -->
+    <section class="ae-panel ae-jukebox">
+      <div class="ae-heading-row">
+        <h2>🎧 AETHER JUKEBOX</h2>
+        <span class="ae-jukebox-label">LIVE</span>
+      </div>
+
+      <div class="ae-player-box">
+        <select
+          id="songSelector"
+          class="ae-song-selector"
+          aria-label="Select a battle track"
+        >
+          <option value="">🎧 SELECT BATTLE TRACK</option>
+          <option value="https://file.garden/aee2m692YRpRKI9f/Music.mp3">
+            ⚔️ Story of a Warrior
+          </option>
+          <option value="https://www.image2url.com/r2/default/files/1780749086718-ad8e50d9-cde5-4dd0-9e53-5908da554a64.mp3">
+            🌻 Sunflower
+          </option>
+          <option value="https://www.image2url.com/r2/default/files/1780749639054-718df3e5-377a-4e6b-926f-b14fd9cbc53f.mp3">
+            🌙 Sweater Weather
+          </option>
+          <option value="https://www.image2url.com/r2/default/files/1780811074186-0664b0b1-06e3-4ccd-837e-d221edc5330d.mp3">
+            🌼 Dandelions
+          </option>
+          <option value="https://www.image2url.com/r2/default/files/1780811614652-1135862e-0e03-4c75-9de5-37bde2bdf60b.mp3">
+            🌃 Night Changes
+          </option>
+          <option value="https://file.garden/aee2m692YRpRKI9f/Ae%20Dil%20Hai%20Mushkil.wav">
+            ❤️ Ae Dil Hai Mushkil
+          </option>
+          <option value="https://file.garden/aee2m692YRpRKI9f/Woh%20Lamhe%20Woh%20Baatein.mp3">
+            🎞️ Woh Lamhe Woh Baatein
+          </option>
+          <option value="https://file.garden/aee2m692YRpRKI9f/Counting%20Stars.mp3">
+            ⭐ Counting Stars
+          </option>
+          <option value="https://file.garden/aee2m692YRpRKI9f/Suzume.mp3">
+            🌸 Suzume
+          </option>
+          <option value="https://file.garden/aee2m692YRpRKI9f/Attention.mp3">
+            👀 Attention
+          </option>
+          <option value="https://file.garden/aqkzvJUj5RKrOkMK/videoplayback.mp3">
+            💲 Profitable Passion
+          </option>
+        </select>
+
+        <audio
+          id="purpleMusicPlayer"
+          class="ae-audio"
+          controls
+          loop
+          preload="metadata"
+          src="https://file.garden/aee2m692YRpRKI9f/Music.mp3"
+          aria-label="Aether jukebox audio player"
+        ></audio>
+
+        <p id="aether-audio-status" class="ae-audio-status" role="status"></p>
+      </div>
+    </section>
+
+    <!-- BATTLE COMMAND -->
+    <nav class="ae-panel ae-battle" aria-label="Battle command">
+      <h2>⚔️ BATTLE COMMAND</h2>
+
+      <a
+        class="ae-battle-link"
+        href="https://www.chess.com/clubs/forum/view/vote-chess-3290"
+        target="_blank"
+        rel="noopener noreferrer"
+      >♟ ENTER VOTE CHESS</a>
+
+      <a
+        class="ae-battle-link ae-battle-link-purple"
+        href="https://www.chess.com/clubs/forum/view/daily-matches-106"
+        target="_blank"
+        rel="noopener noreferrer"
+      >⚔ ENTER DAILY MATCHES</a>
+    </nav>
+
+    <!-- NAVIGATION HUB -->
+    <nav class="ae-panel ae-navigation" aria-label="Navigation hub">
+      <h2>🔗 NAVIGATION HUB</h2>
+
+      <div class="ae-navigation-grid">
+        <a
+          class="ae-nav-link"
+          href="https://www.chess.com/clubs/forum/view/official-club-rules-37"
+          target="_blank"
+          rel="noopener noreferrer"
+        >📜 RULES</a>
+
+        <a
+          class="ae-nav-link"
+          href="https://www.chess.com/clubs/forum/view/hall-of-fame-223"
+          target="_blank"
+          rel="noopener noreferrer"
+        >🏆 HALL OF FAME</a>
+      </div>
+    </nav>
+
+    <!-- DAILY DIRECTIVE -->
+    <section class="ae-directive">
+      <h2>♛ DAILY DIRECTIVE</h2>
+      <p class="ae-directive-primary">THINK DEEP.</p>
+      <p class="ae-directive-secondary">MOVE BOLD.</p>
+      <p class="ae-directive-note">EVERY MOVE CREATES YOUR LEGACY.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="ae-footer">
+        <p class="ae-footer-motto">
+          AETHER CHESS &bull; STRATEGY &bull; COMPETITION &bull; COMMUNITY
+        </p>
+        <p class="ae-system-label">SYSTEM // ONLINE</p>
+      </div>
+
+      <div class="ae-credits">
+        <p class="ae-footer-motto">
+          AETHER CHESS &bull; STRATEGY &bull; COMPETITION &bull; COMMUNITY
+        </p>
+        <p class="ae-credit-label">⚡ SIDEBAR POLISHED BY ⚡</p>
+
+        <div class="ae-credit-names">
+          <span>@Wildis_Knight</span>
+          <span>@Harr-Potter-GM</span>
+          <span>@Shadow_of_Logic</span>
+        </div>
+
+        <p class="ae-wizard">✦ THE WIZARD OF THE BOARD ✦</p>
+      </div>
+
+      <noscript>
+        <p class="ae-noscript">
+          Enable JavaScript for live membership updates and automatic
+          playback when selecting a track. The audio controls remain available.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "aether-chess";
+      const goal = 250;
+
+      const countElement = document.getElementById("aether-count");
+      const goalElement = document.getElementById("aether-goal");
+      const barElement = document.getElementById("aether-bar");
+      const percentElement = document.getElementById("aether-percent");
+      const progressElement = document.getElementById("aether-progress");
+      const coreStatus = document.getElementById("aether-core-status");
+      const memberList = document.getElementById("aether-new-members");
+      const liveStatus = document.getElementById("aether-live-status");
+      const refreshButton = document.getElementById("aether-refresh");
+
+      let countLoading = false;
+      let membersLoading = false;
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function fetchJSON(url, fresh = false) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal,
+            cache: fresh ? "no-store" : "default",
+            headers: { Accept: "application/json" }
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount(fresh = false) {
+        if (countLoading) return;
+        countLoading = true;
+        progressElement.setAttribute("aria-busy", "true");
+
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`,
+            fresh
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const percent = Math.min(100, count / goal * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${percent}%`;
+          percentElement.textContent = `${Math.round(percent)}% CAPACITY`;
+
+          progressElement.setAttribute("aria-valuenow", String(percent));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal}`
+          );
+
+          coreStatus.textContent = "";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          barElement.style.width = "0%";
+          percentElement.textContent = "UNAVAILABLE";
+          coreStatus.textContent =
+            "Live membership data is temporarily unavailable.";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("Aether Chess member count:", error);
+        } finally {
+          countLoading = false;
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "ae-member-message";
+        paragraph.textContent = message;
+        memberList.replaceChildren(paragraph);
+      }
+
+      async function loadNewestMembers(fresh = false) {
+        if (membersLoading) return;
+        membersLoading = true;
+
+        refreshButton.disabled = true;
+        refreshButton.textContent = "⏳ CHECKING...";
+        memberList.setAttribute("aria-busy", "true");
+        liveStatus.textContent = "● SCANNING";
+        liveStatus.classList.remove("ae-offline");
+
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`,
+            fresh
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage("Awaiting the next Aether spark.");
+          } else {
+            const labels = [
+              "★ NEWEST SPARK",
+              "⚡ NEW SPARK",
+              "⚡ NEW SPARK"
+            ];
+
+            const fragment = document.createDocumentFragment();
+
+            newest.forEach((member, index) => {
+              const card = document.createElement("div");
+              card.className = "ae-member-card";
+
+              const label = document.createElement("p");
+              label.className = "ae-member-label";
+              label.textContent = labels[index];
+
+              const name = document.createElement("p");
+              name.className = "ae-member-name";
+              name.textContent = `@${member.username}`;
+
+              card.append(label, name);
+              fragment.appendChild(card);
+            });
+
+            memberList.replaceChildren(fragment);
+          }
+
+          liveStatus.textContent = "● LIVE";
+          refreshButton.textContent = "↻ UPDATE MEMBERS";
+        } catch (error) {
+          showMemberMessage("Unable to load the newest sparks.");
+          liveStatus.textContent = "● OFFLINE";
+          liveStatus.classList.add("ae-offline");
+          refreshButton.textContent = "TRY AGAIN";
+
+          console.warn("Aether Chess newest members:", error);
+        } finally {
+          membersLoading = false;
+          refreshButton.disabled = false;
+          memberList.setAttribute("aria-busy", "false");
+        }
+      }
+
+      refreshButton.addEventListener("click", () => {
+        loadMemberCount(true);
+        loadNewestMembers(true);
+      });
+
+      loadMemberCount();
+      loadNewestMembers();
+
+      window.setInterval(() => {
+        if (document.hidden) return;
+        loadMemberCount();
+        loadNewestMembers();
+      }, 60000);
+
+      const selector = document.getElementById("songSelector");
+      const player = document.getElementById("purpleMusicPlayer");
+      const audioStatus = document.getElementById("aether-audio-status");
+
+      let selectionVersion = 0;
+
+      selector.addEventListener("change", async () => {
+        const version = ++selectionVersion;
+
+        player.pause();
+        audioStatus.textContent = "";
+
+        if (!selector.value) {
+          player.removeAttribute("src");
+          player.load();
+          audioStatus.textContent = "Select a battle track to begin.";
+          return;
+        }
+
+        player.src = selector.value;
+        player.load();
+
+        const trackName = selector.selectedOptions[0].textContent.trim();
+        audioStatus.textContent = `Loading: ${trackName}`;
+
+        try {
+          await player.play();
+
+          if (version === selectionVersion) {
+            audioStatus.textContent = `Now playing: ${trackName}`;
+          }
+        } catch (error) {
+          if (version !== selectionVersion || error.name === "AbortError") {
+            return;
+          }
+
+          audioStatus.textContent = error.name === "NotAllowedError"
+            ? "Press Play on the audio controls to start this track."
+            : "This track could not start. Try another track or press Play.";
+
+          console.warn("Aether jukebox playback:", error);
+        }
+      });
+
+      player.addEventListener("playing", () => {
+        const selected = selector.selectedOptions[0];
+        const trackName = selector.value
+          ? selected.textContent.trim()
+          : "⚔️ Story of a Warrior";
+
+        audioStatus.textContent = `Now playing: ${trackName}`;
+      });
+
+      player.addEventListener("error", () => {
+        if (!player.getAttribute("src")) return;
+        audioStatus.textContent =
+          "This audio source is unavailable or could not be played. Try another track.";
+      });
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
