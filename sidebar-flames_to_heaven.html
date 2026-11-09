@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #ffffff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: transparent;
+      color: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    #flames-to-heaven-sidebar {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 2px solid #ff9d00;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #120600, #2b0b00, #3d1200);
+      color: #ffffff;
+      box-shadow:
+        0 0 25px rgba(255, 140, 0, 0.6),
+        0 0 60px rgba(255, 80, 0, 0.25);
+    }
+
+    .fth-header {
+      padding: 14px;
+      border: 2px solid #ffd700;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #300000, #842000, #ff9d00);
+      color: #ffffff;
+      text-align: center;
+      box-shadow: 0 0 20px #ffd700;
+    }
+
+    .fth-header h1 {
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-shadow:
+        0 0 8px #ffffff,
+        0 0 15px #ffd700;
+    }
+
+    .fth-header-flames {
+      display: block;
+      color: #ffffff;
+      font-size: 24px;
+      line-height: 1.5;
+    }
+
+    .fth-panel {
+      margin-top: 12px;
+      padding: 12px;
+      border: 2px solid #ff8c00;
+      border-radius: 10px;
+      background: #220b00;
+      color: #ffffff;
+      box-shadow: 0 0 18px rgba(255, 120, 0, 0.4);
+    }
+
+    .fth-panel h2 {
+      margin-bottom: 12px;
+      color: #ffd700;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-shadow: 0 0 10px #ffd700;
+    }
+
+    .fth-statistics {
+      box-shadow: 0 0 18px rgba(255, 120, 0, 0.45);
+    }
+
+    .fth-statistics h2 {
+      text-shadow: 0 0 8px #ffd700;
+    }
+
+    .fth-member-total {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      text-shadow: 0 0 8px #ffa500;
+    }
+
+    .fth-progress-track {
+      width: 100%;
+      height: 20px;
+      margin-top: 12px;
+      overflow: hidden;
+      border: 1px solid #ff8c00;
+      border-radius: 12px;
+      background: #180700;
+    }
+
+    .fth-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #ff3300, #ff8800, #ffd700);
+      box-shadow: 0 0 18px #ffa500;
+      transition: width 1s ease;
+    }
+
+    .fth-member-status {
+      margin-top: 8px;
+      color: #ffe1b3;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .fth-member-status:empty {
+      display: none;
+    }
+
+    .fth-newest {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #ffe18b;
+    }
+
+    .fth-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 8px;
+      padding: 10px;
+      border: 1px solid #ff9500;
+      border-radius: 8px;
+      background: #311000;
+      color: #ffe18b;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
+    }
+
+    .fth-member:last-child {
+      margin-bottom: 0;
+    }
+
+    .fth-member-symbol {
+      flex-shrink: 0;
+      color: #ffe18b;
+    }
+
+    .fth-member-name {
+      min-width: 0;
+      color: #ffe18b;
+      overflow-wrap: anywhere;
+    }
+
+    .fth-list-message {
+      padding: 10px;
+      border: 1px dashed #c77522;
+      border-radius: 8px;
+      background: #311000;
+      color: #ffe1b3;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .fth-panel-text {
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .fth-motto {
+      border-color: #ffd700;
+      text-align: center;
+      box-shadow: 0 0 20px #ffd700;
+    }
+
+    .fth-motto h2 {
+      margin-bottom: 18px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      text-shadow: none;
+    }
+
+    .fth-motto p {
+      color: #ffe18b;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .fth-footer {
+      margin-top: 15px;
+      color: #cccccc;
+      text-align: center;
+    }
+
+    .fth-credit {
+      color: #cccccc;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .fth-noscript {
+      margin-top: 9px;
+      color: #ffe1b3;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 340px) {
+      body {
+        padding: 4px;
+      }
+
+      #flames-to-heaven-sidebar {
+        padding: 14px;
+      }
+
+      .fth-header {
+        padding: 12px 8px;
+      }
+
+      .fth-header h1,
+      .fth-header-flames {
+        font-size: 22px;
+      }
+
+      .fth-member-total {
+        font-size: 20px;
+      }
+
+      .fth-member {
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fth-progress-fill {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main
+    id="flames-to-heaven-sidebar"
+    aria-label="Flames to Heaven club sidebar"
+  >
+
+    <!-- HEADER -->
+    <header class="fth-header">
+      <h1>
+        <span class="fth-header-flames" aria-hidden="true">🔥🔥🔥🔥🔥</span>
+        Flames to Heaven
+        <span class="fth-header-flames" aria-hidden="true">🔥🔥🔥🔥🔥</span>
+      </h1>
+    </header>
+
+    <!-- CLUB STATISTICS -->
+    <section class="fth-panel fth-statistics">
+      <h2>Club Statistics</h2>
+
+      <div class="fth-member-total">
+        <span id="fth-count" aria-live="polite">Loading…</span>
+        / <span id="fth-goal">50</span> Members
+      </div>
+
+      <div
+        id="fth-progress"
+        class="fth-progress-track"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="fth-bar" class="fth-progress-fill"></div>
+      </div>
+
+      <p
+        id="fth-member-status"
+        class="fth-member-status"
+        role="status"
+      ></p>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT -->
+    <section class="fth-panel">
+      <h2>Newest Flames</h2>
+
+      <ul
+        id="fth-newest"
+        class="fth-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <li class="fth-list-message">Loading newest Flames…</li>
+      </ul>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section class="fth-panel">
+      <h2>Activities</h2>
+      <p class="fth-panel-text">
+        &bull; Daily Matches<br>
+        &bull; Vote Chess<br>
+        &bull; Community Discussions<br>
+        &bull; Friendly Competition
+      </p>
+    </section>
+
+    <!-- MANDATORY RULE -->
+    <section class="fth-panel">
+      <h2>Mandatory Rule</h2>
+      <p class="fth-panel-text">
+        Do not resign games. Keep playing and flaming until the end!
+      </p>
+    </section>
+
+    <!-- CLUB MOTTO -->
+    <section class="fth-panel fth-motto">
+      <h2>Club Motto</h2>
+      <p>
+        “Every spark begins with one move.
+        Every flame reaches for the heavens.”
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="fth-footer">
+      <p class="fth-credit">Sidebar Created by @Wildis-Knight</p>
+
+      <noscript>
+        <p class="fth-noscript">
+          Enable JavaScript for the live member count and newest Flames.
+        </p>
+      </noscript>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "flames-to-heaven";
+      const goal = 50;
+
+      const countElement = document.getElementById("fth-count");
+      const goalElement = document.getElementById("fth-goal");
+      const barElement = document.getElementById("fth-bar");
+      const progressElement = document.getElementById("fth-progress");
+      const statusElement = document.getElementById("fth-member-status");
+      const newestElement = document.getElementById("fth-newest");
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isFinite(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, (count / goal) * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+
+          statusElement.textContent = "";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          statusElement.textContent =
+            "The live member count is temporarily unavailable.";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          console.warn("Flames to Heaven member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const item = document.createElement("li");
+        item.className = "fth-list-message";
+        item.textContent = message;
+        newestElement.replaceChildren(item);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinTime(member) > joinTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinTime(b) - joinTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage("Awaiting new Flames…");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const item = document.createElement("li");
+            item.className = "fth-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "fth-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = "🔥";
+
+            const name = document.createElement("span");
+            name.className = "fth-member-name";
+            name.textContent = member.username;
+
+            item.append(symbol, name);
+            fragment.appendChild(item);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage("The newest Flames are temporarily unavailable.");
+          console.warn("Flames to Heaven newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
