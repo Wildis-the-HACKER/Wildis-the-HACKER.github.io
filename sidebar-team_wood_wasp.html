@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #fef3c7;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #fef3c7;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 6px;
+      background: transparent;
+      color: #fef3c7;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    h1, h2, p, ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    button, a, summary {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    a, a:visited {
+      color: #fde68a;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff7cc;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #fde68a;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    #wood-wasp {
+      position: relative;
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+      padding: 14px;
+      border: 2px solid #facc15;
+      border-radius: 14px;
+      background: radial-gradient(circle at 50% 0%, #2a2208, #0a0a05 55%);
+      color: #fef3c7;
+      box-shadow: 0 0 20px rgba(250, 204, 21, .25);
+    }
+
+    #wood-wasp.rage {
+      border-color: #ef4444;
+      box-shadow: 0 0 24px rgba(239, 68, 68, .55);
+    }
+
+    #wood-wasp.rage .ww-panel {
+      border-color: #9a3412;
+    }
+
+    .ww-stripe {
+      height: 6px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+      background: repeating-linear-gradient(
+        -45deg, #facc15 0 10px, #0a0a05 10px 20px
+      );
+      background-size: 28px 28px;
+      animation: ww-stripes 3s linear infinite;
+    }
+
+    .ww-stripe.reverse {
+      margin: 10px 0 12px;
+      animation-direction: reverse;
+    }
+
+    @keyframes ww-stripes {
+      to { background-position: 28px 0; }
+    }
+
+    .ww-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 128px;
+      overflow: hidden;
+      border: 1px solid #facc15;
+      border-radius: 10px;
+      background: linear-gradient(160deg, #1c1917, #0a0a05 60%, #291d03);
+      box-shadow: inset 0 0 25px rgba(245, 158, 11, .25);
+      text-align: center;
+    }
+
+    #ww-header-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .ww-brand {
+      position: relative;
+      z-index: 1;
+      padding: 18px 8px;
+      pointer-events: none;
+    }
+
+    .ww-brand h1 {
+      color: #facc15;
+      font-size: clamp(17px, 5.8vw, 24px);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(250, 204, 21, .9), 0 2px #0a0a05;
+    }
+
+    .ww-brand p {
+      margin-top: 6px;
+      color: #fde68a;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .ww-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .ww-stat {
+      padding: 8px 2px;
+      border: 1px solid #facc15;
+      border-radius: 8px;
+      background: linear-gradient(#1c1917, #0a0a05);
+      text-align: center;
+    }
+
+    .ww-stat:nth-child(2) { border-color: #f59e0b; }
+    .ww-stat:nth-child(3) { border-color: #fde68a; }
+
+    .ww-stat-value {
+      color: #facc15;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.5;
+      text-shadow: 0 0 10px rgba(250, 204, 21, .6);
+    }
+
+    .ww-stat:nth-child(2) .ww-stat-value { color: #f59e0b; }
+    .ww-stat:nth-child(3) .ww-stat-value { color: #fde68a; }
+
+    .ww-stat-label {
+      color: #d6d3d1;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .ww-panel {
+      margin-bottom: 12px;
+      padding: 10px;
+      border: 1px solid #3f3a14;
+      border-radius: 10px;
+      background: linear-gradient(#1c1917, #0c0a06);
+      color: #fef3c7;
+    }
+
+    .ww-panel h2 {
+      margin-bottom: 8px;
+      color: #facc15;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+      text-align: center;
+      text-shadow: 0 0 8px rgba(250, 204, 21, .5);
+    }
+
+    .ww-center { text-align: center; }
+
+    .ww-muted {
+      color: #a8a29e;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .ww-note {
+      margin-top: 6px;
+      color: #a8a29e;
+      font-size: 9px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .ww-rank {
+      display: inline-block;
+      margin-bottom: 6px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #facc15, #f59e0b);
+      color: #0a0a05;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .ww-progress-label {
+      margin-bottom: 5px;
+      color: #d6d3d1;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .ww-track {
+      height: 10px;
+      overflow: hidden;
+      border: 1px solid #3f3a14;
+      border-radius: 6px;
+      background: #0a0a05;
+    }
+
+    .ww-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #facc15, #fef08a);
+      box-shadow: 0 0 10px #facc15;
+      transition: width 800ms ease;
+    }
+
+    .ww-schedule,
+    .ww-auto {
+      margin-bottom: 8px;
+      padding: 5px;
+      border: 1px dashed #fb923c;
+      border-radius: 6px;
+      background: #0a0a05;
+      color: #fb923c;
+      font-size: 10px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .ww-match {
+      display: block;
+      margin-bottom: 6px;
+      padding: 8px;
+      border: 1px solid #3f3a14;
+      border-radius: 8px;
+      background: #0a0a05;
+      color: #fde68a;
+    }
+
+    .ww-match:last-child { margin-bottom: 0; }
+
+    .ww-match-title {
+      color: #fde68a;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .ww-score-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px;
+      margin: 5px 0;
+      color: #facc15;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .ww-opponent-score { color: #f87171; }
+    .ww-score-status { color: #a8a29e; font-size: 9px; }
+
+    .ww-score-track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 5px;
+      background: #7f1d1d;
+    }
+
+    .ww-score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #facc15);
+    }
+
+    #ww-radar {
+      display: block;
+      width: 100%;
+      height: 150px;
+    }
+
+    .ww-radar-legend {
+      color: #a8a29e;
+      font-size: 9px;
+      text-align: center;
+    }
+
+    .ww-streak {
+      margin-bottom: 8px;
+      color: #fb923c;
+      font-size: 10px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .ww-achievements {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .ww-achievement {
+      padding: 7px 2px;
+      border: 1px dashed #3f3a14;
+      border-radius: 8px;
+      background: #0c0a06;
+      color: #a8a29e;
+      text-align: center;
+    }
+
+    .ww-achievement.unlocked {
+      border: 1px solid #facc15;
+      background: radial-gradient(circle at 50% 30%, #3f3412, #0a0a05);
+      color: #facc15;
+      box-shadow: 0 0 10px rgba(250, 204, 21, .3);
+    }
+
+    .ww-achievement-symbol { font-size: 18px; }
+    .ww-achievement-name {
+      margin-top: 2px;
+      color: inherit;
+      font-size: 8px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .ww-puzzle { text-align: center; }
+
+    .ww-puzzle img {
+      display: block;
+      width: 150px;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto 7px;
+      border: 2px solid #facc15;
+      border-radius: 6px;
+    }
+
+    .ww-puzzle-name {
+      margin-bottom: 7px;
+      color: #fde68a;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .ww-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #facc15, #f59e0b);
+      color: #0a0a05;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .ww-recruit {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px 8px;
+      margin-bottom: 5px;
+      padding: 6px 8px;
+      border: 1px solid #292524;
+      border-left: 3px solid #4ade80;
+      border-radius: 6px;
+      background: #0a0a05;
+      color: #bbf7d0;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .ww-recruit:last-child { margin-bottom: 0; }
+    .ww-recruit-time { color: #a8a29e; font-size: 9px; font-weight: 400; }
+
+    .ww-button {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 9px;
+      border: 1px solid #facc15;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #facc15, #f59e0b);
+      color: #0a0a05;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      text-align: center;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .ww-button:hover { filter: brightness(1.08); }
+    .ww-button:active { transform: scale(.98); }
+
+    .ww-honey-total {
+      margin-bottom: 7px;
+      color: #fde68a;
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .ww-auto {
+      margin: 8px 0 6px;
+      border-color: #4ade80;
+      color: #4ade80;
+    }
+
+    .ww-auto.hungry { border-color: #f87171; color: #f87171; }
+
+    .ww-snack {
+      margin-bottom: 3px;
+      color: #fdba74;
+      font-size: 9px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .ww-snack-track { height: 6px; }
+
+    .ww-snack-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #4ade80, #facc15, #ef4444);
+    }
+
+    .ww-shop {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 7px;
+    }
+
+    .ww-buy {
+      padding: 7px 3px;
+      border: 1px solid #3f3a14;
+      border-radius: 8px;
+      background: linear-gradient(#1c1917, #0a0a05);
+      color: #facc15;
+      font-size: 11px;
+      font-weight: 900;
+      text-align: center;
+      opacity: .6;
+    }
+
+    .ww-buy.affordable {
+      border-color: #facc15;
+      opacity: 1;
+      box-shadow: 0 0 10px rgba(250, 204, 21, .25);
+    }
+
+    .ww-buy span { display: block; }
+    .ww-buy .ww-cost { color: #d6d3d1; font-size: 9px; }
+
+    .ww-council-heading {
+      margin: 9px 0 5px;
+      color: #facc15;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .ww-council-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .ww-council-grid.super { grid-template-columns: minmax(0, 1fr); }
+
+    .ww-council-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      padding: 6px;
+      border: 1px solid #3f3a14;
+      border-left: 3px solid var(--role-color, #facc15);
+      border-radius: 8px;
+      background: linear-gradient(90deg, #1c1917, #0a0a05);
+      color: #fde68a;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .ww-avatar {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--role-color, #facc15);
+      color: #0a0a05;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .ww-council-name { min-width: 0; overflow-wrap: anywhere; }
+
+    .ww-navigation { margin-bottom: 12px; }
+
+    .ww-navigation a {
+      display: block;
+      margin-bottom: 6px;
+      padding: 8px 12px;
+      border: 1px solid #facc15;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #1c1917, #0a0a05);
+      color: #facc15;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .ww-navigation a:hover { background: #3f3412; }
+
+    .ww-rules {
+      margin-bottom: 12px;
+      border: 1px solid #facc15;
+      border-radius: 8px;
+      background: #0a0a05;
+      color: #fde68a;
+    }
+
+    .ww-rules summary {
+      padding: 9px;
+      color: #facc15;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .ww-rules-content {
+      padding: 0 12px 10px;
+      color: #fde68a;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .ww-actions {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .ww-join,
+    .ww-join:visited {
+      color: #0a0a05;
+      box-shadow: 0 0 18px rgba(250, 204, 21, .35);
+    }
+
+    .ww-raid {
+      border: 2px solid #ef4444;
+      background: #0a0a05;
+      color: #ef4444;
+      box-shadow: 0 0 12px rgba(239, 68, 68, .25);
+    }
+
+    .ww-secondary {
+      border-color: #57534e;
+      background: #0a0a05;
+      color: #d6d3d1;
+      font-size: 11px;
+    }
+
+    .ww-quote {
+      min-height: 38px;
+      margin-bottom: 10px;
+      color: #fde68a;
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .ww-ticker {
+      overflow: hidden;
+      margin-bottom: 10px;
+      padding: 5px 0;
+      border: 1px solid #3f3a14;
+      border-radius: 6px;
+      background: #0a0a05;
+    }
+
+    .ww-ticker span {
+      display: inline-block;
+      padding-left: 100%;
+      color: #facc15;
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+      animation: ww-ticker 35s linear infinite;
+    }
+
+    @keyframes ww-ticker {
+      to { transform: translateX(-100%); }
+    }
+
+    .ww-footer {
+      padding-top: 8px;
+      border-top: 1px solid #3f3a14;
+      color: #a8a29e;
+      font-size: 9px;
+      text-align: center;
+    }
+
+    .ww-footer p + p { margin-top: 7px; }
+    .ww-footer a { color: #fde68a; font-weight: 700; }
+
+    #ww-effects {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    @media (max-width: 300px) {
+      #wood-wasp { padding: 10px; }
+      .ww-council-grid { grid-template-columns: minmax(0, 1fr); }
+      .ww-stat-value { font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .ww-ticker span {
+        padding-left: 8px;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="wood-wasp" aria-label="Team Wood Wasp sidebar">
+    <div class="ww-stripe" aria-hidden="true"></div>
+
+    <header class="ww-header" id="ww-header">
+      <canvas id="ww-header-canvas" aria-hidden="true"></canvas>
+      <div class="ww-brand">
+        <h1 id="ww-name">TEAM WOOD WASP</h1>
+        <p id="ww-established">THE HIVE STRIKES</p>
+      </div>
+    </header>
+
+    <div class="ww-stripe reverse" aria-hidden="true"></div>
+
+    <div class="ww-stats" aria-label="Club statistics">
+      <div class="ww-stat">
+        <p class="ww-stat-value" id="ww-members">—</p>
+        <p class="ww-stat-label">MEMBERS</p>
+      </div>
+      <div class="ww-stat">
+        <p class="ww-stat-value" id="ww-wins">—</p>
+        <p class="ww-stat-label">MATCHES WON</p>
+      </div>
+      <div class="ww-stat">
+        <p class="ww-stat-value" id="ww-rating">—</p>
+        <p class="ww-stat-label">AVG RATING</p>
+      </div>
+    </div>
+
+    <section class="ww-panel">
+      <h2>⚡ STING METER ⚡</h2>
+      <div class="ww-center">
+        <span id="ww-rank" class="ww-rank">COUNTING THE HIVE…</span>
+      </div>
+      <p id="ww-goal-label" class="ww-progress-label">Loading membership…</p>
+      <div id="ww-progress" class="ww-track" role="progressbar"
+           aria-label="Progress through the current 100-member milestone"
+           aria-valuemin="0" aria-valuemax="100"
+           aria-valuetext="Loading membership">
+        <div id="ww-bar" class="ww-fill"></div>
+      </div>
+      <p id="ww-club-status" class="ww-note" role="status"></p>
+    </section>
+
+    <section class="ww-panel">
+      <h2>⚔️ BATTLE STATION ⚔️</h2>
+      <p id="ww-schedule" class="ww-schedule">Checking the battle schedule…</p>
+      <div id="ww-battles">
+        <p class="ww-muted ww-center">Locating active battles…</p>
+      </div>
+    </section>
+
+    <section class="ww-panel">
+      <h2>📡 RIVAL RADAR 📡</h2>
+      <canvas id="ww-radar" aria-label="Decorative radar of club opponents"></canvas>
+      <p class="ww-radar-legend">
+        Red: active · Orange: registered · Gray: recent opponents
+      </p>
+      <p id="ww-radar-status" class="ww-note">Loading opponents…</p>
+    </section>
+
+    <section class="ww-panel">
+      <h2>🏅 HIVE ACHIEVEMENTS</h2>
+      <p id="ww-streak" class="ww-streak">Checking match history…</p>
+      <div id="ww-achievements" class="ww-achievements"></div>
+      <p class="ww-note">
+        Badges reflect available club API data, not a complete historical archive.
+      </p>
+    </section>
+
+    <section class="ww-panel">
+      <h2>🧩 DAILY PUZZLE</h2>
+      <div id="ww-puzzle" class="ww-puzzle">
+        <p class="ww-muted">Loading today's puzzle…</p>
+      </div>
+    </section>
+
+    <section class="ww-panel">
+      <h2>🆕 NEWEST RECRUITS</h2>
+      <div id="ww-recruits" aria-live="polite" aria-busy="true">
+        <p class="ww-muted ww-center">Checking the nest…</p>
+      </div>
+    </section>
+
+    <section class="ww-panel">
+      <h2>🍯 FEED THE HIVE</h2>
+      <p id="ww-honey" class="ww-honey-total">🍯 0 honey</p>
+      <button id="ww-collect" class="ww-button" type="button">
+        🐝 FEED THE HIVE 🐝
+      </button>
+      <p class="ww-note">Click to collect honey and level up!</p>
+      <p id="ww-auto" class="ww-auto">Buy a Worker Bee to auto-click!</p>
+      <p id="ww-snack" class="ww-snack">No bees to feed yet</p>
+      <div class="ww-track ww-snack-track" aria-hidden="true">
+        <div id="ww-snack-bar" class="ww-snack-fill"></div>
+      </div>
+      <div class="ww-shop">
+        <button id="ww-buy-bee" class="ww-buy" type="button">
+          <span id="ww-bee-label">🤖 BEE x0</span>
+          <span id="ww-bee-cost" class="ww-cost">15 🍯</span>
+        </button>
+        <button id="ww-buy-factory" class="ww-buy" type="button">
+          <span id="ww-factory-label">🏭 FACTORY x0</span>
+          <span id="ww-factory-cost" class="ww-cost">120 🍯</span>
+        </button>
+      </div>
+      <p class="ww-note">
+        Bee: +1/sec, eats 3 · Factory: +8/sec, eats 20.<br>
+        Snack time is every 10 seconds. Hungry hives produce at half speed.
+      </p>
+      <p id="ww-game-status" class="ww-note" role="status"></p>
+    </section>
+
+    <section class="ww-panel">
+      <h2>👑 HIVE COUNCIL</h2>
+      <div id="ww-council"></div>
+      <p class="ww-note">
+        Original council roster retained. Additional API-listed admins
+        appear separately when available.
+      </p>
+    </section>
+
+    <nav class="ww-navigation" aria-label="Hive navigation">
+      <a href="https://www.chess.com/club/team-wood-wasp"
+         target="_blank" rel="noopener noreferrer">🏠 Hive Home</a>
+      <a href="https://www.chess.com/club/matches/team-wood-wasp"
+         target="_blank" rel="noopener noreferrer">⚔️ Team Matches</a>
+      <a href="https://www.chess.com/club/members/team-wood-wasp"
+         target="_blank" rel="noopener noreferrer">🐝 Members</a>
+      <a href="https://www.chess.com/clubs/events/team-wood-wasp"
+         target="_blank" rel="noopener noreferrer">🎪 Events</a>
+    </nav>
+
+    <details class="ww-rules">
+      <summary>⚠️ HIVE RULES</summary>
+      <div class="ww-rules-content">
+        <p>🐝 Respect every member of the hive.</p>
+        <p>⏰ Move on time in team matches. Never time out!</p>
+        <p>⚔️ Join matches you can finish.</p>
+        <p>🧠 Analyze your games and get sharper.</p>
+        <p>🍯 Have fun and bring the sting!</p>
+      </div>
+    </details>
+
+    <div class="ww-actions">
+      <a class="ww-button ww-join"
+         href="https://www.chess.com/club/team-wood-wasp"
+         target="_blank" rel="noopener noreferrer">🐝 JOIN THE SWARM 🐝</a>
+      <button id="ww-raid" class="ww-button ww-raid" type="button">
+        🚨 LAUNCH RAID 🚨
+      </button>
+      <button id="ww-rage" class="ww-button ww-secondary"
+              type="button" aria-pressed="false">😐 RAGE MODE: OFF</button>
+      <button id="ww-mouse" class="ww-button ww-secondary"
+              type="button" aria-pressed="false">🐝 WASP CURSOR: OFF</button>
+      <button id="ww-motion" class="ww-button ww-secondary"
+              type="button" aria-pressed="true">PAUSE HIVE EFFECTS</button>
+    </div>
+
+    <p id="ww-quote" class="ww-quote">“We swarm. We sting. We win.”</p>
+
+    <div class="ww-ticker">
+      <span id="ww-ticker">🐝 Welcome to Team Wood Wasp! · The hive is waking up.</span>
+    </div>
+
+    <footer class="ww-footer">
+      <p>Built for Team Wood Wasp 🐝 The hive wakes automatically.</p>
+      <p id="ww-data-status" role="status">Loading live club data…</p>
+      <noscript>
+        <p>Enable JavaScript for live data, hive effects, and the honey game.</p>
+      </noscript>
+      <p>
+        Most Recent Update by
+        <a href="https://www.chess.com/club/wildis-knights-sidebars"
+           target="_blank" rel="noopener noreferrer">Wildis_Knight</a>
+      </p>
+    </footer>
+  </main>
+
+  <canvas id="ww-effects" aria-hidden="true"></canvas>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const $ = id => document.getElementById(id);
+      const CLUB = "team-wood-wasp";
+      const API = "https://api.chess.com/pub/";
+      const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+      const state = {
+        members: null,
+        rating: null,
+        wins: null,
+        finished: null,
+        streak: null,
+        rivals: [],
+        nextBattle: null,
+        registrationCount: 0,
+        matchesAvailable: false
+      };
+
+      async function getJSON(url) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 15000);
+        try {
+          const response = await fetch(url, { signal: controller.signal });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return await response.json();
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+
+      function textMessage(container, message) {
+        const p = document.createElement("p");
+        p.className = "ww-muted ww-center";
+        p.textContent = message;
+        container.replaceChildren(p);
+      }
+
+      function externalLink(url, className = "") {
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.className = className;
+        return link;
+      }
+
+      function readableSlug(value) {
+        return String(value || "").split("-")
+          .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+          .join(" ");
+      }
+
+      function opponentName(match) {
+        if (typeof match.opponent === "string") {
+          const slug = match.opponent.split("/club/")[1];
+          if (slug) return readableSlug(slug.split(/[/?#]/)[0]);
+        }
+        return "Rival club";
+      }
+
+      function joinedTime(member) {
+        const numeric = Number(member.joined);
+        if (Number.isFinite(numeric) && numeric > 0) {
+          return numeric > 1e12 ? numeric : numeric * 1000;
+        }
+        const parsed = typeof member.joined === "string"
+          ? Date.parse(member.joined) : NaN;
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
+
+      function relativeTime(timestamp) {
+        if (!timestamp) return "Join time unavailable";
+        const seconds = Math.max(0, Math.floor((Date.now() - timestamp) / 1000));
+        if (seconds < 60) return "Just joined";
+        if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+        if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+        return `${Math.floor(seconds / 86400)}d ago`;
+      }
+
+      const councilGroups = [
+        {
+          label: "👑 SUPER ADMINS",
+          color: "#facc15",
+          names: [
+            "erle19", "ChillDannyMaster", "cas3499", "AllWaspPlay",
+            "PraisetheGoodLordJesus", "Valley-of-the-Suns"
+          ]
+        },
+        {
+          label: "🛡️ ADMINS",
+          color: "#f59e0b",
+          names: [
+            "DallasRooks", "ANITHECHESSBOI", "icelandair71", "rachan55",
+            "dodofrodofrodododo", "Uie_Goeb", "ReefRhino26",
+            "MibsamLibanKnight", "northkoreanempire", "TomiokaGiyuh"
+          ]
+        },
+        {
+          label: "🐝 COORDINATORS",
+          color: "#fb923c",
+          names: ["derednulbI_nosaK", "charan_smaran", "adamsigmapl", "FelixdGu"]
+        }
+      ];
+
+      function renderCouncil(adminURLs = []) {
+        const container = $("ww-council");
+        container.replaceChildren();
+
+        const known = new Set(
+          councilGroups.flatMap(group => group.names.map(name => name.toLowerCase()))
+        );
+
+        const additional = [...new Set(
+          adminURLs.filter(url => typeof url === "string")
+            .map(url => url.replace(/\/+$/, "").split("/").pop())
+            .filter(name => name && !known.has(name.toLowerCase()))
+        )];
+
+        const groups = councilGroups.map(group => ({
+          ...group,
+          names: [...group.names]
+        }));
+
+        if (additional.length) {
+          groups.push({
+            label: "📡 ADDITIONAL API-LISTED ADMINS",
+            color: "#fde68a",
+            names: additional
+          });
+        }
+
+        groups.forEach((group, index) => {
+          const heading = document.createElement("p");
+          heading.className = "ww-council-heading";
+          heading.style.color = group.color;
+          heading.textContent = `${group.label} · ${group.names.length}`;
+
+          const grid = document.createElement("div");
+          grid.className = index === 0 ? "ww-council-grid super" : "ww-council-grid";
+
+          group.names.forEach(name => {
+            const link = externalLink(
+              `https://www.chess.com/member/${encodeURIComponent(name)}`,
+              "ww-council-link"
+            );
+            link.style.setProperty("--role-color", group.color);
+
+            const avatar = document.createElement("span");
+            avatar.className = "ww-avatar";
+            avatar.setAttribute("aria-hidden", "true");
+            avatar.textContent = name.charAt(0).toUpperCase();
+
+            const label = document.createElement("span");
+            label.className = "ww-council-name";
+            label.textContent = `@${name}`;
+
+            link.append(avatar, label);
+            grid.appendChild(link);
+          });
+
+          container.append(heading, grid);
+        });
+      }
+
+      function renderAchievements() {
+        const items = [
+          ["🩸", "First Blood", "Win a team match",
+            state.wins === null ? null : state.wins >= 1],
+          ["🔥", "Hot Streak", "Win 3 in a row",
+            state.streak === null ? null : state.streak >= 3],
+          ["⚔️", "War Machine", "Finish 10 matches",
+            state.finished === null ? null : state.finished >= 10],
+          ["🐝", "Swarm 300", "Reach 300 members",
+            state.members === null ? null : state.members >= 300],
+          ["🧠", "Big Brains", "Average daily rating 1500+",
+            state.rating === null ? null : state.rating >= 1500],
+          ["👑", "Apex Swarm", "Reach 1000 members",
+            state.members === null ? null : state.members >= 1000]
+        ];
+
+        $("ww-achievements").replaceChildren();
+
+        items.forEach(([icon, name, description, unlocked]) => {
+          const card = document.createElement("div");
+          card.className = `ww-achievement${unlocked ? " unlocked" : ""}`;
+          card.title = `${name}: ${description}. ${
+            unlocked === null ? "Data unavailable" : unlocked ? "Unlocked" : "Locked"
+          }`;
+
+          const symbol = document.createElement("p");
+          symbol.className = "ww-achievement-symbol";
+          symbol.textContent = unlocked === null ? "?" : unlocked ? icon : "🔒";
+
+          const label = document.createElement("p");
+          label.className = "ww-achievement-name";
+          label.textContent = name.toUpperCase();
+
+          card.append(symbol, label);
+          $("ww-achievements").appendChild(card);
+        });
+
+        $("ww-streak").textContent = state.streak === null
+          ? "STREAK DATA UNAVAILABLE"
+          : state.streak
+            ? `🔥 ${state.streak} WIN STREAK`
+            : "🐝 NO STREAK YET";
+      }
+
+      function updateTicker() {
+        const messages = ["🐝 Welcome to Team Wood Wasp!"];
+        if (state.members !== null) {
+          messages.push(`🍯 The hive has ${state.members.toLocaleString()} members`);
+        }
+        if (state.wins !== null) messages.push(`🏆 ${state.wins} recorded match wins`);
+        if (state.streak > 1) messages.push(`🔥 ${state.streak} match win streak!`);
+        messages.push("⚡ Join a team match and bring the sting!");
+        $("ww-ticker").textContent = messages.join("   ·   ");
+      }
+
+      async function loadClub() {
+        try {
+          const data = await getJSON(API + "club/" + CLUB);
+          if (typeof data.name === "string") {
+            $("ww-name").textContent = data.name.toUpperCase();
+          }
+
+          if (Number.isFinite(data.created) && data.created > 0) {
+            const date = new Date(data.created * 1000).toLocaleDateString(
+              "en-US", { month: "short", year: "numeric" }
+            );
+            $("ww-established").textContent =
+              `EST. ${date.toUpperCase()} · THE HIVE STRIKES`;
+          }
+
+          if (!Number.isInteger(data.members_count) || data.members_count < 0) {
+            throw new Error("Member count unavailable");
+          }
+
+          state.members = data.members_count;
+          $("ww-members").textContent = state.members.toLocaleString();
+
+          state.rating = typeof data.average_daily_rating === "number" &&
+            Number.isFinite(data.average_daily_rating) &&
+            data.average_daily_rating > 0
+              ? data.average_daily_rating : null;
+
+          $("ww-rating").textContent = state.rating === null
+            ? "N/A" : Math.round(state.rating).toLocaleString();
+
+          const goal = (Math.floor(state.members / 100) + 1) * 100;
+          const progress = state.members - (goal - 100);
+
+          $("ww-bar").style.width = `${progress}%`;
+          $("ww-progress").setAttribute("aria-valuenow", String(progress));
+          $("ww-progress").setAttribute(
+            "aria-valuetext",
+            `${state.members} members; next milestone ${goal}`
+          );
+
+          $("ww-goal-label").textContent =
+            `${state.members.toLocaleString()} / ${goal.toLocaleString()} ` +
+            `(${goal - state.members} to go)`;
+
+          const rank = state.members < 100 ? "🥚 LARVA NEST"
+            : state.members < 250 ? "🐛 DRONE COLONY"
+            : state.members < 500 ? "🐝 SOLDIER HIVE"
+            : state.members < 1000 ? "⚔️ WAR HIVE"
+            : "👑 APEX SWARM";
+
+          $("ww-rank").textContent = `HIVE RANK: ${rank}`;
+          $("ww-club-status").textContent = state.rating === null
+            ? "Member count loaded. Average daily rating is not available."
+            : "Club statistics loaded.";
+
+          renderCouncil(Array.isArray(data.admin) ? data.admin : []);
+          return true;
+        } catch (error) {
+          $("ww-members").textContent = "N/A";
+          $("ww-rating").textContent = "N/A";
+          $("ww-rank").textContent = "HIVE DATA UNAVAILABLE";
+          $("ww-goal-label").textContent = "Unable to load membership.";
+          $("ww-club-status").textContent = "Club data is temporarily unavailable.";
+          console.warn("Wood Wasp club:", error);
+          return false;
+        } finally {
+          renderAchievements();
+          updateTicker();
+        }
+      }
+
+      async function loadRecruits() {
+        try {
+          const data = await getJSON(API + "club/" + CLUB + "/members");
+          const groups = ["weekly", "monthly", "all_time"];
+          if (!groups.some(key => Array.isArray(data[key]))) {
+            throw new Error("Invalid member response");
+          }
+
+          const members = new Map();
+          groups.forEach(key => {
+            (Array.isArray(data[key]) ? data[key] : []).forEach(member => {
+              if (!member || typeof member.username !== "string" ||
+                  !member.username.trim()) return;
+              const key = member.username.toLowerCase();
+              const old = members.get(key);
+              if (!old || joinedTime(member) > joinedTime(old)) members.set(key, member);
+            });
+          });
+
+          const newest = [...members.values()]
+            .sort((a, b) => joinedTime(b) - joinedTime(a)).slice(0, 3);
+
+          $("ww-recruits").replaceChildren();
+          if (!newest.length) {
+            textMessage($("ww-recruits"), "Fresh recruits always welcome!");
+            return true;
+          }
+
+          newest.forEach((member, index) => {
+            const row = document.createElement("div");
+            row.className = "ww-recruit";
+
+            const name = document.createElement("span");
+            name.textContent = `${index ? "🐣" : "🆕"} @${member.username}`;
+
+            const time = document.createElement("span");
+            time.className = "ww-recruit-time";
+            time.textContent = relativeTime(joinedTime(member));
+
+            row.append(name, time);
+            $("ww-recruits").appendChild(row);
+          });
+          return true;
+        } catch (error) {
+          textMessage($("ww-recruits"), "Recruit records temporarily unavailable.");
+          console.warn("Wood Wasp recruits:", error);
+          return false;
+        } finally {
+          $("ww-recruits").setAttribute("aria-busy", "false");
+        }
+      }
+
+      function matchAPIURL(match) {
+        const raw = match["@id"] || match.url;
+        if (typeof raw !== "string") return null;
+        try {
+          const url = new URL(raw);
+          if (url.origin === "https://api.chess.com" &&
+              /^\/pub\/match\/\d+\/?$/.test(url.pathname)) return url.href;
+        } catch {}
+        return null;
+      }
+
+      function matchPage(match) {
+        const apiURL = matchAPIURL(match);
+        if (apiURL) {
+          const id = new URL(apiURL).pathname.split("/").filter(Boolean).pop();
+          return `https://www.chess.com/club/matches/${id}`;
+        }
+        return "https://www.chess.com/club/matches/team-wood-wasp";
+      }
+
+      async function renderBattle(match) {
+        const card = externalLink(matchPage(match), "ww-match");
+        const title = document.createElement("p");
+        title.className = "ww-match-title";
+        title.textContent = `⚔️ vs ${opponentName(match)}`;
+        card.appendChild(title);
+
+        const apiURL = matchAPIURL(match);
+        if (!apiURL) return card;
+
+        try {
+          const details = await getJSON(apiURL);
+          const teams = details.teams || {};
+          const first = teams.team1 || {};
+          const second = teams.team2 || {};
+          const isUs = team => {
+            const url = String(team.url || "").replace(/\/+$/, "");
+            return url.endsWith("/club/" + CLUB);
+          };
+
+          const ours = isUs(first) ? first : isUs(second) ? second : null;
+          const rival = ours === first ? second : first;
+
+          if (!ours || typeof ours.score !== "number" ||
+              typeof rival.score !== "number") return card;
+
+          const oursScore = ours.score;
+          const rivalScore = rival.score;
+          const share = oursScore + rivalScore > 0
+            ? oursScore / (oursScore + rivalScore) * 100 : 50;
+
+          if (rival.name) title.textContent = `⚔️ vs ${rival.name}`;
+
+          const scores = document.createElement("div");
+          scores.className = "ww-score-row";
+
+          const home = document.createElement("span");
+          home.textContent = `🐝 ${oursScore}`;
+
+          const label = document.createElement("span");
+          label.className = "ww-score-status";
+          label.textContent = oursScore > rivalScore ? "WINNING"
+            : oursScore < rivalScore ? "FIGHT BACK!" : "TIED";
+
+          const away = document.createElement("span");
+          away.className = "ww-opponent-score";
+          away.textContent = String(rivalScore);
+
+          scores.append(home, label, away);
+
+          const track = document.createElement("div");
+          track.className = "ww-score-track";
+          const fill = document.createElement("div");
+          fill.className = "ww-score-fill";
+          fill.style.width = `${share}%`;
+          track.appendChild(fill);
+
+          card.append(scores, track);
+        } catch {
+          const note = document.createElement("p");
+          note.className = "ww-note";
+          note.textContent = "Open match for the current score.";
+          card.appendChild(note);
+        }
+        return card;
+      }
+
+      async function loadMatches() {
+        try {
+          const data = await getJSON(API + "club/" + CLUB + "/matches");
+          if (!["finished", "in_progress", "registered"]
+              .some(key => Array.isArray(data[key]))) {
+            throw new Error("Invalid matches response");
+          }
+
+          const finished = Array.isArray(data.finished) ? data.finished : [];
+          const active = Array.isArray(data.in_progress) ? data.in_progress : [];
+          const registered = Array.isArray(data.registered) ? data.registered : [];
+
+          const knownResults = new Set(["win", "lose", "draw"]);
+          state.finished = finished.length;
+          state.wins = finished.filter(match => match.result === "win").length;
+          $("ww-wins").textContent = state.wins.toLocaleString();
+
+          const dated = finished.every(match =>
+            Number.isFinite(match.end_time) && match.end_time > 0
+          );
+          const recognized = finished.every(match => knownResults.has(match.result));
+          state.streak = !finished.length ? 0 : dated && recognized ? 0 : null;
+
+          const ordered = [...finished].sort((a, b) =>
+            (b.end_time || b.start_time || 0) - (a.end_time || a.start_time || 0)
+          );
+
+          if (state.streak !== null) {
+            for (const match of ordered) {
+              if (match.result !== "win") break;
+              state.streak++;
+            }
+          }
+
+          const unique = new Map();
+          [
+            ...active.map(match => ({ match, type: "live" })),
+            ...registered.map(match => ({ match, type: "soon" })),
+            ...ordered.slice(0, 6).map(match => ({ match, type: "done" }))
+          ].forEach(({ match, type }) => {
+            const name = opponentName(match);
+            if (!unique.has(name)) unique.set(name, { name, type });
+          });
+
+          state.rivals = [...unique.values()];
+          $("ww-radar-status").textContent = state.rivals.length
+            ? `${state.rivals.length} opponents detected`
+            : "No rivals detected.";
+
+          state.registrationCount = registered.length;
+          state.nextBattle = registered
+            .filter(match => Number.isFinite(match.start_time) &&
+              match.start_time > Date.now() / 1000)
+            .sort((a, b) => a.start_time - b.start_time)[0] || null;
+          state.matchesAvailable = true;
+          updateCountdown();
+
+          if (!active.length) {
+            textMessage($("ww-battles"),
+              "No battles raging. The hive is sharpening its stingers.");
+          } else {
+            const cards = await Promise.all(active.slice(0, 3).map(renderBattle));
+            $("ww-battles").replaceChildren(...cards);
+          }
+
+          return true;
+        } catch (error) {
+          $("ww-wins").textContent = "N/A";
+          $("ww-schedule").textContent = "Battle schedule unavailable.";
+          $("ww-radar-status").textContent = "Opponent data unavailable.";
+          textMessage($("ww-battles"), "Battle data is temporarily unavailable.");
+          console.warn("Wood Wasp matches:", error);
+          return false;
+        } finally {
+          renderAchievements();
+          updateTicker();
+        }
+      }
+
+      function updateCountdown() {
+        if (!state.matchesAvailable) return;
+        if (!state.nextBattle) {
+          $("ww-schedule").textContent = state.registrationCount
+            ? "Next battle: registration open!"
+            : "No battles scheduled. Challenge a rival!";
+          return;
+        }
+
+        const remaining = Math.floor(state.nextBattle.start_time - Date.now() / 1000);
+        if (remaining <= 0) {
+          $("ww-schedule").textContent =
+            `⚔️ Scheduled start reached: ${opponentName(state.nextBattle)}`;
+          return;
+        }
+
+        const days = Math.floor(remaining / 86400);
+        const hours = Math.floor(remaining % 86400 / 3600);
+        const minutes = Math.floor(remaining % 3600 / 60);
+        const seconds = remaining % 60;
+        const pad = value => String(value).padStart(2, "0");
+
+        $("ww-schedule").textContent =
+          `⏳ vs ${opponentName(state.nextBattle)} in ` +
+          `${days ? days + "d " : ""}${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+      }
+
+      async function loadPuzzle() {
+        try {
+          const data = await getJSON(API + "puzzle");
+          const url = new URL(data.url);
+          if (url.protocol !== "https:" ||
+              !(url.hostname === "chess.com" || url.hostname.endsWith(".chess.com"))) {
+            throw new Error("Unexpected puzzle link");
+          }
+
+          const link = externalLink(url.href);
+          if (typeof data.image === "string" && data.image.startsWith("https://")) {
+            const image = document.createElement("img");
+            image.src = data.image;
+            image.alt = "Today's chess puzzle position";
+            image.width = 150;
+            image.height = 150;
+            link.appendChild(image);
+          }
+
+          const name = document.createElement("p");
+          name.className = "ww-puzzle-name";
+          name.textContent = data.title || "Daily Puzzle";
+
+          const button = document.createElement("span");
+          button.className = "ww-pill";
+          button.textContent = "🧩 SOLVE IT";
+
+          link.append(name, button);
+          $("ww-puzzle").replaceChildren(link);
+        } catch (error) {
+          textMessage($("ww-puzzle"), "Puzzle unavailable right now.");
+          console.warn("Wood Wasp puzzle:", error);
+        }
+      }
+
+      renderCouncil();
+      renderAchievements();
+      Promise.all([loadClub(), loadMatches(), loadRecruits()]).then(results => {
+        $("ww-data-status").textContent = results.every(Boolean)
+          ? "Live club data loaded."
+          : "Some live data is unavailable. Other features remain usable.";
+      });
+      loadPuzzle();
+      setInterval(updateCountdown, 1000);
+
+      /* HONEY GAME */
+
+      const storageKey = "team-wood-wasp:honey:v1";
+      const nowSeconds = () => Math.floor(Date.now() / 1000);
+      const natural = value => Number.isSafeInteger(value) && value >= 0 ? value : 0;
+
+      let game = {
+        honey: 0, total: 0, bees: 0, factories: 0,
+        hungry: false, snack: 0, last: nowSeconds()
+      };
+      let storageOK = true;
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+        if (saved) {
+          game = {
+            honey: natural(saved.honey),
+            total: natural(saved.total),
+            bees: Math.min(1000, natural(saved.bees)),
+            factories: Math.min(1000, natural(saved.factories)),
+            hungry: saved.hungry === true,
+            snack: Math.min(9, natural(saved.snack)),
+            last: natural(saved.last) || nowSeconds()
+          };
+          game.total = Math.max(game.total, game.honey);
+        }
+      } catch {
+        storageOK = false;
+      }
+
+      function production() {
+        const base = game.bees + game.factories * 8;
+        return game.hungry && base ? Math.max(1, Math.floor(base / 2)) : base;
+      }
+
+      function foodCost() { return game.bees * 3 + game.factories * 20; }
+      function beeCost() { return Math.floor(15 * Math.pow(1.15, game.bees)); }
+      function factoryCost() { return Math.floor(120 * Math.pow(1.15, game.factories)); }
+
+      function simulate(seconds) {
+        for (let i = 0; i < seconds; i++) {
+          const amount = production();
+          if (!amount) continue;
+          game.honey += amount;
+          game.total += amount;
+          game.snack++;
+          if (game.snack >= 10) {
+            game.snack = 0;
+            const cost = foodCost();
+            game.hungry = game.honey < cost;
+            game.honey = Math.max(0, game.honey - cost);
+          }
+        }
+      }
+
+      function saveGame() {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(game));
+        } catch {
+          storageOK = false;
+        }
+      }
+
+      function catchUp() {
+        const now = nowSeconds();
+        const elapsed = Math.max(0, Math.min(7200, now - game.last));
+        simulate(elapsed);
+        game.last = now;
+        return elapsed;
+      }
+
+      const away = catchUp();
+
+      function renderGame() {
+        const level = Math.floor(Math.sqrt(game.total / 5)) + 1;
+        $("ww-honey").textContent =
+          `🍯 ${game.honey.toLocaleString()} honey · LEVEL ${level}`;
+
+        $("ww-bee-label").textContent = `🤖 BEE x${game.bees}`;
+        $("ww-factory-label").textContent = `🏭 FACTORY x${game.factories}`;
+        $("ww-bee-cost").textContent = `${beeCost().toLocaleString()} 🍯`;
+        $("ww-factory-cost").textContent = `${factoryCost().toLocaleString()} 🍯`;
+
+        $("ww-buy-bee").classList.toggle("affordable", game.honey >= beeCost());
+        $("ww-buy-factory").classList.toggle("affordable", game.honey >= factoryCost());
+
+        $("ww-auto").textContent = production()
+          ? game.hungry
+            ? `Hungry hive! Half speed: +${production()} honey/sec`
+            : `Auto-collect: +${production()} honey/sec`
+          : "Buy a Worker Bee to auto-click!";
+
+        $("ww-auto").classList.toggle("hungry", game.hungry);
+        $("ww-snack").textContent = foodCost()
+          ? `Snack time in ${10 - game.snack}s · bees eat ${foodCost()} honey`
+          : "No bees to feed yet";
+        $("ww-snack-bar").style.width = `${game.snack * 10}%`;
+      }
+
+      $("ww-collect").addEventListener("click", () => {
+        catchUp();
+        game.honey++;
+        game.total++;
+        saveGame();
+        renderGame();
+      });
+
+      function buy(kind) {
+        catchUp();
+        const cost = kind === "bee" ? beeCost() : factoryCost();
+        if (game.honey < cost) {
+          $("ww-game-status").textContent =
+            `Need ${(cost - game.honey).toLocaleString()} more honey.`;
+          renderGame();
+          return;
+        }
+        game.honey -= cost;
+        if (kind === "bee") game.bees++;
+        else game.factories++;
+        $("ww-game-status").textContent =
+          kind === "bee" ? "Worker Bee hired!" : "Honey Factory built!";
+        saveGame();
+        renderGame();
+      }
+
+      $("ww-buy-bee").addEventListener("click", () => buy("bee"));
+      $("ww-buy-factory").addEventListener("click", () => buy("factory"));
+
+      if (away > 10 && production()) {
+        $("ww-game-status").textContent =
+          `Welcome back! Up to ${away.toLocaleString()} seconds of ` +
+          "production and feeding have been simulated.";
+      }
+      if (!storageOK) {
+        $("ww-game-status").textContent =
+          "Browser storage is unavailable. Progress may not persist.";
+      }
+
+      renderGame();
+      saveGame();
+
+      setInterval(() => {
+        catchUp();
+        saveGame();
+        if (!document.hidden) renderGame();
+      }, 1000);
+
+      window.addEventListener("pagehide", () => {
+        catchUp();
+        saveGame();
+      });
+
+      /* HIVE EFFECTS */
+
+      let effectsEnabled = !reducedMotion.matches;
+      let cursorEnabled = false;
+      let pointer = { x: -100, y: -100, inside: false };
+      let headerPointer = null;
+      let raid = [];
+      let particles = [];
+      let trail = [];
+      let lastFrame = 0;
+      let frameId = null;
+      let phase = 0;
+
+      const headerCanvas = $("ww-header-canvas");
+      const radarCanvas = $("ww-radar");
+      const effectCanvas = $("ww-effects");
+      const headerContext = headerCanvas.getContext("2d");
+      const radarContext = radarCanvas.getContext("2d");
+      const effectContext = effectCanvas.getContext("2d");
+
+      function fitCanvas(canvas) {
+        const rect = canvas.getBoundingClientRect();
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        const width = Math.max(1, Math.round(rect.width * ratio));
+        const height = Math.max(1, Math.round(rect.height * ratio));
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+        }
+        const context = canvas.getContext("2d");
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        return { width: rect.width, height: rect.height };
+      }
+
+      function drawWasp(ctx, x, y, size, direction, t) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(size * direction, size);
+        const wing = Math.sin(t * 1.6) * .6;
+        ctx.fillStyle = "rgba(220,240,255,.6)";
+        ctx.beginPath();
+        ctx.ellipse(-2, -6, 7, 3.2, -.5 - wing, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(-2, -5, 6, 2.6, .4 + wing, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#facc15";
+        ctx.beginPath();
+        ctx.ellipse(-6, 0, 7, 4, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#0a0a05";
+        ctx.fillRect(-9, -4, 2, 8);
+        ctx.fillRect(-5, -4, 2, 8);
+        ctx.beginPath();
+        ctx.moveTo(-13, -1);
+        ctx.lineTo(-18, 0);
+        ctx.lineTo(-13, 2);
+        ctx.fill();
+        ctx.fillStyle = "#1c1917";
+        ctx.beginPath();
+        ctx.ellipse(2, 0, 3.2, 3, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#facc15";
+        ctx.beginPath();
+        ctx.arc(6, 0, 2.6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#ef4444";
+        ctx.beginPath();
+        ctx.arc(7, -1, 1, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      const wasps = Array.from({ length: 7 }, (_, i) => ({
+        x: Math.random() * 300,
+        y: 15 + Math.random() * 95,
+        speed: .6 + Math.random() * 1.2,
+        size: .7 + Math.random() * .6,
+        direction: i % 2 ? 1 : -1
+      }));
+
+      function drawHeader(delta) {
+        const { width, height } = fitCanvas(headerCanvas);
+        const ctx = headerContext;
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.strokeStyle = "rgba(250,204,21,.13)";
+        for (let row = 0; row < 6; row++) {
+          for (let col = 0; col < Math.ceil(width / 26) + 1; col++) {
+            const x = col * 26 + (row % 2 ? 13 : 0);
+            const y = row * 22 + 4;
+            ctx.beginPath();
+            for (let j = 0; j < 6; j++) {
+              const angle = Math.PI / 3 * j + Math.PI / 6;
+              ctx.lineTo(x + 12 * Math.cos(angle), y + 12 * Math.sin(angle));
+            }
+            ctx.closePath();
+            ctx.stroke();
+          }
+        }
+
+        wasps.forEach((wasp, i) => {
+          if (effectsEnabled) {
+            if (headerPointer) {
+              const targetX = headerPointer.x + Math.cos(phase * .05 + i) * 22;
+              const targetY = headerPointer.y + Math.sin(phase * .07 + i) * 14;
+              const dx = targetX - wasp.x;
+              wasp.direction = dx > 0 ? 1 : -1;
+              wasp.x += dx * Math.min(.1, .06 * delta);
+              wasp.y += (targetY - wasp.y) * Math.min(.1, .06 * delta);
+            } else {
+              wasp.x += wasp.speed * wasp.direction * delta;
+            }
+            if (wasp.x > width + 20) wasp.x = -20;
+            if (wasp.x < -20) wasp.x = width + 20;
+          }
+
+          const y = Math.min(height - 8, Math.max(8, wasp.y));
+          drawWasp(ctx, wasp.x, y + Math.sin(phase * .05 + i) * 4,
+            wasp.size, wasp.direction, phase);
+        });
+      }
+
+      function drawRadar() {
+        const { width, height } = fitCanvas(radarCanvas);
+        const ctx = radarContext;
+        const x = width / 2, y = height / 2, radius = Math.min(height / 2 - 6, width / 2 - 6);
+        ctx.clearRect(0, 0, width, height);
+        ctx.strokeStyle = "rgba(250,204,21,.25)";
+        ctx.lineWidth = 1;
+
+        for (let i = 1; i <= 3; i++) {
+          ctx.beginPath();
+          ctx.arc(x, y, radius * i / 3, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(x - radius, y);
+        ctx.lineTo(x + radius, y);
+        ctx.moveTo(x, y - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.stroke();
+
+        const angle = phase * .03;
+        ctx.fillStyle = "rgba(250,204,21,.12)";
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.arc(x, y, radius, angle - .6, angle);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.strokeStyle = "#fef08a";
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + Math.cos(angle) * radius, y + Math.sin(angle) * radius);
+        ctx.stroke();
+
+        state.rivals.forEach((rival, i) => {
+          const a = i * 2.399 + .4;
+          const r = radius * (rival.type === "live" ? .42 : rival.type === "soon" ? .68 : .86);
+          ctx.fillStyle = rival.type === "live" ? "#ef4444"
+            : rival.type === "soon" ? "#fb923c" : "#a8a29e";
+          ctx.beginPath();
+          ctx.arc(x + Math.cos(a) * r, y + Math.sin(a) * r, 3.2, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        ctx.fillStyle = "#facc15";
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function drawEffects(delta) {
+        const { width, height } = fitCanvas(effectCanvas);
+        const ctx = effectContext;
+        ctx.clearRect(0, 0, width, height);
+        if (!effectsEnabled) return;
+
+        if (cursorEnabled && pointer.inside) {
+          if (!trail.length) {
+            trail = Array.from({ length: 14 }, () => ({
+              x: pointer.x, y: pointer.y
+            }));
+          }
+          let x = pointer.x, y = pointer.y;
+          trail.forEach((point, i) => {
+            const ease = 1 - Math.pow(.68, delta);
+            point.x += (x - point.x) * ease;
+            point.y += (y - point.y) * ease;
+            ctx.globalAlpha = .8 - i * .045;
+            ctx.fillStyle = i % 2 ? "#facc15" : "#f59e0b";
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, Math.max(1, 5 - i * .28), 0, Math.PI * 2);
+            ctx.fill();
+            x = point.x;
+            y = point.y;
+          });
+          ctx.globalAlpha = 1;
+          drawWasp(ctx, pointer.x, pointer.y, 1, 1, phase);
+        }
+
+        raid = raid.filter(wasp => {
+          wasp.x += wasp.speed * delta;
+          drawWasp(ctx, wasp.x, wasp.y + Math.sin(phase * .15 + wasp.seed) * 10,
+            wasp.size, 1, phase * 3);
+          return wasp.x < width + 60;
+        });
+
+        particles = particles.filter(particle => {
+          particle.x += particle.vx * delta;
+          particle.y += particle.vy * delta;
+          particle.vy += .18 * delta;
+          particle.life -= .035 * delta;
+          ctx.globalAlpha = Math.max(0, particle.life);
+          ctx.fillStyle = "#facc15";
+          ctx.fillRect(particle.x, particle.y, 3, 3);
+          return particle.life > 0;
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      function drawFrame(timestamp) {
+        frameId = null;
+        const delta = lastFrame ? Math.min(3, (timestamp - lastFrame) / 16.667) : 1;
+        lastFrame = timestamp;
+        if (effectsEnabled) phase += delta;
+        drawHeader(delta);
+        drawRadar();
+        drawEffects(delta);
+        if (effectsEnabled && !document.hidden) {
+          frameId = requestAnimationFrame(drawFrame);
+        }
+      }
+
+      function startEffects() {
+        if (frameId !== null) cancelAnimationFrame(frameId);
+        lastFrame = 0;
+        if (!document.hidden) frameId = requestAnimationFrame(drawFrame);
+      }
+
+      $("ww-header").addEventListener("pointermove", event => {
+        if (event.pointerType !== "mouse") return;
+        const rect = $("ww-header").getBoundingClientRect();
+        headerPointer = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+      });
+      $("ww-header").addEventListener("pointerleave", () => { headerPointer = null; });
+
+      document.addEventListener("pointermove", event => {
+        if (event.pointerType !== "mouse") return;
+        pointer = { x: event.clientX, y: event.clientY, inside: true };
+      }, { passive: true });
+
+      function leavePointer() {
+        pointer.inside = false;
+        trail = [];
+      }
+
+      document.documentElement.addEventListener("pointerleave", leavePointer);
+      window.addEventListener("blur", leavePointer);
+
+      document.addEventListener("click", event => {
+        if (!effectsEnabled || event.detail === 0) return;
+        for (let i = 0; i < 12; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 1 + Math.random() * 4;
+          particles.push({
+            x: event.clientX, y: event.clientY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 2,
+            life: 1
+          });
+        }
+        particles = particles.slice(-120);
+      });
+
+      $("ww-raid").addEventListener("click", () => {
+        if (!effectsEnabled) {
+          $("ww-data-status").textContent = "Enable hive effects to launch the visual raid.";
+          return;
+        }
+        raid = Array.from({ length: 45 }, () => ({
+          x: -60 - Math.random() * innerWidth * .8,
+          y: Math.random() * innerHeight,
+          speed: 6 + Math.random() * 7,
+          size: 1.2 + Math.random() * 1.6,
+          seed: Math.random() * 6
+        }));
+      });
+
+      $("ww-rage").addEventListener("click", () => {
+        const on = $("wood-wasp").classList.toggle("rage");
+        $("ww-rage").setAttribute("aria-pressed", String(on));
+        $("ww-rage").textContent = on ? "😡 RAGE MODE: ON" : "😐 RAGE MODE: OFF";
+      });
+
+      $("ww-mouse").addEventListener("click", () => {
+        cursorEnabled = !cursorEnabled;
+        trail = [];
+        $("ww-mouse").setAttribute("aria-pressed", String(cursorEnabled));
+        $("ww-mouse").textContent = cursorEnabled
+          ? "🐝 WASP CURSOR: ON" : "🐝 WASP CURSOR: OFF";
+      });
+
+      function setMotion(on) {
+        effectsEnabled = on;
+        $("ww-motion").setAttribute("aria-pressed", String(on));
+        $("ww-motion").textContent = on ? "PAUSE HIVE EFFECTS" : "ENABLE HIVE EFFECTS";
+        document.querySelectorAll(".ww-stripe, .ww-ticker span").forEach(element => {
+          element.style.animationPlayState = on ? "running" : "paused";
+        });
+        if (!on) {
+          raid = [];
+          particles = [];
+          trail = [];
+        }
+        startEffects();
+      }
+
+      $("ww-motion").addEventListener("click", () => setMotion(!effectsEnabled));
+      reducedMotion.addEventListener("change", () => setMotion(!reducedMotion.matches));
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          if (frameId !== null) cancelAnimationFrame(frameId);
+          frameId = null;
+          leavePointer();
+        } else {
+          catchUp();
+          renderGame();
+          startEffects();
+        }
+      });
+
+      window.addEventListener("resize", startEffects);
+
+      const quotes = [
+        "“We swarm. We sting. We win.”",
+        "“One hive. One mind. One checkmate.”",
+        "“Touch the hive, feel the sting.”",
+        "“Our pawns have stingers.”",
+        "“Buzz in, checkmate out.”",
+        "“The queen moves. The hive follows.”"
+      ];
+      let quoteIndex = 0;
+
+      setInterval(() => {
+        if (document.hidden || !effectsEnabled) return;
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        $("ww-quote").textContent = quotes[quoteIndex];
+      }, 4500);
+
+      setMotion(effectsEnabled);
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
