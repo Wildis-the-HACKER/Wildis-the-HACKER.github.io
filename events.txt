@@ -269,32 +269,32 @@ Link: https://www.chess.com/play/arena/31105194
 Date: 2026-11-02
 Event: Vote Chess
 Time: Based on last Saturday's Opening Academy
-Link:
+Link: https://www.chess.com/votechess/game/460364
 
 Date: 2026-11-03
 Event: Vote Chess
 Time: Republic plays as White
-Link:
+Link: https://www.chess.com/votechess/game/460366
 
 Date: 2026-11-04
 Event: Vote Chess
 Time: Republic plays as Black
-Link:
+Link: https://www.chess.com/votechess/game/460772
 
 Date: 2026-11-05
 Event: Vote Chess
 Time: Random Chess960 starting position
-Link:
+Link: https://www.chess.com/votechess/game/460774
 
 Date: 2026-11-06
 Event: Friday Daily Match
 Time: All day
-Link:
+Link: https://www.chess.com/club/matches/the-rook-republic-chess-club/2018638
 
 Date: 2026-11-07
 Event: Opening Academy Saturday
 Time: All day
-Link:
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-11-7-26
 
 Date: 2026-11-07
 Event: Saturday Knight Swiss
@@ -309,7 +309,7 @@ Link:
 Date: 2026-11-08
 Event: Social Sunday
 Time: All day
-Link:
+Link: https://www.chess.com/clubs/forum/view/social-sunday-11-8-26
 
 Date: 2026-11-08
 Event: Community Game Review
