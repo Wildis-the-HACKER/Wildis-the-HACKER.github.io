@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #ffffff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 8px;
+      background: transparent;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1, h2, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #8eeeff;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #fff27a;
+      outline-offset: 4px;
+    }
+
+    #gif-club-sidebar {
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 3px;
+      border-radius: 30px;
+      background: linear-gradient(
+        90deg,
+        #ff3b81,
+        #ffcf3f,
+        #5cff8d,
+        #35d9ff,
+        #665cff,
+        #c64cff,
+        #ff3b81
+      );
+      color: #ffffff;
+      box-shadow:
+        0 0 28px rgba(255, 92, 138, 0.4),
+        0 0 55px rgba(53, 217, 255, 0.16),
+        0 18px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    .gc-inner {
+      position: relative;
+      overflow: hidden;
+      padding: 19px;
+      border-radius: 27px;
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(53, 217, 255, 0.23),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 0% 100%,
+          rgba(255, 92, 138, 0.22),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 50% 45%,
+          rgba(184, 76, 255, 0.15),
+          transparent 48%
+        ),
+        linear-gradient(145deg, #07050e, #181025 53%, #04030a);
+      color: #ffffff;
+    }
+
+    .gc-top-bar {
+      height: 7px;
+      margin: -19px -19px 19px;
+      background: linear-gradient(
+        90deg,
+        #ff3b81,
+        #ffcf3f,
+        #5cff8d,
+        #35d9ff,
+        #665cff,
+        #c64cff
+      );
+      box-shadow: 0 0 20px rgba(255, 92, 138, 0.75);
+    }
+
+    .gc-header {
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .gc-community-badge {
+      display: inline-block;
+      padding: 7px 15px;
+      border: 1px solid #fff27a;
+      border-radius: 999px;
+      background: rgba(255, 242, 122, 0.09);
+      color: #fff6bd;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+      box-shadow: 0 0 15px rgba(255, 242, 122, 0.3);
+    }
+
+    .gc-header h1 {
+      margin-top: 14px;
+      color: #fff27a;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 33px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-shadow:
+        0 0 12px rgba(255, 92, 138, 0.8),
+        0 0 25px rgba(53, 217, 255, 0.45);
+    }
+
+    .gc-header-description {
+      margin-top: 8px;
+      color: #c9f8ff;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .gc-community-status {
+      margin-top: 11px;
+      color: #8dffbb;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .gc-section-jump {
+      display: inline-block;
+      margin-top: 10px;
+      color: #a9c7df;
+      font-size: 10px;
+      line-height: 1.6;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .gc-featured {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      margin-top: 20px;
+      overflow: hidden;
+      border: 2px solid #ff5c8a;
+      border-radius: 22px;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(184, 76, 255, 0.3),
+          transparent 48%
+        ),
+        linear-gradient(145deg, #250d31, #071b32);
+      box-shadow:
+        0 0 25px rgba(255, 92, 138, 0.35),
+        inset 0 0 35px rgba(255, 255, 255, 0.04);
+    }
+
+    .gc-featured-label {
+      position: absolute;
+      top: 12px;
+      left: 13px;
+      z-index: 1;
+      max-width: calc(100% - 26px);
+      padding: 5px 9px;
+      border-radius: 7px;
+      background: #ff5c8a;
+      color: #ffffff;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      box-shadow: 0 0 13px rgba(255, 92, 138, 0.7);
+    }
+
+    .gc-featured-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+
+    .gc-panel {
+      margin-top: 19px;
+      padding: 18px;
+      border: 1px solid #4779c5;
+      border-radius: 18px;
+      background: linear-gradient(
+        145deg,
+        rgba(0, 217, 198, 0.12),
+        rgba(0, 0, 0, 0.24)
+      );
+      color: #ffffff;
+    }
+
+    .gc-panel h2 {
+      color: #bdf9ff;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.4;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .gc-arrivals {
+      box-shadow: 0 0 22px rgba(0, 217, 198, 0.25);
+      transition: box-shadow 250ms ease;
+    }
+
+    .gc-arrivals h2 {
+      margin-bottom: 13px;
+    }
+
+    .gc-member {
+      margin-top: 8px;
+      padding: 11px;
+      border-left: 4px solid #00d9c6;
+      border-radius: 9px;
+      background: rgba(0, 0, 0, 0.25);
+      color: #d9fff9;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      transition:
+        background-color 180ms ease,
+        transform 180ms ease;
+    }
+
+    .gc-member:nth-child(2) {
+      border-left-color: #73eaff;
+      color: #e1faff;
+    }
+
+    .gc-member:nth-child(3) {
+      border-left-color: #9e83ff;
+      color: #e7ddff;
+    }
+
+    .gc-member-message {
+      padding: 11px;
+      border: 1px dashed rgba(115, 234, 255, 0.3);
+      border-radius: 9px;
+      background: rgba(0, 0, 0, 0.25);
+      color: #b9cfde;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .gc-data-note {
+      margin-top: 10px;
+      color: #a1bdce;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .gc-count-frame {
+      margin-top: 19px;
+      padding: 3px;
+      border-radius: 20px;
+      background: linear-gradient(
+        90deg,
+        #064b69,
+        #00d9c6,
+        #73eaff,
+        #633cff,
+        #064b69
+      );
+      box-shadow: 0 0 20px rgba(0, 217, 198, 0.3);
+    }
+
+    .gc-count-inner {
+      padding: 17px;
+      border-radius: 17px;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(115, 234, 255, 0.14),
+          transparent 43%
+        ),
+        linear-gradient(145deg, #062c44, #030812);
+      color: #ffffff;
+    }
+
+    .gc-count-inner h2 {
+      color: #bdf9ff;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.5;
+      letter-spacing: 1.4px;
+      text-align: center;
+      text-shadow: 0 0 9px rgba(0, 217, 198, 0.8);
+    }
+
+    .gc-count-box {
+      margin-top: 13px;
+      padding: 14px;
+      border: 1px solid rgba(115, 234, 255, 0.4);
+      border-radius: 12px;
+      background: #02070d;
+      text-align: center;
+    }
+
+    .gc-count-label {
+      color: #88a9c4;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+    }
+
+    .gc-count {
+      margin-top: 6px;
+      color: #e9fbff;
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.4;
+      text-shadow:
+        0 0 11px #00d9c6,
+        0 0 20px rgba(99, 60, 255, 0.72);
+    }
+
+    .gc-progress-track {
+      width: 100%;
+      height: 13px;
+      margin-top: 13px;
+      overflow: hidden;
+      border: 1px solid rgba(115, 234, 255, 0.54);
+      border-radius: 999px;
+      background: #02070d;
+    }
+
+    .gc-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #064b69, #00d9c6, #73eaff, #633cff);
+      box-shadow: 0 0 14px rgba(0, 217, 198, 0.9);
+      transition: width 1s ease;
+    }
+
+    .gc-count-status {
+      margin-top: 9px;
+      color: #88a9c4;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .gc-count-status-heading {
+      display: block;
+      color: #aaffcf;
+      font-weight: 700;
+    }
+
+    .gc-count-status-heading.gc-unavailable {
+      color: #d2c7ff;
+    }
+
+    .gc-refresh {
+      display: none;
+      /*display: block;
+      width: 100%;
+      margin: 13px 0 0;
+      padding: 11px;
+      border: 1px solid #dffeff;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #e9fbff, #73eaff, #00d9c6);
+      color: #031a2b;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      text-align: center;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      box-shadow:
+        0 4px 0 #07385b,
+        0 0 14px rgba(0, 217, 198, 0.45);
+      transition: filter 180ms ease;*/
+    }
+
+    .gc-refresh:hover {
+      filter: brightness(1.1);
+    }
+
+    .gc-refresh:disabled {
+      opacity: 0.75;
+      cursor: wait;
+    }
+
+    .gc-achievements {
+      border-color: #ffcf3f;
+      border-radius: 19px;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 207, 63, 0.15),
+          transparent 42%
+        ),
+        linear-gradient(145deg, #28151e, #080d19);
+    }
+
+    .gc-achievements h2 {
+      color: #fff4b0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-shadow: 0 0 10px #ffcf3f;
+    }
+
+    .gc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .gc-tile {
+      padding: 14px 7px;
+      border: 1px solid #ff5c8a;
+      border-radius: 12px;
+      background: rgba(255, 92, 138, 0.07);
+      color: #ffc4d7;
+      text-align: center;
+    }
+
+    .gc-tile-cyan {
+      border-color: #35d9ff;
+      background: rgba(53, 217, 255, 0.07);
+      color: #bff7ff;
+    }
+
+    .gc-tile-purple {
+      border-color: #b84cff;
+      background: rgba(184, 76, 255, 0.07);
+      color: #e6d4ff;
+    }
+
+    .gc-tile-gold {
+      border-color: #ffcf3f;
+      background: rgba(255, 207, 63, 0.07);
+      color: #fff1ad;
+    }
+
+    .gc-tile-green {
+      border-color: #5cff8d;
+      background: rgba(92, 255, 141, 0.07);
+      color: #baffd0;
+    }
+
+    .gc-tile-symbol {
+      color: #ffffff;
+      font-size: 24px;
+      line-height: 1.5;
+    }
+
+    .gc-tile-name {
+      margin-top: 5px;
+      color: inherit;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .gc-tile-note {
+      margin-top: 3px;
+      color: #a0a8be;
+      font-size: 8px;
+      line-height: 1.6;
+    }
+
+    .gc-vault {
+      border-color: #b84cff;
+      border-radius: 19px;
+      background: linear-gradient(
+        145deg,
+        rgba(184, 76, 255, 0.14),
+        rgba(255, 92, 138, 0.06)
+      );
+    }
+
+    .gc-vault h2 {
+      color: #ead8ff;
+      text-shadow: 0 0 10px #b84cff;
+    }
+
+    .gc-vault .gc-tile {
+      padding: 13px 5px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .gc-navigation {
+      margin-top: 20px;
+      color: #ffffff;
+    }
+
+    .gc-navigation h2,
+    .gc-partners h2 {
+      margin-bottom: 11px;
+      color: #fff27a;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .gc-nav-link,
+    .gc-nav-link:visited {
+      display: block;
+      margin-top: 8px;
+      padding: 13px 15px;
+      border: 1px solid #ff5c8a;
+      border-radius: 11px;
+      background: linear-gradient(90deg, #45152f, #1a0b25);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.6;
+      text-decoration: none;
+      transition: filter 180ms ease;
+    }
+
+    .gc-nav-link:nth-of-type(even) {
+      border-color: #35d9ff;
+      background: linear-gradient(90deg, #102d47, #09172d);
+    }
+
+    .gc-nav-link:hover {
+      color: #ffffff;
+      filter: brightness(1.2);
+    }
+
+    .gc-partners {
+      margin-top: 21px;
+      color: #fff6bd;
+    }
+
+    .gc-partners h2 {
+      color: #8eeeff;
+    }
+
+    .gc-partner-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .gc-partner {
+      padding: 7px 12px;
+      border: 1px solid #fff27a;
+      border-radius: 999px;
+      background: rgba(255, 242, 122, 0.09);
+      color: #fff6bd;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.6;
+    }
+
+    .gc-community-rule {
+      margin-top: 21px;
+      padding: 18px;
+      border: 1px solid #ffcf3f;
+      border-radius: 18px;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 207, 63, 0.14),
+          transparent 40%
+        ),
+        linear-gradient(145deg, #29151f, #090e1b);
+      color: #d7d9e8;
+      text-align: center;
+    }
+
+    .gc-community-rule h2 {
+      color: #fff5b8;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      text-shadow: 0 0 10px #ffcf3f;
+    }
+
+    .gc-community-rule p {
+      margin-top: 8px;
+      color: #d7d9e8;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .gc-footer {
+      margin-top: 21px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 207, 63, 0.22);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .gc-original-credit {
+      color: #ffffff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.6;
+      text-shadow: 0 0 10px #ff5c8a, 0 0 18px #35d9ff;
+    }
+
+    .gc-footer-motto {
+      margin-top: 7px;
+      color: #8eeeff;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1.5px;
+    }
+
+    .gc-footer-tagline {
+      margin-top: 10px;
+      color: #fff27a;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.6;
+      letter-spacing: 2px;
+    }
+
+    .gc-back-top {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 7px 12px;
+      border: 1px solid rgba(53, 217, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(53, 217, 255, 0.07);
+      color: #8eeeff;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .gc-update-credit {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #c4c9de;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .gc-update-credit a,
+    .gc-update-credit a:visited {
+      color: #8eeeff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .gc-update-credit a:hover {
+      color: #fff27a;
+      text-decoration: underline;
+    }
+
+    .gc-noscript {
+      margin-top: 10px;
+      color: #c4c9de;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (hover: hover) {
+      .gc-arrivals:hover {
+        box-shadow: 0 0 30px rgba(0, 217, 198, 0.4);
+      }
+
+      .gc-member:hover {
+        transform: translateX(3px);
+        background: rgba(0, 217, 198, 0.12);
+      }
+    }
+
+    @media (max-width: 340px) {
+      body {
+        padding: 5px;
+      }
+
+      .gc-inner {
+        padding: 13px;
+      }
+
+      .gc-top-bar {
+        margin: -13px -13px 15px;
+      }
+
+      .gc-panel,
+      .gc-community-rule {
+        padding: 13px;
+      }
+
+      .gc-count-inner {
+        padding: 13px;
+      }
+
+      .gc-community-badge {
+        padding: 7px 10px;
+        letter-spacing: 1px;
+      }
+
+      .gc-header h1 {
+        font-size: 30px;
+      }
+
+      .gc-original-credit {
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gc-arrivals,
+      .gc-member,
+      .gc-progress-fill,
+      .gc-refresh,
+      .gc-nav-link {
+        transition: none;
+      }
+
+      .gc-member:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="gif-club-sidebar" aria-label="The GIF Club sidebar">
+    <div class="gc-inner">
+      <div class="gc-top-bar" aria-hidden="true"></div>
+
+      <!-- HEADER -->
+      <header class="gc-header">
+        <div class="gc-community-badge">THE OFFICIAL GIF COMMUNITY</div>
+        <h1>The GIF Club</h1>
+
+        <p class="gc-header-description">
+          Where reactions become memories<br>
+          and every moment deserves a loop.
+        </p>
+
+        <p class="gc-community-status">● LIVE COMMUNITY</p>
+      </header>
+
+      <!-- FEATURED GIF -->
+      <section class="gc-featured" aria-label="GIF of the Month">
+        <div class="gc-featured-label">🎬 GIF OF THE MONTH</div>
+        <img
+          class="gc-featured-image"
+          src="https://images.chesscomfiles.com/uploads/v1/group/992996.88f3c1f9.350x350o.7b631cf1fe91.gif"
+          alt="GIF of the Month"
+          width="350"
+          height="350"
+        >
+      </section>
+
+      <!-- NEWEST MEMBERS: PLAIN TEXT -->
+      <section class="gc-panel gc-arrivals">
+        <h2>OUR NEWEST GIFs</h2>
+
+        <div
+          id="gif-newest"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <p class="gc-member-message">Finding our newest members…</p>
+        </div>
+
+        <p id="gif-members-status" class="gc-data-note" role="status">
+          Loading automatically…
+        </p>
+      </section>
+
+      <!-- LIVE MEMBER COUNT -->
+      <section class="gc-count-frame">
+        <div class="gc-count-inner">
+          <h2>LIVE GIFs</h2>
+
+          <div class="gc-count-box">
+            <p class="gc-count-label">CURRENT MEMBERS</p>
+            <p id="gif-count" class="gc-count" aria-live="polite">Loading…</p>
+          </div>
+
+          <div
+            id="gif-progress"
+            class="gc-progress-track"
+            role="progressbar"
+            aria-label="Progress toward the next membership milestone"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuetext="Loading member count"
+            aria-busy="true"
+          >
+            <div id="gif-bar" class="gc-progress-fill"></div>
+          </div>
+
+          <div id="gif-status" class="gc-count-status" role="status">
+            Requesting club membership data…
+          </div>
+
+          <button id="gif-refresh" class="gc-refresh" type="button">
+          </button>
+
+
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENTS -->
+      <section class="gc-panel gc-achievements">
+        <h2>OUR ACHIEVEMENTS</h2>
+
+        <div class="gc-grid">
+          <div class="gc-tile">
+            <div class="gc-tile-symbol" aria-hidden="true">🎬</div>
+            <p class="gc-tile-name">GIF COMMUNITY</p>
+            <p class="gc-tile-note">Built around reactions</p>
+          </div>
+
+          <div class="gc-tile gc-tile-cyan">
+            <div class="gc-tile-symbol" aria-hidden="true">🎪</div>
+            <p class="gc-tile-name">EVENTS</p>
+            <p class="gc-tile-note">Community in action</p>
+          </div>
+
+          <div class="gc-tile gc-tile-purple">
+            <div class="gc-tile-symbol" aria-hidden="true">🌈</div>
+            <p class="gc-tile-name">RAINBOW ENERGY</p>
+            <p class="gc-tile-note">Always colorful</p>
+          </div>
+
+          <div class="gc-tile gc-tile-gold">
+            <div class="gc-tile-symbol" aria-hidden="true">🚀</div>
+            <p class="gc-tile-name">MORE LOADING</p>
+            <p class="gc-tile-note">Next milestone ahead</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- GIF TYPES -->
+      <section class="gc-panel gc-vault">
+        <h2>THE GIF VAULT</h2>
+
+        <div class="gc-grid">
+          <div class="gc-tile gc-tile-gold">REACTIONS</div>
+          <div class="gc-tile">CHESS MOMENTS</div>
+          <div class="gc-tile gc-tile-cyan">FUNNY GIFS</div>
+          <div class="gc-tile gc-tile-green">EPIC MOMENTS</div>
+        </div>
+      </section>
+
+      <!-- QUICK LINKS -->
+      <nav class="gc-navigation" aria-label="GIF Club command center">
+        <h2>GIF CLUB COMMAND CENTER</h2>
+
+        <a
+          class="gc-nav-link"
+          href="https://www.chess.com/club/the-gif-club"
+          target="_blank"
+          rel="noopener noreferrer"
+        >ENTER THE GIF CLUB</a>
+
+        <a
+          class="gc-nav-link"
+          href="https://www.chess.com/clubs/forum/the-gif-club"
+          target="_blank"
+          rel="noopener noreferrer"
+        >OPEN THE FORUM</a>
+
+        <a
+          class="gc-nav-link"
+          href="https://www.chess.com/clubs/forum/view/the-gif-forum"
+          target="_blank"
+          rel="noopener noreferrer"
+        >THE GIF FORUM</a>
+
+        <a
+          class="gc-nav-link"
+          href="https://www.chess.com/clubs/events/the-gif-club"
+          target="_blank"
+          rel="noopener noreferrer"
+        >OUR EVENTS</a>
+      </nav>
+
+      <!-- PARTNERS -->
+      <section class="gc-partners">
+        <h2>PARTNER NETWORK</h2>
+
+        <div class="gc-partner-list">
+          <span class="gc-partner">Burning Ice Club</span>
+          <span class="gc-partner">Have fun chess club</span>
+          <span class="gc-partner">The inner squares</span>
+        </div>
+      </section>
+
+      <!-- COMMUNITY RULE -->
+      <section class="gc-community-rule">
+        <h2>Keep it creative.</h2>
+        <p>
+          Laugh together. Share reactions. Celebrate chess.
+          Keep the GIFs coming.
+        </p>
+      </section>
+
+      <!-- FOOTER -->
+      <footer id="gif-club-footer" class="gc-footer">
+        <p class="gc-original-credit">
+          Sidebar - @Licon_Chess &amp; @Stellar_Endgame
+        </p>
+
+        <p class="gc-footer-motto">
+          REACT &middot; SHARE &middot; LOOP &middot; ENJOY
+        </p>
+
+        <p class="gc-footer-tagline">
+          EVERY MOMENT DESERVES A GIF
+        </p>
+
+        <a class="gc-back-top" href="#gif-club-sidebar">↑ Back to top</a>
+
+        <noscript>
+          <p class="gc-noscript">
+            Enable JavaScript for the live member count and newest members.
+          </p>
+        </noscript>
+
+        <p class="gc-update-credit">
+          Most Recent Update by
+          <a
+            href="https://www.chess.com/club/wildis-knights-sidebars"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Wildis_Knight</a>
+        </p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "the-gif-club";
+
+      const countElement = document.getElementById("gif-count");
+      const barElement = document.getElementById("gif-bar");
+      const progressElement = document.getElementById("gif-progress");
+      const countStatus = document.getElementById("gif-status");
+      const newestElement = document.getElementById("gif-newest");
+      const membersStatus = document.getElementById("gif-members-status");
+      const refreshButton = document.getElementById("gif-refresh");
+
+      let refreshing = false;
+
+      async function fetchJSON(url, fresh = false) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal,
+            cache: fresh ? "no-store" : "default",
+            headers: { Accept: "application/json" }
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      function nextMilestone(count) {
+        const step = count < 20 ? 5
+          : count < 100 ? 10
+          : count < 500 ? 50
+          : 100;
+
+        return (Math.floor(count / step) + 1) * step;
+      }
+
+      function setCountStatus(heading, detail, unavailable = false) {
+        const headingElement = document.createElement("span");
+        headingElement.className = unavailable
+          ? "gc-count-status-heading gc-unavailable"
+          : "gc-count-status-heading";
+        headingElement.textContent = heading;
+
+        const detailElement = document.createElement("span");
+        detailElement.textContent = detail;
+
+        countStatus.replaceChildren(headingElement, detailElement);
+      }
+
+      async function loadCount(fresh = false) {
+        progressElement.setAttribute("aria-busy", "true");
+
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`,
+            fresh
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isInteger(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const goal = nextMilestone(count);
+          const progress = Math.min(100, count / goal * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members; next milestone ${goal.toLocaleString()}`
+          );
+
+          setCountStatus(
+            "",
+            `${count.toLocaleString()} members · next milestone ${goal.toLocaleString()}`
+          );
+
+          return true;
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          barElement.style.width = "0%";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          setCountStatus(
+            "COUNT UNAVAILABLE",
+            "No membership number has been guessed.",
+            true
+          );
+
+          console.warn("The GIF Club member count:", error);
+          return false;
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinedTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+            if (Number.isFinite(parsed)) return parsed;
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "gc-member-message";
+        paragraph.textContent = message;
+        newestElement.replaceChildren(paragraph);
+      }
+
+      async function loadMembers(fresh = false) {
+        newestElement.setAttribute("aria-busy", "true");
+        membersStatus.textContent = "Checking the latest arrivals…";
+
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`,
+            fresh
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinedTime(member) > joinedTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinedTime(b) - joinedTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage("The next great reaction could come from you!");
+            membersStatus.textContent = "No members were returned.";
+            return true;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const row = document.createElement("div");
+            row.className = "gc-member";
+            row.textContent = `@${member.username}`;
+            fragment.appendChild(row);
+          }
+
+          newestElement.replaceChildren(fragment);
+          membersStatus.textContent = "";
+
+          return true;
+        } catch (error) {
+          showMemberMessage("The newest members are temporarily unavailable.");
+          membersStatus.textContent =
+            "Use Refresh Live Data to try again.";
+
+          console.warn("The GIF Club newest members:", error);
+          return false;
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      async function refreshData(fresh = false) {
+        if (refreshing) return;
+
+        refreshing = true;
+        refreshButton.disabled = true;
+        refreshButton.textContent = "CHECKING LIVE DATA…";
+
+        try {
+          const results = await Promise.all([
+            loadCount(fresh),
+            loadMembers(fresh)
+          ]);
+
+          refreshButton.textContent = results.every(Boolean)
+            ? ""
+            : "";
+        } finally {
+          refreshing = false;
+          refreshButton.disabled = false;
+        }
+      }
+      refreshButton.addEventListener("click", () => refreshData(true));
+
+      refreshData();
+    })();
+  </script>
+
+   <script>
+    new ResizeObserver(() => {
+      if ('requestResize' in window) {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
