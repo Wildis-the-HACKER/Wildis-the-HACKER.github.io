@@ -1,0 +1,138 @@
+<div id="lil-goat-chess"
+ onmouseover="if(!window.lilGoatChessInit){window.lilGoatChessInit=1;(async function(){
+var club='lilgoatchess';
+var goal=500;
+var inviteLink='https://www.chess.com/club/lilgoatchess/join?utm_campaign=club_invite_link&utm_source=chesscom&utm_medium=copy';
+
+try{
+var r=await fetch('https://api.chess.com/pub/club/'+club);
+if(r.ok){
+var d=await r.json();
+var c=d.members_count||0;
+var e=document.getElementById('lg-count');
+var g=document.getElementById('lg-goal');
+var b=document.getElementById('lg-bar');
+var p=document.getElementById('lg-percent');
+if(e)e.textContent=c.toLocaleString();
+if(g)g.textContent=goal.toLocaleString();
+if(b)b.style.width=Math.min(100,c/goal*100)+'%';
+if(p)p.textContent=Math.floor(c/goal*100)+'% TO THE GOAL';
+}
+}catch(e){}
+
+try{
+var r2=await fetch('https://api.chess.com/pub/club/'+club+'/members');
+if(r2.ok){
+var m=await r2.json();
+var all=[];
+if(Array.isArray(m.weekly))all=all.concat(m.weekly);
+if(Array.isArray(m.monthly))all=all.concat(m.monthly);
+if(Array.isArray(m.all_time))all=all.concat(m.all_time);
+var seen={};
+var users=[];
+for(var i=0;i<all.length;i++){
+var u=all[i].username;
+if(u&&!seen[u]){
+seen[u]=1;
+users.push(all[i]);
+}
+}
+function joinTime(x){
+var n=Number(x.joined);
+return isFinite(n)&&n>0?n:(new Date(x.joined).getTime()||0);
+}
+users.sort(function(a,b){return joinTime(b)-joinTime(a)});
+users=users.slice(0,5);
+var ne=document.getElementById('lg-newest');
+if(ne){
+ne.innerHTML='';
+if(!users.length){ne.textContent='The next goat could be you!'}
+for(var j=0;j<users.length;j++){
+var row=document.createElement('div');
+row.textContent='🐐 '+users[j].username;
+row.style.padding='7px 4px';
+row.style.borderBottom=j===users.length-1?'none':'1px solid #f0df9b';
+row.style.color='#493800';
+row.style.fontSize='13px';
+ne.appendChild(row);
+}
+}
+}
+}catch(e){}
+
+var cb=document.getElementById('lg-copy');
+if(cb){
+cb.onclick=function(){
+if(inviteLink==='PASTE_INVITE_LINK_HERE'){
+cb.textContent='ADD INVITE LINK FIRST';
+setTimeout(function(){cb.textContent='COPY INVITE LINK'},1800);
+return;
+}
+function done(ok){
+cb.textContent=ok?'LINK COPIED!':'COPY FAILED';
+setTimeout(function(){cb.textContent='COPY INVITE LINK'},1800);
+}
+function fallback(){
+var t=document.createElement('textarea');
+t.value=inviteLink;
+t.style.position='fixed';
+t.style.left='-9999px';
+document.body.appendChild(t);
+t.select();
+var ok=false;
+try{ok=document.execCommand('copy')}catch(e){}
+document.body.removeChild(t);
+done(ok);
+}
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(inviteLink).then(function(){done(true)}).catch(fallback);
+}else{fallback()}
+};
+}
+})()}"
+onclick="if(!window.lilGoatChessInit){this.onmouseover()}"
+
+style="background:#f7ec1e;color:#493800;border:2px solid #e9b900;border-radius:13px;padding:12px;font-family:Arial,sans-serif;overflow:hidden;">
+
+<div style="background:#ffb124;border:2px solid #dba800;border-radius:10px;text-align:center;padding:16px 8px;">
+<div style="font-size:35px;line-height:1.2;"></div>
+<div style="font-size:26px;font-weight:900;letter-spacing:1px;color:#302400;margin-top:8px;">LILGOATCHESS</div>
+<div style="font-size:11px;font-weight:bold;letter-spacing:3px;color:#725400;margin-top:7px;">THE GOLDEN CHESS HERD</div>
+<div style="display:inline-block;background:#302400;color:#ffdf36;padding:6px 12px;border-radius:4px;font-size:10px;font-weight:bold;letter-spacing:1px;margin-top:12px;">BAA-TTLE READY!</div>
+</div>
+
+<div style="margin-top:12px;padding:12px;background:#ffffff;border:1px solid #eedb92;border-radius:9px;">
+<div style="font-size:15px;font-weight:bold;color:#9b7300;margin-bottom:7px;">WELCOME TO THE HERD!</div>
+<div style="font-size:13px;line-height:1.65;color:#59491b;">Welcome to LilGoatChess! Bring your best moves, sharpen your strategy, and join a herd that loves the game. Whether you're learning the ropes or chasing your next brilliant checkmate, there's always another move to master!</div>
+<div style="margin-top:10px;background:#fff5c7;border-left:4px solid #e9b900;padding:9px;font-size:12px;font-weight:bold;color:#725400;">STAY GOLDEN. PLAY GOAT-LEVEL CHESS.</div>
+</div>
+
+<div style="margin-top:12px;padding:12px;background:#ffffff;border:1px solid #eedb92;border-radius:9px;">
+<div style="font-size:15px;font-weight:bold;color:#9b7300;">GROW THE HERD</div>
+<div style="font-size:11px;color:#968044;margin-top:8px;letter-spacing:1px;">CURRENT MEMBERS</div>
+<div style="font-size:26px;font-weight:bold;color:#493800;margin-top:4px;"><span id="lg-count">—</span><span style="font-size:15px;color:#968044;"> / <span id="lg-goal">500</span></span></div>
+<div style="height:13px;background:#f5edcf;border-radius:7px;overflow:hidden;margin-top:8px;border:1px solid #e9d78d;">
+<div id="lg-bar" style="height:13px;width:0%;background:#ffca05;border-radius:7px;"></div>
+</div>
+<div id="lg-percent" style="text-align:right;font-size:11px;color:#9b7300;margin-top:6px;">COUNTING GOATS...</div>
+</div>
+
+
+<div style="margin-top:12px;padding:12px;background:#ffdf36;border:1px solid #dba800;border-radius:9px;text-align:center;">
+<div style="font-size:16px;font-weight:bold;color:#302400;margin-bottom:7px;">INVITE YOUR HERD</div>
+<div style="font-size:12px;line-height:1.5;color:#594300;margin-bottom:10px;">Got a friend who loves chess? Bring them along and make the herd even stronger!</div>
+<button id="lg-copy" type="button" style="background:#302400;color:#ffdf36;border:0;border-radius:6px;padding:11px 10px;font-weight:bold;font-size:12px;cursor:pointer;width:100%;">COPY INVITE LINK</button>
+</div>
+
+<div style="margin-top:12px;padding:12px;background:#ffffff;border:1px solid #eedb92;border-radius:9px;">
+<div style="font-size:15px;font-weight:bold;color:#9b7300;margin-bottom:10px;">CHESS TOOLBOX</div>
+<a href="https://www.chess.com/clubs/events/lilgoatchess" style="display: block; text-decoration: none; color: #493800; background: #fff5c7; border-left: 4px solid #e9b900; border-radius: 4px; padding: 10px; margin-bottom: 7px; font-size: 13px;">♔ Club Events ↗</a> <a href="https://www.chess.com/leaderboard/daily?group=1036600" style="display: block; text-decoration: none; color: #493800; background: #fff5c7; border-left: 4px solid #302400; border-radius: 4px; padding: 10px; margin-bottom: 7px; font-size: 13px;">♕ Club Leaderboard ↗</a> <a href="https://www.chess.com/club/lilgoatchess/announcements" style="display: block; text-decoration: none; color: #493800; background: #fff5c7; border-left: 4px solid #e9b900; border-radius: 4px; padding: 10px; margin-bottom: 7px; font-size: 13px;">♖ All Announcements ↗</a> <a href="https://www.chess.com/daily" style="display: block; text-decoration: none; color: #493800; background: #fff5c7; border-left: 4px solid #302400; border-radius: 4px; padding: 10px; margin-bottom: 7px; font-size: 13px;">♘ Daily Puzzle ↗</a></div>
+
+<div style="text-align:center;padding:15px 4px 5px;">
+<div style="font-size:13px;font-weight:bold;color:#9b7300;letter-spacing:2px;">GOAT MODE: ACTIVATED</div>
+<div style="font-size:10px;color:#968044;margin-top:7px;letter-spacing:1px;">THINK SHARP • PLAY BOLD • STAY GOLDEN</div>
+<div style="margin-top: 5px; color: #71849f;"><span style="font-size: 8px;"><a href="https://www.chess.com/club/wildis-knights-sidebars" style="color: #968044;"><span style="font-size: 10px;">Sidebar Designed by Wildis_Knight</span></a></span></div>
+<div style="font-size:17px;margin-top:8px;color:#dba800;">♟ ✦ ♟</div>
+</div>
+
+</div>
