@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #d9f7ff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #d9f7ff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #d9f7ff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #72e7ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #d9fbff;
+      text-decoration: underline;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #72e7ff;
+      outline-offset: 4px;
+    }
+
+    #lasers-sidebar {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 16px;
+      overflow: hidden;
+      border: 2px solid #39cfff;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #061522, #091d2d, #03101b);
+      color: #d9f7ff;
+      box-shadow: 0 0 18px rgba(57, 207, 255, 0.35);
+    }
+
+    .laser-header {
+      padding: 14px;
+      border: 2px solid #4bdcff;
+      border-radius: 14px;
+      background: radial-gradient(
+        circle at 75% 25%,
+        #174b6b,
+        #082238,
+        #04111d
+      );
+      color: #d9f7ff;
+      text-align: center;
+      box-shadow: 0 0 14px rgba(57, 207, 255, 0.4);
+    }
+
+    .laser-logo {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    .laser-header h1 {
+      margin-top: 10px;
+      color: #72e7ff;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 4px;
+      text-shadow: 0 0 8px rgba(57, 207, 255, 0.8);
+    }
+
+    .laser-tagline {
+      margin-top: 10px;
+      color: #b9edff;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .laser-panel {
+      margin-top: 14px;
+      padding: 14px;
+      border-left: 5px solid #39cfff;
+      border-radius: 10px;
+      background: #071925;
+      color: #d9f7ff;
+    }
+
+    .laser-panel-alt {
+      border-left-color: #72e7ff;
+    }
+
+    .laser-panel h2 {
+      margin-bottom: 12px;
+      color: #72e7ff;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: 1px;
+    }
+
+    .laser-total {
+      margin-bottom: 10px;
+      color: #d9f7ff;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .laser-total-label {
+      color: #b9edff;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    .laser-progress {
+      width: 100%;
+      height: 22px;
+      overflow: hidden;
+      border: 1px solid #24566a;
+      border-radius: 11px;
+      background: #020a10;
+    }
+
+    .laser-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 11px;
+      background: linear-gradient(90deg, #087aa0, #39cfff, #d9fbff);
+      box-shadow: 0 0 12px #39cfff;
+      transition: width 1s ease;
+    }
+
+    .laser-target-note {
+      margin-top: 10px;
+      color: #9bdff0;
+      font-size: 13px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .laser-data-status {
+      margin-top: 6px;
+      color: #83b8cc;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .laser-newest {
+      padding: 4px 8px;
+      border: 1px solid #17485d;
+      border-radius: 8px;
+      background: #04111b;
+      color: #d9f7ff;
+    }
+
+    .laser-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 7px 4px;
+      border-bottom: 1px solid rgba(57, 207, 255, 0.15);
+      color: #d9f7ff;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .laser-member:last-child {
+      border-bottom: 0;
+    }
+
+    .laser-member-marker {
+      flex-shrink: 0;
+      color: #72e7ff;
+    }
+
+    .laser-member-name {
+      min-width: 0;
+      color: #d9f7ff;
+      overflow-wrap: anywhere;
+    }
+
+    .laser-list-message {
+      padding: 7px 4px;
+      color: #9bdff0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .laser-list {
+      list-style: none;
+      color: #d9f7ff;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .laser-list li + li {
+      margin-top: 4px;
+    }
+
+    .laser-footer-card {
+      margin-top: 16px;
+      padding: 16px;
+      border: 2px solid #39cfff;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0b3046, #062034, #04121e);
+      color: #d9f7ff;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(57, 207, 255, 0.25);
+    }
+
+    .laser-footer-symbols {
+      color: #d9f7ff;
+      font-size: 25px;
+      line-height: 1.6;
+    }
+
+    .laser-quote {
+      margin: 8px 0;
+      color: #9cecff;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .laser-credit {
+      margin-top: 14px;
+      color: #83b8cc;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .laser-credit a,
+    .laser-credit a:visited {
+      color: #72e7ff;
+    }
+
+    .laser-noscript {
+      margin-top: 10px;
+      color: #9bdff0;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 340px) {
+      #lasers-sidebar {
+        padding: 11px;
+      }
+
+      .laser-header,
+      .laser-panel,
+      .laser-footer-card {
+        padding: 11px;
+      }
+
+      .laser-header h1 {
+        font-size: 18px;
+        letter-spacing: 3px;
+      }
+
+      .laser-total {
+        font-size: 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .laser-progress-fill {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="lasers-sidebar" aria-label="The Lasers Club sidebar">
+
+    <!-- HEADER -->
+    <header class="laser-header">
+      <img
+        class="laser-logo"
+        src="https://images.chesscomfiles.com/uploads/v1/group/957534.41c57db8.350x350o.8ca6fee810dc.png"
+        alt="Lasers Club logo"
+        width="350"
+        height="350"
+      >
+
+      <h1>LASERS CLUB</h1>
+
+      <p class="laser-tagline">
+        Aim &bull; Calculate &bull; Checkmate
+      </p>
+    </header>
+
+    <!-- MEMBER TARGET -->
+    <section class="laser-panel">
+      <h2>🎯 LASER TARGET</h2>
+
+      <p class="laser-total">
+        <span id="laser-count" aria-live="polite">Loading…</span>
+        / <span id="laser-goal">100</span>
+        <span class="laser-total-label">Members</span>
+      </p>
+
+      <div
+        id="laser-progress"
+        class="laser-progress"
+        role="progressbar"
+        aria-label="Membership goal progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="laser-bar" class="laser-progress-fill"></div>
+      </div>
+
+      <p id="laser-target-note" class="laser-target-note">
+        The laser is charging toward 100 members.
+      </p>
+
+      <p id="laser-count-status" class="laser-data-status" role="status">
+        Loading club membership automatically…
+      </p>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT -->
+    <section class="laser-panel laser-panel-alt">
+      <h2>⚡ NEWEST MEMBERS</h2>
+
+      <div
+        id="laser-newest"
+        class="laser-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <p class="laser-list-message">Loading the newest members…</p>
+      </div>
+    </section>
+
+    <!-- LASER PROTOCOL -->
+    <section class="laser-panel">
+      <h2>🔬 LASER PROTOCOL</h2>
+
+      <ul class="laser-list">
+        <li>🎯 Aim carefully.</li>
+        <li>♟ Think before you strike.</li>
+        <li>⚡ Attack with precision.</li>
+        <li>🧠 Calculate the consequences.</li>
+        <li>🤝 Respect your opponent.</li>
+        <li>🏆 Improve with every game.</li>
+      </ul>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section class="laser-panel laser-panel-alt">
+      <h2>🚀 CLUB ACTIVITIES</h2>
+
+      <ul class="laser-list">
+        <li>⚡ Chess Matches</li>
+        <li>🎯 Tactical Challenges</li>
+        <li>🏆 Club Competitions</li>
+        <li>🧠 Chess Improvement</li>
+        <li>🤝 Friendly Games</li>
+      </ul>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="laser-footer-card">
+        <div class="laser-footer-symbols" aria-hidden="true">♟ ⚡ ♟</div>
+
+        <p class="laser-quote">
+          “Precision wins the position.”
+        </p>
+      </div>
+
+      <noscript>
+        <p class="laser-noscript">
+          Enable JavaScript for the live member count and newest members.
+        </p>
+      </noscript>
+
+      <p class="laser-credit">
+        Sidebar designed by
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wildis_Knight</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "lasers-club";
+      const goal = 100;
+
+      const countElement = document.getElementById("laser-count");
+      const goalElement = document.getElementById("laser-goal");
+      const barElement = document.getElementById("laser-bar");
+      const progressElement = document.getElementById("laser-progress");
+      const targetNote = document.getElementById("laser-target-note");
+      const countStatus = document.getElementById("laser-count-status");
+      const newestElement = document.getElementById("laser-newest");
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isInteger(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, count / goal * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} members out of a goal of ${goal.toLocaleString()}`
+          );
+
+          if (count >= goal) {
+            targetNote.textContent =
+              `Target reached! The club has ${count.toLocaleString()} members.`;
+          } else {
+            const remaining = goal - count;
+            targetNote.textContent =
+              `The laser is charging: ${remaining.toLocaleString()} ` +
+              `${remaining === 1 ? "member" : "members"} to reach ${goal.toLocaleString()}.`;
+          }
+
+          countStatus.textContent = "✓ Club member count loaded.";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          barElement.style.width = "0%";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          targetNote.textContent =
+            `The membership goal remains ${goal.toLocaleString()}.`;
+
+          countStatus.textContent =
+            "Live membership is temporarily unavailable.";
+
+          console.warn("Lasers Club member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinedTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+
+            if (Number.isFinite(parsed)) {
+              return parsed;
+            }
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const paragraph = document.createElement("p");
+        paragraph.className = "laser-list-message";
+        paragraph.textContent = message;
+        newestElement.replaceChildren(paragraph);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (
+                !existing ||
+                joinedTime(member) > joinedTime(existing)
+              ) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinedTime(b) - joinedTime(a))
+            .slice(0, 5);
+
+          if (!newest.length) {
+            showMemberMessage("Welcome to the club, new members!");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const row = document.createElement("div");
+            row.className = "laser-member";
+
+            const marker = document.createElement("span");
+            marker.className = "laser-member-marker";
+            marker.setAttribute("aria-hidden", "true");
+            marker.textContent = "▸";
+
+            const name = document.createElement("span");
+            name.className = "laser-member-name";
+            name.textContent = member.username;
+
+            row.append(marker, name);
+            fragment.appendChild(row);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage(
+            "The newest members are temporarily unavailable."
+          );
+
+          console.warn("Lasers Club newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if (typeof window.requestResize === "function") {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
