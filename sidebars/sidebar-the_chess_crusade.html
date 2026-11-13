@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #f5ead2;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #f5ead2;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #f5ead2;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #e4b94f;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff1b5;
+      text-decoration: underline;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #f1cf67;
+      outline-offset: 4px;
+    }
+
+    #crusade-sidebar {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px;
+      overflow: hidden;
+      border: 3px solid #c89b3c;
+      border-radius: 18px;
+      background: linear-gradient(
+        145deg,
+        #100b08,
+        #21140d,
+        #382015,
+        #120b08
+      );
+      color: #f5ead2;
+      box-shadow:
+        0 0 25px rgba(200, 155, 60, 0.35),
+        inset 0 0 30px rgba(90, 45, 15, 0.25);
+    }
+
+    .crusade-header {
+      padding: 16px;
+      border: 2px solid #d6ae55;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2b170c, #5a3215, #2a160b);
+      color: #f5ead2;
+      text-align: center;
+      box-shadow: 0 0 18px rgba(214, 174, 85, 0.3);
+    }
+
+    .crusade-header h1 {
+      color: #f7d77a;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #c89b3c;
+    }
+
+    .crusade-tagline {
+      margin-top: 8px;
+      color: #e8d6ad;
+      font-size: 12px;
+      line-height: 1.6;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .crusade-panel {
+      margin-top: 14px;
+      padding: 15px;
+      border: 1px solid #a87c2d;
+      border-radius: 12px;
+      background: #1b110b;
+      color: #f5ead2;
+    }
+
+    .crusade-panel h2 {
+      color: #e8bd55;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .crusade-panel p {
+      margin-top: 10px;
+      color: #f5ead2;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .crusade-welcome {
+      border-color: #b88932;
+      background: linear-gradient(135deg, #24150d, #332016);
+      box-shadow: 0 0 12px rgba(180, 130, 45, 0.18);
+    }
+
+    .crusade-welcome h2,
+    .crusade-arrivals h2 {
+      color: #f0c95c;
+      text-shadow: 0 0 8px #9b6b20;
+    }
+
+    .crusade-membership {
+      border-color: #d0a344;
+      background: linear-gradient(135deg, #19100b, #2c1a0d);
+      box-shadow: 0 0 14px rgba(200, 155, 60, 0.2);
+    }
+
+    .crusade-membership h2 {
+      color: #f2c95c;
+      text-shadow: 0 0 8px #a87520;
+    }
+
+    .crusade-membership .crusade-total {
+      margin: 12px 0;
+      color: #f5ead2;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .crusade-divider {
+      color: #9d8964;
+    }
+
+    .crusade-progress {
+      width: 100%;
+      height: 18px;
+      overflow: hidden;
+      border: 1px solid #9e7429;
+      border-radius: 20px;
+      background: #0b0705;
+      box-shadow: inset 0 0 8px #000000;
+    }
+
+    .crusade-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #8d1717, #d5a93f, #f3d77b);
+      box-shadow: 0 0 14px rgba(220, 175, 65, 0.7);
+      transition: width 1s ease;
+    }
+
+    .crusade-membership .crusade-member-note {
+      margin-top: 10px;
+      color: #cdb98f;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .crusade-membership .crusade-data-status {
+      margin-top: 6px;
+      color: #bba77f;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .crusade-ranks,
+    .crusade-oath-list {
+      margin-top: 10px;
+      padding-left: 20px;
+      color: #f5ead2;
+      line-height: 1.8;
+    }
+
+    .crusade-ranks li:nth-child(1) { font-size: 15.5px; }
+    .crusade-ranks li:nth-child(2) { font-size: 15.75px; }
+    .crusade-ranks li:nth-child(3) { font-size: 16px; }
+    .crusade-ranks li:nth-child(4) { font-size: 16.25px; }
+    .crusade-ranks li:nth-child(5) { font-size: 17px; }
+
+    .crusade-arrivals {
+      border-color: #c89b3c;
+      box-shadow: 0 0 12px rgba(200, 155, 60, 0.18);
+    }
+
+    .crusade-newest {
+      margin-top: 12px;
+      list-style: none;
+    }
+
+    .crusade-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 8px;
+      padding: 11px;
+      border: 1px solid #c89b3c;
+      border-radius: 8px;
+      background: #1b110b;
+      color: #f5d98b;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      box-shadow: 0 0 10px rgba(200, 155, 60, 0.2);
+    }
+
+    .crusade-member:last-child {
+      margin-bottom: 0;
+    }
+
+    .crusade-member-symbol {
+      flex-shrink: 0;
+      color: #f5d98b;
+    }
+
+    .crusade-member-name {
+      min-width: 0;
+      color: #f5d98b;
+      overflow-wrap: anywhere;
+    }
+
+    .crusade-list-message {
+      padding: 10px;
+      border: 1px solid #806028;
+      border-radius: 8px;
+      background: #160e09;
+      color: #cdb98f;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .crusade-oath {
+      border: 2px solid #8e2920;
+      background: linear-gradient(135deg, #26120f, #351614);
+      box-shadow: 0 0 14px rgba(150, 40, 30, 0.2);
+    }
+
+    .crusade-oath h2 {
+      color: #e6b84d;
+    }
+
+    .crusade-oath-list {
+      font-size: 16px;
+    }
+
+    .crusade-panel .crusade-motto {
+      margin: 10px 0;
+      color: #fff5dd;
+      line-height: 1.6;
+    }
+
+    .crusade-council {
+      border-color: #b88932;
+      background: linear-gradient(135deg, #17100b, #291b10);
+    }
+
+    .crusade-council h2 {
+      color: #edc55d;
+    }
+
+    .crusade-button-wrap {
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .crusade-button,
+    .crusade-button:visited {
+      display: inline-block;
+      max-width: 100%;
+      padding: 10px 18px;
+      border: 1px solid #e0b94f;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #8f1d16, #c79a35);
+      color: #fff5d6;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 0 10px rgba(200, 155, 60, 0.3);
+      transition: filter 160ms ease;
+    }
+
+    .crusade-button:hover {
+      color: #fff5d6;
+      text-decoration: none;
+      filter: brightness(1.12);
+    }
+
+    .crusade-alliance {
+      border: 2px solid #d4a83f;
+      background: linear-gradient(135deg, #11100f, #24150f);
+      box-shadow: 0 0 15px rgba(210, 165, 55, 0.2);
+    }
+
+    .crusade-alliance h2 {
+      color: #f0c95c;
+    }
+
+    .crusade-alliance a {
+      font-weight: 700;
+    }
+
+    .crusade-call {
+      padding: 16px;
+      border: 2px solid #f1cf67;
+      background: linear-gradient(135deg, #641914, #8c241c, #b27b21);
+      text-align: center;
+      box-shadow: 0 0 20px rgba(200, 145, 40, 0.4);
+    }
+
+    .crusade-call h2 {
+      color: #fff1b5;
+      text-shadow: 0 0 8px #e5b943;
+    }
+
+    .crusade-call p {
+      margin: 10px 0;
+      color: #fff5dd;
+      line-height: 1.6;
+    }
+
+    .crusade-join,
+    .crusade-join:visited,
+    .crusade-join:hover {
+      padding: 10px 20px;
+      border-color: #f2d36a;
+      background: #f2d36a;
+      color: #32160d;
+      box-shadow: 0 0 12px rgba(255, 220, 100, 0.65);
+    }
+
+    .crusade-closing {
+      margin-top: 15px;
+      padding: 15px;
+      border-top: 1px solid #806028;
+      text-align: center;
+    }
+
+    .crusade-closing-title {
+      color: #f0ca5b;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-shadow: 0 0 8px #9c6d20;
+    }
+
+    .crusade-closing-note {
+      margin-top: 7px;
+      color: #b5a384;
+      font-size: 11px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .crusade-credit {
+      margin-top: 14px;
+      color: #b5a384;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .crusade-credit a,
+    .crusade-credit a:visited {
+      color: #c9a85a;
+      font-weight: 700;
+    }
+
+    .crusade-noscript {
+      margin-top: 10px;
+      color: #cdb98f;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 340px) {
+      #crusade-sidebar {
+        padding: 12px;
+      }
+
+      .crusade-header,
+      .crusade-panel,
+      .crusade-call {
+        padding: 12px;
+      }
+
+      .crusade-header h1 {
+        font-size: 25px;
+        letter-spacing: 1px;
+      }
+
+      .crusade-tagline {
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      .crusade-panel h2 {
+        font-size: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .crusade-progress-fill,
+      .crusade-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="crusade-sidebar" aria-label="The Chess Crusade club sidebar">
+
+    <!-- HEADER -->
+    <header class="crusade-header">
+      <h1>THE CHESS<br>CRUSADE</h1>
+      <p class="crusade-tagline">
+        HONOUR &bull; CHESS &bull; CAMPAIGN
+      </p>
+    </header>
+
+    <!-- WELCOME -->
+    <section class="crusade-panel crusade-welcome">
+      <h2>Welcome, Traveller</h2>
+
+      <p>Greetings, traveller, and welcome.</p>
+
+      <p>
+        The Chess Crusade brings together players who enjoy chess,
+        friendly competition, and a shared appreciation for the
+        history and spirit of the Crusades.
+      </p>
+
+      <p>
+        Whether you are new to the game or a seasoned veteran,
+        you will find a place within our ranks.
+      </p>
+    </section>
+
+    <!-- MEMBER PROGRESS -->
+    <section class="crusade-panel crusade-membership">
+      <h2>The Crusade Grows</h2>
+
+      <p class="crusade-total">
+        <span id="crusade-count" aria-live="polite">Loading…</span>
+        <span class="crusade-divider"> / </span>
+        <span id="crusade-goal">100</span>
+        Crusaders
+      </p>
+
+      <div
+        id="crusade-progress"
+        class="crusade-progress"
+        role="progressbar"
+        aria-label="Crusader membership goal"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="crusade-bar" class="crusade-progress-fill"></div>
+      </div>
+
+      <p id="crusade-member-note" class="crusade-member-note">
+        Every new Crusader strengthens our ranks.
+      </p>
+
+      <p id="crusade-count-status" class="crusade-data-status" role="status">
+        Loading club membership automatically…
+      </p>
+    </section>
+
+    <!-- RANKS -->
+    <section class="crusade-panel">
+      <h2>Ranks</h2>
+
+      <ul class="crusade-ranks">
+        <li>Squire</li>
+        <li>Knight</li>
+        <li>General</li>
+        <li>Commander</li>
+        <li>Grandmaster</li>
+      </ul>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT -->
+    <section class="crusade-panel crusade-arrivals">
+      <h2>Newest Crusaders</h2>
+
+      <ul
+        id="crusade-newest"
+        class="crusade-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <li class="crusade-list-message">
+          Welcoming the newest Crusaders…
+        </li>
+      </ul>
+    </section>
+
+    <!-- CODE OF HONOUR -->
+    <section class="crusade-panel crusade-oath">
+      <h2>The Crusader's Oath</h2>
+
+      <ul class="crusade-oath-list">
+        <li>Play with honour.</li>
+        <li>Respect opponents.</li>
+        <li>Fight with courage.</li>
+        <li>Support fellow Crusaders.</li>
+        <li>Seek wisdom.</li>
+        <li>Never give up.</li>
+      </ul>
+    </section>
+
+    <!-- MOTTO -->
+    <section class="crusade-panel">
+      <h2>The Crusader's Motto</h2>
+
+      <p class="crusade-motto">
+        “Upon sixty-four squares, we march for the glory of God, not man.”
+      </p>
+    </section>
+
+    <!-- WAR COUNCIL -->
+    <section class="crusade-panel crusade-council">
+      <h2>War Council</h2>
+
+      <p>
+        The War Council is where Crusaders gather to discuss ideas,
+        strategies, campaigns, and the future of the club.
+      </p>
+
+      <div class="crusade-button-wrap">
+        <a
+          class="crusade-button"
+          href="https://www.chess.com/clubs/forum/view/the-war-council"
+          target="_blank"
+          rel="noopener noreferrer"
+        >ENTER THE WAR COUNCIL</a>
+      </div>
+    </section>
+
+    <!-- SAMURAI ALLIANCE -->
+    <section class="crusade-panel crusade-alliance">
+      <h2>Allied with the Samurai</h2>
+
+      <p>
+        The Crusade stands alongside the
+        <a
+          href="https://www.chess.com/club/the-samurai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Samurai</a>,
+        united by a shared love of chess, competition, and community.
+      </p>
+    </section>
+
+    <!-- CALL TO ARMS -->
+    <section class="crusade-panel crusade-call">
+      <h2>TAKE UP YOUR PLACE</h2>
+
+      <p>
+        Join the ranks. Enter the campaign.<br>
+        Make your mark upon the sixty-four squares.
+      </p>
+
+      <a
+        class="crusade-button crusade-join"
+        href="https://www.chess.com/club/the-chess-crusade"
+        target="_blank"
+        rel="noopener noreferrer"
+      >JOIN THE CRUSADE</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="crusade-closing">
+        <p class="crusade-closing-title">⚔️ Deus Vult! ⚔️</p>
+
+        <p class="crusade-closing-note">
+          May your campaigns upon the sixty-four squares be victorious.
+        </p>
+      </div>
+
+      <noscript>
+        <p class="crusade-noscript">
+          Enable JavaScript for the live member count and newest Crusaders.
+        </p>
+      </noscript>
+
+      <p class="crusade-credit">
+        Sidebar designed by
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wildis_Knight</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "the-chess-crusade";
+      const goal = 100;
+
+      const countElement = document.getElementById("crusade-count");
+      const goalElement = document.getElementById("crusade-goal");
+      const barElement = document.getElementById("crusade-bar");
+      const progressElement = document.getElementById("crusade-progress");
+      const memberNote = document.getElementById("crusade-member-note");
+      const countStatus = document.getElementById("crusade-count-status");
+      const newestElement = document.getElementById("crusade-newest");
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isInteger(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, count / goal * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} Crusaders out of a goal of ${goal.toLocaleString()}`
+          );
+
+          memberNote.textContent = count >= goal
+            ? `Our goal of ${goal.toLocaleString()} Crusaders has been reached!`
+            : "Every new Crusader strengthens our ranks.";
+
+          countStatus.textContent = "✓ Club member count loaded.";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          barElement.style.width = "0%";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          memberNote.textContent =
+            `Our membership goal remains ${goal.toLocaleString()} Crusaders.`;
+
+          countStatus.textContent =
+            "Live membership is temporarily unavailable.";
+
+          console.warn("Chess Crusade member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinedTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+
+            if (Number.isFinite(parsed)) {
+              return parsed;
+            }
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const item = document.createElement("li");
+        item.className = "crusade-list-message";
+        item.textContent = message;
+        newestElement.replaceChildren(item);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.toLowerCase();
+              const existing = unique.get(key);
+
+              if (
+                !existing ||
+                joinedTime(member) > joinedTime(existing)
+              ) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .sort((a, b) => joinedTime(b) - joinedTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage("Welcome to the ranks, new Crusaders!");
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const item = document.createElement("li");
+            item.className = "crusade-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "crusade-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = "⚔️";
+
+            const name = document.createElement("span");
+            name.className = "crusade-member-name";
+            name.textContent = member.username;
+
+            item.append(symbol, name);
+            fragment.appendChild(item);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage(
+            "The newest Crusaders are temporarily unavailable."
+          );
+
+          console.warn("Chess Crusade newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if (typeof window.requestResize === "function") {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
