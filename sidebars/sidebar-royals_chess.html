@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="responsive-embedded-sizing" content="allow-origins=*">
+  <title>Royals Chess Sidebar</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: transparent;
+      color: #f4eddf;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #f4eddf;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flow-root;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: #f4eddf;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    h1,
+    h2,
+    p,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    a,
+    a:visited {
+      color: #efd17e;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #fff2c7;
+      text-decoration: underline;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #ffe09a;
+      outline-offset: 4px;
+    }
+
+    #royals-sidebar {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px;
+      overflow: hidden;
+      border: 3px solid #cba758;
+      border-radius: 20px;
+      background:
+        radial-gradient(
+          ellipse at top,
+          rgba(123, 75, 164, 0.22),
+          transparent 55%
+        ),
+        linear-gradient(150deg, #120d1b, #251531, #160e20);
+      color: #f4eddf;
+      box-shadow:
+        0 0 24px rgba(169, 121, 209, 0.22),
+        inset 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .royals-header {
+      padding: 22px 14px 20px;
+      border: 1px solid #e0be70;
+      border-radius: 15px;
+      background:
+        radial-gradient(
+          ellipse at top,
+          rgba(192, 148, 229, 0.18),
+          transparent 70%
+        ),
+        linear-gradient(135deg, #321a47, #4b2865, #281438);
+      text-align: center;
+      box-shadow:
+        0 0 18px rgba(203, 167, 88, 0.16),
+        inset 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .royals-crest {
+      color: #f5d889;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 50px;
+      line-height: 1.2;
+      text-shadow: 0 0 16px rgba(245, 216, 137, 0.35);
+    }
+
+    .royals-header h1 {
+      margin-top: 8px;
+      color: #ffe5a6;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 3px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .royals-tagline {
+      margin-top: 10px;
+      color: #eadcf5;
+      font-size: 11px;
+      line-height: 1.7;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .royals-header-rule {
+      width: 65%;
+      height: 1px;
+      margin: 17px auto 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #e0be70,
+        transparent
+      );
+    }
+
+    .royals-panel {
+      margin-top: 14px;
+      padding: 16px;
+      border: 1px solid #70517f;
+      border-radius: 12px;
+      background: #20152b;
+      color: #f4eddf;
+    }
+
+    .royals-panel h2 {
+      color: #efd17e;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .royals-panel p {
+      margin-top: 10px;
+      color: #f4eddf;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .royals-welcome {
+      border-color: #a982c0;
+      background: linear-gradient(135deg, #2d1c3d, #21152d);
+    }
+
+    .royals-membership {
+      border-color: #cba758;
+      background: linear-gradient(135deg, #291c35, #1d1427);
+      box-shadow: 0 0 14px rgba(203, 167, 88, 0.12);
+    }
+
+    .royals-membership .royals-total {
+      margin: 14px 0 12px;
+      color: #fff0ca;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .royals-divider {
+      color: #bba6c9;
+    }
+
+    .royals-progress {
+      width: 100%;
+      height: 18px;
+      overflow: hidden;
+      border: 1px solid #9c7c42;
+      border-radius: 20px;
+      background: #100b16;
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .royals-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #8051a5, #c69b50, #ffe5a0);
+      box-shadow: 0 0 12px rgba(239, 209, 126, 0.4);
+      transition: width 1s ease;
+    }
+
+    .royals-membership .royals-member-note,
+    .royals-membership .royals-data-status {
+      color: #d4c4df;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .royals-membership .royals-member-note {
+      margin-top: 10px;
+    }
+
+    .royals-membership .royals-data-status {
+      margin-top: 6px;
+    }
+
+    .royals-list {
+      margin-top: 11px;
+      padding-left: 20px;
+      color: #f4eddf;
+    }
+
+    .royals-list li {
+      margin-top: 8px;
+      padding-left: 2px;
+      line-height: 1.7;
+    }
+
+    .royals-list li:first-child {
+      margin-top: 0;
+    }
+
+    .royals-list li::marker {
+      color: #e1bd6b;
+    }
+
+    .royals-arrivals {
+      border-color: #a982c0;
+      background: linear-gradient(135deg, #24172f, #2d1c3b);
+    }
+
+    .royals-newest {
+      margin-top: 12px;
+      list-style: none;
+    }
+
+    .royals-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+      padding: 11px 12px;
+      border: 1px solid #8b6b45;
+      border-radius: 8px;
+      background: #1a1124;
+      color: #f6dfa0;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .royals-member:last-child {
+      margin-bottom: 0;
+    }
+
+    .royals-member-symbol {
+      flex-shrink: 0;
+      color: #e5c372;
+    }
+
+    .royals-member-name {
+      min-width: 0;
+      color: #f6dfa0;
+      overflow-wrap: anywhere;
+    }
+
+    .royals-list-message {
+      padding: 11px;
+      border: 1px solid #715381;
+      border-radius: 8px;
+      background: #1a1124;
+      color: #d4c4df;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .royals-code {
+      border-left: 4px solid #d5b369;
+      background: linear-gradient(135deg, #30203c, #21162d);
+    }
+
+    .royals-motto {
+      border-color: #b38a49;
+      background: linear-gradient(135deg, #34233f, #261a30);
+      text-align: center;
+    }
+
+    .royals-motto .royals-quote {
+      margin-top: 12px;
+      color: #fff0ca;
+      font-size: 19px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .royals-motto .royals-quote-note {
+      color: #d4c4df;
+      font-size: 12px;
+    }
+
+    .royals-call {
+      padding: 20px 16px;
+      border: 2px solid #e0be70;
+      background:
+        radial-gradient(
+          ellipse at top,
+          rgba(207, 167, 233, 0.16),
+          transparent 75%
+        ),
+        linear-gradient(135deg, #47265f, #321b46);
+      text-align: center;
+      box-shadow: 0 0 18px rgba(203, 167, 88, 0.16);
+    }
+
+    .royals-call h2 {
+      color: #ffe5a6;
+      font-size: 22px;
+    }
+
+    .royals-call p {
+      margin: 12px 0 16px;
+      color: #f5ebfa;
+    }
+
+    .royals-button,
+    .royals-button:visited {
+      display: inline-block;
+      max-width: 100%;
+      padding: 11px 20px;
+      border: 1px solid #ffe5a6;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f4dc98, #d5ad58);
+      color: #281633;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 0 12px rgba(239, 209, 126, 0.18);
+      transition: filter 160ms ease;
+    }
+
+    .royals-button:hover {
+      color: #281633;
+      text-decoration: none;
+      filter: brightness(1.1);
+    }
+
+    .royals-closing {
+      margin-top: 16px;
+      padding: 16px 10px 0;
+      border-top: 1px solid #715381;
+      text-align: center;
+    }
+
+    .royals-closing-title {
+      color: #efd17e;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+
+    .royals-closing-note {
+      margin-top: 7px;
+      color: #d4c4df;
+      font-size: 11px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .royals-credit {
+      margin-top: 16px;
+      color: #cbb8d8;
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .royals-credit a,
+    .royals-credit a:visited {
+      color: #efd17e;
+      font-weight: 700;
+    }
+
+    .royals-noscript {
+      margin-top: 12px;
+      color: #d4c4df;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 340px) {
+      #royals-sidebar {
+        padding: 12px;
+      }
+
+      .royals-header,
+      .royals-panel,
+      .royals-call {
+        padding: 12px;
+      }
+
+      .royals-header h1 {
+        font-size: 25px;
+        letter-spacing: 2px;
+      }
+
+      .royals-tagline {
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      .royals-panel h2 {
+        font-size: 18px;
+      }
+
+      .royals-motto .royals-quote {
+        font-size: 17px;
+      }
+
+      .royals-button {
+        padding: 10px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .royals-progress-fill,
+      .royals-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="royals-sidebar" aria-label="Royals Chess club sidebar">
+
+    <!-- HEADER -->
+    <header class="royals-header">
+      <div class="royals-crest" aria-hidden="true">&#9812;</div>
+      <h1>ROYALS CHESS</h1>
+      <p class="royals-tagline">
+        Strategy &bull; Honour &bull; Ambition
+      </p>
+      <div class="royals-header-rule" aria-hidden="true"></div>
+    </header>
+
+    <!-- WELCOME -->
+    <section class="royals-panel royals-welcome">
+      <h2>Welcome to the Court</h2>
+
+      <p>
+        Every great game begins with a single move.
+        Let yours bring you to Royals Chess.
+      </p>
+
+      <p>
+        New to the board or ready for your next challenge?
+        Take your seat among fellow players, share your ideas,
+        and pursue your next brilliant move.
+      </p>
+
+      <p>
+        Here, the crown is not a rating. It is the respect you
+        show, the effort you give, and the courage to keep improving.
+      </p>
+    </section>
+
+    <!-- MEMBER PROGRESS -->
+    <section class="royals-panel royals-membership">
+      <h2>A Growing Kingdom</h2>
+
+      <p class="royals-total">
+        <span id="royals-count" aria-live="polite">Loading…</span>
+        <span class="royals-divider"> / </span>
+        <span id="royals-goal">100</span>
+        Royals
+      </p>
+
+      <div
+        id="royals-progress"
+        class="royals-progress"
+        role="progressbar"
+        aria-label="Royals membership goal"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext="Loading member count"
+        aria-busy="true"
+      >
+        <div id="royals-bar" class="royals-progress-fill"></div>
+      </div>
+
+      <p id="royals-member-note" class="royals-member-note">
+        Every new Royal brings another mind to the board.
+      </p>
+
+      <p id="royals-count-status" class="royals-data-status" role="status">
+        Loading club membership automatically…
+      </p>
+    </section>
+
+    <!-- COMMUNITY INVITATION -->
+    <section class="royals-panel">
+      <h2>Your Place in the Kingdom</h2>
+
+      <ul class="royals-list">
+        <li>
+          Bring your best ideas and discover new ways to see the board.
+        </li>
+        <li>
+          Celebrate a clever combination, a hard-earned draw,
+          or a lesson worth remembering.
+        </li>
+        <li>
+          Encourage another player and grow stronger together.
+        </li>
+        <li>
+          Play boldly, think deeply, and enjoy the game.
+        </li>
+      </ul>
+    </section>
+
+    <!-- NEWEST MEMBERS: PLAIN TEXT ONLY -->
+    <section class="royals-panel royals-arrivals">
+      <h2>Newest at Court</h2>
+
+      <p>A royal welcome to our newest members.</p>
+
+      <ul
+        id="royals-newest"
+        class="royals-newest"
+        aria-live="polite"
+        aria-busy="true"
+      >
+        <li class="royals-list-message">
+          Preparing a welcome for the newest Royals…
+        </li>
+      </ul>
+    </section>
+
+    <!-- CODE OF CONDUCT -->
+    <section class="royals-panel royals-code">
+      <h2>Play with Royal Character</h2>
+
+      <ul class="royals-list">
+        <li>Respect every opponent, whatever their rating.</li>
+        <li>Play fairly and let your own thinking guide your moves.</li>
+        <li>Win with humility and lose with grace.</li>
+        <li>Keep conversation welcoming and considerate.</li>
+        <li>Learn from mistakes and help others do the same.</li>
+      </ul>
+    </section>
+
+    <!-- MOTTO -->
+    <section class="royals-panel royals-motto">
+      <h2>The Royal Mindset</h2>
+
+      <p class="royals-quote">
+        “Carry yourself with honour.<br>
+        Let your moves make the statement.”
+      </p>
+
+      <p class="royals-quote-note">
+        One board. Endless possibilities.
+      </p>
+    </section>
+
+    <!-- CLUB LINK -->
+    <section class="royals-panel royals-call">
+      <h2>Your Seat Awaits</h2>
+
+      <p>
+        Bring your ambition. Find your next challenge.<br>
+        Write your own story on sixty-four squares.
+      </p>
+
+      <a
+        class="royals-button"
+        href="https://www.chess.com/club/royals-chess-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >ENTER ROYALS CHESS</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="royals-closing">
+        <p class="royals-closing-title">THINK DEEPLY. PLAY ROYALLY.</p>
+
+        <p class="royals-closing-note">
+          May your plans be bold and your next move your finest.
+        </p>
+      </div>
+
+      <noscript>
+        <p class="royals-noscript">
+          Enable JavaScript for the live member count and newest Royals.
+        </p>
+      </noscript>
+
+      <p class="royals-credit">
+        Sidebar designed by
+        <a
+          href="https://www.chess.com/club/wildis-knights-sidebars"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Wildis_Knight</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const club = "royals-chess-1";
+      const goal = 100;
+
+      const countElement = document.getElementById("royals-count");
+      const goalElement = document.getElementById("royals-goal");
+      const barElement = document.getElementById("royals-bar");
+      const progressElement = document.getElementById("royals-progress");
+      const memberNote = document.getElementById("royals-member-note");
+      const countStatus = document.getElementById("royals-count-status");
+      const newestElement = document.getElementById("royals-newest");
+
+      goalElement.textContent = goal.toLocaleString();
+
+      async function fetchJSON(url) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+
+        try {
+          const response = await fetch(url, {
+            signal: controller.signal
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed: ${response.status}`);
+          }
+
+          return await response.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadMemberCount() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}`
+          );
+
+          const count = data.members_count;
+
+          if (
+            typeof count !== "number" ||
+            !Number.isInteger(count) ||
+            count < 0
+          ) {
+            throw new Error("Invalid member count.");
+          }
+
+          const progress = Math.min(100, count / goal * 100);
+
+          countElement.textContent = count.toLocaleString();
+          barElement.style.width = `${progress}%`;
+
+          progressElement.setAttribute("aria-valuenow", String(progress));
+          progressElement.setAttribute(
+            "aria-valuetext",
+            `${count.toLocaleString()} Royals out of a goal of ${goal.toLocaleString()}`
+          );
+
+          memberNote.textContent = count >= goal
+            ? `Our goal of ${goal.toLocaleString()} Royals has been reached!`
+            : "Every new Royal brings another mind to the board.";
+
+          countStatus.textContent = "Club member count loaded.";
+        } catch (error) {
+          countElement.textContent = "Unavailable";
+          barElement.style.width = "0%";
+
+          progressElement.removeAttribute("aria-valuenow");
+          progressElement.setAttribute(
+            "aria-valuetext",
+            "Live member count unavailable"
+          );
+
+          memberNote.textContent =
+            `Our membership goal is ${goal.toLocaleString()} Royals.`;
+
+          countStatus.textContent =
+            "Live membership is temporarily unavailable.";
+
+          console.warn("Royals Chess member count:", error);
+        } finally {
+          progressElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      function joinedTime(member) {
+        const raw = member.joined;
+
+        if (typeof raw === "number" || typeof raw === "string") {
+          const numeric = Number(raw);
+
+          if (Number.isFinite(numeric) && numeric > 0) {
+            return numeric > 1e12 ? numeric : numeric * 1000;
+          }
+
+          if (typeof raw === "string") {
+            const parsed = Date.parse(raw);
+
+            if (Number.isFinite(parsed)) {
+              return parsed;
+            }
+          }
+        }
+
+        return 0;
+      }
+
+      function showMemberMessage(message) {
+        const item = document.createElement("li");
+        item.className = "royals-list-message";
+        item.textContent = message;
+        newestElement.replaceChildren(item);
+      }
+
+      async function loadNewestMembers() {
+        try {
+          const data = await fetchJSON(
+            `https://api.chess.com/pub/club/${encodeURIComponent(club)}/members`
+          );
+
+          const groups = ["weekly", "monthly", "all_time"];
+
+          if (!groups.some(group => Array.isArray(data[group]))) {
+            throw new Error("Invalid members response.");
+          }
+
+          const unique = new Map();
+
+          for (const group of groups) {
+            if (!Array.isArray(data[group])) continue;
+
+            for (const member of data[group]) {
+              if (
+                !member ||
+                typeof member.username !== "string" ||
+                !member.username.trim()
+              ) {
+                continue;
+              }
+
+              const key = member.username.trim().toLowerCase();
+              const existing = unique.get(key);
+
+              if (!existing || joinedTime(member) > joinedTime(existing)) {
+                unique.set(key, member);
+              }
+            }
+          }
+
+          const newest = [...unique.values()]
+            .filter(member => joinedTime(member) > 0)
+            .sort((a, b) => joinedTime(b) - joinedTime(a))
+            .slice(0, 3);
+
+          if (!newest.length) {
+            showMemberMessage(
+              unique.size
+                ? "Recent join dates are temporarily unavailable. Welcome to every Royal!"
+                : "Your seat at court awaits. Welcome to Royals Chess!"
+            );
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+
+          for (const member of newest) {
+            const item = document.createElement("li");
+            item.className = "royals-member";
+
+            const symbol = document.createElement("span");
+            symbol.className = "royals-member-symbol";
+            symbol.setAttribute("aria-hidden", "true");
+            symbol.textContent = "\u2654";
+
+            const name = document.createElement("span");
+            name.className = "royals-member-name";
+            name.textContent = member.username;
+
+            item.append(symbol, name);
+            fragment.appendChild(item);
+          }
+
+          newestElement.replaceChildren(fragment);
+        } catch (error) {
+          showMemberMessage(
+            "The newest Royals are temporarily unavailable."
+          );
+
+          console.warn("Royals Chess newest members:", error);
+        } finally {
+          newestElement.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadMemberCount();
+      loadNewestMembers();
+    })();
+  </script>
+
+  <script>
+    new ResizeObserver(() => {
+      if (typeof window.requestResize === "function") {
+        window.requestResize();
+      }
+    }).observe(document.body);
+  </script>
+</body>
+</html>
