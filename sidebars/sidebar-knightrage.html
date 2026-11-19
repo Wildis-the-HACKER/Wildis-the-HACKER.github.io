@@ -52,6 +52,14 @@ body.theme-storm #scene{background:radial-gradient(ellipse at 50% 0%,#35445d,#11
 body.theme-aurora #scene{background:radial-gradient(ellipse at 50% 0%,#174d58,#102b3a 48%,#06121c)}
 body.theme-crimson #scene{background:radial-gradient(ellipse at 50% 0%,#55283a,#241827 48%,#0d0a13)}
 @media(max-width:360px){#scene{padding:7px}.grid{grid-template-columns:1fr}.logo{max-width:165px}}
+.member-list{list-style:none;margin:10px 0 0;padding:0}
+.member-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 8px;border-top:1px solid #29445f;font-size:12px}
+.member-list li:first-child{border-top:0}
+.member-list a{color:#d8ebff;text-decoration:none;font-weight:bold}
+.member-list a:hover{color:#fff;text-decoration:underline}
+.joined{color:#829db7;font-size:10px;white-space:nowrap}
+.api-note{margin-top:8px;text-align:center;font-size:10px;color:#829db7}
+
 </style>
 </head>
 <body>
@@ -79,7 +87,12 @@ body.theme-crimson #scene{background:radial-gradient(ellipse at 50% 0%,#55283a,#
     <div class="stat"><strong id="member-count">—</strong><span>MEMBERS</span></div>
     <div class="stat"><strong>♞</strong><span>ONE COMMUNITY</span></div>
   </div>
-  <p id="stats-note" style="text-align:center;margin-top:9px;font-size:11px">Visit the club to see the latest roster and announcements.</p>
+  <p id="stats-note" style="text-align:center;margin-top:9px;font-size:11px">Loading club statistics…</p>
+  <div style="margin-top:12px;padding-top:10px;border-top:1px solid #29445f">
+    <h2 style="font-size:12px;margin-bottom:5px">NEWEST KNIGHTS</h2>
+    <ul class="member-list" id="newest-members"><li>Loading recent members…</li></ul>
+    <div class="api-note" id="members-note">Public club roster · sorted by join date</div>
+  </div>
 </section>
 
 <section id="code">
@@ -124,26 +137,86 @@ body.theme-crimson #scene{background:radial-gradient(ellipse at 50% 0%,#55283a,#
 <footer><strong>THE BOARD AWAITS.</strong><small>KNIGHTRAGE · CHESS.COM</small></footer>
 </div>
 <script>
-(() => {
-  const body = document.body;
-  const cursor = document.getElementById('cursor');
-  let cursorOn = false, theme = 0;
-  const themes = ['', 'theme-storm', 'theme-aurora', 'theme-crimson'];
-  document.addEventListener('pointermove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-  document.getElementById('cursor-toggle').addEventListener('click', () => {
-    cursorOn = !cursorOn;
-    body.classList.toggle('cursor-on', cursorOn);
-    document.getElementById('cursor-toggle').textContent = 'CUSTOM CURSOR: ' + (cursorOn ? 'ON' : 'OFF');
-  });
-  document.getElementById('theme-toggle').addEventListener('click', () => {
-    body.classList.remove(...themes.filter(Boolean));
-    theme = (theme + 1) % themes.length;
-    if (themes[theme]) body.classList.add(themes[theme]);
-  });
-  document.getElementById('top-button').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+// Load KnightRage's public Chess.com club data.
+  // Requests are intentionally sequential to avoid unnecessary parallel API traffic.
+  const clubApi = 'https://api.chess.com/pub/club/knightrage';
+  const memberCount = document.getElementById('member-count');
+  const statsNote = document.getElementById('stats-note');
+  const newestList = document.getElementById('newest-members');
+  const membersNote = document.getElementById('members-note');
+
+  const formatJoined = timestamp => {
+    if (!Number.isFinite(Number(timestamp)) || Number(timestamp) <= 0) return '';
+    return new Date(Number(timestamp) * 1000).toLocaleDateString(undefined, {
+      month: 'short', day: 'numeric', year: 'numeric'
+    });
+  };
+
+  async function loadClubData() {
+    try {
+      const clubResponse = await fetch(clubApi, {headers:{'Accept':'application/json'}});
+      if (!clubResponse.ok) throw new Error('Club API returned HTTP ' + clubResponse.status);
+      const club = await clubResponse.json();
+      if (Number.isFinite(Number(club.members_count))) {
+        memberCount.textContent = Number(club.members_count).toLocaleString();
+        statsNote.textContent = 'Live member count from Chess.com’s public club API.';
+      } else {
+        memberCount.textContent = '—';
+        statsNote.textContent = 'Member count is currently unavailable.';
+      }
+
+      const membersResponse = await fetch(clubApi + '/members', {headers:{'Accept':'application/json'}});
+      if (!membersResponse.ok) throw new Error('Members API returned HTTP ' + membersResponse.status);
+      const groups = await membersResponse.json();
+
+      // Chess.com groups members by activity, not by join date. Combine the groups,
+      // remove duplicates, then sort by the joined timestamp to find newest members.
+      const byUsername = new Map();
+      for (const groupName of ['weekly', 'monthly', 'all_time']) {
+        const group = Array.isArray(groups[groupName]) ? groups[groupName] : [];
+        for (const entry of group) {
+          if (!entry || typeof entry !== 'object' || !entry.username) continue;
+          const username = String(entry.username).trim();
+          if (!username) continue;
+          const key = username.toLowerCase();
+          const joined = Number(entry.joined) || 0;
+          const previous = byUsername.get(key);
+          if (!previous || joined > previous.joined) byUsername.set(key, {username, joined});
+        }
+      }
+
+      const newest = [...byUsername.values()]
+        .sort((a,b) => b.joined - a.joined)
+        .slice(0,5);
+
+      newestList.replaceChildren();
+      if (!newest.length) {
+        newestList.innerHTML = '<li>No member records were returned.</li>';
+      } else {
+        for (const person of newest) {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = 'https://www.chess.com/member/' + encodeURIComponent(person.username);
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.textContent = person.username;
+          const date = document.createElement('span');
+          date.className = 'joined';
+          date.textContent = formatJoined(person.joined);
+          li.append(link, date);
+          newestList.append(li);
+        }
+      }
+      membersNote.textContent = 'Newest 5 by join date · Chess.com public roster';
+    } catch (error) {
+      console.warn('KnightRage club data could not be loaded:', error);
+      if (memberCount.textContent === '—') statsNote.textContent = 'Club statistics could not be loaded. Visit the club page for details.';
+      newestList.innerHTML = '<li>Member list unavailable right now.</li>';
+      membersNote.textContent = 'The public API may be temporarily unavailable.';
+    }
+  }
+  loadClubData();
+
   // Resize the host iframe to fit the complete sidebar content.
   if ('ResizeObserver' in window) {
     new ResizeObserver(() => {
