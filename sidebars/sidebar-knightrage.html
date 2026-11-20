@@ -215,7 +215,32 @@ body.theme-crimson #scene{background:radial-gradient(ellipse at 50% 0%,#55283a,#
       membersNote.textContent = 'The public API may be temporarily unavailable.';
     }
   }
-  loadClubData();
+    loadClubData();
+
+  const cursorToggle = document.getElementById('cursor-toggle');
+  const themeToggle = document.getElementById('theme-toggle');
+  const cursor = document.getElementById('cursor');
+  const themes = ['', 'theme-storm', 'theme-aurora', 'theme-crimson'];
+  let themeIndex = 0;
+
+  cursorToggle.addEventListener('click', () => {
+    const enabled = document.body.classList.toggle('cursor-on');
+    cursorToggle.textContent = `CUSTOM CURSOR: ${enabled ? 'ON' : 'OFF'}`;
+  });
+
+  document.addEventListener('pointermove', event => {
+    cursor.style.left = event.clientX + 'px';
+    cursor.style.top = event.clientY + 'px';
+  });
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.remove(...themes.filter(Boolean));
+    themeIndex = (themeIndex + 1) % themes.length;
+    if (themes[themeIndex]) document.body.classList.add(themes[themeIndex]);
+    themeToggle.textContent = themeIndex === 0
+      ? 'CHANGE BACKGROUND'
+      : `BACKGROUND: ${themes[themeIndex].replace('theme-', '').toUpperCase()}`;
+  });
 
   // Resize the host iframe to fit the complete sidebar content.
   if ('ResizeObserver' in window) {
@@ -223,7 +248,6 @@ body.theme-crimson #scene{background:radial-gradient(ellipse at 50% 0%,#55283a,#
       if ('requestResize' in window) window.requestResize();
     }).observe(document.body);
   }
-
 </script>
 </body>
 </html>
