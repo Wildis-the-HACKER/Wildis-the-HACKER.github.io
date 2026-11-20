@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="responsive-embedded-sizing" content="allow-origins=*">
+<style>
+:root{--ink:#f6e8c8;--muted:#d1bd96;--gold:#e8b957;--gold2:#9b6b2e;--navy:#10233d;--navy2:#081322;--red:#792c2b;--line:#806039}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:transparent;color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+body{overflow-x:hidden}
+#kingdom{position:relative;isolation:isolate;overflow:hidden;padding:10px;border:2px solid #9b713b;border-radius:13px;background:radial-gradient(ellipse at 50% 0%,#3b3028 0%,#17243a 42%,#080f1b 100%);box-shadow:0 0 22px #bd8d3c33}
+#kingdom:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.13;background-image:linear-gradient(45deg,transparent 46%,#e7c27a 49%,transparent 52%);background-size:34px 34px}
+header{text-align:center;padding:5px 3px 14px;border-bottom:1px solid #8b693e}
+.banner{display:block;width:100%;height:auto;max-height:390px;object-fit:cover;border:2px solid #b48a4a;border-radius:7px;box-shadow:0 0 20px #0009}
+h1{margin:13px 0 5px;font-size:clamp(23px,7vw,33px);line-height:1.05;letter-spacing:1.5px;color:#f6d58b;text-shadow:2px 3px 0 #25170d,0 0 13px #e3a83c88}
+.motto{font-size:10px;letter-spacing:2px;font-weight:bold;color:#e4c58d}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;padding:12px 2px}
+nav a,.btn{font-family:Georgia,serif;text-decoration:none;color:#f6e8c8;background:linear-gradient(#293b52,#101d2e);border:1px solid #9b713b;border-radius:5px;padding:8px 10px;font-size:11px;font-weight:bold;cursor:pointer}
+nav a:hover,.btn:hover{background:#4a3928;box-shadow:0 0 12px #d6a74d66}
+section{margin:10px 0;padding:13px 12px;border:1px solid #806039;border-radius:8px;background:linear-gradient(145deg,#1c2b40ee,#101827f5);box-shadow:inset 0 0 15px #0005,0 4px 12px #0004}
+h2{margin:0 0 9px;text-align:center;font-size:15px;letter-spacing:1px;color:#f0cb7d}
+.rule{width:56px;height:2px;margin:0 auto 11px;background:linear-gradient(90deg,transparent,#d9ad5b,transparent)}
+p{margin:0;color:#e1d2b6;font-size:13px;line-height:1.65}
+.action{display:block;margin-top:12px;padding:12px 9px;text-align:center;text-decoration:none;border:1px solid #f0d18d;border-radius:5px;background:linear-gradient(90deg,#7b5228,#d4a44e,#7b5228);color:#1b1720;font-size:12px;font-weight:bold;letter-spacing:1.5px;text-shadow:0 1px #f6dfa9}
+.stats{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
+.stat{min-width:115px;padding:10px;text-align:center;border:1px solid #7c603b;border-radius:6px;background:#0b1727}
+.stat strong{display:block;font-size:23px;color:#f5d58e}
+.stat span{font-family:Arial,sans-serif;font-size:9px;letter-spacing:1.2px;color:#c5ad83}
+.member-list{list-style:none;padding:0;margin:8px 0 0}
+.member-list li{display:flex;justify-content:space-between;gap:7px;padding:7px 4px;border-top:1px solid #55452f;font-family:Arial,sans-serif;font-size:12px}
+.member-list a{color:#f0d49c;text-decoration:none;font-weight:bold}
+.joined{font-size:10px;color:#a99576;white-space:nowrap}
+.code{list-style:none;padding:0;margin:0;color:#e9dcc2;font-size:13px;line-height:1.9}
+.code b{color:#e5b95f;padding-right:8px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tile{padding:10px 7px;text-align:center;border:1px solid #665137;border-radius:6px;background:#101b2b;color:#d9c8a8;font-size:12px;line-height:1.5}
+.tile b{display:block;margin-bottom:4px;color:#f0c978}
+details{padding:9px 0;border-top:1px solid #55452f}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;color:#f0d49c;font-size:12px;font-weight:bold;letter-spacing:.5px}
+details p{padding:8px 2px 1px}
+#controls{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:12px}
+#cursor{position:fixed;z-index:99999;left:0;top:0;width:24px;height:24px;pointer-events:none;transform:translate(-50%,-50%);display:none}
+#cursor:before{content:"♞";font-size:23px;color:#f3ca78;text-shadow:0 0 8px #ffcf73}
+body.cursor-on #cursor{display:block}
+footer{text-align:center;padding:13px 5px 5px;border-top:1px solid #806039}
+footer strong{font-size:11px;letter-spacing:2px;color:#f0ce88}
+footer small{display:block;margin-top:6px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:1px;color:#a99576}
+#emergency-layer{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden}
+.fall{position:absolute;top:-50px;animation:fall linear forwards;filter:drop-shadow(0 2px 4px #000)}
+@keyframes fall{to{transform:translateY(115vh) rotate(540deg);opacity:0}}
+body.theme-dawn #kingdom{background:radial-gradient(ellipse at 50% 0%,#705037,#28384b 48%,#111927)}
+body.theme-crimson #kingdom{background:radial-gradient(ellipse at 50% 0%,#572b2b,#291b25 48%,#100c16)}
+body.theme-forest #kingdom{background:radial-gradient(ellipse at 50% 0%,#34503d,#1b302d 48%,#0b1716)}
+@media(max-width:350px){#kingdom{padding:7px}.grid{grid-template-columns:1fr}.banner{max-height:300px}}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="emergency-layer"></div>
+<div id="kingdom">
+<header>
+  <img class="banner" src="https://Wildis-the-HACKER.github.io/sidebars/logos/the_knights_of_the_square_board.jpg" alt="The Knights of the Square Board medieval banner">
+  <h1>THE KNIGHTS OF THE SQUARE BOARD</h1>
+  <div class="motto">HONOR · STRATEGY · BROTHERHOOD</div>
+</header>
+
+<nav aria-label="Kingdom navigation">
+  <a href="#welcome">THE KINGDOM</a><a href="#roster">THE ROSTER</a><a href="#code">THE CODE</a><a href="#activities">QUESTS</a><a href="#extras">EXTRAS</a>
+</nav>
+
+<section id="welcome">
+  <h2>HAIL, NOBLE CHESS PLAYER!</h2><div class="rule"></div>
+  <p>Welcome to The Knights of the Square Board, where courage meets calculation and every move can change the course of the battle. Take your place at the board, honor your fellow players, and let wisdom guide your next move.</p>
+  <a class="action" href="https://www.chess.com/club/the-knights-of-the-square-board" target="_blank" rel="noopener">ENTER THE KINGDOM ↗</a>
+</section>
+
+<section id="roster">
+  <h2>THE ROYAL ROSTER</h2><div class="rule"></div>
+  <div class="stats"><div class="stat"><strong id="member-count">—</strong><span>KNIGHTS IN THE REALM</span></div><div class="stat"><strong>♞</strong><span>ONE SQUARE BOARD</span></div></div>
+  <p id="stats-note" style="text-align:center;margin-top:9px;font-size:11px">Summoning the royal records…</p>
+  <div style="margin-top:12px;padding-top:9px;border-top:1px solid #55452f">
+    <h2 style="font-size:12px;margin-bottom:4px">NEWLY ARRIVED KNIGHTS</h2>
+    <ul class="member-list" id="newest-members"><li>Checking the gates…</li></ul>
+    <p id="members-note" style="text-align:center;margin-top:7px;font-size:10px;color:#a99576">Recent arrivals, as recorded by Chess.com</p>
+  </div>
+</section>
+
+<section id="code">
+  <h2>THE KNIGHT'S OATH</h2><div class="rule"></div>
+  <ul class="code">
+    <li><b>I.</b> Play with honor and good sportsmanship.</li>
+    <li><b>II.</b> Respect every player at the board.</li>
+    <li><b>III.</b> Learn from victory and defeat alike.</li>
+    <li><b>IV.</b> Let strategy, not haste, guide your moves.</li>
+  </ul>
+</section>
+
+<section id="activities">
+  <h2>QUESTS &amp; PURSUITS</h2><div class="rule"></div>
+  <div class="grid">
+    <div class="tile"><b>♟ THE DUELING GROUNDS</b>Meet fellow knights across the board.</div>
+    <div class="tile"><b>♜ THE STRATEGY HALL</b>Study positions and sharpen your play.</div>
+    <div class="tile"><b>♞ THE GREAT GATHERING</b>Join the community and share ideas.</div>
+    <div class="tile"><b>♛ THE ROYAL CHALLENGE</b>Seek a new test of skill.</div>
+  </div>
+</section>
+
+<section id="extras">
+  <h2>THE ROYAL CHAMBER</h2><div class="rule"></div>
+  <details open><summary>THE WAY OF THE KNIGHT</summary><p>The knight moves in an unusual L-shape, leaping beyond obstacles. On the chessboard, look for forks, outposts, and surprising routes. A clever move can change everything.</p></details>
+  <details><summary>USEFUL SCROLLS</summary>
+    <p><a style="color:#f0d49c" href="https://www.chess.com/puzzles" target="_blank" rel="noopener">Daily chess puzzles ↗</a></p>
+    <p><a style="color:#f0d49c" href="https://www.chess.com/analysis" target="_blank" rel="noopener">Analysis board ↗</a></p>
+    <p><a style="color:#f0d49c" href="https://www.chess.com/lessons" target="_blank" rel="noopener">Chess lessons ↗</a></p>
+  </details>
+  <div id="controls">
+    <button class="btn" id="cursor-toggle" type="button">KNIGHT CURSOR: OFF</button>
+    <button class="btn" id="theme-toggle" type="button">CHANGE REALM</button>
+    <button class="btn" id="emergency" type="button">ROYAL FANFARE ✦</button>
+    <button class="btn" id="top-button" type="button">BACK TO TOP ↑</button>
+  </div>
+</section>
+
+<footer><strong>FOR HONOR. FOR STRATEGY. FOR THE BOARD.</strong><small>THE KNIGHTS OF THE SQUARE BOARD · CHESS.COM</small><small>Sidebar crafted by Wildis_Knight</small></footer>
+</div>
+<script>
+(() => {
+  const body=document.body;
+  const cursor=document.getElementById('cursor');
+  let cursorOn=false,theme=0;
+  const themes=['','theme-dawn','theme-crimson','theme-forest'];
+  document.addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+  document.getElementById('cursor-toggle').addEventListener('click',()=>{
+    cursorOn=!cursorOn;body.classList.toggle('cursor-on',cursorOn);
+    document.getElementById('cursor-toggle').textContent='KNIGHT CURSOR: '+(cursorOn?'ON':'OFF');
+  });
+  document.getElementById('theme-toggle').addEventListener('click',()=>{
+    body.classList.remove(...themes.filter(Boolean));theme=(theme+1)%themes.length;
+    if(themes[theme])body.classList.add(themes[theme]);
+  });
+  document.getElementById('top-button').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  document.getElementById('emergency').addEventListener('click',()=>{
+    const layer=document.getElementById('emergency-layer');layer.replaceChildren();
+    const symbols=['♞','♜','♛','✦','⚜'];
+    for(let i=0;i<24;i++){
+      const el=document.createElement('span');el.className='fall';
+      el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+      el.style.left=Math.random()*100+'%';el.style.fontSize=(20+Math.random()*24)+'px';
+      el.style.animationDuration=(2.4+Math.random()*2.2)+'s';el.style.animationDelay=(Math.random()*.5)+'s';
+      el.style.color=i%2?'#f4d18a':'#d7e4f4';layer.append(el);
+    }
+    setTimeout(()=>layer.replaceChildren(),5200);
+  });
+
+  const api='https://api.chess.com/pub/club/the-knights-of-the-square-board';
+  const count=document.getElementById('member-count');
+  const statsNote=document.getElementById('stats-note');
+  const list=document.getElementById('newest-members');
+  const membersNote=document.getElementById('members-note');
+  const joinedDate=value=>{
+    const n=Number(value);
+    return Number.isFinite(n)&&n>0?new Date(n*1000).toLocaleDateString(undefined,{month:'short',day:'numeric'}):'';
+  };
+  async function loadClub(){
+    try{
+      const r=await fetch(api,{headers:{Accept:'application/json'}});
+      if(!r.ok)throw new Error('Club endpoint HTTP '+r.status);
+      const data=await r.json();
+      if(Number.isFinite(Number(data.members_count))){
+        count.textContent=Number(data.members_count).toLocaleString();
+        statsNote.textContent='Live membership count · public Chess.com club data';
+      }else{count.textContent='—';statsNote.textContent='The royal count is unavailable at present.'}
+
+      const mr=await fetch(api+'/members',{headers:{Accept:'application/json'}});
+      if(!mr.ok)throw new Error('Members endpoint HTTP '+mr.status);
+      const groups=await mr.json();
+      const people=new Map();
+      for(const groupName of ['weekly','monthly','all_time']){
+        const group=Array.isArray(groups[groupName])?groups[groupName]:[];
+        for(const person of group){
+          if(!person||!person.username)continue;
+          const username=String(person.username).trim();
+          const key=username.toLowerCase();
+          const joined=Number(person.joined)||0;
+          const old=people.get(key);
+          if(!old||joined>old.joined)people.set(key,{username,joined});
+        }
+      }
+      const newest=[...people.values()].sort((a,b)=>b.joined-a.joined).slice(0,5);
+      list.replaceChildren();
+      if(!newest.length){
+        const li=document.createElement('li');li.textContent='No recent arrivals are listed.';list.append(li);
+      }else{
+        for(const person of newest){
+          const li=document.createElement('li'),a=document.createElement('a'),date=document.createElement('span');
+          a.href='https://www.chess.com/member/'+encodeURIComponent(person.username);
+          a.target='_blank';a.rel='noopener';a.textContent='♞ '+person.username;
+          date.className='joined';date.textContent=joinedDate(person.joined);
+          li.append(a,date);list.append(li);
+        }
+      }
+      membersNote.textContent='Five newest members by join date · public roster';
+    }catch(err){
+      console.warn('Could not load club data:',err);
+      if(count.textContent==='—')statsNote.textContent='Royal records are temporarily unavailable.';
+      list.replaceChildren();const li=document.createElement('li');li.textContent='The newest-knight list could not be summoned.';list.append(li);
+      membersNote.textContent='Please visit the club page for the current roster.';
+    }
+  }
+  loadClub();
+
+  if('ResizeObserver' in window){
+    new ResizeObserver(()=>{
+      if('requestResize' in window)window.requestResize();
+    }).observe(document.body);
+  }
+})();
+</script>
+</body>
+</html>
