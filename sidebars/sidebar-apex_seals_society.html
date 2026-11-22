@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="responsive-embedded-sizing" content="allow-origins=*">
+<style>
+:root{--cyan:#00d2ff;--mint:#21e6c1;--pink:#ff52b0;--orange:#ff9f43;--ink:#e8f1fb;--muted:#8a9ab8}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:transparent;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+body{overflow-x:hidden}
+#seal-shell{position:relative;isolation:isolate;overflow:hidden;padding:11px;border:1px solid #00d2ff55;border-radius:17px;background:radial-gradient(ellipse at 15% 0%,#123449 0%,transparent 42%),radial-gradient(ellipse at 100% 45%,#102d36 0%,transparent 38%),linear-gradient(155deg,#071019,#050a12 72%);box-shadow:0 12px 28px #0009}
+#seal-shell:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.12;background-image:linear-gradient(135deg,transparent 47%,#00d2ff 49%,transparent 51%),linear-gradient(45deg,transparent 47%,#21e6c1 49%,transparent 51%);background-size:34px 34px}
+.panel{position:relative;margin:0 0 13px;padding:17px 14px;border:1px solid #00d2ff38;border-radius:14px;background:linear-gradient(145deg,#0b1a29f2,#050a12f5);box-shadow:0 9px 22px #0007,inset 0 1px #ffffff08;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.panel:hover{transform:translateY(-2px);border-color:#00d2ff77;box-shadow:0 13px 27px #0009,0 0 17px #00d2ff18}
+.accent{height:3px;margin:-17px -14px 14px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--cyan),var(--mint),var(--pink))}
+.brand{text-align:center;padding:4px 0 2px}
+.brand-name{font-size:18px;font-weight:900;letter-spacing:1.5px;color:var(--cyan);text-shadow:0 0 11px #00d2ff77}
+.owner{margin-top:6px;color:var(--muted);font-size:10px;letter-spacing:.7px}
+.owner b{color:#fff}
+.motto{margin-top:14px;padding:12px;border-left:4px solid var(--cyan);border-radius:5px;background:linear-gradient(90deg,#00d2ff13,#21e6c108)}
+.kicker{margin-bottom:5px;color:var(--cyan);font-size:10px;font-weight:900;letter-spacing:1px}
+.motto-text{color:#e2e8f0;font-size:11px;font-style:italic;line-height:1.55}
+.section-title{margin:0 0 11px;color:var(--cyan);font-size:13px;font-weight:900;letter-spacing:1px}
+.section-title.orange{color:var(--orange)}
+.partner-grid{display:grid;grid-template-columns:1fr;gap:7px}
+.partner,.nav-link{display:flex;align-items:center;gap:9px;min-width:0;padding:10px;border:1px solid #ffffff16;border-radius:8px;background:linear-gradient(100deg,#0e1a2b,#0a1421);color:#eaf5ff;text-decoration:none;font-size:11px;transition:transform .2s,border-color .2s,background .2s}
+.partner:hover,.nav-link:hover{transform:translateX(3px);border-color:#00d2ff77;background:#102438}
+.partner span{font-size:13px}
+.partner b,.nav-link b{margin-left:auto;color:var(--cyan)}
+.honoree{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #ff9f4344;border-radius:9px;background:linear-gradient(110deg,#ff9f4315,#ff9f4305)}
+.honoree .medal{font-size:25px}
+.honoree strong{display:block;color:#fff;font-size:13px;letter-spacing:.5px}
+.honoree small{display:block;margin-top:4px;color:#ffbd80;font-size:9px;letter-spacing:1px}
+.titled{margin-top:12px;padding-top:11px;border-top:1px solid #ffffff17}
+.titled-list{margin:0;padding:0;list-style:none}
+.titled-list li{padding:7px 8px;border-bottom:1px solid #ffffff10;color:#dce8f5;font-size:11px}
+.titled-list li:last-child{border-bottom:0}
+.titled-list b{color:var(--mint)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{padding:13px 8px;text-align:center;border:1px solid #00d2ff44;border-radius:9px;background:linear-gradient(145deg,#0d2232,#08131f)}
+.stat strong{display:block;color:#fff;font-size:25px;line-height:1.2;text-shadow:0 0 12px #00d2ff66}
+.stat span{display:block;margin-top:5px;color:#8aafc2;font-size:9px;font-weight:bold;letter-spacing:1px}
+#data-status{margin:9px 0 0;text-align:center;color:#829ab0;font-size:10px;line-height:1.5}
+.member-tools{display:flex;gap:7px;margin-top:10px}
+.small-btn,.main-btn{border:1px solid #00d2ff66;border-radius:7px;background:linear-gradient(135deg,#07344a,#075047);color:#dffaff;font-size:10px;font-weight:900;letter-spacing:.6px;padding:9px 10px;cursor:pointer}
+.small-btn{flex:1}
+.small-btn:hover,.main-btn:hover{filter:brightness(1.2);box-shadow:0 0 13px #00d2ff33}
+#member-list{margin:10px 0 0;padding:0;list-style:none}
+#member-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 3px;border-top:1px solid #ffffff13;font-size:11px}
+#member-list a{color:#dffaff;text-decoration:none;font-weight:bold;overflow-wrap:anywhere}
+#member-list a:hover{color:var(--mint);text-decoration:underline}
+.member-date{color:#7893a9;font-size:9px;white-space:nowrap}
+.nav-list{display:flex;flex-direction:column;gap:7px}
+.nav-link span{min-width:48px;padding:4px 5px;border-radius:4px;background:#00d2ff18;color:var(--cyan);text-align:center;font-size:9px;font-weight:900;letter-spacing:.5px}
+.nav-link strong{font-size:11px}
+.action-panel{text-align:center}
+.main-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--cyan),var(--mint));border:0;color:#06121b;font-size:11px}
+.subnote{margin-top:10px;color:#74869e;font-size:9px;line-height:1.5}
+footer{padding:4px 5px 8px;text-align:center}
+footer strong{color:var(--cyan);font-size:10px;letter-spacing:1.5px}
+footer small{display:block;margin-top:6px;color:#64748b;font-size:9px;line-height:1.5}
+@media(max-width:300px){#seal-shell{padding:7px}.panel{padding:14px 10px}.accent{margin:-14px -10px 12px}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="seal-shell">
+  <section class="panel">
+    <div class="accent"></div>
+    <div class="brand">
+      <div class="brand-name">🦭 APEX SEALS SOCIETY</div>
+      <div class="owner">OWNER: <b>@sam45584</b></div>
+    </div>
+    <div class="motto"><div class="kicker">OUR MOTTO</div><div class="motto-text">"To provide a safer environment to chat, discuss their chess games and participate in the tournaments and events."</div></div>
+  </section>
+
+  <section class="panel">
+    <div class="accent"></div>
+    <h2 class="section-title">🤝 PARTNER CLUBS</h2>
+    <div class="partner-grid"><a class="partner" href="https://www.chess.com/club/supreme-elite-society" target="_blank" rel="noopener"><span>👑</span>Supreme Elite Society<b>↗</b></a>
+<a class="partner" href="https://www.chess.com/club/iron-kingdom" target="_blank" rel="noopener"><span>👑</span>Iron Kingdom<b>↗</b></a>
+<a class="partner" href="https://www.chess.com/club/the-achievement-gangsters" target="_blank" rel="noopener"><span>👑</span>The Achievement Gangsters<b>↗</b></a>
+<a class="partner" href="https://www.chess.com/club/phantom-checkmates" target="_blank" rel="noopener"><span>👑</span>The Phantom Checkmates<b>↗</b></a>
+<a class="partner" href="https://www.chess.com/club/the-rook-republic-chess-club" target="_blank" rel="noopener"><span>👑</span>The Rook Republic<b>↗</b></a>
+<a class="partner" href="https://www.chess.com/club/rising-momentum" target="_blank" rel="noopener"><span>👑</span>Rising Momentum<b>↗</b></a></div>
+  </section>
+
+  <section class="panel">
+    <div class="accent"></div>
+    <h2 class="section-title orange">🏆 MEMBERS HALL</h2>
+    <div class="honoree"><div class="medal">⚡</div><div><small>HONORABLE BEST MEMBER</small><strong>OSWALDBINI</strong></div></div>
+    <div class="titled">
+      <div class="kicker" style="color:#21e6c1">TITLED MEMBERS</div>
+      <ul class="titled-list">
+        <li><b>1.</b> IM ChanelinmyYSL</li>
+        <li><b>2.</b> NM knighthunter2026</li>
+        <li><b>3.</b> WIM Hedgehogtheking</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel" id="live-members">
+    <div class="accent"></div>
+    <h2 class="section-title">📊 LIVE CLUB STATISTICS</h2>
+    <div class="stats">
+      <div class="stat"><strong id="live-count">—</strong><span>TOTAL MEMBERS</span></div>
+      <div class="stat"><strong id="member-rank">—</strong><span>ROSTER RECORDS</span></div>
+    </div>
+    <p id="data-status" aria-live="polite">Connecting to the Chess.com public club API…</p>
+    <div class="member-tools">
+      <button class="small-btn" id="refresh-data" type="button">↻ REFRESH DATA</button>
+      <button class="small-btn" id="show-members" type="button">VIEW NEWEST</button>
+    </div>
+    <div class="titled" id="newest-wrap">
+      <div class="kicker" style="color:#21e6c1">🆕 NEWEST MEMBERS</div>
+      <ul id="member-list"><li style="color:#829ab0">Loading member records…</li></ul>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="accent"></div>
+    <h2 class="section-title">🔗 CLUB NAVIGATION</h2>
+    <div class="nav-list"><a class="nav-link" href="https://www.chess.com/clubs/forum/view/club-rules-635" target="_blank" rel="noopener"><span>RULES</span><strong>Club Rules</strong><b>↗</b></a>
+<a class="nav-link" href="https://www.chess.com/clubs/events/seal-chess-club" target="_blank" rel="noopener"><span>EVENT</span><strong>Club Events</strong><b>↗</b></a>
+<a class="nav-link" href="https://www.chess.com/clubs/forum/seal-chess-club" target="_blank" rel="noopener"><span>FORUM</span><strong>Club Forum</strong><b>↗</b></a>
+<a class="nav-link" href="https://www.chess.com/clubs/forum/view/advertising-forum-892" target="_blank" rel="noopener"><span>AD</span><strong>Advertising Forum</strong><b>↗</b></a>
+<a class="nav-link" href="https://www.chess.com/leaderboard/daily?group=963802" target="_blank" rel="noopener"><span>RANK</span><strong>Leaderboard</strong><b>↗</b></a></div>
+  </section>
+
+  <section class="panel action-panel">
+    <div class="accent"></div>
+    <button class="main-btn" id="copy-invite" type="button">🤝 COPY CLUB LINK</button>
+    <div class="subnote" id="copy-status" aria-live="polite">Invite friends to visit APEX SEALS SOCIETY.</div>
+    <div class="subnote" style="border-top:1px dotted #ffffff1c;padding-top:10px;margin-top:12px">Sidebar restored and enhanced by <b style="color:#94a3b8">Wildis_Knight</b><br>Original design by <b style="color:#94a3b8">FM-Syn_xin</b> · Based on the owner's renovation request</div>
+  </section>
+  <footer><strong>🦭 COLD-BLOODED COMPOSURE · SHARP CHESS · GOOD COMMUNITY</strong><small>APEX SEALS SOCIETY · CHESS.COM</small></footer>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const clubUrl = 'https://www.chess.com/club/apex-seals-society';
+  const apiUrl = 'https://api.chess.com/pub/club/apex-seals-society';
+  const countEl = document.getElementById('live-count');
+  const rosterEl = document.getElementById('member-rank');
+  const statusEl = document.getElementById('data-status');
+  const listEl = document.getElementById('member-list');
+  const refreshBtn = document.getElementById('refresh-data');
+  const newestWrap = document.getElementById('newest-wrap');
+  let loading = false;
+
+  const joinedValue = value => {
+    if (typeof value === 'number' && Number.isFinite(value)) return value > 1e12 ? Math.floor(value / 1000) : value;
+    if (typeof value === 'string' && value.trim()) {
+      const numeric = Number(value);
+      if (Number.isFinite(numeric)) return numeric > 1e12 ? Math.floor(numeric / 1000) : numeric;
+      const parsed = Date.parse(value);
+      return Number.isFinite(parsed) ? Math.floor(parsed / 1000) : 0;
+    }
+    return 0;
+  };
+  const dateLabel = seconds => seconds > 0
+    ? new Date(seconds * 1000).toLocaleDateString(undefined, {month:'short',day:'numeric',year:'numeric'})
+    : '';
+
+  async function loadClubData() {
+    if (loading) return;
+    loading = true;
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = 'LOADING…';
+    statusEl.textContent = 'Fetching the latest public club records…';
+    try {
+      const clubResponse = await fetch(apiUrl, {headers:{Accept:'application/json'}});
+      if (!clubResponse.ok) throw new Error('Club endpoint returned HTTP ' + clubResponse.status);
+      const club = await clubResponse.json();
+      if (Number.isFinite(Number(club.members_count))) {
+        countEl.textContent = Number(club.members_count).toLocaleString();
+      } else {
+        countEl.textContent = '—';
+      }
+
+      const membersResponse = await fetch(apiUrl + '/members', {headers:{Accept:'application/json'}});
+      if (!membersResponse.ok) throw new Error('Members endpoint returned HTTP ' + membersResponse.status);
+      const groups = await membersResponse.json();
+      const unique = new Map();
+      let recordsSeen = 0;
+      for (const groupName of ['weekly','monthly','all_time']) {
+        const entries = Array.isArray(groups[groupName]) ? groups[groupName] : [];
+        for (const item of entries) {
+          if (!item || !item.username) continue;
+          recordsSeen++;
+          const username = String(item.username).trim();
+          if (!username) continue;
+          const key = username.toLowerCase();
+          const joined = joinedValue(item.joined);
+          const old = unique.get(key);
+          if (!old || joined > old.joined) unique.set(key, {username,joined});
+        }
+      }
+      const newest = [...unique.values()].sort((a,b) => b.joined - a.joined).slice(0,8);
+      rosterEl.textContent = unique.size.toLocaleString();
+      listEl.replaceChildren();
+      if (!newest.length) {
+        const li = document.createElement('li');
+        li.textContent = 'No member records were returned by the public API.';
+        listEl.append(li);
+      } else {
+        for (const member of newest) {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = 'https://www.chess.com/member/' + encodeURIComponent(member.username);
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.textContent = '♟ ' + member.username;
+          const date = document.createElement('span');
+          date.className = 'member-date';
+          date.textContent = dateLabel(member.joined);
+          li.append(link,date);
+          listEl.append(li);
+        }
+      }
+      statusEl.textContent = 'Live API response received · ' + recordsSeen.toLocaleString() + ' activity records checked. Chess.com may cache public API data.';
+    } catch (error) {
+      console.error('APEX SEALS SOCIETY API error:', error);
+      statusEl.textContent = 'Could not load the public API right now. The club may be temporarily unavailable or the request may be blocked.';
+      if (!rosterEl.textContent || rosterEl.textContent === '—') rosterEl.textContent = '—';
+      if (listEl.children.length === 0 || listEl.textContent.includes('Loading')) {
+        listEl.replaceChildren();
+        const li = document.createElement('li');
+        li.textContent = 'Newest members are temporarily unavailable.';
+        listEl.append(li);
+      }
+    } finally {
+      loading = false;
+      refreshBtn.disabled = false;
+      refreshBtn.textContent = '↻ REFRESH DATA';
+    }
+  }
+
+  refreshBtn.addEventListener('click', loadClubData);
+  document.getElementById('show-members').addEventListener('click', () => {
+    newestWrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+  document.getElementById('copy-invite').addEventListener('click', async () => {
+    const note = document.getElementById('copy-status');
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(clubUrl);
+      } else {
+        const field = document.createElement('textarea');
+        field.value = clubUrl;
+        field.style.position = 'fixed';
+        field.style.opacity = '0';
+        document.body.appendChild(field);
+        field.select();
+        const ok = document.execCommand('copy');
+        field.remove();
+        if (!ok) throw new Error('Clipboard copy was blocked');
+      }
+      note.textContent = '✓ Club link copied: chess.com/club/apex-seals-society';
+    } catch (error) {
+      note.textContent = 'Copy was blocked by the browser. Open the club link: ' + clubUrl;
+    }
+  });
+
+  loadClubData();
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      if ('requestResize' in window) window.requestResize();
+    }).observe(document.body);
+  }
+})();
+</script>
+</body>
+</html>
