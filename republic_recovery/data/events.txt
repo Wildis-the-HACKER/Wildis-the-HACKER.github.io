@@ -6,3 +6,769 @@
 # Time: 7:00 PM CT (or All Day / TBD)
 # Link: https://...
 
+# Rook Republic Event Database
+# Blank lines separate events.
+# Comments are allowed here, but NOT inside an event block.
+
+Date: 2026-10-01
+Event: Thursday Rapid Vote
+Time: 3 Days
+Link: https://www.chess.com/votechess/game/455804
+
+Date: 2026-10-03
+Event: Opening Academy Saturday
+Time: All Day
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-3-26
+
+Date: 2026-10-03
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link: https://www.chess.com/play/tournament/31132879
+
+Date: 2026-10-05
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link: https://www.chess.com/votechess/game/456204
+
+Date: 2026-10-06
+Event: Vote Chess
+Time: Republic plays as White
+Link: https://www.chess.com/votechess/game/456352
+
+Date: 2026-10-07
+Event: Vote Chess
+Time: Republic plays as Black
+Link: https://www.chess.com/votechess/game/456522
+
+Date: 2026-10-08
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link: https://www.chess.com/votechess/game/456352
+
+Date: 2026-10-09
+Event: Friday Daily Match
+Time: All day
+Link: https://www.chess.com/club/matches/2007812
+
+Date: 2026-10-10
+Event: Opening Academy Saturday
+Time: All day
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-17-26
+
+Date: 2026-10-10
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link: https://www.chess.com/play/tournament/31161465
+
+Date: 2026-10-10
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link: https://www.chess.com/play/arena/31390869
+
+Date: 2026-10-11
+Event: Social Sunday
+Time: All day
+Link: https://www.chess.com/clubs/forum/view/social-sunday-10-11-26
+
+Date: 2026-10-11
+Event: Community Game Review
+Time: 3:00 PM CT
+Link: https://www.chess.com/clubs/forum/view/social-sunday-10-11-26#comment-135107293
+
+Date: 2026-10-12
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link: https://www.chess.com/votechess/game/457342
+
+Date: 2026-10-13
+Event: Vote Chess
+Time: Republic plays as White
+Link: https://www.chess.com/votechess/game/457466
+
+Date: 2026-10-14
+Event: Vote Chess
+Time: Republic plays as Black
+Link: https://www.chess.com/votechess/game/457636
+
+Date: 2026-10-15
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:https://www.chess.com/votechess/game/457814
+
+Date: 2026-10-15
+Event: Republic VS Owner Vote Chess
+Time: 2 Days
+Link: https://www.chess.com/votechess/game/457810
+
+Date: 2026-10-16
+Event: Friday Daily Match
+Time: All day
+Link: https://www.chess.com/club/matches/the-rook-republic-chess-club/2010716
+
+Date: 2026-10-17
+Event: Opening Academy Saturday
+Time: All day
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-17-26
+
+Date: 2026-10-17
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link: https://www.chess.com/play/tournament/31172431
+
+Date: 2026-10-17
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link: https://www.chess.com/play/arena/31391119
+
+Date: 2026-10-18
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-10-18
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-10-19
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link: https://www.chess.com/votechess/game/458328
+
+Date: 2026-10-20
+Event: Vote Chess
+Time: Republic plays as White
+Link: https://www.chess.com/votechess/game/458498
+
+Date: 2026-10-21
+Event: Vote Chess
+Time: Republic plays as Black
+Link: https://www.chess.com/votechess/game/458606
+
+Date: 2026-10-22
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link: https://www.chess.com/votechess/game/458784
+
+Date: 2026-10-23
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-10-24
+Event: Opening Academy Saturday
+Time: All day
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-10-24-26
+
+Date: 2026-10-24
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link: https://www.chess.com/play/tournament/31181997
+
+Date: 2026-10-24
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link: https://www.chess.com/play/arena/31129804
+
+Date: 2026-10-25
+Event: Social Sunday
+Time: All day
+Link: https://www.chess.com/clubs/forum/view/social-sunday-10-25-26
+
+Date: 2026-10-25
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-10-26
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link: https://www.chess.com/votechess/game/459340
+
+Date: 2026-10-27
+Event: Vote Chess
+Time: Republic plays as White
+Link: https://www.chess.com/votechess/game/459610
+
+Date: 2026-10-28
+Event: Vote Chess
+Time: Republic plays as Black
+Link: https://www.chess.com/votechess/game/459612
+
+Date: 2026-10-29
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-10-30
+Event: Friday Daily Match
+Time: All day
+Link: https://www.chess.com/club/matches/infinity-chess-7/2015720
+
+Date: 2026-10-31
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-10-31
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-10-31
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-10-31
+Event: Halloween Head-to-Head
+Time: 5:45 PM CT
+Link:
+
+Date: 2026-10-26
+Event: Rating Range Week: 100–399
+Time: All day
+Link: https://www.chess.com/club/matches/rising-momentum/2006490
+
+Date: 2026-10-27
+Event: Rating Range Week: 400–699
+Time: All day
+Link: https://www.chess.com/club/matches/rising-momentum/2006492
+
+Date: 2026-10-28
+Event: Rating Range Week: 700–999
+Time: All day
+Link: https://www.chess.com/club/matches/rising-momentum/2006494
+
+Date: 2026-10-29
+Event: Rating Range Week: 1000–1399
+Time: All day
+Link: https://www.chess.com/club/matches/rising-momentum/2006496
+
+Date: 2026-10-30
+Event: Rating Range Week: 1400–1599
+Time: All day
+Link: https://www.chess.com/club/matches/rising-momentum/2006498
+
+Date: 2026-10-31
+Event: Rating Range Week: 1600+
+Time: All day
+Link: https://www.chess.com/club/matches/rising-momentum/2006500
+
+#-----------------
+#  N O V E M B E R
+#-----------------
+
+Date: 2026-11-01
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-11-01
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-11-01
+Event: Multi-Club Arena
+Time: 6:30 PM CT
+Link: https://www.chess.com/play/arena/31105194
+
+Date: 2026-11-02
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link: https://www.chess.com/votechess/game/460364
+
+Date: 2026-11-03
+Event: Vote Chess
+Time: Republic plays as White
+Link: https://www.chess.com/votechess/game/460366
+
+Date: 2026-11-04
+Event: Vote Chess
+Time: Republic plays as Black
+Link: https://www.chess.com/votechess/game/460772
+
+Date: 2026-11-05
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link: https://www.chess.com/votechess/game/460774
+
+Date: 2026-11-06
+Event: Friday Daily Match
+Time: All day
+Link: https://www.chess.com/club/matches/the-rook-republic-chess-club/2018638
+
+Date: 2026-11-07
+Event: Opening Academy Saturday
+Time: All day
+Link: https://www.chess.com/clubs/forum/view/opening-academy-saturday-11-7-26
+
+Date: 2026-11-07
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-11-07
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-11-08
+Event: Social Sunday
+Time: All day
+Link: https://www.chess.com/clubs/forum/view/social-sunday-11-8-26
+
+Date: 2026-11-08
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-11-09
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-11-10
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-11-11
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-11-12
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-11-13
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-11-14
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-11-14
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-11-14
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-11-15
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-11-15
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-11-15
+Event: Republic VS Owner Vote Chess
+Time: 3 Days
+Link:
+
+Date: 2026-11-16
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-11-17
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-11-18
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-11-19
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-11-20
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-11-21
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-11-21
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-11-21
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-11-22
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-11-22
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-11-23
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-11-24
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-11-25
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-11-26
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-11-26
+Event: Turkey Tournament (swiss)
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-11-27
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-11-28
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-11-28
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-11-28
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-11-29
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-11-29
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-11-23
+Event: Rating Range Week: 100–399
+Time: All day
+Link:
+
+Date: 2026-11-24
+Event: Rating Range Week: 400–699
+Time: All day
+Link:
+
+Date: 2026-11-25
+Event: Rating Range Week: 700–999
+Time: All day
+Link:
+
+Date: 2026-11-26
+Event: Rating Range Week: 1000–1399
+Time: All day
+Link:
+
+Date: 2026-11-27
+Event: Rating Range Week: 1400–1599
+Time: All day
+Link:
+
+Date: 2026-11-28
+Event: Rating Range Week: 1600+
+Time: All day
+Link:
+
+#----------------------
+#    D E C E M B E R
+#----------------------
+
+Date: 2026-12-01
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-02
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-03
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-04
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-05
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-05
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-05
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-06
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-06
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-07
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-08
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-09
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-10
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-11
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-12
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-12
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-12
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-13
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-13
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-14
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-15
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-15
+Event: Republic VS Owner Vote Chess
+Time: 7 Days
+Link:
+
+Date: 2026-12-16
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-17
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-18
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-19
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-19
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-19
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-20
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-20
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-21
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-22
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-23
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-24
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-25
+Event: Friday Daily Match
+Time: All day
+Link:
+
+Date: 2026-12-25
+Event: Christmas Swiss
+Time: 6:30 PM CT
+Link:
+
+Date: 2026-12-26
+Event: Opening Academy Saturday
+Time: All day
+Link:
+
+Date: 2026-12-26
+Event: Saturday Knight Swiss
+Time: 7:00 PM CT
+Link:
+
+Date: 2026-12-26
+Event: Bughouse Battle
+Time: 8:15 PM CT
+Link:
+
+Date: 2026-12-27
+Event: Social Sunday
+Time: All day
+Link:
+
+Date: 2026-12-27
+Event: Community Game Review
+Time: 3:00 PM CT
+Link:
+
+Date: 2026-12-28
+Event: Vote Chess
+Time: Based on last Saturday's Opening Academy
+Link:
+
+Date: 2026-12-29
+Event: Vote Chess
+Time: Republic plays as White
+Link:
+
+Date: 2026-12-30
+Event: Vote Chess
+Time: Republic plays as Black
+Link:
+
+Date: 2026-12-31
+Event: Vote Chess
+Time: Random Chess960 starting position
+Link:
+
+Date: 2026-12-21
+Event: Rating Range Week: 100–399
+Time: All day
+Link:
+
+Date: 2026-12-22
+Event: Rating Range Week: 400–699
+Time: All day
+Link:
+
+Date: 2026-12-23
+Event: Rating Range Week: 700–999
+Time: All day
+Link:
+
+Date: 2026-12-24
+Event: Rating Range Week: 1000–1399
+Time: All day
+Link:
+
+Date: 2026-12-25
+Event: Rating Range Week: 1400–1599
+Time: All day
+Link:
+
+Date: 2026-12-26
+Event: Rating Range Week: 1600+
+Time: All day
+Link:
