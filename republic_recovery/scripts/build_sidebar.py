@@ -5,7 +5,7 @@ import requests
 
 # --- CONFIGURATION ---
 CLUB_SLUG = "the-rook-republic-chess-club"
-EVENTS_FILENAME = "events.txt"  # <-- Change this to your exact .txt filename!
+EVENTS_FILENAME = "events.txt"
 OUTPUT_DIR = "sidebar-assets"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
