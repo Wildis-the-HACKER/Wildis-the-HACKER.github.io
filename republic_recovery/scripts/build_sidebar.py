@@ -163,7 +163,7 @@ def build_events(upcoming_events, total_db_count):
       r_draw.rounded_rectangle(
           [12, 3, WIDTH - 12, 50], radius=5, fill=CARD_BG, outline=BORDER_COLOR
       )
-      r_draw.rounded_rectangle([18, 12, 78, 41], radius=4, fill=ACCENT_RED)
+      r_draw.rounded_rectangle([20, 12, 76, 40], radius=4, fill=ACCENT_RED)
       r_draw.text((24, 19), display_date, fill=TEXT_WHITE, font=font_small)
 
       r_draw.text((86, 10), title_str[:24], fill=TEXT_WHITE, font=font_bold)
