@@ -1,0 +1,163 @@
+{
+  "groups": [
+    {
+      "category": "Play & Compete",
+      "links": [
+        {
+          "label": "Active Vote Chess Games",
+          "url": "https://www.chess.com/clubs/currentevents/the-rook-republic-chess-club?type=vote",
+          "status": "active"
+        },
+        {
+          "label": "Club Schedule",
+          "url": "https://www.chess.com/announcements/view/state-of-the-republic-september-2026#new-schedule",
+          "status": "active"
+        },
+        {
+          "label": "Saturday Knight Swiss",
+          "url": "https://www.chess.com/play/tournament/31132879",
+          "status": "active"
+        },
+        {
+          "label": "Bughouse Battle",
+          "url": "https://www.chess.com/announcements/view/state-of-the-republic-september-2026#bughousebattleid",
+          "status": "active"
+        },
+        {
+          "label": "Friday Daily Matches",
+          "url": "https://www.chess.com/clubs/upcomingevents/the-rook-republic-chess-club?type=daily",
+          "status": "active"
+        },
+        {
+          "label": "Republic vs. Owner Vote Chess",
+          "url": "https://www.chess.com/votechess/game/443920",
+          "status": "active"
+        },
+        {
+          "label": "Multi-Club Arena",
+          "url": "https://www.chess.com/play/arena/31105194",
+          "status": "active"
+        },
+        {
+          "label": "Rating Range Week",
+          "url": "https://www.chess.com/announcements/view/state-of-the-republic-september-2026#ratingrangeweek",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "category": "Learn & Improve",
+      "links": [
+        {
+          "label": "Most Recent Opening Academy",
+          "url": "https://www.chess.com/clubs/forum/view/opening-academy-saturday-9-26-26",
+          "status": "active"
+        },
+        {
+          "label": "New Citizen Handbook",
+          "url": "https://https://www.chess.com/blog/Wildis_Knight/rook-republic-new-citizen-handbook",
+          "status": "needs_review"
+        },
+        {
+          "label": "Submit a Brilliant Rook Sacrifice",
+          "url": "https://tally.so/r/jaNKxJ",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "category": "The Republic",
+      "links": [
+        {
+          "label": "Official Club Rules",
+          "url": "https://www.chess.com/clubs/forum/view/club-rules-the-rook-republic-chess-club",
+          "status": "active"
+        },
+        {
+          "label": "Staff Rules",
+          "url": "https://www.chess.com/clubs/forum/view/staff-rules-16",
+          "status": "active"
+        },
+        {
+          "label": "Republic Offices",
+          "url": "https://www.chess.com/announcements/view/state-of-the-republic-september-2026#republicoffices",
+          "status": "active"
+        },
+        {
+          "label": "Become a Partner!",
+          "url": "https://www.chess.com/announcements/view/new-partnership-system",
+          "status": "active"
+        },
+        {
+          "label": "Suggestion Box",
+          "url": "https://www.chess.com/clubs/forum/view/suggestion-box-87",
+          "status": "active"
+        },
+        {
+          "label": "Rate the Republic",
+          "url": "https://www.surveymonkey.com/r/XYTRR2Z",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "category": "Community",
+      "links": [
+        {
+          "label": "The Infinity Chat",
+          "url": "https://www.chess.com/clubs/forum/view/the-infinity-chat",
+          "status": "active"
+        },
+        {
+          "label": "The Spammer's Chat",
+          "url": "https://www.chess.com/clubs/forum/view/spammers-chat",
+          "status": "active"
+        },
+        {
+          "label": "Community Poll: Brainrot Content",
+          "url": "https://https://smartpolls.co.uk/p/152861",
+          "status": "needs_review"
+        }
+      ]
+    },
+    {
+      "category": "Archives",
+      "links": [
+        {
+          "label": "State of the Republic",
+          "url": "https://www.chess.com/announcements/view/state-of-the-republic-august-2026",
+          "status": "active"
+        },
+        {
+          "label": "Puzzle Friday (retired)",
+          "url": "https://www.chess.com/clubs/forum/search?keyword=Puzzle+Friday&cid=923559",
+          "status": "active"
+        },
+        {
+          "label": "All Opening Academy Saturdays",
+          "url": "https://www.chess.com/clubs/forum/search?keyword=Saturday&cid=923559",
+          "status": "active"
+        },
+        {
+          "label": "Endgame Sunday (retired)",
+          "url": "https://www.chess.com/clubs/forum/search?keyword=Endgame+Sunday&cid=923559",
+          "status": "active"
+        },
+        {
+          "label": "Tactics Sunday (retired)",
+          "url": "https://www.chess.com/clubs/forum/search?keyword=Tactics+Sunday&cid=923559",
+          "status": "active"
+        },
+        {
+          "label": "Advertisement of the Month",
+          "url": "https://www.chess.com/clubs/forum/view/club-billboard-1",
+          "status": "active"
+        }
+      ]
+    }
+  ],
+  "review_notes": [
+    "Links were imported from the supplied after-crash HTML.",
+    "Malformed-looking source URLs are preserved and flagged rather than silently rewritten."
+  ]
+}

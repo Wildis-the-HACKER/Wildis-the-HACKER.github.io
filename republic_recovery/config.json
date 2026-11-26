@@ -1,0 +1,51 @@
+{
+  "project": {
+    "name": "Rook Republic Recovery",
+    "version": "0.1.0",
+    "timezone": "America/Chicago",
+    "founded_date": "2026-04-02"
+  },
+  "club": {
+    "slug": "the-rook-republic-chess-club",
+    "name": "The Rook Republic",
+    "website": "https://www.chess.com/club/the-rook-republic-chess-club",
+    "member_goal": 500,
+    "national_piece": "Rook"
+  },
+  "api": {
+    "base_url": "https://api.chess.com/pub",
+    "user_agent": "RookRepublicRecovery/0.1 (+https://github.com/Wildis-the-HACKER/Wildis-the-HACKER.github.io)",
+    "cache_file": "data/api_cache.json",
+    "minimum_cache_seconds": 43200,
+    "timeout_seconds": 20,
+    "retries": 3,
+    "newest_citizens_limit": 5,
+    "fetch_newest_profiles": true,
+    "stale_cache_on_error": true
+  },
+  "render": {
+    "logical_width": 300,
+    "scale": 3,
+    "format": "PNG",
+    "background": "#064765",
+    "panel": "#0082ba",
+    "card": "#075477",
+    "card_deep": "#063b56",
+    "text": "#ffffff",
+    "muted": "#b8d7e5",
+    "link": "#7fe3ff",
+    "green": "#00d985",
+    "border": "#00a2e8"
+  },
+  "paths": {
+    "events": "data/events.txt",
+    "achievements": "data/achievements.json",
+    "heroes": "data/heroes.json",
+    "partners": "data/partners.json",
+    "quick_links": "data/quick_links.json",
+    "announcements": "data/announcements.json",
+    "output_images": "images",
+    "pages": "pages",
+    "redirects": "go"
+  }
+}

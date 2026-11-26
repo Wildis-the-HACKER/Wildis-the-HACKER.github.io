@@ -1,0 +1,8 @@
+# Rook Republic event database
+# Records are separated by a blank line.
+# Format:
+# Date: YYYY-MM-DD
+# Event: Event title
+# Time: 7:00 PM CT (or All Day / TBD)
+# Link: https://...
+

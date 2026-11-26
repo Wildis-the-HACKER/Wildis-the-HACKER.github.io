@@ -1,0 +1,62 @@
+[
+  {
+    "label": "5 Members",
+    "complete": true
+  },
+  {
+    "label": "First Vote Chess Win",
+    "complete": true
+  },
+  {
+    "label": "10 Members",
+    "complete": true
+  },
+  {
+    "label": "25 Members",
+    "complete": true
+  },
+  {
+    "label": "50 Members",
+    "complete": true
+  },
+  {
+    "label": "100 Members",
+    "complete": true
+  },
+  {
+    "label": "250 Members",
+    "complete": true
+  },
+  {
+    "label": "500 Members",
+    "complete": true
+  },
+  {
+    "label": "1000 Members",
+    "complete": false
+  },
+  {
+    "label": "10 Vote Chess Wins",
+    "complete": true
+  },
+  {
+    "label": "100 Vote Chess Wins",
+    "complete": false
+  },
+  {
+    "label": "1000 Vote Chess Wins",
+    "complete": false
+  },
+  {
+    "label": "Top 100 in Vote Chess",
+    "complete": false
+  },
+  {
+    "label": "Top 50 in Vote Chess",
+    "complete": false
+  },
+  {
+    "label": "Top 10 in Vote Chess",
+    "complete": false
+  }
+]
