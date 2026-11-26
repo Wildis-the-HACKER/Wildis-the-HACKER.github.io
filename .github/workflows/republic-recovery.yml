@@ -1,0 +1,30 @@
+name: Update Rook Republic Recovery Sidebar
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs hourly for member counts & midnight date rollovers
+  push:
+    paths:
+      - 'republic_recovery/events.txt'
+      - 'republic_recovery/build_sidebar.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests pillow
+      - run: python republic_recovery/build_sidebar.py
+      - name: Commit updated sidebar assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@://github.com"
+          git add republic_recovery/assets/*.png republic_recovery/go/*.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update Rook Republic sidebar" && git push)
