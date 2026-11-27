@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Rook Republic — Rebuilt Sidebar</title>
+  <link rel="stylesheet" href="../assets/css/republic.css">
+  <style>
+    .sidebar-shell { width: min(330px, calc(100% - 20px)); margin: 16px auto 42px; }
+    .sidebar-intro { margin-bottom: 12px; }
+    .sidebar-stack { display: flex; flex-direction: column; gap: 0; }
+    .sidebar-image-link {
+      display: block; width: 100%; line-height: 0; border-radius: 0;
+      outline-offset: 3px; background: transparent;
+    }
+    .sidebar-image-link img {
+      display: block; width: 100%; height: auto; border: 0; margin: 0;
+    }
+    .sidebar-image-link:focus-visible { outline: 3px solid var(--rr-green); }
+    .sidebar-note { margin: 12px 0; padding: 11px 13px; border: 1px solid var(--rr-border);
+      border-radius: 10px; background: var(--rr-deep); color: var(--rr-muted);
+      font-size: .82rem; line-height: 1.5; }
+    .sidebar-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .sidebar-links a { color:var(--rr-link); background:var(--rr-deep); border:1px solid var(--rr-border);
+      border-radius:8px; padding:8px 10px; text-decoration:none; font-size:.86rem; }
+    .missing-image { padding: 14px; border: 1px dashed var(--rr-border); color:var(--rr-muted);
+      background:var(--rr-deep); font-size:.85rem; line-height:1.45; }
+  </style>
+</head>
+<body>
+  <main class="sidebar-shell">
+    <header class="rr-header sidebar-intro">
+      <p class="rr-kicker">The Rook Republic</p>
+      <h1>Rebuilt Sidebar</h1>
+      <p class="rr-subtitle">The image-based presentation layer, connected to the Republic's companion pages.</p>
+      <nav class="sidebar-links" aria-label="Companion pages">
+        <a href="index.html">Headquarters</a>
+        <a href="navbar.html">Republic Navbar</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="snake.html">Snake</a>
+        <a href="extras.html">Extras</a>
+      </nav>
+    </header>
+
+    <section class="sidebar-stack" aria-label="Rook Republic sidebar sections">
+      <a class="sidebar-image-link" href="https://www.chess.com/club/the-rook-republic-chess-club"
+         target="_blank" rel="noopener noreferrer" aria-label="Open The Rook Republic Chess.com club">
+        <img src="../images/01-census.png" alt="The Rook Republic census: member count, founding date, active matches, and national piece.">
+      </a>
+
+      <a class="sidebar-image-link" href="https://www.chess.com/club/the-rook-republic-chess-club/members"
+         target="_blank" rel="noopener noreferrer" aria-label="View Rook Republic members on Chess.com">
+        <img src="../images/02-newest-citizens.png" alt="Newest citizens of the Rook Republic, with avatars, join dates, and top ratings.">
+      </a>
+
+      <a class="sidebar-image-link" href="navbar.html#achievements" aria-label="Open Republic achievement information">
+        <img src="../images/03-achievements.png" alt="Republic achievements and milestones.">
+      </a>
+
+      <a class="sidebar-image-link" href="https://tally.so/r/jaNKxJ" target="_blank" rel="noopener noreferrer"
+         aria-label="Open the Hall of Heroes submission form">
+        <img src="../images/04-heroes-1.png" alt="Hall of Heroes, first section.">
+      </a>
+      <a class="sidebar-image-link" href="https://tally.so/r/jaNKxJ" target="_blank" rel="noopener noreferrer"
+         aria-label="Open the Hall of Heroes submission form">
+        <img src="../images/04-heroes-2.png" alt="Hall of Heroes, second section.">
+      </a>
+      <a class="sidebar-image-link" href="https://tally.so/r/jaNKxJ" target="_blank" rel="noopener noreferrer"
+         aria-label="Open the Hall of Heroes submission form">
+        <img src="../images/04-heroes-3.png" alt="Hall of Heroes, third section.">
+      </a>
+
+      <a class="sidebar-image-link" href="navbar.html#partners" aria-label="Open partner club directory">
+        <img src="../images/05-partners.png" alt="Republic partner clubs.">
+      </a>
+
+      <a class="sidebar-image-link" href="navbar.html#directory" aria-label="Open the full Republic quick links directory">
+        <img src="../images/06-quick-links.png" alt="Republic quick links directory.">
+      </a>
+
+      <a class="sidebar-image-link" href="index.html#announcements" aria-label="Open Republic announcements">
+        <img src="../images/07-announcements.png" alt="Republic announcements.">
+      </a>
+    </section>
+
+    <p class="sidebar-note">
+      If a section image is missing, run <code>python -m generator.build</code> from the
+      <code>republic_recovery</code> project folder and commit the generated PNG files in
+      <code>images/</code>. The announcements image is optional and appears only when
+      <code>data/announcements.json</code> contains entries.
+    </p>
+    <footer class="rr-footer">The Rook Republic · National Piece: Rook · ♜</footer>
+  </main>
+</body>
+</html>
