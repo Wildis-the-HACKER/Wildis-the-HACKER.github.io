@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Republic Extras</title><link rel="stylesheet" href="../assets/css/republic.css">
+  <script defer src="../assets/js/extras.js"></script>
+</head>
+<body>
+  <main class="rr-shell">
+    <header class="rr-header"><p class="rr-kicker">The Rook Republic</p><h1>Republic Extras</h1>
+      <p class="rr-subtitle">A home for the old sidebar's playful extras. Effects apply only inside this companion page and can be switched off here.</p>
+    </header>
+    <nav class="rr-nav" aria-label="Companion pages">
+      <a href="index.html">Headquarters</a><a href="navbar.html">Republic Navbar</a><a href="calendar.html">Calendar</a><a href="snake.html">Snake</a>
+    </nav>
+    <section class="rr-grid">
+      <article class="rr-card">
+        <h2>Royal Emergency</h2>
+        <p>Summon a completely unserious royal bulletin. No real alerts or emergency services are involved.</p>
+        <button id="royal-emergency" type="button">Sound the royal alarm</button>
+      </article>
+      <article class="rr-card">
+        <h2>Rat Cursor</h2>
+        <p>A tiny rat follows your pointer around this page.</p>
+        <button id="rat-toggle" type="button" aria-pressed="false">Enable Rat Cursor</button>
+      </article>
+      <article class="rr-card">
+        <h2>Mouse Mutation</h2>
+        <p>Give the page a wobbly look and switch interactive targets to a crosshair cursor.</p>
+        <button id="mutation-toggle" type="button" aria-pressed="false">Mutate My Mouse</button>
+      </article>
+      <article class="rr-card">
+        <h2>Custom Cursor</h2>
+        <p>Replace the pointer with a glowing Republic-green ring.</p>
+        <button id="custom-toggle" type="button" aria-pressed="false">Enable Custom Cursor</button>
+      </article>
+    </section>
+    <section class="rr-panel">
+      <h2>Control panel</h2>
+      <p id="extras-status" class="rr-status" role="status" aria-live="polite">All effects are off.</p>
+      <button id="reset-effects" type="button">Reset all effects</button>
+    </section>
+    <div id="royal-overlay" class="rr-alert-backdrop rr-hidden" role="dialog" aria-modal="true" aria-labelledby="royal-title">
+      <div class="rr-alert">
+        <p class="rr-kicker">Official Royal Bulletin · Entirely fictional</p>
+        <h2 id="royal-title">♜ ROYAL EMERGENCY ♜</h2>
+        <p>All citizens are hereby summoned to the nearest chessboard. Reports indicate that a knight has been moving in suspicious L-shapes.</p>
+        <p><strong>Remain calm. Protect the rooks. Carry on.</strong></p>
+        <button id="dismiss-royal" type="button">The Republic is safe</button>
+      </div>
+    </div>
+    <p class="rr-footer">Effects are local to this page. Refreshing resets them.</p>
+  </main>
+</body>
+</html>

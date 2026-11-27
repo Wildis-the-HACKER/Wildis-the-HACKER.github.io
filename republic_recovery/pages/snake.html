@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Republic Snake</title><link rel="stylesheet" href="../assets/css/republic.css">
+  <script defer src="../assets/js/snake.js"></script>
+</head>
+<body>
+  <main class="rr-shell">
+    <header class="rr-header"><p class="rr-kicker">The Rook Republic Arcade</p><h1>Snake</h1>
+      <p class="rr-subtitle">Collect the green squares, avoid the walls and your own tail. Arrow keys or WASD to move.</p>
+    </header>
+    <nav class="rr-nav" aria-label="Companion pages">
+      <a href="index.html">Headquarters</a><a href="navbar.html">Republic Navbar</a><a href="calendar.html">Calendar</a><a href="extras.html">Extras</a>
+    </nav>
+    <section class="rr-card">
+      <div class="rr-actions">
+        <button id="start-game" type="button">Start / Restart</button>
+        <button id="pause-game" type="button">Pause</button>
+        <strong id="score-label" style="align-self:center">Score: 0</strong>
+      </div>
+      <p id="game-status" class="rr-status" role="status" aria-live="polite">Press Start / Restart to play.</p>
+      <canvas id="snake-board" width="480" height="480" style="display:block;width:min(100%,480px);height:auto;margin:14px auto;background:#032b40;border:2px solid #1685ad;border-radius:10px" aria-label="Snake game board"></canvas>
+      <div class="rr-actions" style="justify-content:center">
+        <button data-dir="up" type="button" aria-label="Move up">↑</button>
+      </div>
+      <div class="rr-actions" style="justify-content:center">
+        <button data-dir="left" type="button" aria-label="Move left">←</button>
+        <button data-dir="down" type="button" aria-label="Move down">↓</button>
+        <button data-dir="right" type="button" aria-label="Move right">→</button>
+      </div>
+    </section>
+    <p class="rr-footer">A little Republic arcade diversion. ♜</p>
+  </main>
+</body>
+</html>

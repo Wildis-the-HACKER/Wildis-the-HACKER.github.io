@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Republic Event Calendar</title><link rel="stylesheet" href="../assets/css/republic.css">
+  <script defer src="../assets/js/calendar.js"></script>
+</head>
+<body>
+  <main class="rr-shell">
+    <header class="rr-header"><p class="rr-kicker">The Rook Republic</p><h1>Republic Event Calendar</h1>
+      <p class="rr-subtitle">Events are read from the project's <code>data/events.txt</code> file. Update that file in GitHub to update this calendar.</p>
+    </header>
+    <nav class="rr-nav" aria-label="Companion pages">
+      <a href="index.html">Headquarters</a><a href="navbar.html">Republic Navbar</a><a href="snake.html">Snake</a><a href="extras.html">Extras</a>
+    </nav>
+    <section class="rr-card">
+      <div class="rr-actions">
+        <button id="previous-month" type="button" aria-label="Previous month">← Previous</button>
+        <h2 id="month-label" style="margin:auto 8px">Loading…</h2>
+        <button id="next-month" type="button" aria-label="Next month">Next →</button>
+      </div>
+      <p id="calendar-status" class="rr-status" role="status" aria-live="polite">Loading event data…</p>
+      <div id="calendar-grid" class="rr-grid" aria-label="Calendar days"></div>
+    </section>
+    <section class="rr-panel"><h2>Events this month</h2><div id="event-list" class="rr-muted">Loading…</div></section>
+    <p class="rr-footer">Event records use Date, Event, Time, and Link fields.</p>
+  </main>
+</body>
+</html>
